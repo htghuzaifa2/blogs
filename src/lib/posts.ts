@@ -1770,7 +1770,7 @@ nmtui  # Use NetworkManager text UI</code></pre>
       <h4>5.3 Installing Additional Tools</h4>
       <pre><code class="language-bash">sudo apt install kali-linux-large  # Extra pentesting tools</code></pre>
       <h4>5.4 Configuring Sudo</h4>
-      <pre><code class="language-bash">sudo visudo  # Uncomment `%sudo ALL=(ALL:ALL) ALL`</code></pre>
+      <pre><code class="language-bash">sudo visudo  # Uncomment \`%sudo ALL=(ALL:ALL) ALL\`</code></pre>
       <h4>5.5 Enabling Auto-Updates</h4>
       <pre><code class="language-bash">sudo apt install unattended-upgrades
 sudo dpkg-reconfigure unattended-upgrades</code></pre>
@@ -1780,7 +1780,7 @@ sudo dpkg-reconfigure unattended-upgrades</code></pre>
         <li>XFCE (Default): Lightweight.</li>
         <li>KDE/GNOME: More polished but heavier.</li>
       </ul>
-      <h4>6.2 Persistence (For Live USB)</h4>
+      <h4>6.2 Setting Up Persistence (For Live USB)</h4>
       <pre><code class="language-bash">dd if=/dev/zero of=/persistence bs=1M count=4096
 mkfs.ext4 -L persistence /persistence
 echo "/ union" > /mnt/persistence/persistence.conf</code></pre>
