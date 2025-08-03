@@ -3028,7 +3028,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         <li><strong>For developers, by developers:</strong> Tools built to solve real-world pain points.</li>
       </ul>
       <h3>🎯 Conclusion: Embrace AI, Optimize Your Workflow</h3>
-      <p>AI tools are no longer optional—they’re essential for staying competitive. Start with industry giants like GitHub Copilot, then explore niche utilities like the AI Summarizer and ChatBot AI on <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a> to handle tasks faster and smarter.</p>
+      <p>AI tools are no longer optional—they’re essential for staying competitive. Start with industry giants like GitHub Copilot, then explore niche utilities like the AI Summarizer and ChatBot AI on tools.huzi.pk to handle tasks faster and smarter.</p>
       <p><strong>🔗 Explore all 50+ tools today: <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a></strong></p>
       <p>Whether you’re minifying CSS, debugging JSON, generating QR codes, or summarizing research papers—tools.huzi.pk has you covered. Bookmark it, share it with your team, and code like never before!</p>
     `,
@@ -3364,8 +3364,8 @@ HSL: hsl(11, 100%, 60%)</code></pre>
       <h4>20. AI Summarizer</h4>
       <p><strong>Input:</strong> Upload PDF/DOC or paste text</p>
       <p><strong>Output:</strong></p>
-      <pre><code class="language-text">• Key point 1
-• Key point 2
+      <pre><code class="language-text">• Key point 1  
+• Key point 2  
 • ... (adjustable length)</code></pre>
       <p><strong>Steps:</strong></p>
       <ol>
@@ -3376,7 +3376,7 @@ HSL: hsl(11, 100%, 60%)</code></pre>
       <h4>21. ChatBot AI Assistant</h4>
       <p><strong>Input:</strong> How to center a div in CSS?</p>
       <p><strong>Output:</strong></p>
-      <pre><code class="language-text">Use:
+      <pre><code class="language-text">Use: 
 .container {
   display: flex;
   justify-content: center;
@@ -3396,7 +3396,8 @@ HSL: hsl(11, 100%, 60%)</code></pre>
       <p><strong>Output:</strong> +15551234567</p>
       <p><strong>Steps:</strong> Paste → Standardize formats</p>
       <h4>25. Entity Extractor</h4>
-      <p><strong>Input:</strong> Meeting with John on 2024-12-31. Email: john@doe.com</p>
+      <p><strong>Input:</strong></p>
+      <p>Meeting with John on 2024-12-31. Email: john@doe.com</p>
       <p><strong>Output:</strong></p>
       <pre><code class="language-text">Names: John
 Emails: john@doe.com
