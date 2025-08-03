@@ -684,7 +684,7 @@ while (getline(file, line)) cout << line;</code></pre>
       <ul>
       <li>Better Modules – Replacing old #include system.</li>
       <li>More Safety Features – Like contracts and better static analysis.</li>
-      <li>Stronger Competition – Rust is rising, but C++ has decades of ecosystem and legacy code.</li>
+      <li>Stronger Competition – Rust is rising, but C++ remains dominant in legacy and performance-critical systems.</li>
       </ul>
       <h3>🎯 Final Closing Thoughts (Extended)</h3>
       <p>C++ is not the easiest language — but it teaches you how computers work in a way few languages can.</p>
@@ -1175,7 +1175,7 @@ nethunter kex &</code></pre>
           <li>8.2 Scripting & Automation (Hyprland IPC, Bash Scripts)</li>
           <li>8.3 Security (Firewall, Sandboxing, Kernel Hardening)</li>
           <li>8.4 Performance (Kernel Tweaks, Power Management)</li>
-        </ol>
+        ol>
       </li>
       <li>Troubleshooting Every Possible Issue
         <ol>
@@ -1627,7 +1627,7 @@ bindsym SUPER+D exec wofi</code></pre>
             <li>7.2 Black Screen on Boot (NVIDIA/AMD GPU Fixes)</li>
             <li>7.3 GRUB Rescue Mode (Bootloader Recovery)</li>
             <li>7.4 Package Conflicts & Dependency Errors</li>
-          </ol>
+          ol>
         </li>
         <li>8. Advanced Topics
           <ol>
@@ -1780,7 +1780,7 @@ sudo dpkg-reconfigure unattended-upgrades</code></pre>
         <li>XFCE (Default): Lightweight.</li>
         <li>KDE/GNOME: More polished but heavier.</li>
       </ul>
-      <h4>6.2 Setting Up Persistence (For Live USB)</h4>
+      <h4>6.2 Setting Up Persistence (For Live USB Users)</h4>
       <pre><code class="language-bash">dd if=/dev/zero of=/persistence bs=1M count=4096
 mkfs.ext4 -L persistence /persistence
 echo "/ union" > /mnt/persistence/persistence.conf</code></pre>
@@ -1789,7 +1789,7 @@ echo "/ union" > /mnt/persistence/persistence.conf</code></pre>
       <h4>6.4 Security Hardening</h4>
       <pre><code class="language-bash">sudo apt install ufw fail2ban apparmor
 sudo ufw enable</code></pre>
-      <h3>7. Troubleshooting</h3>
+      <h3>7. Troubleshooting & Common Issues</h3>
       <h4>7.1 Wi-Fi Not Working</h4>
       <pre><code class="language-bash">sudo apt install firmware-realtek  # Common missing drivers</code></pre>
       <h4>7.2 Black Screen on Boot (NVIDIA)</h4>
@@ -1810,7 +1810,7 @@ boot</code></pre>
       <p>QEMU/KVM: Best performance.</p>
       <h4>8.3 ARM Installation (Raspberry Pi)</h4>
       <p>Use Kali ARM images from <a href="https://www.kali.org/get-kali/">https://www.kali.org/get-kali/</a>.</p>
-      <h4>8.4 Kali NetHunter (Android)</h4>
+      <h4>8.4 Kali NetHunter Setup (For Mobile Devices)</h4>
       <p>Supports OnePlus, Google Pixel, and Samsung devices.</p>
       <h3>Final Thoughts</h3>
       <p>You now have a fully optimized Kali Linux installation with all tools, security hardening, and troubleshooting knowledge.</p>
@@ -1831,7 +1831,7 @@ boot</code></pre>
     title: 'The True Power of DeepSeek AI: A Comprehensive Breakdown',
     excerpt: 'In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you\'re a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.',
     content: `
-      <p>In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you\'re a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.</p>
+      <p>In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you're a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.</p>
       <p>This in-depth guide explores:</p>
       <ul>
         <li>✅ What Makes DeepSeek AI Unique?</li>
@@ -1931,35 +1931,35 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         </thead>
         <tbody>
           <tr>
-            <td>Max Context</td>
+            <th>Max Context</th>
             <td>128K</td>
             <td>128K</td>
             <td>1M</td>
             <td>200K</td>
           </tr>
           <tr>
-            <td>Coding Skill</td>
+            <th>Coding Skill</th>
             <td>⭐⭐⭐⭐⭐</td>
             <td>⭐⭐⭐⭐</td>
             <td>⭐⭐⭐</td>
             <td>⭐⭐⭐⭐</td>
           </tr>
           <tr>
-            <td>Math Ability</td>
+            <th>Math Ability</th>
             <td>⭐⭐⭐⭐⭐</td>
             <td>⭐⭐⭐⭐</td>
             <td>⭐⭐⭐</td>
             <td>⭐⭐⭐⭐</td>
           </tr>
           <tr>
-            <td>Multimodal</td>
+            <th>Multimodal</th>
             <td>✅ (Image)</td>
             <td>✅ (Paid)</td>
             <td>✅</td>
             <td>❌</td>
           </tr>
           <tr>
-            <td>Free Tier</td>
+            <th>Free Tier</th>
             <td>✅</td>
             <td>❌</td>
             <td>❌</td>
@@ -2768,8 +2768,8 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       <h3>2. Template & Slot</h3>
       <pre><code class="language-html">&lt;template id="user-card"&gt; &lt;!-- Reusable markup --&gt;
   &lt;div class="card"&gt;
-    &lt;h2&gt;&lt;slot name="username"&gt;Default User&lt;/slot&gt;&lt;/h2&gt;
-    &lt;p&gt;&lt;slot name="bio"&gt;Default bio...&lt;/slot&gt;&lt;/p&gt;
+    &lt;h2&gt;&lt;slot name="username"&gt;Default User&lt;/slot&lt;/h2&gt;
+    &lt;p&gt;&lt;slot name="bio"&gt;Default bio...&lt;/slot&lt;/p&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
@@ -2853,7 +2853,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;Complete HTML Reference&lt;/title&gt;
   &lt;meta name="description" content="Comprehensive HTML tutorial"&gt;
-  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;📚&lt;/text&gt;&lt;/svg&gt;">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
   &lt;style&gt;
     /* Critical CSS */
     body { font-family: sans-serif; }
@@ -2895,5 +2895,6 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
 export const getPosts = (): Post[] => posts;
 
 export const getPostBySlug = (slug: string): Post | undefined => posts.find(p => p.slug === slug);
+    
 
     
