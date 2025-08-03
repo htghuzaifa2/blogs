@@ -96,4 +96,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  .prose {
+    & pre {
+        @apply bg-muted/50 p-4 rounded-lg;
+    }
+    & code {
+        @apply font-code;
+    }
+    & code:not(pre > code) {
+        @apply bg-muted/50 px-1.5 py-1 rounded-md;
+    }
+    & img {
+        @apply rounded-lg shadow-md;
+    }
+  }
 }
