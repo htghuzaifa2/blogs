@@ -4297,7 +4297,7 @@ git push origin main
         <li><strong>Developer Hubs & Documentation:</strong> Ideal for content that is updated infrequently but receives high traffic.</li>
         <li><strong>E-Commerce Frontends:</strong> Static product pages for speed, with a dynamic cart and checkout handled by a third-party API like Snipcart.</li>
         <li><strong>Design-Intensive Portfolios:</strong> Leveraging the performance of static sites to handle heavy assets like video backgrounds and complex scroll-triggered animations.</li>
-        <li><strong>Localized Marketing Sites:</strong> Pre-rendering different language versions of a site at build time (e.g., creating `/en/` and `/es/` directories) for instant global delivery.</li>
+        <li><strong>Localized Marketing Sites:</strong> Pre-rendering different language versions of a site at build time (e.g., creating <code>/en/</code> and <code>/es/</code> directories) for instant global delivery.</li>
       </ul>
       
       <h3>When Static Hits Its Limits (And How to Overcome Them)</h3>
@@ -4309,7 +4309,7 @@ git push origin main
         <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The \`tools.huzi.pk\` Blueprint: A Modern Static Stack</h3>
+      <h3>The <code>tools.huzi.pk</code> Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4343,7 +4343,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Add Dynamic "Superpowers":</strong>
           <ul>
             <li><strong>Comments:</strong> Integrate a service like Disqus.</li>
-            <li><strong>Search:</strong> Use a client-side library like Algolia's \`instantsearch.js\`.</li>
+            <li><strong>Search:</strong> Use a client-side library like Algolia's <code>instantsearch.js</code>.</li>
             <li><strong>Authentication:</strong> Add a service like Clerk or Magic.link.</li>
           </ul>
         </li>
@@ -4367,7 +4367,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \`tools.huzi.pk\` prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like <code>tools.huzi.pk</code> prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'static web renaissance',
@@ -4383,3 +4383,4 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find(post => post.slug === slug);
 }
+
