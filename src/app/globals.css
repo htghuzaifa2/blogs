@@ -98,7 +98,7 @@
   }
   .prose {
     & pre {
-        @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative;
+        @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;
     }
     & code {
         @apply font-code;
