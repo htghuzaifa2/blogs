@@ -110,10 +110,22 @@
         @apply rounded-lg shadow-md max-w-full h-auto;
     }
     & table {
-        @apply w-full my-6;
+        @apply w-full my-6 text-sm;
     }
     & th {
-        @apply bg-muted/50;
+        @apply bg-muted/50 p-2 text-left font-semibold;
+    }
+    & td {
+      @apply p-2 border-t;
+    }
+    & h2 {
+      @apply text-2xl md:text-3xl;
+    }
+    & h3 {
+      @apply text-xl md:text-2xl;
+    }
+    & h4 {
+      @apply text-lg md:text-xl;
     }
   }
 }
