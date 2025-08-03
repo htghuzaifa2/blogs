@@ -997,7 +997,7 @@ nethunter kex &</code></pre>
       <h4>🚀 Steps:</h4>
       <ol>
         <li>1️⃣ Unlock bootloader & flash TWRP recovery.</li>
-        <li>2️⃣ Download the correct NetHunter image for your device from kali.org.</li>
+        <li>2️⃣ Download the correct NetHunter image for your device from <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener">kali.org</a>.</li>
         <li>3️⃣ Boot into TWRP → Install → Select NetHunter.zip → Flash.</li>
         <li>4️⃣ Reboot → Open NetHunter App → Update chroot.</li>
         <li>5️⃣ Set up KeX Desktop for GUI (same as rootless).</li>
@@ -1089,7 +1089,7 @@ nethunter kex &</code></pre>
       <h3>🔐 Security & Safety Tips</h3>
       <ul>
         <li>⚠️ Backup before rooting – Unlocking bootloader wipes data.</li>
-        <li>⚠️ Use trusted sources – Only download from kali.org or F-Droid.</li>
+        <li>⚠️ Use trusted sources – Only download from <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener">kali.org</a> or F-Droid.</li>
         <li>⚠️ Mind your device warranty – Rooting may void it.</li>
         <li>⚠️ Be ethical – Use Kali for legal penetration testing & learning only.</li>
       </ul>
@@ -1201,7 +1201,7 @@ nethunter kex &</code></pre>
       <li>Potential instability (rolling-release risks)</li>
     </ul>
     <h4>1.2 Downloading the ISO</h4>
-    <p><strong>Official Mirrors:</strong> <a href="https://archlinux.org/download">https://archlinux.org/download</a></p>
+    <p><strong>Official Mirrors:</strong> <a href="https://archlinux.org/download" target="_blank" rel="noopener">https://archlinux.org/download</a></p>
     <p><strong>Verifying Checksum:</strong></p>
     <pre><code class="language-bash">sha256sum archlinux-2025.06.01-x86_64.iso</code></pre>
     <p>Compare with sha256sums.txt to ensure file integrity.</p>
@@ -1647,7 +1647,7 @@ bindsym SUPER+D exec wofi</code></pre>
         <li>Forensics & Reverse Engineering (Binwalk, Ghidra)</li>
       </ul>
       <h4>1.2 Downloading the Kali Linux ISO</h4>
-      <p>Official ISO: <a href="https://www.kali.org/get-kali/">https://www.kali.org/get-kali/</a></p>
+      <p>Official ISO: <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener">https://www.kali.org/get-kali/</a></p>
       <p>Weekly Builds: More recent but less stable.</p>
       <p>Choose the right image:</p>
       <ul>
@@ -1809,7 +1809,7 @@ boot</code></pre>
       <p>VMware/VirtualBox: Enable 3D acceleration.</p>
       <p>QEMU/KVM: Best performance.</p>
       <h4>8.3 ARM Installation (Raspberry Pi)</h4>
-      <p>Use Kali ARM images from <a href="https://www.kali.org/get-kali/">https://www.kali.org/get-kali/</a>.</p>
+      <p>Use Kali ARM images from <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener">https://www.kali.org/get-kali/</a>.</p>
       <h4>8.4 Kali NetHunter Setup (For Mobile Devices)</h4>
       <p>Supports OnePlus, Google Pixel, and Samsung devices.</p>
       <h3>Final Thoughts</h3>
@@ -2016,7 +2016,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         <li>✅ Multimodal (images) & multilingual</li>
         <li>✅ Privacy-focused & open-weights</li>
       </ul>
-      <p>🔹 <strong>Try It Now:</strong> <a href="https://deepseek.com">https://deepseek.com</a></p>
+      <p>🔹 <strong>Try It Now:</strong> <a href="https://deepseek.com" target="_blank" rel="noopener">https://deepseek.com</a></p>
       <p>DeepSeek AI is not just another chatbot—it’s a game-changer in AI accessibility and performance. 🚀</p>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
@@ -2884,17 +2884,18 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
   &lt;script src="main.js" defer&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-      <p>This guide covers 100% of HTML5 tags with practical implementation details. Bookmark as a permanent reference! 🔖</p>
-    `,
+This guide covers 100% of HTML5 tags with practical implementation details. Bookmark as a permanent reference! 🔖
+`,
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'html reference',
+    imageHint: 'html css',
     author: 'Huzi',
   },
 ];
 
-export const getPosts = (): Post[] => posts;
+export function getPosts() {
+  return posts;
+}
 
-export const getPostBySlug = (slug: string): Post | undefined => posts.find(p => p.slug === slug);
-    
-
-    
+export function getPostBySlug(slug: string) {
+  return posts.find(post => post.slug === slug);
+}
