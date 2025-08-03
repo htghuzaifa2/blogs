@@ -16,10 +16,11 @@ export default function SearchPage() {
   useEffect(() => {
     if (query) {
       const allPosts = getPosts();
+      const lowercasedQuery = query.toLowerCase();
       const filteredPosts = allPosts.filter(post =>
-        post.title.toLowerCase().includes(query.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(query.toLowerCase()) ||
-        post.content.toLowerCase().includes(query.toLowerCase())
+        post.title.toLowerCase().includes(lowercasedQuery) ||
+        post.excerpt.toLowerCase().includes(lowercasedQuery) ||
+        post.content.toLowerCase().includes(lowercasedQuery)
       );
       setResults(filteredPosts);
     } else {
