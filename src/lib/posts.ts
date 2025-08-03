@@ -912,10 +912,198 @@ print(arr.mean())</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'python programming',
     author: 'Huzi',
+  },
+  {
+    id: 5,
+    slug: 'how-to-run-kali-linux-on-mobile-2025-ultimate-guide',
+    title: '🛡️ How to Run Kali Linux on Mobile (2025 Ultimate Guide)',
+    excerpt: 'Kali Linux isn’t just for desktops and laptops anymore — today, you can run it right from your Android phone. Whether you’re an ethical hacker, cybersecurity student, or tech enthusiast, running Kali on a smartphone means portable pentesting power in your pocket.',
+    content: `
+      <p>Kali Linux isn’t just for desktops and laptops anymore — today, you can run it right from your Android phone. Whether you’re an ethical hacker, cybersecurity student, or tech enthusiast, running Kali on a smartphone means portable pentesting power in your pocket.</p>
+      <p>This 2025 guide covers all methods — from beginner-friendly no-root installs to full-blown NetHunter setups with hardware attack capabilities.</p>
+      <h3>📌 Why Run Kali Linux on Mobile?</h3>
+      <ul>
+        <li>✅ On-the-Go Penetration Testing – test networks and devices anywhere.</li>
+        <li>✅ Learning & Experimentation – explore Linux & hacking tools without a laptop.</li>
+        <li>✅ Full Toolkit Access – Metasploit, Aircrack-ng, Burp Suite, Nmap, and more.</li>
+        <li>✅ Hardware Attacks (Full NetHunter) – HID keyboard injection, BadUSB, Evil AP, WiFi injection (on supported devices).</li>
+      </ul>
+      <h3>⚙️ Understanding the Methods</h3>
+      <p>There are three main ways to run Kali Linux on your Android device:</p>
+      <ol>
+        <li>1️⃣ Rootless Install (Safe, No Root Needed)</li>
+        <li>2️⃣ Rooted Install with NetHunter (Full Control)</li>
+        <li>3️⃣ Linux Deploy / PRoot-Based Containers (Flexible Setup)</li>
+      </ol>
+      <p>Let’s break them down step by step.</p>
+      <h3>🟢 1. NetHunter Rootless (NO ROOT NEEDED)</h3>
+      <p>If you don’t want to void your warranty or risk bricking your phone, NetHunter Rootless is your best friend.</p>
+      <h4>🛠️ What You Need:</h4>
+      <ul>
+        <li>Android 8+ (ARM64 preferred)</li>
+        <li>Internet connection (Wi-Fi recommended)</li>
+        <li>Termux (from F-Droid, not Play Store)</li>
+        <li>NetHunter Store App (to download NetHunter-KeX client)</li>
+      </ul>
+      <h4>🚀 Steps:</h4>
+      <ol>
+        <li>1️⃣ Install Termux (from F-Droid.org)</li>
+        <li>2️⃣ Run in Termux:</li>
+      </ol>
+      <pre><code class="language-bash">termux-setup-storage
+pkg install wget
+wget -O install-nethunter-termux https://offs.ec/2MceZWr
+chmod +x install-nethunter-termux
+./install-nethunter-termux</code></pre>
+      <ol start="3">
+        <li>3️⃣ Once installed, launch Kali shell:</li>
+      </ol>
+      <pre><code class="language-bash">nethunter</code></pre>
+      <ol start="4">
+        <li>4️⃣ For GUI access:</li>
+      </ol>
+      <pre><code class="language-bash">nethunter kex passwd
+nethunter kex &</code></pre>
+      <ol start="5">
+        <li>5️⃣ Open NetHunter KeX App → Connect → Enjoy Kali Desktop on your phone.</li>
+      </ol>
+      <p>✅ Pros:</p>
+      <ul>
+        <li>No root needed</li>
+        <li>Minimal risk</li>
+        <li>CLI + full GUI via KeX</li>
+      </ul>
+      <p>❌ Cons:</p>
+      <ul>
+        <li>No hardware attacks (e.g., HID injection)</li>
+        <li>Slightly slower than native install</li>
+      </ul>
+      <h3>🔵 2. NetHunter Lite / Full (ROOT REQUIRED)</h3>
+      <p>If you have a rooted phone (or don’t mind rooting), you can go beyond Rootless and get NetHunter Lite or Full NetHunter.</p>
+      <h4>🏆 NetHunter Versions:</h4>
+      <ul>
+      <li>NetHunter Lite → Rooted device, CLI + GUI, limited hardware tools.</li>
+      <li>Full NetHunter → Root + custom kernel = Wi-Fi injection, HID/BadUSB, EvilAP.</li>
+      </ul>
+      <h4>🛠️ What You Need:</h4>
+      <ul>
+        <li>Supported device (Pixel, OnePlus, Nexus, Samsung preferred)</li>
+        <li>Unlocked bootloader (may void warranty)</li>
+        <li>Custom recovery (TWRP) installed</li>
+        <li>(For Full NetHunter) NetHunter kernel for your phone</li>
+      </ul>
+      <h4>🚀 Steps:</h4>
+      <ol>
+        <li>1️⃣ Unlock bootloader & flash TWRP recovery.</li>
+        <li>2️⃣ Download the correct NetHunter image for your device from kali.org.</li>
+        <li>3️⃣ Boot into TWRP → Install → Select NetHunter.zip → Flash.</li>
+        <li>4️⃣ Reboot → Open NetHunter App → Update chroot.</li>
+        <li>5️⃣ Set up KeX Desktop for GUI (same as rootless).</li>
+      </ol>
+      <p>✅ Pros:</p>
+      <ul>
+        <li>Full access to all hacking tools</li>
+        <li>Hardware attacks (HID, Wi-Fi injection)</li>
+        <li>Best experience for pros</li>
+      </ul>
+      <p>❌ Cons:</p>
+      <ul>
+        <li>Requires rooting + custom recovery</li>
+        <li>Can brick device if done wrong</li>
+      </ul>
+      <h3>🟠 3. Linux Deploy / AndroNix (Container Method)</h3>
+      <p>If you want a GUI and full Linux feel without NetHunter branding, try Linux Deploy, AndroNix, or UserLAnd.</p>
+      <h4>🛠️ What You Need:</h4>
+      <ul>
+        <li>(Root optional) Linux Deploy (F-Droid or Play Store)</li>
+        <li>VNC Viewer App (RealVNC)</li>
+      </ul>
+      <h4>🚀 Steps:</h4>
+      <ol>
+        <li>1️⃣ Install Linux Deploy → Choose Kali Linux.</li>
+        <li>2️⃣ Configure:</li>
+        <ul>
+          <li>File system: ext4</li>
+          <li>Installation path: Internal storage</li>
+          <li>Desktop: XFCE/LXDE (lightweight)</li>
+        </ul>
+        <li>3️⃣ Tap Install → Wait (can take 10–30 min).</li>
+        <li>4️⃣ Tap Start → Opens SSH & VNC servers.</li>
+        <li>5️⃣ Open VNC Viewer → Connect to localhost:5900 → GUI Kali on your phone.</li>
+      </ol>
+      <p>✅ Pros:</p>
+      <ul>
+        <li>Works on most devices</li>
+        <li>GUI Linux environment</li>
+        <li>Flexible for learning Linux basics</li>
+      </ul>
+      <p>❌ Cons:</p>
+      <ul>
+        <li>Slower than native NetHunter</li>
+        <li>Root needed for best performance</li>
+      </ul>
+      <h3>📊 Which Method Should You Choose?</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Root Needed</th>
+            <th>GUI Support</th>
+            <th>Hardware Tools</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NetHunter Rootless</td>
+            <td>❌ No</td>
+            <td>✅ Yes</td>
+            <td>❌ No</td>
+            <td>Beginners & Safe Setup</td>
+          </tr>
+          <tr>
+            <td>NetHunter Lite</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes</td>
+            <td>⚠️ Limited</td>
+            <td>Rooted users</td>
+          </tr>
+          <tr>
+            <td>NetHunter Full</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes</td>
+            <td>✅ Full</td>
+            <td>Security pros & hackers</td>
+          </tr>
+          <tr>
+            <td>Linux Deploy</td>
+            <td>Optional</td>
+            <td>✅ Yes</td>
+            <td>❌ No</td>
+            <td>Linux learners & tinkerers</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>🔐 Security & Safety Tips</h3>
+      <ul>
+        <li>⚠️ Backup before rooting – Unlocking bootloader wipes data.</li>
+        <li>⚠️ Use trusted sources – Only download from kali.org or F-Droid.</li>
+        <li>⚠️ Mind your device warranty – Rooting may void it.</li>
+        <li>⚠️ Be ethical – Use Kali for legal penetration testing & learning only.</li>
+      </ul>
+      <h3>✅ Final Thoughts</h3>
+      <p>Running Kali Linux on mobile in 2025 is easier than ever.</p>
+      <p>Beginners should start with NetHunter Rootless for a safe intro.</p>
+      <p>Power users should go Full NetHunter for full hacking hardware access.</p>
+      <p>Learners can try Linux Deploy or AndroNix for a Linux playground.</p>
+      <p>With the right method, your Android phone can become a pocket-sized pentesting machine.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'kali linux mobile',
+    author: 'Huzi',
   }
 ];
 
 export const getPosts = (): Post[] => posts;
 
 export const getPostBySlug = (slug: string): Post | undefined => posts.find(p => p.slug === slug);
-
