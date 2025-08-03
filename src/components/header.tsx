@@ -16,7 +16,7 @@ import { getPosts } from '@/lib/posts';
 import { useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
 
 export function Header() {
@@ -86,7 +86,10 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
-                <div className="p-4">
+                <SheetHeader className="text-left">
+                  <SheetTitle className="font-headline text-2xl">Menu</SheetTitle>
+                </SheetHeader>
+                <div className="p-4 -ml-4">
                   <h3 className="mb-4 text-lg font-semibold font-headline">Categories</h3>
                   <ul className="space-y-2">
                     {categories.map((category) => (
