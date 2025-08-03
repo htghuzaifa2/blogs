@@ -11,7 +11,7 @@ interface BlogCardProps {
 export function BlogCard({ post }: BlogCardProps) {
   return (
     <Link href={`/posts/${post.slug}`} className="group block">
-      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1">
+      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1 border-border hover:border-primary">
         <CardHeader className="p-0">
           <div className="aspect-w-16 aspect-h-9 overflow-hidden">
             <Image
@@ -25,7 +25,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </div>
         </CardHeader>
         <CardContent className="p-4 flex-grow">
-          <CardTitle className="font-headline text-lg leading-tight mb-2">
+          <CardTitle className="font-headline text-lg leading-tight mb-2 group-hover:text-primary">
             {post.title}
           </CardTitle>
           <p className="text-sm text-muted-foreground line-clamp-3">

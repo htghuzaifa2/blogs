@@ -50,7 +50,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                 className="prose prose-lg dark:prose-invert max-w-none 
                            prose-headings:font-headline prose-headings:tracking-tight 
                            prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl
-                           prose-p:leading-relaxed
+                           prose-p:leading-relaxed prose-p:font-body
+                           prose-a:text-primary hover:prose-a:text-primary/80
+                           prose-strong:font-semibold
+                           prose-blockquote:border-primary prose-blockquote:text-muted-foreground
+                           prose-ul:list-disc prose-ol:list-decimal
                            [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
