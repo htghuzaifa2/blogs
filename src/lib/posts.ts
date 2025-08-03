@@ -87,7 +87,7 @@ const posts: Post[] = [
         <li><strong>Backend:</strong> Handles server logic, API routes, and authentication.</li>
         <li><strong>Database:</strong> Stores application data and supports queries.</li>
       </ul>
-      <p>This structure enables easier maintenance and scalability. Developers often use tools like version control and build systems to manage workflow and deployment across these layers. Clear separation also helps teams work on different parts simultaneously.</p>
+      <p>This structure enables easier maintenance and scalability. Developers often use tools like version control and build systems to manage workflow and deployment across these layers. Clear separation also helps teams work on different parts of a project simultaneously.</p>
       <h3>Web Application Architecture</h3>
       <p>Web application architecture defines how different parts of a web app work together to deliver content and services. It shapes how users interact with the system, how data flows, and how the app handles requests and responses.</p>
       <h4>Client-Server Model</h4>
@@ -1451,6 +1451,111 @@ ufw enable</code></pre>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'arch linux',
+    author: 'Huzi',
+  },
+  {
+    id: 7,
+    slug: 'installing-arch-linux-with-hyprland-on-mobile-full-guide',
+    title: '🌀 Installing Arch Linux with Hyprland on Mobile: Full Guide',
+    excerpt: 'Hyprland is a Wayland tiling compositor built for keyboard workflows, not optimized for touch interfaces on phones. Most users suggest better candidates like Phosh or GNOME on a phone.',
+    content: `
+    <h3>1. ⚙️ Is It Feasible?</h3>
+    <p>Hyprland is a Wayland tiling compositor built for keyboard workflows, not optimized for touch interfaces on phones. Most users suggest better candidates like Phosh or GNOME on a phone.</p>
+    <p>You need a supported device (ARM/ARM64) and bootloader unlock/root: most mainstream phones lack full support.</p>
+    <p>Consider postmarketOS, which is built for phones and supports touch Wayland environments and Docker containers for Android apps.</p>
+    <p>If you are set on Hyprland, this approach can work academically or on a tablet.</p>
+    <h3>2. Preparing Your Device</h3>
+    <ul>
+      <li>Use a supported phone or tablet (e.g. PinePhone with archlinuxarm/PostmarketOS)</li>
+      <li>Unlock bootloader, flash custom recovery (TWRP) or gain root for chroot</li>
+      <li>Recommended base: Arch Linux ARM or termux‑based Arch in PRoot for non‑root setups</li>
+    </ul>
+    <p>Backup all data before proceeding.</p>
+    <h3>3. Installation Options</h3>
+    <h4>A. No‑Root via Termux + PROOT‑DISTRO (Arch in a container)</h4>
+    <p>Install Termux (F‑Droid).</p>
+    <p>In Termux:</p>
+    <pre><code class="language-bash">pkg install proot-distro wget
+proot-distro install archlinux
+proot-distro login archlinux</code></pre>
+    <p>Use package manager within:</p>
+    <pre><code class="language-bash">pacman -Syu
+pacman -S hyprland waybar wofi kitty hyprlock hyprpaper dunst xdg-desktop-portal-hyprland</code></pre>
+    <p>Launch Hyprland with Hyprland in session.</p>
+    <h4>B. Rooted Device with Full Arch Linux ARM or postmarketOS</h4>
+    <p>Flash Arch ARM image or PostmarketOS.</p>
+    <p>Boot into system, get terminal.</p>
+    <p>Install packages:</p>
+    <pre><code class="language-bash">sudo pacman -Syu
+sudo pacman -S hyprland waybar wofi kitty dunst hyprpaper hyprlock xdg-desktop-portal-hyprland</code></pre>
+    <p>Use systemctl enable hyprland or .xinitrc to start session.</p>
+    <h3>4. Core Packages & Ecosystem Tools</h3>
+    <p>Install key components in Hyprland ecosystem:</p>
+    <p>hyprland, waybar, wofi (launcher), kitty or alacritty, dunst for notifications</p>
+    <p>Utilities: hyprpaper, hyprlock (lock screen), xdg-desktop-portal-hyprland.</p>
+    <p>You may use ML4W starter scripts for automatic setup:</p>
+    <pre><code class="language-bash">git clone https://gitlab.com/stephan-raabe/hyprland-starter.git
+cd hyprland-starter
+./install.sh</code></pre>
+    <p>This installs a modern base desktop, including Waybar, launcher, file manager, lock screen, wallpaper tool, etc.</p>
+    <h3>5. Hyprland Configuration Essentials</h3>
+    <p>Configuration files located in ~/.config/hypr/.</p>
+    <p>Example keybindings:</p>
+    <pre><code class="language-bash">bindsym SUPER+ENTER exec kitty
+bindsym SUPER+D exec wofi</code></pre>
+    <p>Setup dynamic tiling, workspace rules, autostart services.</p>
+    <p>Customize theme (dracula GTK), blur effects, gaps, border colors, SSD hotkeys.</p>
+    <p>Use hyprlock to lock screen, hyprpaper for wallpapers, hyprshot for screenshots.</p>
+    <h3>6. Touch & Usability Considerations</h3>
+    <p>Hyprland does not support touch input or on-screen keyboard optimally; you may need an external keyboard or stylus.</p>
+    <p>Projects like SXMO (Sway-based) or GNOME/Phosh offer far better touch usability on phones.</p>
+    <p>Android apps integration: use Waydroid container under Linux to run Android APKs, though compatibility may be limited.</p>
+    <h3>7. Performance & Limitations</h3>
+    <p>Expect performance to be slow on ARM mobile devices, especially with Hyprland animations.</p>
+    <p>Some hardware drivers (e.g. GPU, touchscreen, modem) may lack proper support or require manual kernel tweaks.</p>
+    <p>No official GPU support for NVIDIA ARM; avoid risking unstable drivers.</p>
+    <h3>✅ TL;DR & Summary Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Setup Method</th>
+          <th>Root Required?</th>
+          <th>Touch Usability</th>
+          <th>GUI Support</th>
+          <th>Best Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Termux + PROOT</td>
+          <td>❌ No</td>
+          <td>Poor</td>
+          <td>✅ Yes</td>
+          <td>Experimental container</td>
+        </tr>
+        <tr>
+          <td>Full Arch ARM / pmOS</td>
+          <td>✅ Yes</td>
+          <td>Limited</td>
+          <td>✅ Yes</td>
+          <td>ARM-native, keyboard use</td>
+        </tr>
+        <tr>
+          <td>SXMO / GNOME/Phosh</td>
+          <td>Depends</td>
+          <td>✅ Good</td>
+          <td>✅ Yes</td>
+          <td>Usable Linux phone UI</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Caution & Final Thoughts</h3>
+    <p>Installing Arch ARM or postmarketOS on mobile is still a high-risk experimental procedure.</p>
+    <p>Most users should use Phosh, GNOME or Sxmo for mobile Linux or rely on Android with containerized Linux.</p>
+    <p>Hyprland may work in a tablet/ARM Linux context—but not recommended for typical phone use.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'arch linux mobile',
     author: 'Huzi',
   }
 ];
