@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${post.title} | Huzi Blogs`,
+    title: `${post.title} | blogs.huzi.pk`,
     description: post.excerpt,
   }
 }

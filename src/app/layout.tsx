@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Huzi Blogs',
-  description: 'Welcome to Huzi Blogs',
+  title: 'blogs.huzi.pk',
+  description: 'Welcome to blogs.huzi.pk',
 };
 
 export default function RootLayout({
