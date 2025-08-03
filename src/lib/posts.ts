@@ -9,6 +9,7 @@ export interface Post {
   imageUrl: string;
   imageHint: string;
   author: string;
+  category: string;
 }
 
 const posts: Post[] = [
@@ -64,7 +65,7 @@ const posts: Post[] = [
       <p>Good database management ensures fast access to data and reliable storage, which is crucial for smooth website operations.</p>
       <h4>API Development</h4>
       <p>An API (Application Programming Interface) lets different software systems talk to each other. In back-end development, APIs connect the server with front-end interfaces or other services.</p>
-      <p>Common API types are REST and GraphQL. REST APIs use standard HTTP methods and URLs to exchange data. They are simple and widely supported. GraphQL APIs let clients request exactly the data they need, reducing unnecessary information transfer.</p>
+      <p>Common API types are REST and GraphQL. RESTful APIs use standard HTTP methods and URLs to exchange data. They are simple and widely supported. GraphQL APIs let clients request exactly the data they need, reducing unnecessary information transfer.</p>
       <p>Developers build APIs to be secure, fast, and easy to use. Well-designed APIs allow for better integration, letting apps work with third-party tools or expand features without redoing the back-end.</p>
       <h3>Full-Stack Development</h3>
       <p>Full-stack development involves working with both the parts of a web application that users see and interact with, and the behind-the-scenes components that handle data and logic. It requires skills across multiple technologies to build, manage, and connect different layers of a web project.</p>
@@ -169,6 +170,7 @@ const posts: Post[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'web development',
     author: 'Huzi',
+    category: 'Programming',
   },
   {
     id: 2,
@@ -355,6 +357,7 @@ finally
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'c sharp programming',
     author: 'Huzi',
+    category: 'Programming',
   },
   {
     id: 3,
@@ -699,6 +702,7 @@ while (getline(file, line)) cout << line;</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'c plus plus programming',
     author: 'Huzi',
+    category: 'Programming',
   },
   {
     id: 4,
@@ -914,6 +918,7 @@ print(arr.mean())</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'python programming',
     author: 'Huzi',
+    category: 'Programming',
   },
   {
     id: 5,
@@ -1103,6 +1108,7 @@ nethunter kex &</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'kali linux mobile',
     author: 'Huzi',
+    category: 'Cybersecurity',
   },
   {
     id: 6,
@@ -1454,6 +1460,7 @@ ufw enable</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'arch linux',
     author: 'Huzi',
+    category: 'Linux',
   },
   {
     id: 7,
@@ -1559,6 +1566,7 @@ bindsym SUPER+D exec wofi</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'arch linux mobile',
     author: 'Huzi',
+    category: 'Linux',
   },
   {
     id: 8,
@@ -1770,7 +1778,7 @@ nmtui  # Use NetworkManager text UI</code></pre>
       <h4>5.3 Installing Additional Tools</h4>
       <pre><code class="language-bash">sudo apt install kali-linux-large  # Extra pentesting tools</code></pre>
       <h4>5.4 Configuring Sudo</h4>
-      <pre><code class="language-bash">sudo visudo  # Uncomment \`%sudo ALL=(ALL:ALL) ALL\`</code></pre>
+      <pre><code class="language-bash">sudo visudo  # Uncomment %sudo ALL=(ALL:ALL) ALL</code></pre>
       <h4>5.5 Enabling Auto-Updates</h4>
       <pre><code class="language-bash">sudo apt install unattended-upgrades
 sudo dpkg-reconfigure unattended-upgrades</code></pre>
@@ -1824,6 +1832,7 @@ boot</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'kali linux',
     author: 'Huzi',
+    category: 'Linux',
   },
   {
     id: 9,
@@ -2022,6 +2031,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'deepseek ai',
     author: 'Huzi',
+    category: 'AI',
   },
   {
     id: 10,
@@ -2174,6 +2184,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'hacking cybersecurity',
     author: 'Huzi',
+    category: 'Cybersecurity',
   },
   {
     id: 11,
@@ -2468,6 +2479,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'html css',
     author: 'Huzi',
+    category: 'Programming',
   },
   {
     id: 12,
@@ -2889,6 +2901,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'html css',
     author: 'Huzi',
+    category: 'Programming',
   },
 ];
 

@@ -29,6 +29,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             </Link>
             <article>
               <header className="mb-8">
+                {post.category && (
+                  <Link href={`/category/${post.category.toLowerCase().replace(/ /g, '-')}`}>
+                     <Badge variant="secondary" className="mb-2 hover:bg-primary/20 transition-colors">
+                      {post.category}
+                    </Badge>
+                  </Link>
+                )}
                 <h1 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
                   {post.title}
                 </h1>

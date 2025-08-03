@@ -26,6 +26,11 @@ export function BlogCard({ post }: BlogCardProps) {
           </div>
         </CardHeader>
         <CardContent className="p-4 flex-grow">
+          {post.category && (
+            <Badge variant="secondary" className="mb-2">
+              {post.category}
+            </Badge>
+          )}
           <CardTitle className="font-headline text-lg leading-tight mb-2 group-hover:text-primary">
             {post.title}
           </CardTitle>
