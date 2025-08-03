@@ -1488,8 +1488,8 @@ ufw enable</code></pre>
 proot-distro install archlinux
 proot-distro login archlinux</code></pre>
     <p>Use package manager within:</p>
-    <pre><code class="language-bash">pacman -Syu
-pacman -S hyprland waybar wofi kitty hyprlock hyprpaper dunst xdg-desktop-portal-hyprland</code></pre>
+    <pre><code class="language-bash">sudo pacman -Syu
+sudo pacman -S hyprland waybar wofi kitty hyprlock hyprpaper dunst xdg-desktop-portal-hyprland</code></pre>
     <p>Launch Hyprland with Hyprland in session.</p>
     <h4>B. Rooted Device with Full Arch Linux ARM or postmarketOS</h4>
     <p>Flash Arch ARM image or PostmarketOS.</p>
@@ -3207,6 +3207,366 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
     author: 'Huzi',
     category: 'AI',
   },
+  {
+    id: 16,
+    slug: 'the-complete-encyclopedia-of-toolshuzipk',
+    title: '🚀 The Complete Encyclopedia of Tools.huzi.pk: 50+ Tools Demystified',
+    excerpt: 'Your ultimate guide to every utility with detailed workflows, inputs, outputs, and real-world use cases. This encyclopedia demystifies all 50+ tools available on tools.huzi.pk.',
+    content: `
+      <h2>Your ultimate guide to every utility with detailed workflows, inputs, outputs, and real-world use cases</h2>
+      <h3>📋 How to Use This Guide</h3>
+      <p>For each tool:</p>
+      <ul>
+        <li><strong>Input:</strong> What to provide</li>
+        <li><strong>Output:</strong> What to expect</li>
+        <li><strong>Steps:</strong> Exact workflow</li>
+        <li><strong>Pro Tips:</strong> Advanced features</li>
+        <li><strong>Use Cases:</strong> Practical applications</li>
+      </ul>
+      <h3>📂 Category 1: Text Processing Tools</h3>
+      <h4>1. Text Summarizer</h4>
+      <p><strong>Input:</strong> Pasted article/text (e.g., 2,000-word blog post)</p>
+      <p><strong>Output:</strong> 3-5 key bullet points</p>
+      <p><strong>Steps:</strong></p>
+      <ol>
+        <li>Paste text → Set summary length (Short/Medium/Long)</li>
+        <li>Click "Summarize"</li>
+        <li>Copy or export as TXT/PDF</li>
+      </ol>
+      <p><strong>Pro Tip:</strong> Works best with academic/technical content</p>
+      <h4>2. Word Counter</h4>
+      <p><strong>Input:</strong> Any text block</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Words: 248  
+Characters: 1,392  
+Sentences: 14  
+Paragraphs: 5  
+Reading Time: 1.2 mins</code></pre>
+      <p><strong>Steps:</strong> Paste → Instant analysis</p>
+      <p><strong>Use Case:</strong> SEO content optimization</p>
+      <h4>3. Case Converter</h4>
+      <p><strong>Input:</strong> hello world from TOOLS.HUZI.PK</p>
+      <p><strong>Output Options:</strong></p>
+      <ul>
+        <li>UPPERCASE: HELLO WORLD FROM TOOLS.HUZI.PK</li>
+        <li>lowercase: hello world from tools.huzi.pk</li>
+        <li>Title Case: Hello World From Tools.huzi.Pk</li>
+        <li>Sentence case: Hello world from tools.huzi.pk</li>
+      </ul>
+      <p><strong>Steps:</strong> Paste → Select mode → Convert</p>
+      <h4>4. Text Reverser</h4>
+      <p><strong>Input:</strong> 123 ABC</p>
+      <p><strong>Output:</strong> CBA 321</p>
+      <p><strong>Steps:</strong> Paste → Click "Reverse"</p>
+      <p><strong>Use Case:</strong> Debugging encoded data</p>
+      <h4>5. Sentence Counter</h4>
+      <p><strong>Input:</strong> Paragraph with 5 sentences</p>
+      <p><strong>Output:</strong> Sentences: 5</p>
+      <p><strong>Steps:</strong> Paste → Get count</p>
+      <p><strong>Pro Tip:</strong> Identifies fragments as sentences</p>
+      <h3>💻 Category 2: Code & Developer Tools</h3>
+      <h4>6. JSON Formatter</h4>
+      <p><strong>Input:</strong> {"name":"John","age":30}</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-json">{
+  "name": "John",
+  "age": 30
+}</code></pre>
+      <p><strong>Steps:</strong> Paste → Click "Prettify"</p>
+      <p><strong>Bonus:</strong> Syntax validation + error highlighting</p>
+      <h4>7. JSON Minifier</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-json">{
+  "status": "success"
+}</code></pre>
+      <p><strong>Output:</strong> {"status":"success"}</p>
+      <p><strong>Steps:</strong> Paste → Click "Minify" → Save 40% size</p>
+      <h4>8. CSS Minifier</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-css">/* Header styles */
+header { 
+  margin: 0;
+  padding: 1rem;
+}</code></pre>
+      <p><strong>Output:</strong> header{margin:0;padding:1rem;}</p>
+      <p><strong>Steps:</strong> Paste → Minify → Copy</p>
+      <h4>9. JavaScript Minifier</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-js">function sum(a, b) {
+  return a + b;
+}</code></pre>
+      <p><strong>Output:</strong> function sum(n,d){return n+d;}</p>
+      <p><strong>Steps:</strong> Paste → Minify → Use compressed version</p>
+      <h4>10. HTML Entities Encoder/Decoder</h4>
+      <p><strong>Encode Input:</strong> &lt;div&gt;Hello&lt;/div&gt;</p>
+      <p><strong>Output:</strong> &amp;lt;div&amp;gt;Hello&amp;lt;/div&amp;gt;</p>
+      <p><strong>Decode Input:</strong> &amp;quot;Hi&amp;quot;</p>
+      <p><strong>Output:</strong> "Hi"</p>
+      <p><strong>Steps:</strong> Paste → Choose Encode/Decode</p>
+      <h4>11. Regex Tester</h4>
+      <p><strong>Input:</strong></p>
+      <p>Regex: \\d{3}-\\d{3}</p>
+      <p>Test String: Phone: 123-456</p>
+      <p><strong>Output:</strong> Highlights 123-456</p>
+      <p><strong>Steps:</strong> Enter pattern + text → Debug live</p>
+      <h4>12. Base Converter</h4>
+      <p><strong>Input:</strong> 255 (Decimal)</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Binary: 11111111
+Hex: FF
+Octal: 377</code></pre>
+      <p><strong>Steps:</strong> Enter number → Select input/output bases</p>
+      <h3>🔢 Category 3: Data Conversion Tools</h3>
+      <h4>13. JSON to CSV</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-json">[{"id":1,"name":"Alice"},{"id":2,"name":"Bob"}]</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">id,name
+1,Alice
+2,Bob</code></pre>
+      <p><strong>Steps:</strong> Paste JSON → Convert → Download CSV</p>
+      <h4>14. Base64 Encoder</h4>
+      <p><strong>Text Input:</strong> Hello → <strong>Output:</strong> SGVsbG8=</p>
+      <p><strong>File Input:</strong> Upload image → <strong>Output:</strong> iVBORw0KGgoAAAANSU...</p>
+      <p><strong>Steps:</strong> Upload/paste → Encode</p>
+      <h4>15. Base64 Decoder</h4>
+      <p><strong>Input:</strong> SGVsbG8=</p>
+      <p><strong>Output:</strong> Hello</p>
+      <p><strong>Steps:</strong> Paste string → Decode → Copy/download</p>
+      <h4>16. CVV to JSON</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">4111111111111111|12/26|123
+4222222222222|05/25|456</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-json">[
+  {
+    "card_number": "4111111111111111",
+    "expiry": "12/26",
+    "cvv": "123"
+  }
+]</code></pre>
+      <p><strong>Steps:</strong> Paste CC data → Convert</p>
+      <h4>17. Text to ASCII</h4>
+      <p><strong>Input:</strong> A</p>
+      <p><strong>Output:</strong> 65 (Decimal) / 41 (Hex)</p>
+      <p><strong>Steps:</strong> Paste → Convert to decimal/hex</p>
+      <h4>18. Timestamp Converter</h4>
+      <p><strong>Input:</strong> 1712000000 (Unix)</p>
+      <p><strong>Output:</strong> April 1, 2024 12:53:20 PM UTC</p>
+      <p><strong>Steps:</strong> Enter timestamp ↔ human date</p>
+      <h4>19. Color Converter</h4>
+      <p><strong>Input:</strong> #FF5733</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">RGB: rgb(255, 87, 51)
+HSL: hsl(11, 100%, 60%)</code></pre>
+      <p><strong>Steps:</strong> Input value → Convert between formats</p>
+      <h3>🤖 Category 4: AI-Powered Tools</h3>
+      <h4>20. AI Summarizer</h4>
+      <p><strong>Input:</strong> Upload PDF/DOC or paste text</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">• Key point 1
+• Key point 2
+• ... (adjustable length)</code></pre>
+      <p><strong>Steps:</strong></p>
+      <ol>
+        <li>Upload file (50MB max)</li>
+        <li>Select detail level</li>
+        <li>Export summary</li>
+      </ol>
+      <h4>21. ChatBot AI Assistant</h4>
+      <p><strong>Input:</strong> How to center a div in CSS?</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Use:
+.container {
+  display: flex;
+  justify-content: center;
+}</code></pre>
+      <p><strong>Steps:</strong> Type question → Get instant answer</p>
+      <h3>🔍 Category 5: Data Extraction Tools</h3>
+      <h4>22. Extract Numbers</h4>
+      <p><strong>Input:</strong> Order #123: 5 items for $29.99</p>
+      <p><strong>Output:</strong> 123, 5, 29.99</p>
+      <p><strong>Steps:</strong> Paste → Toggle decimal inclusion</p>
+      <h4>23. Email Extractor</h4>
+      <p><strong>Input:</strong> Contact: support@huzi.pk or sales@domain.com</p>
+      <p><strong>Output:</strong> support@huzi.pk, sales@domain.com</p>
+      <p><strong>Steps:</strong> Paste → Extract → Copy CSV</p>
+      <h4>24. Phone Number Extractor</h4>
+      <p><strong>Input:</strong> Call +1 (555) 123-4567</p>
+      <p><strong>Output:</strong> +15551234567</p>
+      <p><strong>Steps:</strong> Paste → Standardize formats</p>
+      <h4>25. Entity Extractor</h4>
+      <p><strong>Input:</strong> Meeting with John on 2024-12-31. Email: john@doe.com</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Names: John
+Emails: john@doe.com
+Dates: 2024-12-31</code></pre>
+      <p><strong>Steps:</strong> Paste → Auto-detect entities</p>
+      <h3>✨ Category 6: Content Optimization</h3>
+      <h4>26. Hashtag Generator</h4>
+      <p><strong>Input:</strong> AI tools for developers</p>
+      <p><strong>Output:</strong> #AITools #DevTools #Programming</p>
+      <p><strong>Steps:</strong> Paste → Generate → Adjust count</p>
+      <h4>27. Synonym Enhancer</h4>
+      <p><strong>Input:</strong> A good solution</p>
+      <p><strong>Output:</strong> An optimal solution</p>
+      <p><strong>Steps:</strong> Paste → Accept/reject suggestions</p>
+      <h4>28. Sentence Rewriter</h4>
+      <p><strong>Input:</strong> The quick brown fox jumps</p>
+      <p><strong>Output:</strong> A speedy tan fox leaps</p>
+      <p><strong>Steps:</strong> Paste → Rewrite → Refine</p>
+      <h4>29. Emoji Replacer</h4>
+      <p><strong>Input:</strong> I love coding!</p>
+      <p><strong>Output:</strong> I ❤️ coding! 💻✨</p>
+      <p><strong>Steps:</strong> Choose style → Convert</p>
+      <h4>30. Text to Slug Converter</h4>
+      <p><strong>Input:</strong> Top 10 AI Tools!</p>
+      <p><strong>Output:</strong> top-10-ai-tools</p>
+      <p><strong>Steps:</strong> Paste → Generate SEO slug</p>
+      <h3>🧹 Category 7: Cleanup & Formatting</h3>
+      <h4>31. Remove Blank Lines</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">Line 1
+
+Line 3</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Line 1
+Line 3</code></pre>
+      <p><strong>Steps:</strong> Paste → Clean</p>
+      <h4>32. Remove Duplicate Lines</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">Apple
+Orange
+Apple</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Apple
+Orange</code></pre>
+      <p><strong>Steps:</strong> Paste → Remove duplicates</p>
+      <h4>33. Remove Symbols</h4>
+      <p><strong>Input:</strong> H#e!l@l$o%</p>
+      <p><strong>Output:</strong> Hello</p>
+      <p><strong>Steps:</strong> Paste → Strip symbols</p>
+      <h4>34. Whitespace Cleaner</h4>
+      <p><strong>Input:</strong> Hello    World</p>
+      <p><strong>Output:</strong> Hello World</p>
+      <p><strong>Steps:</strong> Paste → Normalize spaces</p>
+      <h4>35. Duplicate Word Remover</h4>
+      <p><strong>Input:</strong> the the quick brown fox</p>
+      <p><strong>Output:</strong> the quick brown fox</p>
+      <p><strong>Steps:</strong> Paste → Remove repeats</p>
+      <h4>36. Emoji Remover</h4>
+      <p><strong>Input:</strong> Hello 👋 World! 🌎</p>
+      <p><strong>Output:</strong> Hello World!</p>
+      <p><strong>Steps:</strong> Paste → Strip emojis</p>
+      <h4>37. Remove Diacritics</h4>
+      <p><strong>Input:</strong> Café Jalapeño</p>
+      <p><strong>Output:</strong> Cafe Jalapeno</p>
+      <p><strong>Steps:</strong> Paste → Remove accents</p>
+      <h3>🔄 Category 8: Specialized Converters</h3>
+      <h4>38. File Size Converter</h4>
+      <p><strong>Input:</strong> 2048 (Bytes)</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">KB: 2
+MB: 0.00195</code></pre>
+      <p><strong>Steps:</strong> Enter value → Convert units</p>
+      <h4>39. List Generator</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">Start: 1
+End: 5
+Step: 2</code></pre>
+      <p><strong>Output:</strong> 1, 3, 5</p>
+      <p><strong>Steps:</strong> Configure → Generate</p>
+      <h4>40. Number to Words</h4>
+      <p><strong>Input:</strong> 123</p>
+      <p><strong>Output:</strong> One Hundred Twenty-Three</p>
+      <p><strong>Steps:</strong> Enter number → Convert</p>
+      <h4>41. URL Encoder</h4>
+      <p><strong>Input:</strong> https://huzi.pk/?query=AI tools</p>
+      <p><strong>Output:</strong> https%3A%2F%2Fhuzi.pk%2F%3Fquery%3DAI%20tools</p>
+      <p><strong>Steps:</strong> Paste URL → Encode</p>
+      <h4>42. URL Decoder</h4>
+      <p><strong>Input:</strong> https%3A%2F%2Fexample.com</p>
+      <p><strong>Output:</strong> https://example.com</p>
+      <p><strong>Steps:</strong> Paste → Decode</p>
+      <h4>43. Ultra % Calculator</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">Type: Reverse %
+Original: 100
+Result: 120</code></pre>
+      <p><strong>Output:</strong> 20% increase</p>
+      <p><strong>Steps:</strong> Select mode → Calculate</p>
+      <h3>🎨 Category 9: Creative Tools</h3>
+      <h4>44. Lorem Ipsum Generator</h4>
+      <p><strong>Input:</strong> Paragraphs: 2 | Words: 50</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">Lorem ipsum dolor sit amet...</code></pre>
+      <p><strong>Steps:</strong> Configure → Generate</p>
+      <h4>45. Text Difference Checker</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">Text A: Hello world
+Text B: Hello there</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-html">Hello &lt;del&gt;world&lt;/del&gt;&lt;ins&gt;there&lt;/ins&gt;</code></pre>
+      <p><strong>Steps:</strong> Paste both → Compare</p>
+      <h4>46. Random String Generator</h4>
+      <p><strong>Input:</strong> Length: 12 | Include symbols</p>
+      <p><strong>Output:</strong> p@8!zD#s9Km2</p>
+      <p><strong>Steps:</strong> Configure → Generate</p>
+      <h4>47. Text Scrambler</h4>
+      <p><strong>Input:</strong> Password123</p>
+      <p><strong>Output:</strong> Pa2s1d3wosr</p>
+      <p><strong>Steps:</strong> Paste → Scramble</p>
+      <h4>48. Text Mirror</h4>
+      <p><strong>Input:</strong></p>
+      <pre><code class="language-text">HELLO
+WORLD</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-text">OLLEH
+DLROW</code></pre>
+      <p><strong>Steps:</strong> Paste → Mirror lines</p>
+      <h4>49. Palindrome Checker</h4>
+      <p><strong>Input:</strong> A man, a plan, a canal: Panama</p>
+      <p><strong>Output:</strong> ✅ Palindrome</p>
+      <p><strong>Steps:</strong> Paste → Verify</p>
+      <h4>50. Title Capitalization</h4>
+      <p><strong>Input:</strong> the lord of the rings</p>
+      <p><strong>Output:</strong> The Lord of the Rings</p>
+      <p><strong>Steps:</strong> Paste → Auto-capitalize</p>
+      <h4>51. QR Generator</h4>
+      <p><strong>Input:</strong> https://tools.huzi.pk</p>
+      <p><strong>Output:</strong> Download QR code (PNG/SVG)</p>
+      <p><strong>Steps:</strong> Enter data → Customize → Download</p>
+      <h3>✅ Why tools.huzi.pk Dominates</h3>
+      <p><strong>Zero Ads:</strong> Clean, distraction-free interface</p>
+      <p><strong>No Login:</strong> Instant access to all tools</p>
+      <p><strong>Privacy:</strong> No tracking or data storage</p>
+      <p><strong>Mobile-Optimized:</strong> Full functionality on any device</p>
+      <h3>🚀 Your Productivity Playbook</h3>
+      <p><strong>Bookmark:</strong> tools.huzi.pk</p>
+      <p><strong>Bookmark Key Tools:</strong></p>
+      <ul>
+        <li>tools.huzi.pk/json-formatter</li>
+        <li>tools.huzi.pk/ai-summarizer</li>
+      </ul>
+      <p><strong>Combine Tools:</strong></p>
+      <ol>
+        <li>Minify JS → Encode to Base64 → Embed in configs</li>
+        <li>Extract emails → Convert to CSV → Import to CRM</li>
+      </ol>
+      <p><strong>Daily Use Cases:</strong></p>
+      <ul>
+        <li><strong>Developers:</strong> Format JSON + Minify CSS/JS</li>
+        <li><strong>Marketers:</strong> Generate hashtags + Summarize reports</li>
+        <li><strong>Students:</strong> Rewrite sentences + Count words</li>
+      </ul>
+      <h3>🔗 Unlock 50+ Free Tools Now: tools.huzi.pk</h3>
+      <p>No signups. No fees. Just pure productivity power. 🚀</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'developer tools encyclopedia',
+    author: 'Huzi',
+    category: 'AI',
+  }
 ];
 
 export function getPosts() {
