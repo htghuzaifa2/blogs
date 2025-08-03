@@ -32,7 +32,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                   {post.title}
                 </h1>
                 <div className="text-sm text-muted-foreground">
-                  <span>By {post.author}</span> &middot; <span>{post.date}</span>
+                  <span>By {post.author}</span>
                 </div>
               </header>
 

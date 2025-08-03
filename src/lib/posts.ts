@@ -8,7 +8,6 @@ export interface Post {
   imageUrl: string;
   imageHint: string;
   author: string;
-  date: string;
 }
 
 const posts: Post[] = [
@@ -169,12 +168,9 @@ const posts: Post[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'web development',
     author: 'Huzi',
-    date: 'August 1, 2024'
   }
 ];
 
 export const getPosts = (): Post[] => posts;
 
 export const getPostBySlug = (slug: string): Post | undefined => posts.find(p => p.slug === slug);
-
-    

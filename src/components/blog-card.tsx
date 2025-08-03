@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Post } from '@/lib/posts';
@@ -33,7 +34,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </p>
         </CardContent>
         <CardFooter className="p-4 pt-0">
-           <p className="text-xs text-muted-foreground">{post.date} &middot; {post.author}</p>
+           <p className="text-xs text-muted-foreground">By {post.author}</p>
         </CardFooter>
       </Card>
     </Link>

@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from "lucide-react"
 
-const formSchema = z.object({
+export const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
@@ -33,7 +33,11 @@ const formSchema = z.object({
   }),
 })
 
-export function CommentForm() {
+interface CommentFormProps {
+  onCommentSubmit: (values: z.infer<typeof formSchema>) => void;
+}
+
+export function CommentForm({ onCommentSubmit }: CommentFormProps) {
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,10 +50,10 @@ export function CommentForm() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    onCommentSubmit(values);
     toast({
       title: "Comment Submitted!",
-      description: "Thank you for your feedback. Your comment is awaiting moderation.",
+      description: "Thank you for your feedback.",
     })
     form.reset();
   }
