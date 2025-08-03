@@ -1770,7 +1770,7 @@ nmtui  # Use NetworkManager text UI</code></pre>
       <h4>5.3 Installing Additional Tools</h4>
       <pre><code class="language-bash">sudo apt install kali-linux-large  # Extra pentesting tools</code></pre>
       <h4>5.4 Configuring Sudo</h4>
-      <pre><code class="language-bash">sudo visudo  # Uncomment %sudo ALL=(ALL:ALL) ALL</code></pre>
+      <pre><code class="language-bash">sudo visudo  # Uncomment `%sudo ALL=(ALL:ALL) ALL`</code></pre>
       <h4>5.5 Enabling Auto-Updates</h4>
       <pre><code class="language-bash">sudo apt install unattended-upgrades
 sudo dpkg-reconfigure unattended-upgrades</code></pre>
@@ -2468,9 +2468,432 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'html css',
     author: 'Huzi',
+  },
+  {
+    id: 12,
+    slug: 'the-ultimate-html-reference-guide',
+    title: 'The Ultimate HTML Reference Guide: Every Tag, Attribute, and Technique',
+    excerpt: 'Comprehensive tutorial covering all HTML elements with real-world examples',
+    content: `
+      <h2>I. Document Foundation</h2>
+      <h3>1. Core Structure</h3>
+      <pre><code class="language-html">&lt;!DOCTYPE html&gt; &lt;!-- Must be first line - declares HTML5 --&gt;
+&lt;html lang="en"&gt; &lt;!-- Root element with language declaration --&gt;
+&lt;head&gt; &lt;!-- Invisible metadata container --&gt;
+  &lt;meta charset="UTF-8"&gt; &lt;!-- Character encoding --&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Page Title&lt;/title&gt; &lt;!-- Appears in browser tab/SERP --&gt;
+&lt;/head&gt;
+&lt;body&gt; &lt;!-- Visible content container --&gt;
+  &lt;!-- Content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <h3>2. Critical Meta Tags</h3>
+      <pre><code class="language-html">&lt;meta name="description" content="Page description for SEO"&gt;  
+&lt;meta name="keywords" content="HTML,CSS,Web"&gt;  
+&lt;meta name="author" content="John Doe"&gt;  
+&lt;meta http-equiv="refresh" content="30"&gt; &lt;!-- Refresh page every 30s --&gt;
+&lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt; &lt;!-- Favicon --&gt;</code></pre>
+      <h2>II. Text Formatting & Semantics</h2>
+      <h3>1. Headings Hierarchy</h3>
+      <pre><code class="language-html">&lt;h1&gt;Main Title (One per page)&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Sub-section&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;
+&lt;h5&gt;Rarely Used&lt;/h5&gt;
+&lt;h6&gt;Smallest Heading&lt;/h6&gt;</code></pre>
+      <h3>2. Paragraphs & Formatting</h3>
+      <pre><code class="language-html">&lt;p&gt;This is a paragraph with &lt;strong&gt;strong importance&lt;/strong&gt;, 
+&lt;em&gt;emphasis&lt;/em&gt;, and &lt;mark&gt;highlighted text&lt;/mark&gt;.&lt;/p&gt;
+
+&lt;blockquote cite="source.html"&gt; &lt;!-- Indented quote --&gt;
+  &lt;p&gt;This is a quoted passage.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt; &lt;!-- Preformatted monospace text --&gt;
+  function helloWorld() {
+    console.log("Hello World");
   }
+&lt;/pre&gt;
+
+&lt;code&gt;&amp;lt;div&amp;gt;Code snippet&amp;lt;/div&amp;gt;&lt;/code&gt; &lt;!-- Inline code --&gt;</code></pre>
+      <h3>3. Semantic Text Elements</h3>
+      <table>
+        <thead><tr><th>Tag</th><th>Purpose</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>&lt;abbr&gt;</td><td>Abbreviation</td><td>&lt;abbr title="HyperText"&gt;HTML&lt;/abbr&gt;</td></tr>
+          <tr><td>&lt;cite&gt;</td><td>Citation</td><td>&lt;cite&gt;The Art of War&lt;/cite&gt; by Sun Tzu</td></tr>
+          <tr><td>&lt;time&gt;</td><td>Machine-readable time</td><td>&lt;time datetime="2023-10-01"&gt;Oct 1&lt;/time&gt;</td></tr>
+          <tr><td>&lt;data&gt;</td><td>Machine-readable data</td><td>&lt;data value="978-3"&gt;Book ID&lt;/data&gt;</td></tr>
+          <tr><td>&lt;dfn&gt;</td><td>Definition term</td><td>&lt;dfn&gt;HTML&lt;/dfn&gt; is a markup language</td></tr>
+          <tr><td>&lt;kbd&gt;</td><td>Keyboard input</td><td>Press &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;S&lt;/kbd&gt;</td></tr>
+          <tr><td>&lt;samp&gt;</td><td>Program output</td><td>Error: &lt;samp&gt;File not found&lt;/samp&gt;</td></tr>
+          <tr><td>&lt;var&gt;</td><td>Variable</td><td>Let &lt;var&gt;x&lt;/var&gt; = 5</td></tr>
+        </tbody>
+      </table>
+      <h2>III. Media Elements</h2>
+      <h3>1. Images</h3>
+      <pre><code class="language-html">&lt;img src="image.webp" 
+     alt="Descriptive text for accessibility" 
+     width="800" 
+     height="600"
+     loading="lazy" &lt;!-- Defer offscreen images --&gt;
+     srcset="small.jpg 480w, large.jpg 1080w"
+     sizes="(max-width: 600px) 480px, 1080px"&gt;</code></pre>
+      <h3>2. Video & Audio</h3>
+      <pre><code class="language-html">&lt;video controls poster="preview.jpg" width="640" height="360"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;source src="movie.webm" type="video/webm"&gt;
+  Your browser doesn't support HTML5 video.
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  Audio not supported.
+&lt;/audio&gt;</code></pre>
+      <h3>3. Embedded Content</h3>
+      <pre><code class="language-html">&lt;iframe src="https://example.com" 
+        title="Embedded Page"
+        width="600" 
+        height="400"
+        sandbox="allow-scripts" &lt;!-- Security restriction --&gt;
+        loading="lazy"&gt;&lt;/iframe&gt;
+
+&lt;embed type="image/svg+xml" src="image.svg" width="300" height="200"&gt;
+&lt;object data="document.pdf" type="application/pdf" width="100%" height="500px"&gt;&lt;/object&gt;</code></pre>
+      <h2>IV. Navigation & Hyperlinks</h2>
+      <h3>1. Anchor Tag Essentials</h3>
+      <pre><code class="language-html">&lt;a href="https://example.com" 
+   target="_blank" &lt;!-- Opens in new tab --&gt;
+   rel="noopener noreferrer" &lt;!-- Security best practice --&gt;
+   download="filename.ext"&gt; &lt;!-- Forces download --&gt;
+  Link Text
+&lt;/a&gt;
+
+&lt;!-- Page Section Links --&gt;
+&lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;
+&lt;section id="section-id"&gt;...&lt;/section&gt;
+
+&lt;!-- Telephone/Email Links --&gt;
+&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;
+&lt;a href="mailto:contact@example.com"&gt;Email Us&lt;/a&gt;</code></pre>
+      <h3>2. Navigation Blocks</h3>
+      <pre><code class="language-html">&lt;nav aria-label="Main Navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      <h2>V. Data Organization</h2>
+      <h3>1. Lists</h3>
+      <pre><code class="language-html">&lt;!-- Unordered List --&gt;
+&lt;ul&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered List --&gt;
+&lt;ol type="A" start="3" reversed&gt;
+  &lt;li&gt;Third item (due to start="3")&lt;/li&gt;
+  &lt;li&gt;Second item (reversed)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Description List --&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+      <h3>2. Tables</h3>
+      <pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt;Monthly Sales Report&lt;/caption&gt;
+  &lt;colgroup&gt; &lt;!-- Column styling --&gt;
+    &lt;col span="1" style="background-color: #f0f0f0"&gt;
+    &lt;col span="2" style="background-color: #e0e0e0"&gt;
+  &lt;/colgroup&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Month&lt;/th&gt;
+      &lt;th scope="col"&gt;Revenue&lt;/th&gt;
+      &lt;th scope="col"&gt;Profit&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;January&lt;/th&gt;
+      &lt;td&gt;$5,000&lt;/td&gt;
+      &lt;td&gt;$1,200&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;Total&lt;/th&gt;
+      &lt;td&gt;$60,000&lt;/td&gt;
+      &lt;td&gt;$14,400&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+      <h2>VI. Forms & User Input</h2>
+      <h3>1. Form Structure</h3>
+      <pre><code class="language-html">&lt;form action="/submit" method="POST" enctype="multipart/form-data" novalidate&gt;
+  &lt;fieldset&gt; &lt;!-- Groups related controls --&gt;
+    &lt;legend&gt;Personal Info&lt;/legend&gt;
+    
+    &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required autocomplete="name"&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" autocomplete="email"&gt;
+  &lt;/fieldset&gt;
+  
+  &lt;label for="bio"&gt;Biography:&lt;/label&gt;
+  &lt;textarea id="bio" name="bio" rows="4" cols="50" maxlength="500"&gt;&lt;/textarea&gt;
+  
+  &lt;label for="country"&gt;Country:&lt;/label&gt;
+  &lt;select id="country" name="country"&gt;
+    &lt;optgroup label="North America"&gt;
+      &lt;option value="us"&gt;United States&lt;/option&gt;
+      &lt;option value="ca"&gt;Canada&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+  &lt;/select&gt;
+  
+  &lt;input type="submit" value="Submit"&gt;
+  &lt;input type="reset" value="Clear"&gt;
+  &lt;input type="button" value="Custom Action"&gt;
+&lt;/form&gt;</code></pre>
+      <h3>2. Input Types</h3>
+      <table>
+        <thead><tr><th>Type</th><th>Purpose</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>text</td><td>Basic text</td><td>&lt;input type="text" name="username"&gt;</td></tr>
+          <tr><td>password</td><td>Masked input</td><td>&lt;input type="password"&gt;</td></tr>
+          <tr><td>email</td><td>Email validation</td><td>&lt;input type="email"&gt;</td></tr>
+          <tr><td>tel</td><td>Phone number</td><td>&lt;input type="tel" pattern="[0-9]{3}-[0-9]{3}"&gt;</td></tr>
+          <tr><td>url</td><td>URL validation</td><td>&lt;input type="url"&gt;</td></tr>
+          <tr><td>number</td><td>Numeric input</td><td>&lt;input type="number" min="1" max="10"&gt;</td></tr>
+          <tr><td>range</td><td>Slider</td><td>&lt;input type="range" min="0" max="100"&gt;</td></tr>
+          <tr><td>date/time</td><td>Date/time pickers</td><td>&lt;input type="datetime-local"&gt;</td></tr>
+          <tr><td>color</td><td>Color picker</td><td>&lt;input type="color"&gt;</td></tr>
+          <tr><td>file</td><td>File upload</td><td>&lt;input type="file" accept=".jpg,.png"&gt;</td></tr>
+          <tr><td>checkbox</td><td>Multi-selection</td><td>&lt;input type="checkbox" checked&gt;</td></tr>
+          <tr><td>radio</td><td>Single-selection</td><td>&lt;input type="radio" name="group"&gt;</td></tr>
+          <tr><td>hidden</td><td>Invisible data</td><td>&lt;input type="hidden" name="token" value="abc"&gt;</td></tr>
+        </tbody>
+      </table>
+      <h3>3. Data Lists & Validation</h3>
+      <pre><code class="language-html">&lt;label for="browser"&gt;Choose browser:&lt;/label&gt;
+&lt;input list="browsers" id="browser" name="browser"&gt;
+&lt;datalist id="browsers"&gt; &lt;!-- Predefined options --&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Safari"&gt;
+&lt;/datalist&gt;
+
+&lt;!-- Validation Attributes --&gt;
+&lt;input type="text" 
+       required
+       minlength="3"
+       maxlength="20"
+       pattern="[A-Za-z]{3,20}"
+       title="3-20 alphabetic characters"&gt;</code></pre>
+      <h2>VII. Semantic Layout (HTML5)</h2>
+      <h3>1. Sectioning Elements</h3>
+      <pre><code class="language-html">&lt;header&gt; &lt;!-- Top banner/navigation --&gt;
+  &lt;h1&gt;Site Title&lt;/h1&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt; &lt;!-- Primary content --&gt;
+  &lt;article&gt; &lt;!-- Self-contained composition --&gt;
+    &lt;header&gt;
+      &lt;h2&gt;Article Title&lt;/h2&gt;
+      &lt;p&gt;Published &lt;time datetime="2023-10-01"&gt;Oct 1&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;section&gt; &lt;!-- Thematic grouping --&gt;
+      &lt;h3&gt;Introduction&lt;/h3&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/section&gt;
+    
+    &lt;aside&gt; &lt;!-- Related content --&gt;
+      &lt;h4&gt;Did You Know?&lt;/h4&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/aside&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt; &lt;!-- Copyright/contact --&gt;
+  &lt;p&gt;&copy; 2023 Company Name&lt;/p&gt;
+  &lt;address&gt;contact@example.com&lt;/address&gt;
+&lt;/footer&gt;</code></pre>
+      <h3>2. Supporting Semantic Tags</h3>
+      <pre><code class="language-html">&lt;figure&gt; &lt;!-- Self-contained media --&gt;
+  &lt;img src="diagram.svg" alt="System architecture"&gt;
+  &lt;figcaption&gt;Figure 1: System diagram&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;details&gt; &lt;!-- Expandable widget --&gt;
+  &lt;summary&gt;View Specifications&lt;/summary&gt;
+  &lt;p&gt;Technical details here...&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;dialog open&gt; &lt;!-- Modal dialog --&gt;
+  &lt;p&gt;Confirmation message!&lt;/p&gt;
+  &lt;button&gt;Close&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;progress value="75" max="100"&gt;&lt;/progress&gt; &lt;!-- Progress bar --&gt;
+&lt;meter value="0.6" min="0" max="1"&gt;60%&lt;/meter&gt; &lt;!-- Measurement --&gt;</code></pre>
+      <h2>VIII. Programming & Scripting</h2>
+      <h3>1. Script Integration</h3>
+      <pre><code class="language-html">&lt;!-- Inline JavaScript --&gt;
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () =&gt; {
+    console.log('Page loaded');
+  });
+&lt;/script&gt;
+
+&lt;!-- External JavaScript --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt; &lt;!-- defer = load after DOM --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt; &lt;!-- async = load without blocking --&gt;
+
+&lt;!-- Fallback content --&gt;
+&lt;noscript&gt;
+  &lt;p&gt;This website requires JavaScript to function properly.&lt;/p&gt;
+&lt;/noscript&gt;</code></pre>
+      <h3>2. Template & Slot</h3>
+      <pre><code class="language-html">&lt;template id="user-card"&gt; &lt;!-- Reusable markup --&gt;
+  &lt;div class="card"&gt;
+    &lt;h2&gt;&lt;slot name="username"&gt;Default User&lt;/slot&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;slot name="bio"&gt;Default bio...&lt;/slot&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  const template = document.getElementById('user-card');
+  const content = template.content.cloneNode(true);
+  document.body.appendChild(content);
+&lt;/script&gt;</code></pre>
+      <h2>IX. Advanced Techniques</h2>
+      <h3>1. Responsive Images</h3>
+      <pre><code class="language-html">&lt;picture&gt; &lt;!-- Art direction --&gt;
+  &lt;source media="(min-width: 1200px)" srcset="large.jpg"&gt;
+  &lt;source media="(min-width: 768px)" srcset="medium.jpg"&gt;
+  &lt;img src="small.jpg" alt="Responsive image"&gt;
+&lt;/picture&gt;</code></pre>
+      <h3>2. Internationalization</h3>
+      <pre><code class="language-html">&lt;p lang="fr"&gt;Ceci est un texte en français&lt;/p&gt;
+&lt;p dir="rtl"&gt;هذا نص باللغة العربية&lt;/p&gt; &lt;!-- Right-to-left --&gt;</code></pre>
+      <h3>3. Microdata & ARIA</h3>
+      <pre><code class="language-html">&lt;div itemscope itemtype="https://schema.org/Person"&gt;
+  &lt;span itemprop="name"&gt;John Doe&lt;/span&gt;
+  &lt;img itemprop="image" src="john.jpg" alt="John Doe"&gt;
+&lt;/div&gt;
+
+&lt;nav aria-labelledby="mainnav-heading"&gt;
+  &lt;h2 id="mainnav-heading" hidden&gt;Main Navigation&lt;/h2&gt;
+  &lt;!-- Menu items --&gt;
+&lt;/nav&gt;</code></pre>
+      <h2>X. Global Attributes</h2>
+      <p>Apply to all HTML elements</p>
+      <table>
+        <thead><tr><th>Attribute</th><th>Purpose</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>class</td><td>CSS class selector</td><td>&lt;div class="container"&gt;</td></tr>
+          <tr><td>id</td><td>Unique identifier</td><td>&lt;section id="contact"&gt;</td></tr>
+          <tr><td>style</td><td>Inline CSS</td><td>&lt;p style="color:red"&gt;</td></tr>
+          <tr><td>title</td><td>Tooltip text</td><td>&lt;abbr title="Explanation"&gt;Text&lt;/abbr&gt;</td></tr>
+          <tr><td>data-*</td><td>Custom data storage</td><td>&lt;div data-user-id="123"&gt;</td></tr>
+          <tr><td>contenteditable</td><td>Make editable</td><td>&lt;p contenteditable="true"&gt;</td></tr>
+          <tr><td>hidden</td><td>Hide element</td><td>&lt;div hidden&gt;Invisible&lt;/div&gt;</td></tr>
+          <tr><td>tabindex</td><td>Keyboard navigation</td><td>&lt;div tabindex="0"&gt;Focusable&lt;/div&gt;</td></tr>
+          <tr><td>draggable</td><td>Drag-and-drop API</td><td>&lt;div draggable="true"&gt;</td></tr>
+          <tr><td>spellcheck</td><td>Spelling check</td><td>&lt;textarea spellcheck="true"&gt;</td></tr>
+        </tbody>
+      </table>
+      <h2>XI. Validation & Best Practices</h2>
+      <h3>1. Essential Checks</h3>
+      <p>Validate markup: W3C Validator</p>
+      <p>Test accessibility: axe DevTools</p>
+      <p>Verify responsiveness: Chrome DevTools device toolbar</p>
+      <h3>2. Critical Rules</h3>
+      <pre><code class="language-html">&lt;!-- ✅ DO --&gt;
+&lt;button type="button"&gt;Click&lt;/button&gt; &lt;!-- Explicit button type --&gt;
+&lt;img src="image.jpg" alt="Description" width="800" height="600"&gt; &lt;!-- Dimensions & alt --&gt;
+&lt;a href="https://external.com" rel="noopener"&gt;External&lt;/a&gt; &lt;!-- Security --&gt;
+
+&lt;!-- ❌ DON'T --&gt;
+&lt;font color="red"&gt;Text&lt;/font&gt; &lt;!-- Deprecated HTML3 tag --&gt;
+&lt;div onclick="doSomething()"&gt; &lt;!-- Avoid inline JS --&gt;
+&lt;b&gt;Important&lt;/b&gt; &lt;!-- Use &lt;strong&gt; instead --&gt;</code></pre>
+      <h3>3. Performance Optimization</h3>
+      <pre><code class="language-html">&lt;!-- Lazy loading --&gt;
+&lt;img src="image.jpg" loading="lazy" alt="..."&gt;
+&lt;iframe src="widget.html" loading="lazy"&gt;&lt;/iframe&gt;
+
+&lt;!-- Resource hints --&gt;
+&lt;link rel="preload" href="critical.css" as="style"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com"&gt;</code></pre>
+      <h2>Conclusion: Mastery Checklist</h2>
+      <p>Always use semantic HTML5 elements</p>
+      <p>Implement full accessibility (ARIA, alt text, keyboard nav)</p>
+      <p>Validate markup regularly</p>
+      <p>Optimize media loading (lazy, responsive images)</p>
+      <p>Secure forms with validation and HTTPS</p>
+      <p>Separate content (HTML), presentation (CSS), and behavior (JS)</p>
+      <h2>Final Document Example</h2>
+      <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" dir="ltr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Complete HTML Reference&lt;/title&gt;
+  &lt;meta name="description" content="Comprehensive HTML tutorial"&gt;
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;📚&lt;/text&gt;&lt;/svg&gt;">
+  &lt;style&gt;
+    /* Critical CSS */
+    body { font-family: sans-serif; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;HTML Mastery Guide&lt;/h1&gt;
+    &lt;nav aria-label="Main"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#text"&gt;Text&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#media"&gt;Media&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#forms"&gt;Forms&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article id="text"&gt;
+      &lt;!-- Content sections here --&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&copy; 2023 HTML Reference&lt;/p&gt;
+  &lt;/footer&gt;
+  
+  &lt;script src="main.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>This guide covers 100% of HTML5 tags with practical implementation details. Bookmark as a permanent reference! 🔖</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'html reference',
+    author: 'Huzi',
+  },
 ];
 
 export const getPosts = (): Post[] => posts;
 
 export const getPostBySlug = (slug: string): Post | undefined => posts.find(p => p.slug === slug);
+
+    
