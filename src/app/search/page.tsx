@@ -18,9 +18,7 @@ export default function SearchPage() {
       const allPosts = getPosts();
       const lowercasedQuery = query.toLowerCase();
       const filteredPosts = allPosts.filter(post =>
-        post.title.toLowerCase().includes(lowercasedQuery) ||
-        post.excerpt.toLowerCase().includes(lowercasedQuery) ||
-        post.content.toLowerCase().includes(lowercasedQuery)
+        post.title.toLowerCase().includes(lowercasedQuery)
       );
       setResults(filteredPosts);
     } else {
