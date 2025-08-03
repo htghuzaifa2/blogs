@@ -9,7 +9,6 @@ import { Comments } from '@/components/comments';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { CodeCopyButton } from '@/components/code-copy-button';
 
 export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
@@ -57,10 +56,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                            prose-strong:font-semibold
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
                            prose-ul:list-disc prose-ol:list-decimal
+                           prose-table:border-collapse prose-th:p-2 prose-th:border prose-th:border-border prose-td:p-2 prose-td:border prose-td:border-border
                            [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-              <CodeCopyButton />
             </article>
 
             <hr className="my-12 border-border" />

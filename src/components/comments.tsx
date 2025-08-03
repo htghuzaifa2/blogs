@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import { CommentForm } from "./comment-form";
 import type { z } from "zod";
 import { formSchema } from "./comment-form";
+import { CodeCopyButton } from "./code-copy-button";
 
 export interface Comment {
   name: string;
@@ -27,43 +28,46 @@ export function Comments() {
   };
 
   return (
-    <section aria-labelledby="comments-heading">
-      <Card>
-        <CardHeader>
-          <CardTitle id="comments-heading" className="font-headline text-2xl">Comments ({comments.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {comments.length > 0 ? (
-            <div className="space-y-8">
-              {comments.map((comment, index) => (
-                <div key={index} className="flex gap-4">
-                  <Avatar>
-                    <AvatarFallback>{comment.avatarFallback}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <p className="font-semibold">{comment.name}</p>
+    <>
+      <CodeCopyButton />
+      <section aria-labelledby="comments-heading">
+        <Card>
+          <CardHeader>
+            <CardTitle id="comments-heading" className="font-headline text-2xl">Comments ({comments.length})</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {comments.length > 0 ? (
+              <div className="space-y-8">
+                {comments.map((comment, index) => (
+                  <div key={index} className="flex gap-4">
+                    <Avatar>
+                      <AvatarFallback>{comment.avatarFallback}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <p className="font-semibold">{comment.name}</p>
+                      </div>
+                      <p className="text-muted-foreground mt-1">{comment.comment}</p>
                     </div>
-                    <p className="text-muted-foreground mt-1">{comment.comment}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground py-8">
-              <p>No comments yet. Be the first to share your thoughts!</p>
-            </div>
-          )}
+                ))}
+              </div>
+            ) : (
+              <div className="text-center text-muted-foreground py-8">
+                <p>No comments yet. Be the first to share your thoughts!</p>
+              </div>
+            )}
 
-          <hr className="my-8" />
-          
-          <div>
-            <h3 className="text-lg font-headline font-semibold mb-4">Leave a Comment</h3>
-            <CommentForm onCommentSubmit={handleCommentSubmit} />
-          </div>
+            <hr className="my-8" />
+            
+            <div>
+              <h3 className="text-lg font-headline font-semibold mb-4">Leave a Comment</h3>
+              <CommentForm onCommentSubmit={handleCommentSubmit} />
+            </div>
 
-        </CardContent>
-      </Card>
-    </section>
+          </CardContent>
+        </Card>
+      </section>
+    </>
   );
 }
