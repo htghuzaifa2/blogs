@@ -1775,7 +1775,7 @@ nmtui  # Use NetworkManager text UI</code></pre>
       <h4>5.2 Updating Kali</h4>
       <pre><code class="language-bash">sudo apt update && sudo apt full-upgrade -y</code></pre>
       <h4>5.3 Installing Additional Tools</h4>
-      <pre><code class="language-bash">sudo apt install kali-linux-large  # Extra pentesting tools</code></pre>
+      <pre><code class="language-bash">sudo apt install kali-linux-large</code></pre>
       <h4>5.4 Configuring Sudo</h4>
       <pre><code class="language-bash">sudo visudo  # Uncomment %sudo ALL=(ALL:ALL) ALL</code></pre>
       <h4>5.5 Enabling Auto-Updates</h4>
@@ -3858,6 +3858,183 @@ export async function onRequest({ request, next }) {
     imageHint: 'cloudflare deployment',
     author: 'Huzi',
     category: 'Programming',
+  },
+  {
+    id: 18,
+    slug: 'javascript-tricks-that-will-save-you-hours-of-coding',
+    title: '10 JavaScript Tricks That Will Save You Hours of Coding Headaches',
+    excerpt: 'JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I\'ve curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.',
+    content: `
+      <p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I've curated these battle-tested tricks that consistently save development time. Master these and you'll write cleaner, more efficient code immediately.</p>
+      
+      <h3>1. Destructuring with Aliases & Default Values</h3>
+      <p><strong>The Problem:</strong> Nested object properties require repetitive null checks.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">// Before:
+const street = user.address ? user.address.street : 'Unknown';
+
+// After:
+const { address: { street: userStreet = 'Unknown' } = {} } = user;</code></pre>
+      <p><strong>Why it rocks:</strong></p>
+      <ul>
+        <li>Aliases (<code>street: userStreet</code>) prevent naming conflicts</li>
+        <li>Default values (<code>= 'Unknown'</code>) handle undefined cases</li>
+        <li>Nested destructuring avoids multiple checks</li>
+      </ul>
+
+      <h3>2. Optional Chaining + Nullish Coalescing Combo</h3>
+      <p><strong>The Problem:</strong> Endless <code>a && a.b && a.b.c</code> chains for safe access.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">// Safely access nested properties
+const price = order?.items?.[0]?.price ?? 0;
+
+// Also works with functions:
+user.getAddress?.()?.postcode;</code></pre>
+      <p><strong>Pro Tip:</strong> Combine with <code>||</code> for falsy values, but use <code>??</code> when <code>0</code> or <code>false</code> are valid:</p>
+      <pre><code class="language-javascript">const discount = cart?.discount ?? 15; // 0 won't be overridden</code></pre>
+      
+      <h3>3. Dynamic Object Keys with Computed Properties</h3>
+      <p><strong>The Problem:</strong> Creating objects with dynamic keys requires temporary variables.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">const key = 'mobile';
+const phoneTypes = {
+  [key]: 'iPhone',
+  [\`\${key}Model\`]: '15 Pro' // Computed key names
+};
+// { mobile: 'iPhone', mobileModel: '15 Pro' }</code></pre>
+      <p><strong>Use Case:</strong> API response normalization where keys depend on data.</p>
+
+      <h3>4. Array Filtering Truthy Values</h3>
+      <p><strong>The Problem:</strong> Removing <code>null</code>, <code>undefined</code>, <code>0</code>, <code>''</code> from arrays manually.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">const data = [0, 1, '', 'text', null, undefined];
+const clean = data.filter(Boolean); // [1, 'text']</code></pre>
+      <p><strong>How it works:</strong> The <code>Boolean</code> constructor acts as the predicate function.</p>
+
+      <h3>5. Object Cloning with StructuredClone</h3>
+      <p><strong>The Problem:</strong> <code>JSON.parse(JSON.stringify())</code> fails with Dates, Sets, Maps, and functions.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">const deepCopy = structuredClone(original);
+
+// Handles:
+// - Date objects
+// - Map/Set
+// - Circular references</code></pre>
+      <p><strong>Browser Support:</strong> All modern browsers (Node.js 17+)</p>
+
+      <h3>6. Short-circuit Function Execution</h3>
+      <p><strong>The Problem:</strong> Conditional function calls create extra code branches.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">// Instead of:
+if (isLoggedIn) { fetchData(); }
+
+// Do:
+isLoggedIn && fetchData();
+
+// Set defaults:
+const apiUrl = env.API_URL || 'https://default.api';</code></pre>
+      <p><strong>Warning:</strong> Avoid for critical logic where clarity is more important. Use traditional conditionals there.</p>
+
+      <h3>7. Array Deduplication in One Line</h3>
+      <p><strong>The Problem:</strong> Removing duplicates with complex loops or external libraries.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">const dupes = [1, 2, 2, 3, 4, 4];
+const unique = [...new Set(dupes)]; // [1, 2, 3, 4]
+
+// For objects based on a key:
+const objSet = [...new Map(users.map(u => [u.id, u])).values()];</code></pre>
+
+      <h3>8. Function Parameter Destructuring</h3>
+      <p><strong>The Problem:</strong> Long, hard-to-read parameter lists with optional configs.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">// Before:
+function connect(host, port, timeout=10, retries=3) { /*...*/ }
+
+// After:
+function connect({ host, port, timeout = 10, retries = 3 }) {
+  console.log(\`Connecting to \${host}:\${port}\`);
+}
+
+// Usage:
+connect({ port: 8080, host: 'api.com' });</code></pre>
+      <p><strong>Benefits:</strong></p>
+      <ul>
+        <li>Self-documenting parameters</li>
+        <li>Order independence</li>
+        <li>Clear default values for missing props</li>
+      </ul>
+
+      <h3>9. Console Debugging Superpowers</h3>
+      <p><strong>The Problem:</strong> Basic <code>console.log</code> provides minimal context and clutters your view.</p>
+      <p><strong>Advanced Tactics:</strong></p>
+      <pre><code class="language-javascript">// 1. Table formatting for objects/arrays:
+console.table(users.filter(u => u.active));
+
+// 2. Style debug messages for visibility:
+console.log('%cPayment Successful!', 'color: green; font-weight: bold; font-size: 16px;');
+
+// 3. Performance measurement:
+console.time('render');
+renderComponent();
+console.timeEnd('render'); // logs execution time
+
+// 4. Stack traces for debugging call order:
+console.trace('Function called from:');</code></pre>
+
+      <h3>10. URL Parameter Parsing</h3>
+      <p><strong>The Problem:</strong> Manually parsing query strings with regex or <code>split()</code>.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">const params = new URLSearchParams(window.location.search);
+
+// Get single param
+const id = params.get('id');
+
+// Convert to object:
+const queryObj = Object.fromEntries(params.entries());
+
+// Update params and URL without reloading:
+params.set('page', 2);
+history.replaceState(null, '', \`?\${params.toString()}\`);</code></pre>
+
+      <h3>Bonus: Modern Error Handling</h3>
+      <p><strong>The Problem:</strong> Nested <code>try/catch</code> hell or unhandled promise rejections.</p>
+      <p><strong>The Solution:</strong></p>
+      <pre><code class="language-javascript">// 1. Promise error handling with grace:
+const data = await fetchData().catch(error => {
+  logError(error);
+  return fallbackData; // Return a default value to prevent app crash
+});
+
+// 2. Error boundary pattern (React):
+function ErrorBoundary({ children }) {
+  try {
+    return children;
+  } catch (error) {
+    return &lt;FallbackUI error={error} /&gt;;
+  }
+}</code></pre>
+
+      <h3>When NOT to Use These Tricks</h3>
+      <p>While powerful, avoid these patterns when they harm readability:</p>
+      <ul>
+        <li><strong>Short-circuiting for critical logic:</strong> An explicit <code>if</code> statement is always clearer for business rules.</li>
+        <li><strong>Overly nested optional chaining:</strong> If data is missing deep in a structure, it might indicate a bigger problem that shouldn't be silenced.</li>
+        <li><strong>"Clever" one-liners:</strong> If team members aren't familiar with a pattern, a more verbose but understandable version is better.</li>
+      </ul>
+      <blockquote>"The art of writing code is knowing when not to be clever."</blockquote>
+
+      <h3>Level Up Your Workflow</h3>
+      <p>Implement these immediately:</p>
+      <ol>
+        <li>Replace all deep-access null checks with <code>?.</code> and <code>??</code>.</li>
+        <li>Refactor any function with more than 3 parameters to use object destructuring.</li>
+        <li>Use <code>console.table()</code> for your next array debugging session. You'll never go back.</li>
+      </ol>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'javascript code',
+    author: 'Huzi',
+    category: 'Programming',
   }
 ];
 
@@ -3868,5 +4045,3 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find(post => post.slug === slug);
 }
-
-  
