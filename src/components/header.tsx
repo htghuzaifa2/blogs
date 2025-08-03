@@ -1,7 +1,9 @@
+
 "use client";
 
 import Link from 'next/link'
 import { ThemeSwitcher } from './theme-switcher'
+import { SearchBar } from './search-bar';
 
 export function Header() {
   return (
@@ -15,6 +17,7 @@ export function Header() {
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
+          <SearchBar />
           <ThemeSwitcher />
         </div>
       </div>

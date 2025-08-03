@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
@@ -16,7 +17,7 @@ interface ThemeProviderState {
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined)
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>('system');
+  const [theme, setThemeState] = useState<Theme>('light');
 
   const applyTheme = useCallback((themeToApply: Theme) => {
     const root = window.document.documentElement;
@@ -34,7 +35,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('huzi-blog-theme') as Theme | null;
-    const initialTheme = storedTheme || 'system';
+    const initialTheme = storedTheme || 'light';
     setThemeState(initialTheme);
     applyTheme(initialTheme);
   }, [applyTheme]);
