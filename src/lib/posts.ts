@@ -3050,7 +3050,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         <li>Paste/Upload → Process → Copy/Export (Done in seconds!)</li>
       </ol>
       <h3>🧠 AI-Powered Superstars</h3>
-      <h4>🤖 AI Summarizer</h4>
+      <h4>🤖 1. AI Summarizer</h4>
       <p><strong>For:</strong> Students, researchers, content creators</p>
       <p><strong>How to Use:</strong></p>
       <ul>
@@ -3059,7 +3059,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         <li>Click "Summarize" → Get key points + export as TXT/PDF</li>
       </ul>
       <p><strong>Magic Feature:</strong> Translates summaries to 10+ languages!</p>
-      <h4>💬 ChatBot AI Assistant</h4>
+      <h4>💬 2. ChatBot AI Assistant</h4>
       <p><strong>For:</strong> Debugging help, content ideas, learning</p>
       <p><strong>How to Use:</strong></p>
       <ul>

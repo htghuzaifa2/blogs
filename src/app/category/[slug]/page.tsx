@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { BlogCard } from '@/components/blog-card';
+import type { Metadata } from 'next';
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const allPosts = getPosts();
@@ -43,7 +44,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const allPosts = getPosts();
   const categorySlug = params.slug;
 
@@ -58,10 +59,21 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const categoryName = posts[0].category;
+  const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk.`;
 
   return {
-    title: `${categoryName} | blogs.huzi.pk`,
-    description: `Browse posts in the ${categoryName} category.`,
+    title: categoryName,
+    description: description,
+     openGraph: {
+      title: `${categoryName} Category`,
+      description: description,
+      url: `/category/${categorySlug}`,
+    },
+    twitter: {
+      card: 'summary',
+      title: `${categoryName} Category`,
+      description: description,
+    },
   }
 }
 

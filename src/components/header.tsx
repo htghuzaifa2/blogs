@@ -11,7 +11,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { getPosts } from '@/lib/posts';
 import { useMemo } from 'react';
@@ -59,6 +58,7 @@ export function Header() {
                               className={cn(
                                 "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                               )}
+                              aria-label={`View posts in the ${category} category`}
                             >
                               <div className="text-sm font-medium leading-none">{category}</div>
                           </a>
@@ -94,6 +94,7 @@ export function Header() {
                         <Link 
                           href={`/category/${category.toLowerCase().replace(/ /g, '-')}`}
                           className="block p-2 rounded-md hover:bg-accent"
+                           aria-label={`View posts in the ${category} category`}
                         >
                           {category}
                         </Link>

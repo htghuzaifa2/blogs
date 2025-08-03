@@ -1,6 +1,6 @@
 
 
-import { getPostBySlug } from '@/lib/posts';
+import { getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Header } from '@/components/header';
@@ -9,6 +9,7 @@ import { Comments } from '@/components/comments';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
 
 export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
@@ -51,6 +52,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                   layout="fill"
                   objectFit="cover"
                   data-ai-hint={post.imageHint}
+                  priority
                 />
               </div>
 
@@ -78,7 +80,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
@@ -88,7 +90,34 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${post.title} | blogs.huzi.pk`,
+    title: post.title,
     description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      url: `/posts/${post.slug}`,
+      images: [
+        {
+          url: post.imageUrl,
+          width: 600,
+          height: 400,
+          alt: post.title,
+        },
+      ],
+    },
+     twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.imageUrl],
+    },
   }
+}
+
+export async function generateStaticParams() {
+  const posts = getPosts();
+  return posts.map(post => ({
+    slug: post.slug,
+  }));
 }
