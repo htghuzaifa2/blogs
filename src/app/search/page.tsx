@@ -8,6 +8,34 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react';
 
+// Levenshtein distance function for fuzzy search
+const levenshteinDistance = (a: string, b: string): number => {
+  const m = a.length;
+  const n = b.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) {
+    dp[i][0] = i;
+  }
+  for (let j = 0; j <= n; j++) {
+    dp[0][j] = j;
+  }
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1, // Deletion
+        dp[i][j - 1] + 1, // Insertion
+        dp[i - 1][j - 1] + cost // Substitution
+      );
+    }
+  }
+
+  return dp[m][n];
+};
+
+
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
@@ -17,9 +45,32 @@ export default function SearchPage() {
     if (query) {
       const allPosts = getPosts();
       const lowercasedQuery = query.toLowerCase();
-      const filteredPosts = allPosts.filter(post =>
-        post.title.toLowerCase().includes(lowercasedQuery)
-      );
+
+      const filteredPosts = allPosts
+        .map(post => {
+          const title = post.title.toLowerCase();
+          const distance = levenshteinDistance(lowercasedQuery, title);
+          
+          // Determine a relevance threshold
+          // A lower distance means a better match.
+          // Threshold can be adjusted. A good starting point is less than half the query's length.
+          const threshold = Math.floor(query.length / 2);
+
+          // Direct match should always be included
+          if (title.includes(lowercasedQuery)) {
+            return { post, relevance: 0 }; // Highest relevance for direct includes
+          }
+          
+          if (distance <= threshold) {
+            return { post, relevance: distance };
+          }
+          
+          return null;
+        })
+        .filter(item => item !== null)
+        .sort((a, b) => a!.relevance - b!.relevance)
+        .map(item => item!.post);
+
       setResults(filteredPosts);
     } else {
       setResults([]);
@@ -56,7 +107,7 @@ export default function SearchPage() {
             <div className="text-center py-16">
               <h2 className="text-2xl font-headline">No results found</h2>
               <p className="text-muted-foreground mt-2">
-                We couldn&apos;t find any posts matching your search.
+                We couldn&apos;t find any posts matching your search. Try a different query.
               </p>
             </div>
           )
