@@ -1,3 +1,4 @@
+
 import { getPostBySlug } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -46,12 +47,16 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               </div>
 
               <div 
-                className="prose prose-lg dark:prose-invert max-w-none [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light [&_h3]:font-headline"
+                className="prose prose-lg dark:prose-invert max-w-none 
+                           prose-headings:font-headline prose-headings:tracking-tight 
+                           prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl
+                           prose-p:leading-relaxed
+                           [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>
 
-            <hr className="my-12" />
+            <hr className="my-12 border-border" />
             
             <Comments />
           </div>
