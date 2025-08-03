@@ -98,7 +98,7 @@
   }
   .prose {
     & pre {
-        @apply bg-muted/50 p-4 rounded-lg;
+        @apply bg-muted/50 p-4 rounded-lg overflow-x-auto;
     }
     & code {
         @apply font-code;
@@ -107,7 +107,13 @@
         @apply bg-muted/50 px-1.5 py-1 rounded-md;
     }
     & img {
-        @apply rounded-lg shadow-md;
+        @apply rounded-lg shadow-md max-w-full h-auto;
+    }
+    & table {
+        @apply w-full my-6;
+    }
+    & th {
+        @apply bg-muted/50;
     }
   }
 }

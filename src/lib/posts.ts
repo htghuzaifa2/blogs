@@ -1175,7 +1175,7 @@ nethunter kex &</code></pre>
           <li>8.2 Scripting & Automation (Hyprland IPC, Bash Scripts)</li>
           <li>8.3 Security (Firewall, Sandboxing, Kernel Hardening)</li>
           <li>8.4 Performance (Kernel Tweaks, Power Management)</li>
-        ol>
+        </ol>
       </li>
       <li>Troubleshooting Every Possible Issue
         <ol>
@@ -1627,7 +1627,7 @@ bindsym SUPER+D exec wofi</code></pre>
             <li>7.2 Black Screen on Boot (NVIDIA/AMD GPU Fixes)</li>
             <li>7.3 GRUB Rescue Mode (Bootloader Recovery)</li>
             <li>7.4 Package Conflicts & Dependency Errors</li>
-          ol>
+          </ol>
         </li>
         <li>8. Advanced Topics
           <ol>
