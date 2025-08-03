@@ -18,11 +18,18 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8">
-          {posts.map(post => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
+        {posts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8">
+            {posts.map(post => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <h2 className="text-2xl font-headline">No posts yet</h2>
+            <p className="text-muted-foreground mt-2">Check back later for new content!</p>
+          </div>
+        )}
       </main>
       <Footer />
     </div>
