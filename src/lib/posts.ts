@@ -1101,6 +1101,357 @@ nethunter kex &</code></pre>
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'kali linux mobile',
     author: 'Huzi',
+  },
+  {
+    id: 6,
+    slug: 'arch-linux-hyprland-installation-guide',
+    title: 'The Most Detailed Arch Linux Hyprland Installation Guide (2025 Ultimate Edition)',
+    excerpt: 'This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, including background concepts, alternative approaches, troubleshooting for every possible issue, and post-installation optimization. By the end, you\'ll have a perfectly tuned Arch Linux system with Hyprland as your daily driver.',
+    content: `
+    <p>This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, including background concepts, alternative approaches, troubleshooting for every possible issue, and post-installation optimization. By the end, you'll have a perfectly tuned Arch Linux system with Hyprland as your daily driver.</p>
+    <h3>🔍 Table of Contents (Ultra-Detailed)</h3>
+    <ol>
+      <li>Pre-Installation: Preparing for Arch Linux
+        <ol>
+          <li>1.1 Understanding Arch Linux (Philosophy, Pros & Cons)</li>
+          <li>1.2 Downloading the ISO (Mirrors, Checksum Verification)</li>
+          <li>1.3 Creating a Bootable USB (Rufus vs Ventoy vs dd)</li>
+          <li>1.4 BIOS/UEFI Settings (Secure Boot, Fast Boot, TPM Considerations)</li>
+        </ol>
+      </li>
+      <li>Booting into the Live Environment
+        <ol>
+          <li>2.1 Understanding the Arch ISO (What’s Inside?)</li>
+          <li>2.2 Keyboard Layout & Localization</li>
+          <li>2.3 Connecting to the Internet (Ethernet, Wi-Fi, iwd vs NetworkManager)</li>
+          <li>2.4 Updating the Live Environment (pacman -Syyu?)</li>
+        </ol>
+      </li>
+      <li>Disk Partitioning (Mastering Storage Layouts)
+        <ol>
+          <li>3.1 Understanding Partition Tables (GPT vs MBR)</li>
+          <li>3.2 Partitioning Tools (cfdisk, fdisk, gdisk, parted)</li>
+          <li>3.3 Partition Scheme (UEFI + LUKS Encryption, Swap Options)</li>
+          <li>3.4 Filesystems (ext4 vs btrfs vs zfs, pros & cons)</li>
+        </ol>
+      </li>
+      <li>Installing the Base System
+        <ol>
+          <li>4.1 Mounting Partitions (Proper Hierarchy for /, /boot, /home)</li>
+          <li>4.2 Pacstrap Deep Dive (Selecting Packages, Minimal vs Full)</li>
+          <li>4.3 Generating fstab (UUID vs Labels, Mount Options)</li>
+          <li>4.4 Chrooting (Why It’s Needed, How It Works)</li>
+        </ol>
+      </li>
+      <li>Configuring the Base System
+        <ol>
+          <li>5.1 Time & Locale (Timezone, NTP, Localization)</li>
+          <li>5.2 Hostname & Hosts File (Networking Basics)</li>
+          <li>5.3 Users & Sudo (Proper Permissions, Wheel Group)</li>
+          <li>5.4 Bootloader (systemd-boot vs GRUB, Secure Boot Signing)</li>
+        </ol>
+      </li>
+      <li>Graphics & Hyprland Setup
+        <ol>
+          <li>6.1 GPU Drivers (Intel, AMD, NVIDIA Optimizations)</li>
+          <li>6.2 Wayland vs X11 (Why Hyprland?)</li>
+          <li>6.3 Installing Hyprland (Official vs Git, Dependencies)</li>
+          <li>6.4 Configuring Hyprland (Keybinds, Monitors, Autostart)</li>
+        </ol>
+      </li>
+      <li>Post-Installation Essentials
+        <ol>
+          <li>7.1 AUR Helpers (yay vs paru, Security Considerations)</li>
+          <li>7.2 Must-Have Apps (Browsers, Terminals, Productivity)</li>
+          <li>7.3 Audio (PipeWire, Bluetooth Codecs, EasyEffects)</li>
+          <li>7.4 Gaming (Steam, Proton, DXVK, Latency Tweaks)</li>
+        </ol>
+      </li>
+      <li>Advanced Customization
+        <ol>
+          <li>8.1 Hyprland Themes (Waybar, Rofi, GTK Themes)</li>
+          <li>8.2 Scripting & Automation (Hyprland IPC, Bash Scripts)</li>
+          <li>8.3 Security (Firewall, Sandboxing, Kernel Hardening)</li>
+          <li>8.4 Performance (Kernel Tweaks, Power Management)</li>
+        </ol>
+      </li>
+      <li>Troubleshooting Every Possible Issue
+        <ol>
+          <li>9.1 Boot Failures (Kernel Panics, Initramfs Issues)</li>
+          <li>9.2 Graphics Problems (Screen Tearing, Artifacts)</li>
+          <li>9.3 Networking (Wi-Fi Drops, DHCP Failures)</li>
+          <li>9.4 Audio (No Sound, Crackling, Bluetooth Issues)</li>
+        </ol>
+      </li>
+    </ol>
+    <h3>1. Pre-Installation: Preparing for Arch Linux</h3>
+    <h4>1.1 Understanding Arch Linux</h4>
+    <p><strong>Philosophy:</strong> Arch follows the KISS principle (Keep It Simple, Stupid). It’s a rolling-release distro, meaning updates are continuous.</p>
+    <p><strong>Pros:</strong></p>
+    <ul>
+      <li>Lightweight (no bloat)</li>
+      <li>Customizable (build your own system)</li>
+      <li>Latest software (cutting-edge packages)</li>
+    </ul>
+    <p><strong>Cons:</strong></p>
+    <ul>
+      <li>Steep learning curve (manual setup required)</li>
+      <li>Potential instability (rolling-release risks)</li>
+    </ul>
+    <h4>1.2 Downloading the ISO</h4>
+    <p><strong>Official Mirrors:</strong> <a href="https://archlinux.org/download">https://archlinux.org/download</a></p>
+    <p><strong>Verifying Checksum:</strong></p>
+    <pre><code class="language-bash">sha256sum archlinux-2025.06.01-x86_64.iso</code></pre>
+    <p>Compare with sha256sums.txt to ensure file integrity.</p>
+    <h4>1.3 Creating a Bootable USB</h4>
+    <p><strong>Rufus (Windows)</strong></p>
+    <ul>
+      <li><strong>Mode:</strong> DD (Disk Destroyer) mode (not ISO mode!)</li>
+      <li><strong>Partition Scheme:</strong> GPT (for UEFI)</li>
+      <li><strong>File System:</strong> FAT32 (for EFI compatibility)</li>
+    </ul>
+    <p><strong>Ventoy (Multi-ISO USB)</strong></p>
+    <p>Allows multiple ISOs on one USB drive.</p>
+    <ul>
+      <li><strong>Pros:</strong> No need to rewrite USB for different distros.</li>
+    </ul>
+    <p><strong>dd (Linux/macOS)</strong></p>
+    <pre><code class="language-bash">dd if=archlinux-2025.06.01-x86_64.iso of=/dev/sdX bs=4M status=progress</code></pre>
+    <p><strong>Warning:</strong> <code>of=</code> must point to the USB device, not a partition!</p>
+    <h4>1.4 BIOS/UEFI Settings</h4>
+    <ul>
+      <li><strong>Secure Boot:</strong> Disable (unless you want to sign kernels manually).</li>
+      <li><strong>Fast Boot:</strong> Disable (may cause boot issues).</li>
+      <li><strong>TPM:</strong> Only needed for Windows 11 dual-boot.</li>
+    </ul>
+    <h3>2. Booting into the Live Environment</h3>
+    <h4>2.1 Understanding the Arch ISO</h4>
+    <p>The ISO provides a minimal Linux environment with:</p>
+    <ul>
+      <li>pacman (package manager)</li>
+      <li>fdisk (partitioning)</li>
+      <li>iwd (Wi-Fi)</li>
+      <li>systemd (init system)</li>
+    </ul>
+    <h4>2.2 Keyboard Layout & Localization</h4>
+    <p>List available keymaps:</p>
+    <pre><code class="language-bash">ls /usr/share/kbd/keymaps/**/*.map.gz</code></pre>
+    <p>Set keymap (e.g., US):</p>
+    <pre><code class="language-bash">loadkeys us</code></pre>
+    <h4>2.3 Connecting to the Internet</h4>
+    <p><strong>Ethernet (Automatic DHCP)</strong></p>
+    <pre><code class="language-bash">systemctl start dhcpcd
+ping archlinux.org</code></pre>
+    <p><strong>Wi-Fi (iwd)</strong></p>
+    <pre><code class="language-bash">iwctl
+device list                 # List Wi-Fi devices
+station wlan0 scan          # Scan networks
+station wlan0 get-networks  # List available networks
+station wlan0 connect SSID  # Connect to a network
+exit
+ping archlinux.org</code></pre>
+    <p><strong>Alternative (NetworkManager)</strong></p>
+    <pre><code class="language-bash">nmtui  # Graphical network setup</code></pre>
+    <h4>2.4 Updating the Live Environment</h4>
+    <p>Not recommended unless you have a slow ISO.</p>
+    <p>If needed:</p>
+    <pre><code class="language-bash">pacman -Syyu  # Refresh & update</code></pre>
+    <h3>3. Disk Partitioning (Mastering Storage Layouts)</h3>
+    <h4>3.1 Partition Tables (GPT vs MBR)</h4>
+    <p><strong>GPT (Recommended for UEFI):</strong></p>
+    <ul>
+      <li>Supports disks >2TB</li>
+      <li>No 4-partition limit</li>
+    </ul>
+    <p><strong>MBR (Legacy BIOS):</strong></p>
+    <ul>
+      <li>Limited to 4 primary partitions</li>
+      <li>No Secure Boot support</li>
+    </ul>
+    <h4>3.2 Partitioning Tools</h4>
+    <p><strong>cfdisk (Beginner-Friendly)</strong></p>
+    <pre><code class="language-bash">cfdisk /dev/nvme0n1</code></pre>
+    <p>Pros: Interactive, easy to use.</p>
+    <p><strong>fdisk (Advanced)</strong></p>
+    <pre><code class="language-bash">fdisk /dev/nvme0n1</code></pre>
+    <p>Pros: More control, scriptable.</p>
+    <h4>3.3 Partition Scheme (UEFI + LUKS Encryption)</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Partition</th>
+          <th>Size</th>
+          <th>Type</th>
+          <th>Mount Point</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>/boot/efi</td>
+          <td>512MB</td>
+          <td>EFI System</td>
+          <td>/boot/efi</td>
+        </tr>
+        <tr>
+          <td>/ (root)</td>
+          <td>50GB+</td>
+          <td>Linux Filesystem</td>
+          <td>/</td>
+        </tr>
+        <tr>
+          <td>/home</td>
+          <td>Remaining</td>
+          <td>Linux Filesystem</td>
+          <td>/home</td>
+        </tr>
+        <tr>
+          <td>swap (Optional)</td>
+          <td>RAM Size</td>
+          <td>Linux Swap</td>
+          <td>N/A</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Encryption (LUKS)</strong></p>
+    <pre><code class="language-bash">cryptsetup luksFormat /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptroot
+mkfs.ext4 /dev/mapper/cryptroot
+mount /dev/mapper/cryptroot /mnt</code></pre>
+    <h4>3.4 Filesystems (ext4 vs btrfs vs zfs)</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Filesystem</th>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ext4</td>
+          <td>Stable, fast</td>
+          <td>No snapshots</td>
+        </tr>
+        <tr>
+          <td>btrfs</td>
+          <td>Snapshots, compression</td>
+          <td>Fragmentation issues</td>
+        </tr>
+        <tr>
+          <td>zfs</td>
+          <td>Advanced features</td>
+          <td>High memory usage</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>4. Installing the Base System</h3>
+    <h4>4.1 Mounting Partitions</h4>
+    <pre><code class="language-bash">mount /dev/nvme0n1p2 /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi</code></pre>
+    <h4>4.2 Pacstrap Deep Dive</h4>
+    <pre><code class="language-bash">pacstrap /mnt base base-devel linux linux-firmware nano sudo networkmanager</code></pre>
+    <ul>
+      <li><strong>base:</strong> Minimal system</li>
+      <li><strong>base-devel:</strong> Build tools (for AUR)</li>
+      <li><strong>linux:</strong> Kernel</li>
+      <li><strong>linux-firmware:</strong> Drivers</li>
+    </ul>
+    <h4>4.3 Generating fstab</h4>
+    <pre><code class="language-bash">genfstab -U /mnt >> /mnt/etc/fstab</code></pre>
+    <p><strong>-U:</strong> Uses UUIDs (better than device names).</p>
+    <p>Verify: <code>cat /mnt/etc/fstab</code></p>
+    <h4>4.4 Chrooting</h4>
+    <pre><code class="language-bash">arch-chroot /mnt</code></pre>
+    <p><strong>Why?</strong> Modifies the new system instead of the live environment.</p>
+    <h3>5. Configuring the Base System</h3>
+    <h4>5.1 Time & Locale</h4>
+    <pre><code class="language-bash">ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+hwclock --systohc
+nano /etc/locale.gen  # Uncomment en_US.UTF-8
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf</code></pre>
+    <h4>5.2 Hostname & Hosts File</h4>
+    <pre><code class="language-bash">echo "myarch" > /etc/hostname
+nano /etc/hosts</code></pre>
+    <pre><code class="language-plaintext">127.0.0.1   localhost
+::1         localhost
+127.0.1.1   myarch.localdomain myarch</code></pre>
+    <h4>5.3 Users & Sudo</h4>
+    <pre><code class="language-bash">passwd  # Set root password
+useradd -m -G wheel username
+passwd username
+EDITOR=nano visudo  # Uncomment %wheel ALL=(ALL) ALL</code></pre>
+    <h4>5.4 Bootloader (systemd-boot)</h4>
+    <pre><code class="language-bash">bootctl install</code></pre>
+    <p><code>nano /boot/loader/entries/arch.conf</code></p>
+    <pre><code class="language-plaintext">title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=UUID=YOUR_UUID rw</code></pre>
+    <h3>6. Graphics & Hyprland Setup</h3>
+    <h4>6.1 GPU Drivers</h4>
+    <p><strong>Intel</strong></p>
+    <pre><code class="language-bash">pacman -S mesa vulkan-intel intel-media-driver</code></pre>
+    <p><strong>AMD</strong></p>
+    <pre><code class="language-bash">pacman -S mesa vulkan-radeon libva-mesa-driver</code></pre>
+    <p><strong>NVIDIA</strong></p>
+    <pre><code class="language-bash">pacman -S nvidia nvidia-utils nvidia-settings
+echo "options nvidia-drm modeset=1" | sudo tee /etc/modprobe.d/nvidia.conf</code></pre>
+    <h4>6.2 Installing Hyprland</h4>
+    <pre><code class="language-bash">pacman -S hyprland waybar rofi kitty swaybg swaylock-effects wl-clipboard grim slurp</code></pre>
+    <h4>6.3 Configuring Hyprland</h4>
+    <pre><code class="language-bash">mkdir -p ~/.config/hypr
+cp /usr/share/hyprland/hyprland.conf ~/.config/hypr/
+nano ~/.config/hypr/hyprland.conf</code></pre>
+    <p><strong>Example Keybinds</strong></p>
+    <pre><code class="language-plaintext">bind = SUPER, Return, exec, kitty
+bind = SUPER, Q, killactive,
+bind = SUPER, F, fullscreen,</code></pre>
+    <h3>7. Post-Installation Essentials</h3>
+    <h4>7.1 AUR Helper (yay)</h4>
+    <pre><code class="language-bash">pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si</code></pre>
+    <h4>7.2 Must-Have Apps</h4>
+    <pre><code class="language-bash">yay -S firefox visual-studio-code-bin discord spotify</code></pre>
+    <h4>7.3 Audio (PipeWire)</h4>
+    <pre><code class="language-bash">pacman -S pipewire wireplumber pavucontrol
+systemctl --user enable pipewire wireplumber</code></pre>
+    <h4>7.4 Gaming (Steam)</h4>
+    <pre><code class="language-bash">yay -S steam gamemode</code></pre>
+    <h3>8. Advanced Customization</h3>
+    <h4>8.1 Hyprland Themes</h4>
+    <pre><code class="language-bash">yay -S waybar-hyprland-git rofi-lbonn-wayland-git</code></pre>
+    <h4>8.2 Scripting & Automation</h4>
+    <pre><code class="language-bash">mkdir -p ~/.config/hypr/scripts</code></pre>
+    <h4>8.3 Security (Firewall)</h4>
+    <pre><code class="language-bash">pacman -S ufw
+ufw enable</code></pre>
+    <h4>8.4 Performance (Kernel Tweaks)</h4>
+    <pre><code class="language-bash">echo "vm.swappiness=10" >> /etc/sysctl.d/99-sysctl.conf</code></pre>
+    <h3>9. Troubleshooting Every Possible Issue</h3>
+    <h4>9.1 Boot Failures</h4>
+    <pre><code class="language-bash">journalctl -xb  # Check logs</code></pre>
+    <h4>9.2 Graphics Problems</h4>
+    <pre><code class="language-bash">lsmod | grep nvidia  # Check NVIDIA modules</code></pre>
+    <h4>9.3 Networking Issues</h4>
+    <pre><code class="language-bash">ip a  # Check interfaces</code></pre>
+    <h4>9.4 Audio Problems</h4>
+    <pre><code class="language-bash">pactl info  # Check PipeWire status</code></pre>
+    <h3>Final Thoughts</h3>
+    <p>You now have a fully optimized, ultra-detailed Arch Linux + Hyprland setup with every possible aspect covered.</p>
+    <p><strong>For more:</strong></p>
+    <ul>
+      <li>Hyprland Wiki</li>
+      <li>Arch Linux Forums</li>
+    </ul>
+    <p>Enjoy your perfect Linux system! 🚀</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'arch linux',
+    author: 'Huzi',
   }
 ];
 
