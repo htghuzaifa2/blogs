@@ -13,14 +13,16 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { getPosts } from '@/lib/posts';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
 
 export function Header() {
   const posts = getPosts();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const categories = useMemo(() => {
     const categorySet = new Set<string>();
     posts.forEach(post => {
@@ -34,7 +36,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mr-4 md:mr-6 flex items-center">
+        <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold font-headline sm:inline-block">
               blogs.huzi.pk
@@ -43,7 +45,7 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-1 items-center justify-start space-x-2">
+        <nav className="hidden md:flex flex-1 items-center justify-start space-x-2 ml-6">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -65,12 +67,15 @@ export function Header() {
                         </NavigationMenuLink>
                       </li>
                     ))}
+                    {categories.length === 0 && (
+                       <li className="p-3 text-sm text-muted-foreground">No categories found.</li>
+                    )}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-        </div>
+        </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-2">
           <SearchBar />
@@ -78,31 +83,39 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <div className="md:hidden">
-            <Sheet>
+             <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
-                <SheetHeader className="text-left">
+              <SheetContent side="left" className="w-full max-w-sm">
+                <SheetHeader className="text-left border-b pb-4">
                   <SheetTitle className="font-headline text-2xl">Menu</SheetTitle>
+                   <Button variant="ghost" size="icon" className="absolute top-3 right-3" onClick={() => setMobileMenuOpen(false)}>
+                      <X className="h-5 w-5" />
+                      <span className="sr-only">Close menu</span>
+                   </Button>
                 </SheetHeader>
-                <div className="p-4 -ml-4">
-                  <h3 className="mb-4 text-lg font-semibold font-headline">Categories</h3>
-                  <ul className="space-y-2">
+                <div className="mt-6">
+                  <h3 className="mb-4 text-lg font-semibold font-headline px-2">Categories</h3>
+                  <ul className="space-y-1">
                     {categories.map((category) => (
                       <li key={category}>
                         <Link 
                           href={`/category/${category.toLowerCase().replace(/ /g, '-')}`}
-                          className="block p-2 rounded-md hover:bg-accent"
-                           aria-label={`View posts in the ${category} category`}
+                          className="block p-2 rounded-md hover:bg-accent text-base"
+                          aria-label={`View posts in the ${category} category`}
+                          onClick={() => setMobileMenuOpen(false)}
                         >
                           {category}
                         </Link>
                       </li>
                     ))}
+                     {categories.length === 0 && (
+                       <li className="p-2 text-sm text-muted-foreground">No categories to display.</li>
+                    )}
                   </ul>
                 </div>
               </SheetContent>
