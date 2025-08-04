@@ -70,7 +70,7 @@ const posts: Post[] = [
       <p>Full-stack development involves working with both the parts of a web application that users see and interact with, and the behind-the-scenes components that handle data and logic. It requires skills across multiple technologies to build, manage, and connect different layers of a web project.</p>
       <h4>Role of Full-Stack Developers</h4>
       <p>Full-stack developers handle both frontend and backend tasks. On the frontend, they create the layout, design, and interactive elements using HTML, CSS, and JavaScript. This ensures users have a smooth, intuitive experience.</p>
-      <p>On the backend, they write server-side code to manage data, user authentication, and application logic. They work with databases using languages like SQL and Python or tools like Node.js. This dual knowledge allows full-stack developers to manage the full cycle of web app development, from coding to deployment.</p>
+      <p>On the backend, they write server-side code to manage data, user authentication, and application logic. They work with databases using SQL and Python or tools like Node.js. This dual knowledge allows full-stack developers to manage the full cycle of web app development, from coding to deployment.</p>
       <h4>Popular Full-Stack Frameworks</h4>
       <p>Many frameworks simplify full-stack development by combining frontend and backend tools. Some popular ones include:</p>
       <ul>
@@ -1109,7 +1109,7 @@ nethunter kex &</code></pre>
     title: 'The Most Detailed Arch Linux Hyprland Installation Guide (2025 Ultimate Edition)',
     excerpt: 'This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, including background concepts, alternative approaches, troubleshooting for every possible issue, and post-installation optimization. By the end, you\'ll have a perfectly tuned Arch Linux system with Hyprland as your daily driver.',
     content: `
-    <p>This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, including background concepts, alternative approaches, troubleshooting for every possible issue, and post-installation optimization. By the end, you'll have a perfectly tuned Arch Linux system with Hyprland as your daily driver.</p>
+    <p>This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, including background concepts, alternative approaches, troubleshooting for every possible issue, and post-installation optimization. By the end, you\'ll have a perfectly tuned Arch Linux system with Hyprland as your daily driver.</p>
     <h3>🔍 Table of Contents (Ultra-Detailed)</h3>
     <ol>
       <li>Pre-Installation: Preparing for Arch Linux
@@ -1833,7 +1833,7 @@ boot</code></pre>
     title: 'The True Power of DeepSeek AI: A Comprehensive Breakdown',
     excerpt: 'In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you\'re a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.',
     content: `
-      <p>In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you're a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.</p>
+      <p>In the rapidly evolving world of artificial intelligence, DeepSeek AI has emerged as a formidable contender, pushing the boundaries of what AI can achieve. Whether you\'re a developer, researcher, or tech enthusiast, understanding DeepSeek’s capabilities can help you harness its full potential.</p>
       <p>This in-depth guide explores:</p>
       <ul>
         <li>✅ What Makes DeepSeek AI Unique?</li>
@@ -3556,7 +3556,7 @@ DLROW</code></pre>
       <h3>🔗 Unlock 50+ Free Tools Now: tools.huzi.pk</h3>
       <p>No signups. No fees. Just pure productivity power. 🚀</p>
     `,
-    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
+    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -3859,7 +3859,7 @@ export async function onRequest({ request, next }) {
     title: '10 JavaScript Tricks That Will Save You Hours of Coding Headaches',
     excerpt: 'JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I\'ve curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.',
     content: `
-      <p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I've curated these battle-tested tricks that consistently save development time. Master these and you'll write cleaner, more efficient code immediately.</p>
+      <p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I've curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.</p>
       
       <h3>1. Destructuring with Aliases & Default Values</h3>
       <p><strong>The Problem:</strong> Nested object properties require repetitive null checks.</p>
@@ -4036,7 +4036,7 @@ function ErrorBoundary({ children }) {
     title: 'The Ultimate WordPress Security Guide: Fortify Your Site Like a Cybersecurity Expert',
     excerpt: 'Did you know? 43% of all hacked websites run WordPress. But here\'s the truth: WordPress itself isn\'t insecure - it\'s how you configure it. This guide reveals the enterprise-grade security protocol that costs $0 to implement.',
     content: `
-      <p>Did you know? 43% of all hacked websites run WordPress. But here's the truth: WordPress itself isn't insecure - it's how you configure it. After securing 500+ WordPress installations for Fortune 500 companies, I'll reveal the exact enterprise-grade security protocol that costs $0 to implement.</p>
+      <p>Did you know? 43% of all hacked websites run WordPress. But here\'s the truth: WordPress itself isn\'t insecure - it\'s how you configure it. After securing 500+ WordPress installations for Fortune 500 companies, I\'ll reveal the exact enterprise-grade security protocol that costs $0 to implement.</p>
       <h3>Why Standard Security Advice Fails</h3>
       <p>Most guides recommend basic plugins and password changes. Real security requires a layered defense strategy:</p>
       <ul>
@@ -4291,7 +4291,7 @@ git push origin main
         <li><strong>Developer Hubs & Documentation:</strong> Ideal for content that is updated infrequently but receives high traffic.</li>
         <li><strong>E-Commerce Frontends:</strong> Static product pages for speed, with a dynamic cart and checkout handled by a third-party API like Snipcart.</li>
         <li><strong>Design-Intensive Portfolios:</strong> Leveraging the performance of static sites to handle heavy assets like video backgrounds and complex scroll-triggered animations.</li>
-        <li><strong>Localized Marketing Sites:</strong> Pre-rendering different language versions of a site at build time (e.g., creating \`/en/\` and \`/es/\` directories) for instant global delivery.</li>
+        <li><strong>Localized Marketing Sites:</strong> Pre-rendering different language versions of a site at build time (e.g., creating /en/ and /es/ directories) for instant global delivery.</li>
       </ul>
       
       <h3>When Static Hits Its Limits (And How to Overcome Them)</h3>
@@ -4361,7 +4361,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like <code>tools.huzi.pk</code> prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \`tools.huzi.pk\` prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
     `,
     imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
     imageHint: 'static web renaissance',
@@ -4383,3 +4383,6 @@ export function getPostBySlug(slug: string) {
 
 
 
+
+
+    
