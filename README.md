@@ -1,5 +1,7 @@
-# Firebase Studio
+This is website is blogs.huzi.pk
 
-This is a NextJS starter in Firebase Studio.
+This is not an open soucre project dont use with without permission
 
-To get started, take a look at src/app/page.tsx.
+If you are intrested in this project you can buy this in just 11$ connect use to buy this project.
+
+conatct@huzi.pk
