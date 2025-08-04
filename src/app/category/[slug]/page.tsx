@@ -1,4 +1,3 @@
-
 import { getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
@@ -59,18 +58,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const categoryName = posts[0].category;
+  const url = `/category/${categorySlug}`;
   const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk.`;
 
   return {
     title: categoryName,
     description: description,
-     openGraph: {
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
       title: `${categoryName} Category`,
       description: description,
-      url: `/category/${categorySlug}`,
+      url: url,
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: `${categoryName} Category`,
       description: description,
     },

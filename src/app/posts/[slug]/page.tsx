@@ -1,5 +1,3 @@
-
-
 import { getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -89,19 +87,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const url = `/posts/${post.slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `/posts/${post.slug}`,
+      url: url,
       images: [
         {
           url: post.imageUrl,
-          width: 600,
-          height: 400,
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],

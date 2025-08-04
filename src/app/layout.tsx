@@ -3,23 +3,47 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 
+const siteUrl = 'https://blogs.huzi.pk';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://blogs.huzi.pk'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'blogs.huzi.pk',
     template: '%s | blogs.huzi.pk',
   },
   description: 'Welcome to blogs.huzi.pk - A collection of thoughts, stories, and ideas on programming, AI, and technology.',
+  keywords: [
+    'Programming', 
+    'Web Development', 
+    'AI', 
+    'Cybersecurity', 
+    'Linux', 
+    'JavaScript', 
+    'Python', 
+    'C#', 
+    'HTML', 
+    'CSS', 
+    'React', 
+    'Next.js', 
+    'Kali Linux', 
+    'Arch Linux', 
+    'WordPress Security',
+    'Cloudflare'
+  ],
   openGraph: {
-    title: 'blogs.huzi.pk',
-    description: 'A collection of thoughts, stories, and ideas.',
-    url: 'https://blogs.huzi.pk',
+    title: {
+      default: 'blogs.huzi.pk',
+      template: '%s | blogs.huzi.pk',
+    },
+    description: 'A collection of thoughts, stories, and ideas on programming, AI, and technology.',
+    url: siteUrl,
     siteName: 'blogs.huzi.pk',
     images: [
       {
-        url: 'https://placehold.co/1200x630.png',
+        url: 'https://huzi.pk/img/26PWX8FW/logo.webp',
         width: 1200,
         height: 630,
+        alt: 'blogs.huzi.pk Logo'
       },
     ],
     locale: 'en_US',
@@ -38,10 +62,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'blogs.huzi.pk',
-    description: 'A collection of thoughts, stories, and ideas.',
-    images: ['https://placehold.co/1200x630.png'],
+    title: {
+      default: 'blogs.huzi.pk',
+      template: '%s | blogs.huzi.pk',
+    },
+    description: 'A collection of thoughts, stories, and ideas on programming, AI, and technology.',
+    images: ['https://huzi.pk/img/26PWX8FW/logo.webp'],
   },
+  alternates: {
+    canonical: siteUrl,
+  }
 };
 
 export default function RootLayout({
@@ -52,6 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="https://huzi.pk/img/26PWX8FW/logo.webp" type="image/webp" sizes="any" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
