@@ -13,15 +13,22 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { getPosts } from '@/lib/posts';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export function Header() {
   const posts = getPosts();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const categories = useMemo(() => {
     const categorySet = new Set<string>();
@@ -35,8 +42,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center">
+      <div className="container flex h-14 items-center">
+        <div className="mr-4 md:mr-6 flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <span className="font-bold font-headline sm:inline-block">
               blogs.huzi.pk
@@ -82,7 +89,7 @@ export function Header() {
           <ThemeSwitcher />
 
           {/* Mobile Navigation */}
-          <div className="md:hidden">
+          {isClient && isMobile && (
              <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -120,7 +127,7 @@ export function Header() {
                 </div>
               </SheetContent>
             </Sheet>
-          </div>
+          )}
         </div>
       </div>
     </header>
