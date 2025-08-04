@@ -166,7 +166,7 @@ const posts: Post[] = [
       <p>Regular updates to the portfolio are important. Adding new projects shows growth and keeps the portfolio current with industry trends.</p>
       <p>Employers look for diverse projects that show both creativity and technical skill, making the portfolio a key tool in landing jobs.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/WbW2phyz/Web-Development-Essential-Strategies-for-Modern-Websites.webp',
     imageHint: 'web development',
     author: 'Huzi',
     category: 'Programming',
@@ -1567,7 +1567,7 @@ bindsym SUPER+D exec wofi</code></pre>
     title: 'The Ultimate Kali Linux Installation Guide (2025 Edition) – Complete Walkthrough',
     excerpt: 'This exhaustively detailed guide will take you from zero to a fully operational Kali Linux system, covering every single step with meticulous explanations, troubleshooting tips, and expert recommendations. Whether you\'re a cybersecurity professional, ethical hacker, or Linux enthusiast, this guide ensures a flawless Kali installation.',
     content: `
-      <p>This exhaustively detailed guide will take you from zero to a fully operational Kali Linux system, covering every single step with meticulous explanations, troubleshooting tips, and expert recommendations. Whether you're a cybersecurity professional, ethical hacker, or Linux enthusiast, this guide ensures a flawless Kali installation.</p>
+      <p>This exhaustively detailed guide will take you from zero to a fully operational Kali Linux system, covering every single step with meticulous explanations, troubleshooting tips, and expert recommendations. Whether you\'re a cybersecurity professional, ethical hacker, or Linux enthusiast, this guide ensures a flawless Kali installation.</p>
       <h3>📌 Table of Contents (Fully Detailed)</h3>
       <ol>
         <li>1. Pre-Installation: Preparing for Kali Linux
@@ -4303,7 +4303,7 @@ git push origin main
         <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The <code>tools.huzi.pk</code> Blueprint: A Modern Static Stack</h3>
+      <h3>The `tools.huzi.pk` Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4331,7 +4331,7 @@ git push origin main
         </li>
         <li><strong>Connect a Headless CMS (Optional):</strong> For non-technical users, connect a CMS like Strapi or Contentful to manage content.</li>
         <li><strong>Deploy Globally:</strong> Use a platform like Cloudflare Pages or Netlify for one-click deployment from your Git repository.
-          <pre><code class="language-bash"># Example: Deploying to Cloudflare Pages via CLI
+          <pre><code class="language-bash"># Deploying to Cloudflare Pages via CLI
 npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         </li>
         <li><strong>Add Dynamic "Superpowers":</strong>
@@ -4377,5 +4377,6 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find(post => post.slug === slug);
 }
+
 
 
