@@ -23,7 +23,7 @@ const levenshteinDistance = (a: string, b: string): number => {
 
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      const cost = a[i - 1].toLowerCase() === b[j - 1].toLowerCase() ? 0 : 1;
       dp[i][j] = Math.min(
         dp[i - 1][j] + 1, // Deletion
         dp[i][j - 1] + 1, // Insertion
@@ -51,14 +51,11 @@ export default function SearchPage() {
           const title = post.title.toLowerCase();
           const distance = levenshteinDistance(lowercasedQuery, title);
           
-          // Determine a relevance threshold
-          // A lower distance means a better match.
-          // Threshold can be adjusted. A good starting point is less than half the query's length.
-          const threshold = Math.floor(query.length / 2);
+          // More forgiving threshold: allow more errors for longer queries
+          const threshold = Math.floor(query.length / 1.5);
 
-          // Direct match should always be included
           if (title.includes(lowercasedQuery)) {
-            return { post, relevance: 0 }; // Highest relevance for direct includes
+            return { post, relevance: 0 }; 
           }
           
           if (distance <= threshold) {

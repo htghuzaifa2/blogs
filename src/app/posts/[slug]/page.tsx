@@ -49,8 +49,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                 <Image
                   src={post.imageUrl}
                   alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{objectFit: "cover"}}
                   data-ai-hint={post.imageHint}
                   priority
                 />

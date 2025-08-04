@@ -186,7 +186,6 @@ const posts: Post[] = [
       <p>C# (pronounced "C-sharp") is an object-oriented programming language developed by Microsoft. It runs on the .NET platform, which allows it to work across different operating systems like Windows, Linux, and macOS. C# is used to create desktop apps, web services, mobile apps, and games.</p>
       <p>It supports modern programming practices like strong typing and memory management. This means programs written in C# are generally more secure and less prone to errors. Its design simplifies complex programming tasks, making it easier for developers to write efficient code.</p>
       <h4>Key Features of C#</h4>
-      <p>C# includes features that make programming easier and safer. Key aspects include:</p>
       <ul>
         <li>Type Safety: Helps prevent errors by checking data types during code compilation.</li>
         <li>Garbage Collection: Automatically manages memory, reducing the risk of memory leaks.</li>
@@ -305,7 +304,6 @@ finally
       <h3>Best Practices for Writing C# Code</h3>
       <p>Writing clean and efficient code is essential for long-term project success. Following best practices in C# helps improve maintainability, readability, and performance, while reducing the chances of bugs and technical debt.</p>
       <h4>Follow Consistent Naming Conventions</h4>
-      <p>C# has widely accepted naming guidelines:</p>
       <ul>
       <li>PascalCase for class names, methods, and properties (e.g., CustomerName, CalculateTotal()).</li>
       <li>camelCase for local variables and private fields (e.g., orderCount, totalAmount).</li>
@@ -333,7 +331,6 @@ finally
       <h4>Desktop Applications</h4>
       <p>Traditional Windows Forms and WPF applications, as well as modern WinUI apps, are often built in C#. Many corporate tools and utilities are still maintained in this space.</p>
       <h3>Emerging Trends in C#</h3>
-      <p>C# is not just staying relevant—it’s evolving with the software industry. Some key trends include:</p>
       <ul>
       <li>C# and Cloud-Native Development – C# integrates deeply with Microsoft Azure and other cloud platforms, supporting serverless computing (Azure Functions) and containerized apps with Docker.</li>
       <li>C# and AI/ML – Libraries like ML.NET allow developers to bring machine learning models into C# projects without switching to Python.</li>
@@ -341,7 +338,6 @@ finally
       </ul>
       <p>These developments keep C# at the forefront of software innovation.</p>
       <h3>Tips for Beginners Learning C#</h3>
-      <p>If you’re starting with C#, here’s how to learn effectively:</p>
       <ul>
       <li>✅ Practice Consistently – Write small programs daily to reinforce syntax and concepts.</li>
       <li>✅ Start with Console Applications – They’re simpler, letting you focus on language fundamentals before moving to web or GUI apps.</li>
@@ -448,19 +444,19 @@ string name = "C++";</code></pre>
       </ul>
       <h4>🔄 Control Flow</h4>
       <p>C++ supports:</p>
-      <p>if-else</p>
+      <h5>if-else</h5>
       <pre><code class="language-cpp">if (age > 18) {
     cout << "Adult";
 } else {
     cout << "Minor";
 }</code></pre>
-      <p>switch</p>
+      <h5>switch</h5>
       <pre><code class="language-cpp">switch (grade) {
 case 'A': cout << "Excellent"; break;
 case 'B': cout << "Good"; break;
 default: cout << "Needs Improvement";
 }</code></pre>
-      <p>Loops</p>
+      <h5>Loops</h5>
       <pre><code class="language-cpp">for (int i = 0; i < 5; i++) cout << i;
 while (x < 10) x++;
 do { cout << x; } while (x < 5);</code></pre>
@@ -500,7 +496,6 @@ public: void sound() override { cout << "Woof"; }
 };</code></pre>
       <h3>⚡ Advanced C++ Features</h3>
       <h4>✅ Pointers and References</h4>
-      <p>C++ allows direct memory manipulation:</p>
       <pre><code class="language-cpp">int x = 10;
 int* ptr = &x;
 cout << *ptr; // dereferencing</code></pre>
@@ -541,7 +536,6 @@ cout << square(5);</code></pre>
       <li>Embedded Systems – IoT devices, automotive software.</li>
       </ul>
       <h3>🚀 Modern C++ and Future Trends</h3>
-      <p>C++ continues evolving:</p>
       <ul>
       <li>C++20/23 introduced modules, ranges, and coroutines.</li>
       <li>C++ in Cloud & AI – Being used for high-performance ML libraries.</li>
@@ -4383,4 +4377,5 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find(post => post.slug === slug);
 }
+
 
