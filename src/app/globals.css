@@ -97,6 +97,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  .light .prose pre code {
+    @apply text-foreground;
+  }
+  
   .prose {
     & pre {
         @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;
