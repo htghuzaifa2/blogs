@@ -349,7 +349,7 @@ finally
       <p>C# remains one of the most powerful, versatile, and evolving programming languages today. Its clean syntax, rich libraries, and cross-platform capabilities make it a top choice for everything from web apps and games to enterprise solutions and cloud-native services.</p>
       <p>By learning modern programming techniques and following best practices, you can leverage C# to build robust, maintainable, and future-proof applications—no matter what kind of software you aim to create.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/VLb7vhGt/c-guide-and-modren-programi-tecniques.webp',
     imageHint: 'c sharp programming',
     author: 'Huzi',
     category: 'Programming',
@@ -692,7 +692,7 @@ while (getline(file, line)) cout << line;</code></pre>
       </ul>
       <p>👉 If you want to be a serious developer who understands not just how to code, but how code talks to the machine — C++ is the language you need.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/vTPcdX9H/C-modrn-guide-and-techniques.jpg',
     imageHint: 'c plus plus programming',
     author: 'Huzi',
     category: 'Programming',
@@ -908,7 +908,7 @@ print(arr.mean())</code></pre>
       </ul>
       <p>👉 If you master Python, you open doors to nearly every tech field in existence.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/D0YLc7xg/The-Ultimate-Python-programing-guide.webp',
     imageHint: 'python programming',
     author: 'Huzi',
     category: 'Programming',
@@ -1098,7 +1098,7 @@ nethunter kex &</code></pre>
       <p>Learners can try Linux Deploy or AndroNix for a Linux playground.</p>
       <p>With the right method, your Android phone can become a pocket-sized pentesting machine.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/pTSLGytp/How-to-run-kali-linux-on-mobile.jpg',
     imageHint: 'kali linux mobile',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -1450,7 +1450,7 @@ ufw enable</code></pre>
     </ul>
     <p>Enjoy your perfect Linux system! 🚀</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/6pHq2M1r/he-Most-detailed-Arch-Linux-hyprland-guide.webp',
     imageHint: 'arch linux',
     author: 'Huzi',
     category: 'Linux',
@@ -1556,7 +1556,7 @@ bindsym SUPER+D exec wofi</code></pre>
     <p>Most users should use Phosh, GNOME or Sxmo for mobile Linux or rely on Android with containerized Linux.</p>
     <p>Hyprland may work in a tablet/ARM Linux context—but not recommended for typical phone use.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/J07Sk5FX/Installing-Arch-Linux-with-hyprland-on-Mobile-Full-Guide.webp',
     imageHint: 'arch linux mobile',
     author: 'Huzi',
     category: 'Linux',
@@ -1822,7 +1822,7 @@ boot</code></pre>
       </ul>
       <p>Happy Hacking! 🚀</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/j2QNGzqM/The-Ulitmate-Kali-Linux-Installation-Guide.webp',
     imageHint: 'kali linux',
     author: 'Huzi',
     category: 'Linux',
@@ -2021,7 +2021,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       <p>🔹 <strong>Try It Now:</strong> <a href="https://deepseek.com" target="_blank" rel="noopener">https://deepseek.com</a></p>
       <p>DeepSeek AI is not just another chatbot—it’s a game-changer in AI accessibility and performance. 🚀</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/KYpyDVnN/The-True-Power-of-Deepseek-Ai.webp',
     imageHint: 'deepseek ai',
     author: 'Huzi',
     category: 'AI',
@@ -2174,7 +2174,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       <p>Understanding hacking in this extreme detail isn't about enabling malicious acts; it's about demystifying the threat, empowering individuals and organizations to build robust defenses, and fostering a generation of ethical hackers dedicated to securing our increasingly digital world. The glow of the monitor reflects both peril and promise; our collective vigilance and ethical application of knowledge will determine which prevails.</p>
       <p><strong>Disclaimer:</strong> This blog provides information for educational purposes only to understand cybersecurity threats and defenses. Performing unauthorized hacking activities is illegal and unethical. Always obtain explicit permission before testing any system. Use knowledge responsibly.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/htBr21gQ/Beyond-the-Hoodies-The-Deep-Dive-Truth-About-Hacking.webp',
     imageHint: 'hacking cybersecurity',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -2469,7 +2469,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       <h3>Conclusion: The Unshakeable Foundation</h3>
       <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web's growth into an application platform. Mastering HTML isn't just about memorizing tags – it's about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML's role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/Y97PcB1k/The-Architects-Blueprint-A-Deep-Dive-into-the-Foundation-of-the-Web-HTML.webp',
     imageHint: 'html css',
     author: 'Huzi',
     category: 'Programming',
@@ -2891,7 +2891,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
 &lt;/html&gt;</code></pre>
 This guide covers 100% of HTML5 tags with practical implementation details. Bookmark as a permanent reference! 🔖
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/J7vbtc2H/The-Ulimate-HTML-Refrence-Guide-Every-Tag-Attributte-and-Technique.webp',
     imageHint: 'html css',
     author: 'Huzi',
     category: 'Programming',
@@ -2938,7 +2938,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <h3>Conclusion: The Intelligent and Immersive Web</h3>
       <p>The future of web development is dynamic, user-centric, and deeply intelligent. The trends of 2025 show a clear move away from static web pages toward immersive, personalized, and ethical digital experiences. For developers, this means embracing AI, preparing for a decentralized world, and never losing sight of the human at the other end of the screen. The websites of tomorrow won't just be viewed; they'll be experienced.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/cJF3WQ3H/The-Future-of-Web-Development-10-key-Trends-to-Wach-in-2025.webp',
     imageHint: 'web development future',
     author: 'Huzi',
     category: 'Programming',
@@ -3025,7 +3025,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <p><strong>🔗 Explore all 50+ tools today: <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a></strong></p>
       <p>Whether you’re minifying CSS, debugging JSON, generating QR codes, or summarizing research papers—tools.huzi.pk has you covered. Bookmark it, share it with your team, and code like never before!</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/mg8NwcwQ/AI-Tools-Every-Developer-should-Know-Supercharge-Your-Workflow-with-Smart-Solutions.webp',
     imageHint: 'ai developer tools',
     author: 'Huzi',
     category: 'AI',
@@ -3195,7 +3195,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <p><strong>🔗 Dive into all 50+ tools now: <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a></strong></p>
       <p>Bookmark it. Share it. Transform how you work today! ✨</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/fyDJpCWk/Master-Your-Workflow-The-Ulimate-Guide-to-tools-huzi-pk-50-Free-Utilities.webp',
     imageHint: 'developer workflow tools',
     author: 'Huzi',
     category: 'AI',
@@ -3556,7 +3556,7 @@ DLROW</code></pre>
       <h3>🔗 Unlock 50+ Free Tools Now: tools.huzi.pk</h3>
       <p>No signups. No fees. Just pure productivity power. 🚀</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -3848,7 +3848,7 @@ export async function onRequest({ request, next }) {
       </ul>
       <p>Ready to deploy? Start your project at <a href="https://pages.cloudflare.com/">pages.cloudflare.com</a> or explore templates for Next.js, Astro, and Hugo!</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/NjcB4FMf/The-Ultimate-Beginniers-Guide-to-Building-a-Website-with-Cloudflare-page.webp',
     imageHint: 'cloudflare deployment',
     author: 'Huzi',
     category: 'Programming',
@@ -4025,7 +4025,7 @@ function ErrorBoundary({ children }) {
         <li>Use <code>console.table()</code> for your next array debugging session. You'll never go back.</li>
       </ol>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/L5G6RV2z/10-Javascript-Tricks-That-Will-save-You-Hours-of-Codingv-Headaches.webp',
     imageHint: 'javascript code',
     author: 'Huzi',
     category: 'Programming',
@@ -4213,7 +4213,7 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
       </ol>
       <p>Share your biggest security win in the comments! What attack did you stop? 🔒</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/HxGqpPyW/The-Ultimate-Wordpress-Security-Guide.webp',
     imageHint: 'wordpress security',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -4363,7 +4363,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
       </ul>
       <p>Sites like <code>tools.huzi.pk</code> prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/PvTQcdwr/image.png',
     imageHint: 'static web renaissance',
     author: 'Huzi',
     category: 'Programming',
@@ -4377,6 +4377,7 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find(post => post.slug === slug);
 }
+
 
 
 
