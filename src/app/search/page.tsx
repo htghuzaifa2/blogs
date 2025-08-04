@@ -36,7 +36,7 @@ const levenshteinDistance = (a: string, b: string): number => {
   return dp[m][n];
 };
 
-function SearchResults() {
+function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [results, setResults] = useState<Post[]>([]);
@@ -139,7 +139,7 @@ export default function SearchPage() {
       <Header />
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Suspense fallback={<SearchSkeleton />}>
-          <SearchResults />
+          <SearchResultsContent />
         </Suspense>
       </main>
       <Footer />
