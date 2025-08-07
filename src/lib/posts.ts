@@ -1,4 +1,5 @@
 
+
 export interface Post {
   id: number;
   slug: string;
@@ -165,6 +166,10 @@ const posts: Post[] = [
       <p>Candidates often create personal websites to present their work and skills clearly. This site can highlight different technologies used, challenges overcome, and results achieved.</p>
       <p>Regular updates to the portfolio are important. Adding new projects shows growth and keeps the portfolio current with industry trends.</p>
       <p>Employers look for diverse projects that show both creativity and technical skill, making the portfolio a key tool in landing jobs.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        From wireframe whispers to the browser's roar,<br/>
+        A developer's craft, forevermore.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/WbW2phyz/Web-Development-Essential-Strategies-for-Modern-Websites.webp',
     imageHint: 'web development',
@@ -348,6 +353,10 @@ finally
       <h3>Final Thoughts</h3>
       <p>C# remains one of the most powerful, versatile, and evolving programming languages today. Its clean syntax, rich libraries, and cross-platform capabilities make it a top choice for everything from web apps and games to enterprise solutions and cloud-native services.</p>
       <p>By learning modern programming techniques and following best practices, you can leverage C# to build robust, maintainable, and future-proof applications—no matter what kind of software you aim to create.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In sharp syntax, a logic clear,<br/>
+        From games to cloud, it holds no fear.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/VLb7vhGt/c-guide-and-modren-programi-tecniques.webp',
     imageHint: 'c sharp programming',
@@ -691,6 +700,10 @@ while (getline(file, line)) cout << line;</code></pre>
       <li>Gives you a language that will remain relevant for decades to come.</li>
       </ul>
       <p>👉 If you want to be a serious developer who understands not just how to code, but how code talks to the machine — C++ is the language you need.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        With plus and plus, its power compiled,<br/>
+        Close to the metal, a system styled.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/vTPcdX9H/C-modrn-guide-and-techniques.jpg',
     imageHint: 'c plus plus programming',
@@ -907,6 +920,10 @@ print(arr.mean())</code></pre>
         <li>✅ Work in almost any industry</li>
       </ul>
       <p>👉 If you master Python, you open doors to nearly every tech field in existence.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        With indentation, a serpent's grace,<br/>
+        From data's depth to web's wide space.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/D0YLc7xg/The-Ultimate-Python-programing-guide.webp',
     imageHint: 'python programming',
@@ -1097,6 +1114,10 @@ nethunter kex &</code></pre>
       <p>Power users should go Full NetHunter for full hacking hardware access.</p>
       <p>Learners can try Linux Deploy or AndroNix for a Linux playground.</p>
       <p>With the right method, your Android phone can become a pocket-sized pentesting machine.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In pocket held, a dragon's might,<br/>
+        From Android shell to hacking's light.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/pTSLGytp/How-to-run-kali-linux-on-mobile.jpg',
     imageHint: 'kali linux mobile',
@@ -1449,6 +1470,10 @@ ufw enable</code></pre>
       <li>Arch Linux Forums</li>
     </ul>
     <p>Enjoy your perfect Linux system! 🚀</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        From ISO raw to Wayland's gleam,<br/>
+        An Arch machine, a power dream.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/6pHq2M1r/he-Most-detailed-Arch-Linux-hyprland-guide.webp',
     imageHint: 'arch linux',
@@ -1555,6 +1580,10 @@ bindsym SUPER+D exec wofi</code></pre>
     <p>Installing Arch ARM or postmarketOS on mobile is still a high-risk experimental procedure.</p>
     <p>Most users should use Phosh, GNOME or Sxmo for mobile Linux or rely on Android with containerized Linux.</p>
     <p>Hyprland may work in a tablet/ARM Linux context—but not recommended for typical phone use.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        On mobile screen, a tiling quest,<br/>
+        Arch's spirit put to the test.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/J07Sk5FX/Installing-Arch-Linux-with-hyprland-on-Mobile-Full-Guide.webp',
     imageHint: 'arch linux mobile',
@@ -1821,6 +1850,10 @@ boot</code></pre>
         <li>Join the Offensive Security Certified Professional (OSCP) course.</li>
       </ul>
       <p>Happy Hacking! 🚀</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        With root access and tools so keen,<br/>
+        The silent hunter, on the digital scene.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/j2QNGzqM/The-Ulitmate-Kali-Linux-Installation-Guide.webp',
     imageHint: 'kali linux',
@@ -2020,6 +2053,10 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       </ul>
       <p>🔹 <strong>Try It Now:</strong> <a href="https://deepseek.com" target="_blank" rel="noopener">https://deepseek.com</a></p>
       <p>DeepSeek AI is not just another chatbot—it’s a game-changer in AI accessibility and performance. 🚀</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        From code's deep logic to reason's peak,<br/>
+        A silent power, the knowledge you seek.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/KYpyDVnN/The-True-Power-of-Deepseek-Ai.webp',
     imageHint: 'deepseek ai',
@@ -2173,6 +2210,10 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       <p>Hacking is not a problem to be solved, but a reality to be managed. It is an endless dance between those who seek to understand and exploit systems and those who strive to defend them. The "hacking mindset" – curiosity, deep understanding, creative problem-solving – is invaluable, whether used to fortify defenses or, unfortunately, to to breach them.</p>
       <p>Understanding hacking in this extreme detail isn't about enabling malicious acts; it's about demystifying the threat, empowering individuals and organizations to build robust defenses, and fostering a generation of ethical hackers dedicated to securing our increasingly digital world. The glow of the monitor reflects both peril and promise; our collective vigilance and ethical application of knowledge will determine which prevails.</p>
       <p><strong>Disclaimer:</strong> This blog provides information for educational purposes only to understand cybersecurity threats and defenses. Performing unauthorized hacking activities is illegal and unethical. Always obtain explicit permission before testing any system. Use knowledge responsibly.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In lines of code, a silent war,<br/>
+        The hacker's mind, forevermore.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/htBr21gQ/Beyond-the-Hoodies-The-Deep-Dive-Truth-About-Hacking.webp',
     imageHint: 'hacking cybersecurity',
@@ -2468,6 +2509,10 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
 
       <h3>Conclusion: The Unshakeable Foundation</h3>
       <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web's growth into an application platform. Mastering HTML isn't just about memorizing tags – it's about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML's role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In angle brackets, the web is born,<br/>
+        The silent skeleton, since the dawn.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/Y97PcB1k/The-Architects-Blueprint-A-Deep-Dive-into-the-Foundation-of-the-Web-HTML.webp',
     imageHint: 'html css',
@@ -2890,6 +2935,10 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 This guide covers 100% of HTML5 tags with practical implementation details. Bookmark as a permanent reference! 🔖
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        A tag for this, a tag for that,<br/>
+        On the DOM's tree, where structure's at.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/J7vbtc2H/The-Ulimate-HTML-Refrence-Guide-Every-Tag-Attributte-and-Technique.webp',
     imageHint: 'html css',
@@ -2937,6 +2986,10 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       
       <h3>Conclusion: The Intelligent and Immersive Web</h3>
       <p>The future of web development is dynamic, user-centric, and deeply intelligent. The trends of 2025 show a clear move away from static web pages toward immersive, personalized, and ethical digital experiences. For developers, this means embracing AI, preparing for a decentralized world, and never losing sight of the human at the other end of the screen. The websites of tomorrow won't just be viewed; they'll be experienced.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        The future calls, a constant hum,<br/>
+        For code that's yet to come.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/cJF3WQ3H/The-Future-of-Web-Development-10-key-Trends-to-Wach-in-2025.webp',
     imageHint: 'web development future',
@@ -3024,6 +3077,10 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <p>AI tools are no longer optional—they’re essential for staying competitive. Start with industry giants like GitHub Copilot, then explore niche utilities like the AI Summarizer and ChatBot AI on tools.huzi.pk to handle tasks faster and smarter.</p>
       <p><strong>🔗 Explore all 50+ tools today: <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a></strong></p>
       <p>Whether you’re minifying CSS, debugging JSON, generating QR codes, or summarizing research papers—tools.huzi.pk has you covered. Bookmark it, share it with your team, and code like never before!</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        The cursor blinks, the screen aglow,<br/>
+        With AI's help, ideas now flow.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/mg8NwcwQ/AI-Tools-Every-Developer-should-Know-Supercharge-Your-Workflow-with-Smart-Solutions.webp',
     imageHint: 'ai developer tools',
@@ -3194,6 +3251,10 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <p>Whether you’re a developer minifying code, a marketer crafting tweets, or a student summarizing research – tools.huzi.pk eliminates grunt work so you can focus on what matters.</p>
       <p><strong>🔗 Dive into all 50+ tools now: <a href="https://tools.huzi.pk" target="_blank" rel="noopener">tools.huzi.pk</a></strong></p>
       <p>Bookmark it. Share it. Transform how you work today! ✨</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        One click to fix, one click to make,<br/>
+        For every workflow, for goodness sake.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/fyDJpCWk/Master-Your-Workflow-The-Ulimate-Guide-to-tools-huzi-pk-50-Free-Utilities.webp',
     imageHint: 'developer workflow tools',
@@ -3555,8 +3616,12 @@ DLROW</code></pre>
       </ul>
       <h3>🔗 Unlock 50+ Free Tools Now: tools.huzi.pk</h3>
       <p>No signups. No fees. Just pure productivity power. 🚀</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Fifty tools, a digital chest,<br/>
+        To build your best, and ace the test.
+      </div>
     `,
-    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
+    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -3847,6 +3912,10 @@ export async function onRequest({ request, next }) {
         <li>✅ Configure a backup branch (e.g., staging).</li>
       </ul>
       <p>Ready to deploy? Start your project at <a href="https://pages.cloudflare.com/">pages.cloudflare.com</a> or explore templates for Next.js, Astro, and Hugo!</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        From Git push to global edge,<br/>
+        A simple build, a modern pledge.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/NjcB4FMf/The-Ultimate-Beginniers-Guide-to-Building-a-Website-with-Cloudflare-page.webp',
     imageHint: 'cloudflare deployment',
@@ -4024,6 +4093,10 @@ function ErrorBoundary({ children }) {
         <li>Refactor any function with more than 3 parameters to use object destructuring.</li>
         <li>Use <code>console.table()</code> for your next array debugging session. You'll never go back.</li>
       </ol>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        With syntax sharp and logic tight,<br/>
+        Turn hours of code to moments bright.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/L5G6RV2z/10-Javascript-Tricks-That-Will-save-You-Hours-of-Codingv-Headaches.webp',
     imageHint: 'javascript code',
@@ -4212,6 +4285,10 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
         <li>Install a reliable backup solution like Borg Backup.</li>
       </ol>
       <p>Share your biggest security win in the comments! What attack did you stop? 🔒</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Though plugins whisper of a breach,<br/>
+        A hardened core is out of reach.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/HxGqpPyW/The-Ultimate-Wordpress-Security-Guide.webp',
     imageHint: 'wordpress security',
@@ -4303,7 +4380,7 @@ git push origin main
         <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The \'\'\'tools.huzi.pk\'\'\' Blueprint: A Modern Static Stack</h3>
+      <h3>The \`tools.huzi.pk\` Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4361,7 +4438,11 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \'\'\'tools.huzi.pk\'\'\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \`tools.huzi.pk\` prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        The server sleeps, the files reside,<br/>
+        On edges fast, where worlds collide.
+      </div>
     `,
     imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
     imageHint: 'static web renaissance',
@@ -4567,6 +4648,10 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Look to the future</strong> with Subgrid and Container Queries to build even more robust and modular systems.</li>
       </ul>
       <p>By mastering both Flexbox and Grid, you move from fighting with CSS to architecting with it, creating layouts that are resilient, responsive, and a pleasure to maintain.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In rows and columns, order found,<br/>
+        With flex and grid, on solid ground.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'css code',
@@ -4711,6 +4796,10 @@ Promise.race([promise1, promise2]).then(value => {
         <li><strong>Favor async/await</strong> for cleaner, more maintainable code, but understand that under the hood, it's still just Promises.</li>
       </ol>
       <p>Mastering async/await is a critical skill for any modern JavaScript developer. It simplifies complex asynchronous logic, reduces bugs, and makes your code a joy to read and maintain.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        The stack is cleared, the queue takes hold,<br/>
+        A promise made, a story told.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'javascript async',
@@ -4942,6 +5031,10 @@ exports.createItem = async (req, res) => {
         <li><strong>Deployment:</strong> Deploying your API to platforms like Heroku, AWS, or DigitalOcean.</li>
       </ul>
       <p>The principles you've learned here—structuring your app, handling requests, and interacting with a database—are the fundamental building blocks for almost any backend service you'll create.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        A request arrives, a route takes flight,<br/>
+        In Node's domain, all logic's right.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'nodejs express api',
@@ -5014,10 +5107,10 @@ db.query(query, (err, results) => {
       <p>Parameterized queries separate the SQL command from the data. The database is sent the query template first, and then the user-supplied data is sent separately. The database engine treats the user data strictly as data, not as executable code.</p>
 
       <h4>How to Implement Parameterized Queries</h4>
-      <p><strong>Vulnerable Code (Node.js with \'\'\'mysql\'\'\' package):</strong></p>
+      <p><strong>Vulnerable Code (Node.js with \`mysql\` package):</strong></p>
       <pre><code class="language-javascript">db.query(\`SELECT * FROM users WHERE id = \${userId}\`);</code></pre>
       
-      <p><strong>Secure Code (Node.js with \'\'\'mysql\'\'\' package):</strong></p>
+      <p><strong>Secure Code (Node.js with \`mysql\` package):</strong></p>
       <pre><code class="language-javascript">db.query('SELECT * FROM users WHERE id = ?', [userId], (err, results) => {
   // ...
 });</code></pre>
@@ -5050,6 +5143,10 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         <li>Add a WAF for an extra layer of protection.</li>
       </ol>
       <p>By following these steps, you can confidently protect your application and its data from one of the oldest and most dangerous threats on the web.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        A query crafted, a truth to find,<br/>
+        With parameters, peace of mind.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'sql injection prevention',
@@ -5136,6 +5233,10 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       <h3>Conclusion: Security is a Culture, Not a Product</h3>
       <p>Social engineering preys on our very nature to be helpful and trusting. The only way to combat it effectively is to build a culture of security where every employee feels empowered to be skeptical, to question requests, and to verify information before acting.</p>
       <p>Remember the golden rule of social engineering defense: <strong>Trust, but verify.</strong> A polite "Let me call you back on your official number to confirm" or "I'm going to verify this request with my manager first" is not an insult—it's the sign of a strong human firewall.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        A clever word, a friendly face,<br/>
+        Can breach the walls of any place.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'social engineering hacking',
@@ -5249,6 +5350,10 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <h3>Conclusion: The Foundation of Modern Trust</h3>
       <p>Cryptography is a complex and fascinating field, but its core concepts are the foundation of trust on the internet. Every time you see a padlock icon in your browser (indicating an HTTPS connection), you are using a hybrid system where asymmetric cryptography is used to securely exchange a symmetric key, which is then used to encrypt the rest of your session's data.</p>
       <p>Understanding these fundamentals is the first step toward appreciating the intricate dance of algorithms and keys that protect our digital world.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        With keys and codes, a secret kept,<br/>
+        In digital vaults, where data's slept.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'cryptography security padlock',
@@ -5322,6 +5427,10 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <h3>Conclusion: A Symphony of Probabilities</h3>
       <p>It's important to remember that an LLM doesn't "think" or "understand" in the human sense. It is a highly sophisticated pattern-matching and prediction engine. When you ask it a question, it's not reasoning from first principles; it's calculating the most probable sequence of tokens that should come next, based on the patterns it learned from its vast training data.</p>
       <p>The journey from a simple word to an intelligent-seeming response is a multi-stage process of tokenization, embedding, and passing through the layers of a Transformer network, all fine-tuned by human feedback. The result is a tool of unprecedented power, built on a foundation of surprisingly simple mathematical principles scaled to an incredible size.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In weights and vectors, patterns seen,<br/>
+        A thinking echo from the machine.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'large language model AI',
@@ -5428,6 +5537,10 @@ npm start</code></pre>
       <p>Thanks to WSL2, the choice is no longer as binary as it once was. Many developers now use Windows as their primary OS for its polished desktop experience and broad software compatibility, while doing all their development inside a full Linux environment with WSL. This provides a compelling middle ground, though for pure performance and integration, running Linux natively is still often preferred by backend and system-level developers.</p>
 
       <p>Ultimately, the best OS is the one that makes you most productive. Try both! Set up a Linux dual-boot or a virtual machine, or enable WSL on your Windows machine. Spend a week developing on each and see which workflow feels more natural to you.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        One a window, polished and wide,<br/>
+        The other a penguin, with nothing to hide.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'linux windows',
@@ -5578,6 +5691,10 @@ volumes:
         <li><strong>Scalability:</strong> Docker works seamlessly with container orchestration tools like Kubernetes to manage applications at a massive scale.</li>
       </ul>
       <p>Learning Docker is a fundamental skill that will streamline your development workflow, simplify your deployments, and make you a more effective and marketable developer.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In a container sealed and light,<br/>
+        The code runs true, both day and night.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'docker container',
@@ -5762,6 +5879,10 @@ Cache-Control: public, max-age=3600</code></pre>
         <li><strong>Durable:</strong> A well-designed API can evolve without breaking existing clients.</li>
       </ul>
       <p>Next time you build or consume an API, think about these principles. Are the URIs resource-based? Are you using the correct HTTP methods? Is the API stateless? Following these guidelines will lead to better, more robust web services.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        GET the knowledge, POST your thought,<br/>
+        In RESTful style, a lesson taught.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'http rest api',
@@ -5904,7 +6025,7 @@ h1 {
 }</code></pre>
 
       <h3>Conclusion: A Fundamental Tool for Modern CSS</h3>
-      <p>CSS Custom Properties are not just a convenience; they represent a fundamental shift in how we can architect our stylesheets. They provide the dynamic capabilities of JavaScript with the declarative simplicity of CSS.</p>
+      <p>CSS Custom Properties are not just a convenience; they represent a fundamental shift in how we can architect our stylesheets.</p>
       <p>By adopting custom properties, you will create systems that are:</p>
       <ul>
         <li><strong>More Maintainable (DRY):</strong> Define values in one place and reuse them everywhere.</li>
@@ -5912,6 +6033,10 @@ h1 {
         <li><strong>More Readable:</strong> Give semantic names to cryptic values (e.g., <code>var(--color-brand-primary)</code> instead of <code>#5A3E8D</code>).</li>
       </ul>
       <p>If you're not using them yet, start today. They are fully supported in all modern browsers and will fundamentally improve your CSS workflow.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        In root they're born, through styles they flow,<br/>
+        With var(), a theme begins to grow.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'css variables',
@@ -6017,6 +6142,10 @@ console.log('4: End');</code></pre>
         <li><strong>Master Advanced JavaScript:</strong> Fully grasp how Promises and async/await work under the hood.</li>
       </ul>
       <p>The next time you write an async function or set a timer, visualize the journey of your code through the Call Stack, Web APIs, and the Queues. This mental model is one of the most powerful tools in a JavaScript developer's arsenal.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        One single thread, a loop so fast,<br/>
+        A non-blocking future, built to last.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'javascript event loop',
@@ -6113,6 +6242,10 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
         <li>✅ Set the **<code>HttpOnly</code> flag** on sensitive cookies.</li>
       </ul>
       <p>By making these practices a standard part of your development workflow, you can build applications that are resilient to XSS and protect your users' trust and data.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Reflected, stored, or in the DOM,<br/>
+        Encode the output, keep your users calm.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'xss cybersecurity',
@@ -6258,6 +6391,10 @@ jobs:
         <li><strong>Improve Productivity:</strong> Spend less time on manual processes and more time writing code.</li>
       </ul>
       <p>Start with a simple CI pipeline for one of your projects today. The initial time investment will pay for itself many times over in the long run.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        On every push, the runners wake,<br/>
+        A seamless flow, for goodness sake.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'github actions ci/cd',
@@ -6396,6 +6533,10 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
         <li><strong>E-commerce:</strong> Create lifestyle mockups for products.</li>
       </ul>
       <p>By mastering the APIs and understanding the key parameters, you can move from being a user of AI tools to a creator of AI-powered applications. Start experimenting with a simple script, and you'll quickly discover the immense creative potential at your fingertips.</p>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        From prompt to pixel, a thought takes form,<br/>
+        In latent space, a creative storm.
+      </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'ai image generation',
@@ -6417,3 +6558,4 @@ export function getPostBySlug(slug: string) {
     
 
     
+
