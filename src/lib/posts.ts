@@ -2167,7 +2167,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         <li><strong>Web Applications:</strong> SQL Injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), insecure APIs.</li>
         <li><strong>AI-Powered Attacks:</strong> Automating phishing, crafting more convincing deepfakes, evading detection systems.</li>
       </ul>
-      <h3>The Defense: Building the Digital Fortress (But Knowing It's Never Perfect)</h3>
+      <h3>The Defense: Building the Digital Fortress (But Knowing It\'s Never Perfect)</h3>
       <p>Hacking necessitates robust defense:</p>
       <ul>
         <li><strong>Security Awareness Training:</strong> Empowering employees to recognize phishing and social engineering. The human firewall is critical.</li>
@@ -4653,7 +4653,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         With flex and grid, on solid ground.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/C1xS1z7q/CSS-Deep-Dive-Flexbox-Grid-and-Modern-Layouts.webp',
     imageHint: 'css code',
     author: 'Huzi',
     category: 'Programming',
@@ -4801,7 +4801,7 @@ Promise.race([promise1, promise2]).then(value => {
         A promise made, a story told.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/qR0B9BJW/Demystifying-Async-Await-in-Java-Script-A-Practical-Guide.webp',
     imageHint: 'javascript async',
     author: 'Huzi',
     category: 'Programming',
@@ -5036,7 +5036,7 @@ exports.createItem = async (req, res) => {
         In Node's domain, all logic's right.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/tTW2LtfF/Building-a-REST-API-with-Node-js-and-Express-The-Definitive-Guide.webp',
     imageHint: 'nodejs express api',
     author: 'Huzi',
     category: 'Programming',
@@ -5148,7 +5148,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         With parameters, peace of mind.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/k588nS6F/SQL-Injection-Explained-How-to-Prevent-the-Webs-Most-Devastating-Cyber-Attack.webp',
     imageHint: 'sql injection prevention',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5238,7 +5238,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         Can breach the walls of any place.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/PqYyHwgm/Social-Engineering-The-Art-of-Human-Hacking.webp',
     imageHint: 'social engineering hacking',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5355,7 +5355,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
         In digital vaults, where data's slept.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/JzfW30pL/Cryptography-101-A-Beginners-Guide-to-Digital-Security.webp',
     imageHint: 'cryptography security padlock',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5432,7 +5432,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
         A thinking echo from the machine.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/HkvwBf4B/How-Large-Language-Models-Work-A-Deep-Dive-for-Beginners.webp',
     imageHint: 'large language model AI',
     author: 'Huzi',
     category: 'AI',
@@ -5542,7 +5542,7 @@ npm start</code></pre>
         The other a penguin, with nothing to hide.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/44rGJJd5/Linux-vs-Windows-A-Developers-Perspective-on-Which-OS-is-Right-for-You.webp',
     imageHint: 'linux windows',
     author: 'Huzi',
     category: 'Linux',
@@ -5696,7 +5696,7 @@ volumes:
         The code runs true, both day and night.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/mkj4s2M9/Getting-Started-with-Docker-A-Beginners-Guide-to-Containers.webp',
     imageHint: 'docker container',
     author: 'Huzi',
     category: 'Linux',
@@ -5884,7 +5884,7 @@ Cache-Control: public, max-age=3600</code></pre>
         In RESTful style, a lesson taught.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/Kz1st31V/The-Developers-Guide-to-HTTP-and-RESTful-APIs.webp',
     imageHint: 'http rest api',
     author: 'Huzi',
     category: 'Programming',
@@ -6038,7 +6038,7 @@ h1 {
         With var(), a theme begins to grow.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/W1YWHvM0/CSS-Custom-Properties-Variables-A-Revolution-in-Styling.webp',
     imageHint: 'css variables',
     author: 'Huzi',
     category: 'Programming',
@@ -6147,7 +6147,7 @@ console.log('4: End');</code></pre>
         A non-blocking future, built to last.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/prT5GgV0/Understanding-the-Java-Script-Event-Loop-A-Visual-Guide.webp',
     imageHint: 'javascript event loop',
     author: 'Huzi',
     category: 'Programming',
@@ -6247,7 +6247,7 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
         Encode the output, keep your users calm.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/2SC1yC0B/Cross-Site-Scripting-XSS-A-Developers-Guide-to-Prevention.webp',
     imageHint: 'xss cybersecurity',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -6396,7 +6396,7 @@ jobs:
         A seamless flow, for goodness sake.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/q7SMN5w2/CI-CD-with-Git-Hub-Actions-A-Beginners-Guide-to-Automation.webp',
     imageHint: 'github actions ci/cd',
     author: 'Huzi',
     category: 'Linux',
@@ -6538,7 +6538,7 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
         In latent space, a creative storm.
       </div>
     `,
-    imageUrl: 'https://placehold.co/600x400.png',
+    imageUrl: 'https://i.postimg.cc/Qx3gQqYj/AI-Image-Generation-A-Developers-Guide-to-Creating-Images-with-Code.webp',
     imageHint: 'ai image generation',
     author: 'Huzi',
     category: 'AI',
@@ -6558,6 +6558,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
