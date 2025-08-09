@@ -93,7 +93,7 @@ const posts: Post[] = [
       <p>Web application architecture defines how different parts of a web app work together to deliver content and services. It shapes how users interact with the system, how data flows, and how the app handles requests and responses.</p>
       <h4>Client-Server Model</h4>
       <p>The client-server model divides the application into two main parts: the client and the server. The client is usually a web browser or mobile app that sends requests to the server. The server processes these requests, interacts with databases or business logic, and sends back responses.</p>
-      <p>This model supports clear separation of concerns, making apps easier to manage. The client handles the user interface, while the server handles data and processing. Scalability depends on the server's ability to manage multiple client requests efficiently.</p>
+      <p>This model supports clear separation of concerns, making apps easier to manage. The client handles the user interface, while the server handles data and processing. Scalability depends on the server\'s ability to manage multiple client requests efficiently.</p>
       <h4>RESTful APIs</h4>
       <p>RESTful APIs use standard HTTP methods like GET, POST, PUT, and DELETE to enable communication between the client and server. They represent resources using URLs and transfer data mainly in JSON format.</p>
       <p>RESTful APIs provide a simple and scalable way to build web applications. They allow different systems to interact without tight coupling. This modularity makes updating, testing, and extending parts of the app easier.</p>
@@ -2508,7 +2508,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
       </ul>
 
       <h3>Conclusion: The Unshakeable Foundation</h3>
-      <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web's growth into an application platform. Mastering HTML isn\'t just about memorizing tags – it\'s about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML's role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
+      <p>HTML remains the bedrock of the internet despite advancements in CSS, JavaScript, and frameworks. Its evolution from simple document markup to a rich semantic language reflects the web\'s growth into an application platform. Mastering HTML isn\'t just about memorizing tags – it\'s about understanding content architecture, accessibility, and how humans and machines collaborate to build meaningful digital experiences. As emerging technologies like AR/VR and voice interfaces gain traction, HTML\'s role as a structured content delivery mechanism will only become more critical. The most sophisticated web applications still render to HTML in the end – because without structure, there is no web.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         In angle brackets, the web is born,<br/>
         The silent skeleton, since the dawn.
@@ -3621,7 +3621,7 @@ DLROW</code></pre>
         To build your best, and ace the test.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
+    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -4438,7 +4438,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like 'tools.huzi.pk' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \'tools.huzi.pk\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         The server sleeps, the files reside,<br/>
         On edges fast, where worlds collide.
@@ -4729,7 +4729,7 @@ myAsyncFunction().then(console.log); // logs "hello"</code></pre>
       <p>The <code>await</code> keyword can only be used inside an <code>async</code> function. It makes JavaScript wait until a Promise settles and returns its result. It "pauses" the function execution without blocking the main thread.</p>
 
       <h4>Putting It All Together: A Real-World Example</h4>
-      <p>Let's refactor our Promise chain from before using async/await.</p>
+      <p>Let\'s refactor our Promise chain from before using async/await.</p>
       
       <p><strong>Before (with <code>.then()</code>):</strong></p>
       <pre><code class="language-javascript">function fetchUserData() {
@@ -6558,6 +6558,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
