@@ -4380,7 +4380,7 @@ git push origin main
         <li><strong>Complex Forms:</strong> Static sites can't process form data. The solution is to submit the form to a serverless function or a third-party service like Formspree or Netlify Forms.</li>
       </ul>
       
-      <h3>The \`tools.huzi.pk\` Blueprint: A Modern Static Stack</h3>
+      <h3>The \'\'\'tools.huzi.pk\'\'\' Blueprint: A Modern Static Stack</h3>
       <p>This developer tools site exemplifies modern static best practices:</p>
       <ul>
         <li><strong>SSG:</strong> Astro, for its excellent performance and support for partial hydration.</li>
@@ -4438,7 +4438,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \`tools.huzi.pk\` prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \'\'\'tools.huzi.pk\'\'\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         The server sleeps, the files reside,<br/>
         On edges fast, where worlds collide.
@@ -4496,7 +4496,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
       <ul>
         <li>Navigation menus (horizontal or vertical)</li>
         <li>Aligning items within a card component (e.g., icon and text)</li>
-        <li>Creating equally-spaced columns that wrap on mobile</li>
+        <li>Creating equally-spaced columns that a wrap on mobile</li>
         <li>Vertically centering content</li>
       </ul>
 
@@ -6558,4 +6558,6 @@ export function getPostBySlug(slug: string) {
     
 
     
+
+
 
