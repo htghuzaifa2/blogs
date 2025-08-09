@@ -93,7 +93,7 @@ const posts: Post[] = [
       <p>Web application architecture defines how different parts of a web app work together to deliver content and services. It shapes how users interact with the system, how data flows, and how the app handles requests and responses.</p>
       <h4>Client-Server Model</h4>
       <p>The client-server model divides the application into two main parts: the client and the server. The client is usually a web browser or mobile app that sends requests to the server. The server processes these requests, interacts with databases or business logic, and sends back responses.</p>
-      <p>This model supports clear separation of concerns, making apps easier to manage. The client handles the user interface, while the server handles data and processing. Scalability depends on the server\'s ability to manage multiple client requests efficiently.</p>
+      <p>This model supports clear separation of concerns, making apps easier to manage. The client handles the user interface, while the server handles data and processing. Scalability depends on the server's ability to manage multiple client requests efficiently.</p>
       <h4>RESTful APIs</h4>
       <p>RESTful APIs use standard HTTP methods like GET, POST, PUT, and DELETE to enable communication between the client and server. They represent resources using URLs and transfer data mainly in JSON format.</p>
       <p>RESTful APIs provide a simple and scalable way to build web applications. They allow different systems to interact without tight coupling. This modularity makes updating, testing, and extending parts of the app easier.</p>
@@ -212,16 +212,16 @@ const posts: Post[] = [
       <p>Choosing between them depends on the project needs and personal preference. Visual Studio is better for complex applications, while VS Code suits lightweight and flexible development.</p>
       <h4>Installing the .NET SDK</h4>
       <p>The .NET SDK is necessary to build and run C# applications. It includes the runtime, libraries, and command-line tools. Users can download it from the official Microsoft .NET website.</p>
-      <p>Installing the SDK involves choosing the right version compatible with your project. After installation, verify it by running dotnet --version in a terminal or command prompt to check if the SDK is correctly installed.</p>
+      <p>Installing the SDK involves choosing the right version compatible with your project. After installation, verify it by running \`dotnet --version\` in a terminal or command prompt to check if the SDK is correctly installed.</p>
       <p>This installation is the foundation for all C# development, whether using Visual Studio or VS Code, and is essential before starting any projects.</p>
       <h4>Configuring Your First Project</h4>
       <p>Once the IDE and .NET SDK are ready, creating a new C# project comes next. Using Visual Studio, one can select project templates like Console App, Web API, or Windows Forms at startup.</p>
-      <p>In VS Code, creating a new project typically means running commands in the terminal: first dotnet new console to create a console application, then dotnet restore to install dependencies.</p>
+      <p>In VS Code, creating a new project typically means running commands in the terminal: first \`dotnet new console\` to create a console application, then \`dotnet restore\` to install dependencies.</p>
       <p>Basic configuration includes setting the target framework, organizing files, and adjusting IDE settings for debugging and build options. Proper setup helps avoid errors and speeds up development.</p>
       <h3>C# Syntax and Basic Concepts</h3>
       <p>C# uses a clear and structured syntax to write readable code. It relies on the use of variables to store data, operators to manipulate values, and control flow statements to direct how a program runs.</p>
       <h4>Variables and Data Types</h4>
-      <p>Variables in C# hold data values and must be declared with a specific data type. Common data types include int for whole numbers, double for decimals, char for single characters, and string for text.</p>
+      <p>Variables in C# hold data values and must be declared with a specific data type. Common data types include \`int\` for whole numbers, \`double\` for decimals, \`char\` for single characters, and \`string\` for text.</p>
       <p>Each type defines the kind of data a variable can store. For example:</p>
       <table><thead><tr><th>Data Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td>int</td><td>Integer (whole number)</td><td><code>int age = 30;</code></td></tr><tr><td>double</td><td>Floating-point number</td><td><code>double price = 9.99;</code></td></tr><tr><td>char</td><td>Single character</td><td><code>char letter = 'A';</code></td></tr><tr><td>string</td><td>Sequence of characters</td><td><code>string name = "C#";</code></td></tr></tbody></table>
       <p>Variables must be named with valid identifiers and follow C# naming rules, such as starting with a letter or underscore, and cannot use keywords.</p>
@@ -242,7 +242,7 @@ const posts: Post[] = [
       <li>switch statements for multiple condition checks</li>
       <li>loops like for, while, and do-while to repeat actions</li>
       </ul>
-      <p>The if statement checks a condition and runs a block of code if true. The else block runs when the condition is false.</p>
+      <p>The \`if\` statement checks a condition and runs a block of code if true. The \`else\` block runs when the condition is false.</p>
       <p>Loops allow running code many times. For example:</p>
       <pre><code class="language-csharp">for (int i = 0; i < 5; i++) {
     Console.WriteLine(i);
@@ -1495,7 +1495,7 @@ ufw enable</code></pre>
     <ul>
       <li>Use a supported phone or tablet (e.g. PinePhone with archlinuxarm/PostmarketOS)</li>
       <li>Unlock bootloader, flash custom recovery (TWRP) or gain root for chroot</li>
-      <li>Recommended base: Arch Linux ARM or termux‑based Arch in PRoot for non‑root setups</li>
+      <li>Recommended base: Arch Linux ARM or termux‑based Arch in PROOT for non‑root setups</li>
     </ul>
     <p>Backup all data before proceeding.</p>
     <h3>3. Installation Options</h3>
@@ -4311,7 +4311,7 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
         <li><strong>Global CDNs with edge computing</strong> from providers like Cloudflare and Netlify.</li>
         <li><strong>APIs and Serverless Functions</strong> to handle dynamic features.</li>
       </ul>
-      <p>This <strong>JAMstack architecture</strong> (JavaScript, APIs, and Markup) merges the efficiency of static files with the capabilities of dynamic applications. For example, a site like tools.huzi.pk can use an SSG like Astro with Cloudflare's edge caching to deliver near-instant load times while still supporting interactive documentation and tools.</p>
+      <p>This <strong>JAMstack architecture</strong> (JavaScript, APIs, and Markup) merges the efficiency of static files with the capabilities of dynamic applications. For example, a site like \`tools.huzi.pk\` can use an SSG like Astro with Cloudflare's edge caching to deliver near-instant load times while still supporting interactive documentation and tools.</p>
       
       <h3>Five Catalysts Driving the 2025 Static Surge</h3>
       
@@ -6558,6 +6558,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
