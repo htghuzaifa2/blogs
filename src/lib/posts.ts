@@ -2167,7 +2167,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         <li><strong>Web Applications:</strong> SQL Injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), insecure APIs.</li>
         <li><strong>AI-Powered Attacks:</strong> Automating phishing, crafting more convincing deepfakes, evading detection systems.</li>
       </ul>
-      <h3>The Defense: Building the Digital Fortress (But Knowing It\'s Never Perfect)</h3>
+      <h3>The Defense: Building the Digital Fortress (But Knowing It's Never Perfect)</h3>
       <p>Hacking necessitates robust defense:</p>
       <ul>
         <li><strong>Security Awareness Training:</strong> Empowering employees to recognize phishing and social engineering. The human firewall is critical.</li>
@@ -3026,7 +3026,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
       <p>Summarize PDFs, Docs, or text instantly using DeepSeek AI.</p>
       <p>Export results, translate content, and analyze key insights.</p>
       <p><strong>Perfect for:</strong> Research, documentation, or digesting long articles.</p>
-      <h4>💬 2. ChatBot AI</h4>
+      <h4>💬 2. ChatBot AI Assistant</h4>
       <p>Smart conversational assistant for natural-language queries.</p>
       <p>Get instant answers, debugging help, or brainstorming support.</p>
       <p><strong>Perfect for:</strong> Learning, ideation, or customer support prototyping.</p>
@@ -6558,6 +6558,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
