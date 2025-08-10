@@ -16,7 +16,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
   return (
     <div className="bg-background">
-      <main className="py-8">
+      <main className="py-8 md:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
@@ -32,7 +32,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
                     </Badge>
                   </Link>
                 )}
-                <h1 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                <h1 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
                   {post.title}
                 </h1>
                 <div className="text-sm text-muted-foreground">
@@ -45,7 +45,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
                   src={post.imageUrl}
                   alt={post.title}
                   fill
-                  style={{objectFit: "cover"}}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
                   data-ai-hint={post.imageHint}
                   priority
                 />
