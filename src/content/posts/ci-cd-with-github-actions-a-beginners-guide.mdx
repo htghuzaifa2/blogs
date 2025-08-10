@@ -1,0 +1,22 @@
+---
+title: "CI/CD with GitHub Actions: A Beginner's Guide to Automation"
+excerpt: "Automate your development workflow from code commit to deployment with GitHub Actions. This guide breaks down the core concepts of CI/CD and provides a practical, step-by-step example to help you build your first automated pipeline."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "github actions ci/cd"
+author: "Huzi"
+category: "Linux"
+---
+
+## Introduction: Why Automate?
+<p>CI/CD (Continuous Integration and Continuous Deployment) is the practice of automating your software development lifecycle. GitHub Actions is a powerful and flexible CI/CD platform built directly into GitHub.</p>
+      
+### Building Your First CI Pipeline
+<p>A GitHub Actions workflow is defined in a YAML file in the `.github/workflows/` directory. Here's a simple example for a Node.js application that runs tests on every push.</p>
+      
+### Continuous Deployment
+<p>You can add a second job to deploy your application if the tests pass. This job would use a conditional to run only on pushes to the main branch and would use secrets to store your deployment credentials securely.</p>
+      
+<div className="italic text-center text-muted-foreground pt-4 border-t mt-8">
+  On every push, the runners wake,<br/>
+  A seamless flow, for goodness sake.
+</div>

@@ -1,0 +1,22 @@
+---
+title: "SQL Injection Explained: How to Prevent the Web's Most Devastating Cyber Attack"
+excerpt: "SQL Injection (SQLi) has been a top web security vulnerability for over two decades, yet it continues to be the cause of catastrophic data breaches. This guide provides a deep, practical dive into what SQLi is, how it works, and most importantly, how to build ironclad defenses against it."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "sql injection prevention"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+## Introduction: The Persistent Threat
+<p>SQL Injection (SQLi) is a code injection technique where an attacker inserts malicious SQL statements into an application's input fields. This can lead to authentication bypass, data theft, and even full server takeover. It remains one of the most critical web vulnerabilities.</p>
+
+### Anatomy of an Attack
+<p>A classic SQLi attack bypasses a login form. If a vulnerable query concatenates user input directly, an attacker can use input like `admin'--` to comment out the rest of the query, logging in as 'admin' without a password.</p>
+      
+### The Ultimate Defense: Parameterized Queries
+<p>The single most effective way to prevent SQLi is to use <strong>parameterized queries (or prepared statements)</strong>. This technique separates the SQL command from the data, ensuring that user input is never treated as executable code.</p>
+      
+<div className="italic text-center text-muted-foreground pt-4 border-t mt-8">
+  A query crafted, a truth to find,<br/>
+  With parameters, peace of mind.
+</div>

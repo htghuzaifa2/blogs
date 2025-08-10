@@ -1,7 +1,5 @@
 import { getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { BlogCard } from '@/components/blog-card';
 import type { Metadata } from 'next';
 
@@ -20,9 +18,8 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const categoryName = posts[0].category;
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="bg-background">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-headline font-extrabold tracking-tight">
             Category: {categoryName}
@@ -38,7 +35,6 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
@@ -62,7 +58,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk.`;
 
   return {
-    title: categoryName,
+    title: `${categoryName} Category | blogs.huzi.pk`,
     description: description,
     alternates: {
       canonical: url,

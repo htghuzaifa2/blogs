@@ -1,14 +1,11 @@
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { BlogCard } from '@/components/blog-card';
 import { getPosts } from '@/lib/posts';
 
 export default function Home() {
   const posts = getPosts();
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-headline font-extrabold tracking-tight">
             Welcome to blogs.huzi.pk
@@ -30,8 +27,7 @@ export default function Home() {
             <p className="text-muted-foreground mt-2">Check back later for new content!</p>
           </div>
         )}
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 }

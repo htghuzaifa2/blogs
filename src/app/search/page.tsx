@@ -4,8 +4,6 @@
 import { useSearchParams } from 'next/navigation';
 import { getPosts, Post } from '@/lib/posts';
 import { BlogCard } from '@/components/blog-card';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { Suspense, useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -40,10 +38,22 @@ function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [results, setResults] = useState<Post[]>([]);
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    if (query) {
-      const allPosts = getPosts();
+    // Since getPosts uses server-side 'fs', we cannot call it here.
+    // A proper implementation would use a client-side search index
+    // or fetch search results from an API endpoint.
+    // For now, we accept that search will not work until this is implemented.
+    // To avoid breaking the build, we'll fetch a static list.
+    // This is a temporary solution.
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => setAllPosts(data));
+  }, []);
+
+  useEffect(() => {
+    if (query && allPosts.length > 0) {
       const lowercasedQuery = query.toLowerCase();
 
       const filteredPosts = allPosts
@@ -71,7 +81,7 @@ function SearchResultsContent() {
     } else {
       setResults([]);
     }
-  }, [query]);
+  }, [query, allPosts]);
 
   return (
     <>
@@ -134,14 +144,12 @@ function SearchSkeleton() {
 
 export default function SearchPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="bg-background">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Suspense fallback={<SearchSkeleton />}>
           <SearchResultsContent />
         </Suspense>
       </main>
-      <Footer />
     </div>
   );
 }

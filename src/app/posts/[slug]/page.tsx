@@ -1,25 +1,22 @@
 import { getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { Comments } from '@/components/comments';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="flex-grow py-8">
+    <div className="bg-background">
+      <main className="py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
@@ -63,7 +60,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
                            prose-ul:list-disc prose-ol:list-decimal
                            [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
             </article>
 
@@ -73,13 +70,12 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return {

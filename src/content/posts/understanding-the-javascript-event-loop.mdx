@@ -1,0 +1,24 @@
+---
+title: "Understanding the JavaScript Event Loop: A Visual Guide"
+excerpt: "JavaScript is single-threaded, but it handles asynchronous operations without freezing the UI. How? The magic lies in the Event Loop. This guide demystifies this core concept with simple explanations and visual analogies."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "javascript event loop"
+author: "Huzi"
+category: "Programming"
+---
+
+## Introduction: The Concurrency Puzzle
+<p>JavaScript has a single thread, yet it can handle multiple operations concurrently without blocking the user interface. This is made possible by the <strong>Event Loop</strong>.</p>
+      
+### The Core Components
+<ul>
+  <li><strong>Call Stack:</strong> Where functions that are currently being executed are tracked.</li>
+  <li><strong>Web APIs:</strong> Provided by the browser to handle async tasks like `setTimeout` and `fetch`.</li>
+  <li><strong>Callback Queue (or Task Queue):</strong> A waiting area for callback functions that are ready to be executed.</li>
+  <li><strong>Event Loop:</strong> Its job is to move tasks from the Callback Queue to the Call Stack when the stack is empty.</li>
+</ul>
+      
+<div className="italic text-center text-muted-foreground pt-4 border-t mt-8">
+  One single thread, a loop so fast,<br/>
+  A non-blocking future, built to last.
+</div>

@@ -1,0 +1,26 @@
+---
+title: "Cross-Site Scripting (XSS): A Developer's Guide to Prevention"
+excerpt: "Cross-Site Scripting (XSS) is one of the most common and dangerous web vulnerabilities. This guide explains what XSS is, how attackers exploit it, and provides a clear, actionable checklist for developers to prevent it in their applications."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "xss cybersecurity"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+## Introduction: The Trust Betrayal
+<p>Cross-Site Scripting (XSS) is a vulnerability where an attacker injects malicious scripts (usually JavaScript) into a web page viewed by other users. The attack exploits the trust a user has in a website.</p>
+      
+### Types of XSS Attacks
+<ul>
+  <li><strong>Stored XSS:</strong> The malicious script is permanently stored on the server (e.g., in a comment section). This is the most dangerous type.</li>
+  <li><strong>Reflected XSS:</strong> The script is "reflected" off a web server, usually via a malicious link.</li>
+  <li><strong>DOM-Based XSS:</strong> The attack happens entirely on the client-side by manipulating the DOM.</li>
+</ul>
+
+### The Definitive Prevention Strategy
+<p>The golden rule is to <strong>never trust user-provided data</strong>. Escape all user-provided data before rendering it in HTML. Most modern frameworks (React, Vue) do this automatically.</p>
+      
+<div className="italic text-center text-muted-foreground pt-4 border-t mt-8">
+  Reflected, stored, or in the DOM,<br/>
+  Encode the output, keep your users calm.
+</div>

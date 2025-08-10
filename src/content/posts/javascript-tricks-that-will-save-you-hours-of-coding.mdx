@@ -1,0 +1,33 @@
+---
+title: "10 JavaScript Tricks That Will Save You Hours of Coding Headaches"
+excerpt: "JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS across production applications, I've curated these battle-tested tricks that consistently save development time. Master these and you'll write cleaner, more efficient code immediately."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "javascript code"
+author: "Huzi"
+category: "Programming"
+---
+
+<p>JavaScript is full of hidden gems that can transform verbose code into elegant solutions. Master these battle-tested tricks to write cleaner, more efficient code immediately.</p>
+      
+### 1. Destructuring with Aliases & Default Values
+<p>Safely access nested properties and avoid naming conflicts.</p>
+```javascript
+const { address: { street: userStreet = 'Unknown' } = {} } = user;
+```
+
+### 2. Optional Chaining + Nullish Coalescing
+<p>The ultimate combo for safe property access without long `&&` chains.</p>
+```javascript
+const price = order?.items?.[0]?.price ?? 0;
+```
+      
+### 3. Array Deduplication with Set
+<p>The cleanest way to get unique values from an array.</p>
+```javascript
+const unique = [...new Set(myArray)];
+```
+      
+<div className="italic text-center text-muted-foreground pt-4 border-t mt-8">
+  With syntax sharp and logic tight,<br/>
+  Turn hours of code to moments bright.
+</div>
