@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { getPosts } from '@/lib/posts';
 
 const siteUrl = 'https://blogs.huzi.pk';
 
@@ -81,6 +82,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const posts = getPosts();
+  const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)));
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -92,7 +96,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <ThemeProvider>
           <div className="flex flex-col min-h-screen">
-            <Header />
+            <Header categories={categories} />
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
