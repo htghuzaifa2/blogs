@@ -1,0 +1,105 @@
+---
+title: "Getting Started with React: A Beginner's Guide"
+excerpt: "React is a powerful JavaScript library for building user interfaces. This guide will introduce you to the core concepts of React, including components, JSX, props, and state, to get you started on your journey."
+imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
+imageHint: "react logo code"
+author: "Huzi"
+category: "Programming"
+---
+
+### What is React?
+
+React is a free and open-source JavaScript library for building user interfaces (UIs), particularly for single-page applications. It was developed by Facebook and is now maintained by a community of developers and companies. React allows you to build complex UIs from small, isolated pieces of code called "components."
+
+React is not a framework. It only handles the view layer of an application. For a complete solution, it's often paired with other libraries for routing (like React Router) and state management (like Redux or Zustand).
+
+### Core Concepts of React
+
+To get started with React, you need to understand a few fundamental concepts.
+
+#### 1. Components
+
+Components are the building blocks of any React application. They are like independent, reusable Lego bricks. A component is essentially a JavaScript function that returns a piece of UI.
+
+There are two main types of components:
+-   **Functional Components:** The modern and recommended way. They are simple JavaScript functions.
+-   **Class Components:** The older way, using ES6 classes. You'll still see them in older codebases.
+
+Here's a simple functional component:
+```jsx
+function WelcomeMessage() {
+  return <h1>Hello, world!</h1>;
+}
+```
+
+#### 2. JSX (JavaScript XML)
+
+The `<h1>Hello, world!</h1>` syntax in the example above is not HTML. It's JSX, which stands for JavaScript XML. JSX is a syntax extension for JavaScript that allows you to write HTML-like code inside your JavaScript files. While you don't *have* to use JSX with React, it makes writing UI code much more intuitive and readable.
+
+The browser doesn't understand JSX, so we use a tool like Babel to transpile it into regular JavaScript.
+
+#### 3. Props (Properties)
+
+Props are how you pass data from a parent component to a child component. They are read-only, meaning a component can't change its own props. Think of them as arguments to a function.
+
+```jsx
+// Child component
+function WelcomeMessage(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+// Parent component
+function App() {
+  return <WelcomeMessage name="Alice" />;
+}
+```
+In this example, the `App` component passes a `name` prop to `WelcomeMessage`, which then uses it to render a personalized greeting.
+
+#### 4. State
+
+State is data that a component maintains and can change over time. When a component's state changes, React will automatically re-render the component to reflect the new state. This is what makes React "reactive."
+
+To use state in a functional component, we use the `useState` Hook. A Hook is a special function that lets you "hook into" React features.
+
+```jsx
+import React, { useState } from 'react';
+
+function Counter() {
+  // Declare a new state variable called "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+In this `Counter` component, `useState(0)` initializes a state variable `count` to `0`. `setCount` is the function we use to update the state. When the button is clicked, `setCount` is called, the `count` state is updated, and the component re-renders.
+
+### Setting Up Your First React App
+
+The easiest way to create a new React application is by using a toolchain like **Vite** or **Create React App**. Vite is the modern, faster choice.
+
+To create an app with Vite:
+1.  **Run the command:**
+    ```bash
+    npm create vite@latest my-react-app -- --template react
+    ```
+2.  **Navigate into your new project and install dependencies:**
+    ```bash
+    cd my-react-app
+    npm install
+    ```
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+This will start a development server, and you can see your new React app running in the browser.
+
+### Conclusion
+
+React has fundamentally changed the way we build web applications. By breaking down complex UIs into manageable components and using a declarative approach with JSX, state, and props, it allows developers to build scalable and maintainable applications efficiently. This guide has only scratched the surface, but understanding these core concepts is the first and most important step in your journey to mastering React.

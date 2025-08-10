@@ -1,0 +1,104 @@
+---
+title: "10 Advanced Linux Commands You Should Know"
+excerpt: "Unlock the full potential of your Linux terminal with these 10 advanced commands. Learn about process management, network analysis, and powerful text manipulation with tools like awk, sed, and lsof."
+imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+imageHint: "code terminal"
+author: "Huzi"
+category: "Linux"
+---
+
+### Introduction
+
+The Linux command line is an incredibly powerful tool, but many users stick to a small set of basic commands. To truly become a power user, you need to explore the advanced utilities that can save you time and provide deeper insights into your system. Here are 10 advanced commands that every Linux enthusiast should know.
+
+### 1. `lsof` - List Open Files
+
+The `lsof` command is a powerful utility for listing all open files and the processes that opened them. This is invaluable for debugging and system monitoring.
+
+- **See what files a specific process has open:** `lsof -p <PID>`
+- **Find out which process is using a specific port:** `lsof -i :<PORT>`
+- **List files opened by a specific user:** `lsof -u <USERNAME>`
+
+### 2. `awk` - A Powerful Text Processor
+
+`awk` is a versatile programming language for pattern scanning and processing. It's perfect for manipulating structured data from files or command outputs.
+
+```bash
+# Print the first and third columns of a space-separated file
+awk '{print $1, $3}' data.txt
+
+# Sum the values in the second column
+awk '{s+=$2} END {print s}' numbers.txt
+```
+
+### 3. `sed` - The Stream Editor
+
+`sed` (Stream Editor) is used to perform basic text transformations on an input stream (a file or input from a pipeline). It's incredibly useful for find-and-replace operations.
+
+```bash
+# Replace all occurrences of 'foo' with 'bar' in a file
+sed 's/foo/bar/g' input.txt > output.txt
+
+# Delete lines containing 'debug'
+sed '/debug/d' logfile.txt
+```
+
+### 4. `htop` - An Interactive Process Viewer
+
+While `top` is standard, `htop` is its more user-friendly and feature-rich cousin. It provides a real-time, color-coded, and interactive view of your system's processes. You can scroll, search, and kill processes directly from its interface.
+
+### 5. `nmap` - The Network Mapper
+
+`nmap` is an essential tool for network exploration and security auditing. It allows you to discover hosts and services on a computer network by sending packets and analyzing the responses.
+
+```bash
+# Scan a host for open ports
+nmap target.example.com
+
+# Perform a stealthy SYN scan
+nmap -sS target.example.com
+```
+
+### 6. `rsync` - Fast, Versatile File Copying
+
+`rsync` is a powerful utility for synchronizing files and directories between two locations. It's incredibly efficient because it only transfers the differences between the source and destination.
+
+```bash
+# Sync a local directory to a remote server
+rsync -avz /local/path/ user@remote:/remote/path/
+```
+
+### 7. `strace` - System Call Tracer
+
+`strace` is a debugging tool that intercepts and records the system calls made by a process and the signals it receives. It's invaluable for troubleshooting application issues without needing the source code.
+
+```bash
+# Trace the system calls of a command
+strace ls -l
+```
+
+### 8. `jq` - Command-Line JSON Processor
+
+In an era of APIs, `jq` is an indispensable tool. It's like `sed` or `awk` but for JSON data. You can use it to slice, filter, map, and transform structured JSON data.
+
+```bash
+# Extract the 'name' field from a JSON array
+curl 'https://api.github.com/users/huzi/repos' | jq '.[].name'
+```
+
+### 9. `tmux` - Terminal Multiplexer
+
+`tmux` lets you manage multiple terminal sessions within a single window. You can detach from a session and reattach later, keeping your processes running in the background. It's a must-have for remote work on servers.
+
+### 10. `find` - The Ultimate File Finder
+
+The `find` command is much more than a simple search tool. You can use it to find files based on a wide array of criteria and execute commands on the results.
+
+```bash
+# Find all .log files modified in the last 7 days and delete them
+find /var/log -name "*.log" -mtime -7 -exec rm {} \;
+```
+
+### Conclusion
+
+Mastering these commands will significantly enhance your productivity and problem-solving skills on Linux. Dive in, experiment, and unlock a new level of command-line proficiency.

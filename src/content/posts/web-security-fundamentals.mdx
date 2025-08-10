@@ -1,0 +1,59 @@
+---
+title: "Web Security Fundamentals: Protecting Your Applications"
+excerpt: "Web security is not optional. This guide covers the most common web application vulnerabilities, such as XSS, SQL Injection, and CSRF, and explains the fundamental practices to defend against them."
+imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop"
+imageHint: "ai security"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+### Introduction to Web Security
+
+In today's digital landscape, web applications are the front door to businesses, handling everything from customer data to financial transactions. A security breach can be devastating, leading to data loss, financial damage, and a loss of user trust. Understanding and implementing web security fundamentals is a critical responsibility for every developer.
+
+This post will cover three of the most common and dangerous web vulnerabilities, as identified by the **OWASP Top 10**, and how to prevent them.
+
+### 1. Cross-Site Scripting (XSS)
+
+XSS is a vulnerability that occurs when an attacker is able to inject malicious scripts (usually JavaScript) into a web page viewed by other users. This script then runs in the victim's browser, allowing the attacker to steal information (like session cookies), deface the website, or redirect the user to a malicious site.
+
+-   **How it works:** Imagine a blog with a comment section. If the website doesn't properly sanitize the comments, an attacker could submit a comment containing a `<script>` tag. When other users view the page, their browser will execute this script.
+
+-   **Prevention: Output Encoding and Sanitization**
+    The golden rule is to **never trust user input**.
+    -   **Output Encoding:** Before rendering any user-provided content in your HTML, you must encode it to prevent it from being interpreted as active content. For example, `<` should be converted to `&lt;`. Most modern web frameworks (like React, Angular, Vue) do this automatically, which is a major security benefit.
+    -   **Sanitization:** If you need to allow users to submit some HTML (like in a rich text editor), you must use a library to parse and sanitize the HTML, allowing only a safe subset of tags and attributes.
+
+### 2. SQL Injection (SQLi)
+
+SQL Injection is a code injection technique used to attack data-driven applications. It occurs when an attacker is able to interfere with the queries that an application makes to its SQL database. A successful SQLi attack can allow an attacker to view, modify, and delete data in the database, potentially gaining complete control.
+
+-   **How it works:** Consider a login form where the server constructs a query like this:
+    `SELECT * FROM users WHERE username = '` + username + `' AND password = '` + password + `'`;
+    An attacker could enter `' OR '1'='1` as their username. The resulting query becomes:
+    `SELECT * FROM users WHERE username = '' OR '1'='1' AND ...`
+    Since `'1'='1'` is always true, the query might return the first user in the database (often the admin), and the attacker is logged in.
+
+-   **Prevention: Prepared Statements (Parameterized Queries)**
+    **Never** construct SQL queries by concatenating strings with user input. Instead, use **prepared statements**. This separates the SQL code from the data. The database compiles the query first, and then the user input is passed as a parameter, so it is treated only as data and can never be executed as code. All modern database libraries support this.
+
+### 3. Cross-Site Request Forgery (CSRF)
+
+CSRF (also known as a "one-click attack") is an attack that tricks a victim into submitting a malicious request. It inherits the identity and privileges of the victim to perform an undesired function on their behalf. For example, an attacker could trick a logged-in user into unknowingly transferring money, changing their email address, or deleting a record.
+
+-   **How it works:**
+    1. A user is logged into their banking website, `bank.com`.
+    2. The user visits a malicious website, `evil.com`, in another browser tab.
+    3. `evil.com` contains a hidden form that automatically submits a request to `bank.com/transfer?to=attacker&amount=1000`.
+    4. Because the user is authenticated with `bank.com`, their browser automatically includes their session cookie with the request. `bank.com` sees a valid request from a logged-in user and processes the transfer.
+
+-   **Prevention: Anti-CSRF Tokens**
+    The most common defense is the **Synchronizer Token Pattern**.
+    1. When the user visits a page with a form, the server generates a unique, random token (the anti-CSRF token) and includes it as a hidden field in the form. The server also stores this token in the user's session.
+    2. When the user submits the form, the token is sent back to the server.
+    3. The server compares the token from the form with the token from the session. If they match, the request is valid. If they don't match (or the token is missing), the request is rejected.
+    This works because the attacker on `evil.com` has no way of knowing the correct token value for the user's session.
+
+### Conclusion
+
+Web security is a vast and complex field, but by understanding and defending against these common vulnerabilities, you can significantly improve the security posture of your applications. Always remember to validate user input, use prepared statements for database queries, and protect against CSRF. Building security into your development process from the beginning is the best way to create safe and trustworthy applications.
