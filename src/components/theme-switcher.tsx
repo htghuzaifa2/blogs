@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, Monitor, Palette } from "lucide-react"
+import { Moon, Sun, Monitor, Palette, Flame } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 
 import { Button } from "@/components/ui/button"
@@ -36,6 +36,10 @@ export function ThemeSwitcher() {
         <DropdownMenuItem onClick={() => setTheme("blue")}>
           <Palette className="mr-2 h-4 w-4" />
           Blue
+        </DropdownMenuItem>
+         <DropdownMenuItem onClick={() => setTheme("orange")}>
+          <Flame className="mr-2 h-4 w-4" />
+          Orange
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
           <Monitor className="mr-2 h-4 w-4" />

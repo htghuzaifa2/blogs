@@ -3,7 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
-type Theme = "light" | "dark" | "blue" | "system"
+type Theme = "light" | "dark" | "blue" | "orange" | "system"
 
 interface ThemeProviderProps {
   children: React.ReactNode
@@ -21,9 +21,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const applyTheme = useCallback((themeToApply: Theme) => {
     const root = window.document.documentElement;
-    root.classList.remove('light', 'dark', 'blue');
+    root.classList.remove('light', 'dark', 'blue', 'orange');
 
-    let effectiveTheme: 'light' | 'dark' | 'blue' = 'light';
+    let effectiveTheme: 'light' | 'dark' | 'blue' | 'orange' = 'light';
     if (themeToApply === 'system') {
       effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     } else {
