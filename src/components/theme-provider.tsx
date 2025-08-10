@@ -4,6 +4,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
 type Theme = "light" | "dark" | "blue" | "orange" | "system"
+const THEME_STORAGE_KEY = 'huzi-blog-theme';
 
 interface ThemeProviderProps {
   children: React.ReactNode
@@ -17,7 +18,7 @@ interface ThemeProviderState {
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined)
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>('system');
 
   const applyTheme = useCallback((themeToApply: Theme) => {
     const root = window.document.documentElement;
@@ -25,24 +26,21 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
     let effectiveTheme: 'light' | 'dark' | 'blue' | 'orange' = 'light';
     if (themeToApply === 'system') {
-      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.classList.add(systemTheme);
     } else {
-      effectiveTheme = themeToApply;
+      root.classList.add(themeToApply);
     }
-    
-    root.classList.add(effectiveTheme);
   }, []);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('huzi-blog-theme') as Theme | null;
-    const initialTheme = storedTheme || 'light';
+    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+    const initialTheme = storedTheme || 'system';
     setThemeState(initialTheme);
     applyTheme(initialTheme);
   }, [applyTheme]);
   
   useEffect(() => {
-    applyTheme(theme);
-
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
       if (theme === 'system') {
@@ -54,8 +52,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme, applyTheme]);
 
   const setTheme = (newTheme: Theme) => {
-    localStorage.setItem('huzi-blog-theme', newTheme);
+    localStorage.setItem(THEME_STORAGE_KEY, newTheme);
     setThemeState(newTheme);
+    applyTheme(newTheme);
   };
 
   const value = {
