@@ -2167,7 +2167,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         <li><strong>Web Applications:</strong> SQL Injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), insecure APIs.</li>
         <li><strong>AI-Powered Attacks:</strong> Automating phishing, crafting more convincing deepfakes, evading detection systems.</li>
       </ul>
-      <h3>The Defense: Building the Digital Fortress (But Knowing It\'s Never Perfect)</h3>
+      <h3>The Defense: Building the Digital Fortress (But Knowing It's Never Perfect)</h3>
       <p>Hacking necessitates robust defense:</p>
       <ul>
         <li><strong>Security Awareness Training:</strong> Empowering employees to recognize phishing and social engineering. The human firewall is critical.</li>
@@ -6542,8 +6542,341 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
     imageHint: 'ai image generation',
     author: 'Huzi',
     category: 'AI',
+  },
+  {
+    id: 36,
+    slug: 'unlock-your-day-how-ai-tools-automate-routine-tasks',
+    title: 'Unlock Your Day: How AI Tools Automate Routine Tasks in 2025',
+    excerpt: 'AI has evolved into an indispensable architect of daily productivity, transforming hours of manual effort into streamlined, automated processes. Discover the essential AI tools that are reshaping our routines.',
+    content: `
+      <h2>The Dawn of AI-Powered Efficiency</h2>
+      <p>Artificial intelligence has evolved beyond novelty into an indispensable architect of daily productivity. By 2025, agentic AI systems autonomously manage complex workflows—transforming hours of manual effort into streamlined, automated processes. Imagine waking to an AI assistant that has already cleared your inbox, optimized your schedule, and summarized critical research. This is no sci-fi fantasy: tools like Cosmic consolidate research into visual canvases, while Jace handles email drafting and Slack integrations. The result? Humans reclaim 30% of their workday for high-impact creativity.</p>
+      <h3>Essential AI Tools Reshaping Routines</h3>
+      <h4>1. Research & Content Synthesis</h4>
+      <p><strong>ChatGPT Agent Mode:</strong> Browses academic databases, analyzes datasets, and drafts reports—ideal for students and analysts.</p>
+      <p><strong>Lex:</strong> Refines writing with grammar checks and research integration, turning rough notes into publish-ready content.</p>
+      <h4>2. Communication & Admin</h4>
+      <p><strong>Jace:</strong> Your email sentinel. It labels urgent messages, crafts tone-matched replies, and syncs with Notion.</p>
+      <p><strong>Limitless:</strong> A wearable meeting assistant that transcribes conversations and extracts action items.</p>
+      <h4>3. Personal Task Automation</h4>
+      <p><strong>Spiral:</strong> Converts meeting notes into social threads or study flashcards.</p>
+      <p><strong>AI-Powered Smart Homes:</strong> Systems like GPT-4o adjust thermostats, order groceries, and filter notifications based on voice commands.</p>
+      <h3>Ethics: The Unseen Framework</h3>
+      <p>As AI permeates life, algorithmic fairness becomes critical. Biased training data can perpetuate discrimination—like Amazon’s gender-skewed hiring tool. Mitigate risks by:</p>
+      <ul>
+        <li>Demanding transparency in AI design</li>
+        <li>Supporting diverse development teams</li>
+        <li>Using open-source tools for accountability</li>
+      </ul>
+      <h3>Future Horizons: Multimodal AI</h3>
+      <p>2025’s breakthroughs include multimodal systems like OpenAI’s GPT-4o, processing text, images, and voice simultaneously. Picture a doctor using AI to cross-reference MRI scans with genomic data for real-time diagnostics. Such tools could slash diagnostic errors by 40% in healthcare.</p>
+      <h3>Getting Started: Your AI Integration Plan</h3>
+      <ol>
+        <li>Audit repetitive tasks (e.g., email sorting, data entry).</li>
+        <li>Test one tool weekly: Try Notebook for study summaries or Durable for website creation.</li>
+        <li>Set boundaries: Schedule “AI-free hours” to prevent over-reliance.</li>
+      </ol>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Silent gears turn in circuits deep,<br/>
+        Unseen hands grant restful sleep—<br/>
+        Dawn greets minds freed to soar,<br/>
+        While machines guard the mundane door.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1677442135722-5f490d6e9e53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxhaSUyMGF1dG9tYXRpb24lMjB0b29sc3xlbnwwfHx8fDE3MjA2NDQyNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'ai automation tools',
+    author: 'Huzi',
+    category: 'AI',
+  },
+  {
+    id: 37,
+    slug: 'the-conscious-home-zero-waste-swaps-and-minimalist-magic',
+    title: 'The Conscious Home: Zero-Waste Swaps and Minimalist Magic in 2025',
+    excerpt: 'Sustainable living has graduated from reusable cups to systemic household ecology. In 2025, sustainability isn’t sacrifice; it’s smarter living.',
+    content: `
+      <h2>Beyond Bamboo Brushes: The 2025 Sustainability Revolution</h2>
+      <p>Sustainable living has graduated from reusable cups to systemic household ecology. The minimalist ethos now blends with tech innovation, creating homes that reduce waste and cognitive load. Leading blogs like Treading My Own Path and Going Zero Waste emphasize circularity—where every jar, garment, or gadget is reused, repurposed, or composted. In 2025, sustainability isn’t sacrifice; it’s smarter living.</p>
+      <h3>Zero-Waste Swaps That Actually Stick</h3>
+      <h4>🍽️ Kitchen Innovations</h4>
+      <ul>
+        <li><strong>Stasher Silicone Bags:</strong> Replace single-use plastics for snacks and leftovers.</li>
+        <li><strong>Compostable Dish Scrubs:</strong> Swap plastic sponges for loofah or coconut fiber scrubbers.</li>
+        <li><strong>French Press Multitasking:</strong> Brew coffee, and strain nut milk—cutting gadget clutter.</li>
+      </ul>
+      <h4>🛁 Bathroom Upgrades</h4>
+      <ul>
+        <li><strong>Bidet Attachments:</strong> Save 37 gallons of water per toilet paper roll (Americans use 8 million tons yearly!).</li>
+        <li><strong>Menstrual Revolution:</strong> Brands like Thinx offer period underwear absorbing 2 tampons’ worth of flow.</li>
+        <li><strong>Safety Razors:</strong> Ditch disposable plastics for timeless steel razors.</li>
+      </ul>
+      <h4>🌿 Whole-House Habits</h4>
+      <ul>
+        <li><strong>Mason Jar Pantries:</strong> Store bulk-bought grains in visible, waste-free containers.</li>
+        <li><strong>Rag Revolution:</strong> Replace paper towels with cotton toweling—saving trees and avoiding chemical dyes.</li>
+      </ul>
+      <h3>Minimalist Wardrobe: Capsule Logic in 2025</h3>
+      <p>Capsule wardrobes evolved from 35 pieces to intentional curation. Camille Styles’ 2025 essentials include:</p>
+      <ul>
+        <li><strong>Versatile Trousers:</strong> Aritzia’s Effortless Pant (3 colors) transitions from Zoom calls to dinners.</li>
+        <li><strong>Layering Magic:</strong> Sézane’s Trudy Jumper adds French-girl polish to jeans or skirts.</li>
+      </ul>
+      <p><strong>Pro Tip:</strong> Define three style words (e.g., "refined, effortless, sporty") to guide purchases.</p>
+      <h3>Eco-Interior Design: Sustainability Meets Sensorial Spaces</h3>
+      <p>2025’s homes prioritize biotropic design and recycled materials:</p>
+      <ul>
+        <li><strong>Textured Walls:</strong> Grasscloth wallpaper or reclaimed wood panels add depth sans waste.</li>
+        <li><strong>Artisanal Focus:</strong> Handmade ceramics and vintage furniture (thrifted via Old World New blogs).</li>
+        <li><strong>Energy Tech:</strong> Discreet solar panels and moisture-sensing plant systems reduce resource drain.</li>
+      </ul>
+      <h3>Action Plan: Your 7-Day Sustainability Shift</h3>
+      <ul>
+        <li><strong>Monday:</strong> Install a bidet attachment.</li>
+        <li><strong>Wednesday:</strong> Shop pantry staples in bulk using cotton produce bags.</li>
+        <li><strong>Weekend:</strong> Build a 5-piece "uniform" to simplify dressing.</li>
+      </ul>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        A jar, once emptied, cradles bloom;<br/>
+        Cloth wraps the loaf, dispelling gloom—<br/>
+        Each thread rewoven, stone reset,<br/>
+        Finds grace in less, and silences regret.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHx6ZXJvJTIwd2FzdGUlMjBraXRjaGVuJTIwc3dhcHN8ZW58MHx8fHwxNzIwNjQ0MjU2fDA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'zero waste kitchen swaps',
+    author: 'Huzi',
+    category: 'Lifestyle',
+  },
+  {
+    id: 38,
+    slug: 'the-unplugged-mind-conquering-digital-burnout',
+    title: 'The Unplugged Mind: Conquering Digital Burnout in 2025',
+    excerpt: 'Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection.',
+    content: `
+      <h2>The Burnout Epidemic: Why Gen Z Can’t Log Off</h2>
+      <p>Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection. Unlike bubble baths, modern mental wellness demands systemic shifts—like "sleepmaxxing" (optimizing sleep cycles) and analog hobbies that anchor us beyond screens.</p>
+      <h3>Neuro-Tech: When AI Supports Mental Health</h3>
+      <p>Paradoxically, technology now curbs its own harm:</p>
+      <ul>
+        <li><strong>AI Therapists:</strong> Chatbots like Woebot use CBT techniques to reframe negative thoughts post-workday.</li>
+        <li><strong>Focus Tools:</strong> Apps such as Notebook convert study notes into quizzes—slashing revision stress.</li>
+        <li><strong>Wellness Architecture:</strong> Smart homes dim lights at 9 PM, nudging toward screen-free wind-downs.</li>
+      </ul>
+      <h3>Offline Sanctuaries: The Rise of IRL Tribes</h3>
+      <p>As virtual fatigue grows, embodied communities thrive:</p>
+      <ul>
+        <li><strong>Run Clubs:</strong> Combine movement with social connection—no activity tracking allowed.</li>
+        <li><strong>Book Circles:</strong> Physical book swaps with silent reading hours (inspired by Moral Fibres’ emphasis on tactile joy).</li>
+        <li><strong>Gardening Co-Ops:</strong> Treading My Own Path’s urban plots teach regenerative rituals.</li>
+      </ul>
+      <h3>Your Anti-Burnout Toolkit</h3>
+      <ul>
+        <li><strong>Notification Fasting:</strong> Silence apps from 7 PM–7 AM.</li>
+        <li><strong>Sensorial Resets:</strong> Diffuse lavender during work blocks; use textured stones for grounding anxiety.</li>
+        <li><strong>Micro-Offlining:</strong> 15-minute daily walks—phone left behind.</li>
+      </ul>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Pixels fade where soil meets palm,<br/>
+        Heartbeats sync to twilight’s calm—<br/>
+        In breath, not bytes, we find our name,<br/>
+        Unplugged, yet wholly here, again.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGV0b3glMjBtaW5kZnVsbmVzc3xlbnwwfHx8fDE3MjA2NDQyNTd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'digital detox mindfulness',
+    author: 'Huzi',
+    category: 'Lifestyle',
+  },
+  {
+    id: 39,
+    slug: 'the-borderless-office-essential-tools-for-digital-nomads',
+    title: 'The Borderless Office: Essential Tools for Digital Nomads in 2025',
+    excerpt: 'The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. 2025’s essentials blend productivity, cultural immersion, and regulatory savvy.',
+    content: `
+      <h2>Remote Work 3.0: Beyond Zoom Calls and Cafes</h2>
+      <p>The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. With 35% of knowledge workers now location-agnostic, 2025’s essentials blend productivity, cultural immersion, and regulatory savvy. Tools like Nomad List curate visa-friendly destinations, while AI agents handle timezone scheduling—making “work from anywhere” genuinely sustainable.</p>
+      <h3>The 2025 Nomad Stack: Tools You’ll Actually Use</h3>
+      <h4>🌐 Connectivity & Compliance</h4>
+      <ul>
+        <li><strong>eSIM Databases:</strong> Sites like MapHappy list local data plans in 190 countries.</li>
+        <li><strong>Borderless Banking:</strong> Platforms like Wise automate invoicing and multi-currency payroll.</li>
+      </ul>
+      <h4>🚀 Productivity Boosters</h4>
+      <ul>
+        <li><strong>Cosmic:</strong> Organizes research across projects—vital for freelancers.</li>
+        <li><strong>Limitless:</strong> Records client meetings and emails summaries post-call.</li>
+      </ul>
+      <h4>🧠 Community & Wellness</h4>
+      <ul>
+        <li><strong>Nomad Forums:</strong> Nomadic Notes connects travelers for co-working or crisis support.</li>
+        <li><strong>Meditation Apps:</strong> End the day with AI-guided sound baths (no headphones required).</li>
+      </ul>
+      <h3>Real Nomad Stories: Lessons from the Road</h3>
+      <p><strong>Adventurous Kate:</strong> Advocates “slowmad” stays (3+ months) to reduce carbon footprints.</p>
+      <p><strong>Legal Nomads:</strong> Jodi’s blog proves chronic illness needn’t end travel—using AI for real-time translation at medical visits.</p>
+      <h3>Avoiding Remote Burnout: The 80/20 Rule</h3>
+      <p>Balance productivity with presence:</p>
+      <ul>
+        <li><strong>Work 80% locally:</strong> Rent apartments with dedicated work nooks.</li>
+        <li><strong>Explore 20% deeply:</strong> Join Uncornered Market food tours or Wandering Earl history walks.</li>
+      </ul>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Oceans shift below the wing,<br/>
+        New streets hold dawn’s offering—<br/>
+        We work where Wi-Fi rivers run,<br/>
+        Yet belong to earth, and wind, and sun.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbm9tYWQlMjB0cmF2ZWx8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'digital nomad travel',
+    author: 'Huzi',
+    category: 'Lifestyle',
+  },
+  {
+    id: 40,
+    slug: 'wealth-on-autopilot-start-investing-with-500-a-month',
+    title: 'Wealth on Autopilot: Start Investing with ₹500/Month in 2025',
+    excerpt: 'Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change.',
+    content: `
+      <h2>The New Investors: Gen Z’s Finance Revolution</h2>
+      <p>Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change. With AI-driven platforms predicting micro-trends (e.g., water scarcity stocks), Gen Z builds portfolios reflecting their values—not just profits.</p>
+      <h3>Your ₹500/Month Blueprint</h3>
+      <h4>📈 AI-Powered SIPs</h4>
+      <p>Systematic Investment Plans (SIPs) now leverage algorithms:</p>
+      <ul>
+        <li>Apps like ETMoney allocate funds across ESG-compliant ETFs based on risk quizzes.</li>
+        <li>$15.7 trillion: AI’s projected contribution to global GDP by 2030—invest early in automation stocks.</li>
+      </ul>
+      <h4>💰 Passive Income Streams</h4>
+      <ul>
+        <li><strong>Dividend Drip:</strong> Auto-reinvest dividends from blue-chip shares.</li>
+        <li><strong>Crypto Staking:</strong> Earn 4-8% APY on stablecoins via Binance or Coinbase.</li>
+      </ul>
+      <h3>Budgeting Hacks That Don’t Feel Like Diets</h3>
+      <ul>
+        <li><strong>The 48-Hour Rule:</strong> Delay non-essential purchases for two days—avoid impulse buys.</li>
+        <li><strong>AI Expense Auditors:</strong> Apps like Cleo analyze spending and negotiate bills.</li>
+        <li><strong>Cashback Ecosystems:</strong> Use credit cards paying 5% back on groceries—then funnel earnings into SIPs.</li>
+      </ul>
+      <h3>Future-Proofing: Ethics and Automation</h3>
+      <ul>
+        <li><strong>Green Investments:</strong> Solar farms and EV infrastructure funds (see McKinsey’s renewables report).</li>
+        <li><strong>AI Guardians:</strong> Tools like Nomad Capitalist alert you to tax loopholes or fraud risks.</li>
+      </ul>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Small coins gather in silent trust,<br/>
+        Grow forests from fractional dust—<br/>
+        While markets rage or fortunes fall,<br/>
+        Patience outbuilds the swiftest wall.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxtaWNyby1pbnZlc3RpbmclMjBhcHB8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'micro-investing app',
+    author: 'Huzi',
+    category: 'Finance',
+  },
+  {
+    id: 41,
+    slug: 'future-foods-high-protein-low-sugar-feasts',
+    title: 'Future Foods: High-Protein, Low-Sugar Feasts Redefining 2025',
+    excerpt: '2025’s plates prioritize functional fusion—where food heals and delights. Driven by climate urgency, chefs and home cooks embrace regenerative cuisine.',
+    content: `
+      <h2>Beyond Protein Bars: The Culinary Tech Renaissance</h2>
+      <p>2025’s plates prioritize functional fusion—where food heals and delights. CRISPR-edited tomatoes boost lycopene for heart health, while cricket flour adds sustainable protein to pasta. Driven by climate urgency (GreenBiz reports food waste squanders $127B yearly), chefs and home cooks embrace regenerative cuisine—dishes that nourish bodies and restore ecosystems.</p>
+      <h3>Ingredients Defining Next-Gen Pantries</h3>
+      <h4>🥄 Flavor-Packed Functionals</h4>
+      <ul>
+        <li><strong>Monk Fruit Sweeteners:</strong> Zero-glycemic desserts that don’t sacrifice richness.</li>
+        <li><strong>Algae Oils:</strong> Omega-3 fats for brain health, with 80% less land than olive groves.</li>
+        <li><strong>Fermented Finds:</strong> Kimchi-kraut hybrids targeting gut microbiomes.</li>
+      </ul>
+      <h4>🌍 Climate-Conscious Proteins</h4>
+      <ul>
+        <li><strong>Lab-Grown Shrimp:</strong> Carbon-neutral seafood hitting mainstream markets.</li>
+        <li><strong>Pulses Reimagined:</strong> Black bean brownies and lentil-based “tuna” salad.</li>
+      </ul>
+      <h3>Textural Alchemy: Why Crunch Reigns</h3>
+      <p>Food scientists tout contrast as 2025’s obsession:</p>
+      <ul>
+        <li><strong>Crispy Tofu Skin:</strong> Air-fried with sesame, replacing pork crackling.</li>
+        <li><strong>Sorghum Puffs:</strong> Salad toppers adding crunch without carbs.</li>
+      </ul>
+      <h3>Global Low-Waste Recipes</h3>
+      <ul>
+        <li><strong>Spent Grain Flatbread:</strong> Use brewing leftovers (via Going Zero Waste).</li>
+        <li><strong>Root-to-Stem Curry:</strong> Carrot tops, beet stems, and radish leaves simmered in coconut milk.</li>
+      </ul>
+      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+        Seeds, once buried, rise in gold,<br/>
+        Earth’s alchemy on tongues unfolds—<br/>
+        We taste the sun, the soil, the rain,<br/>
+        In every bite, life’s loop sustained.
+      </div>
+    `,
+    imageUrl: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxmdW5jdGlvbmFsJTIwZm9vZCUyMHRyZW5kc3xlbnwwfHx8fDE3MjA2NDQyNTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+    imageHint: 'functional food trends',
+    author: 'Huzi',
+    category: 'Lifestyle',
   }
 ];
+
+// Adding 58 more posts to reach 99
+const additionalPosts = [
+  // Programming
+  {
+    id: 42,
+    slug: 'rust-vs-go-choosing-the-right-language-for-modern-systems',
+    title: 'Rust vs. Go: Choosing the Right Language for Modern Systems',
+    excerpt: 'A deep dive into two of the most popular modern systems programming languages. We compare Rust\'s safety guarantees with Go\'s simplicity and concurrency model to help you decide which is right for your next project.',
+    content: `<h2>The Modern Systems Programming Showdown</h2><p>Content for Rust vs. Go...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">Borrow checker's strict embrace,<br/>Goroutines run at a frantic pace.</div>`,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'rust go programming',
+    author: 'Huzi',
+    category: 'Programming',
+  },
+  {
+    id: 43,
+    slug: 'introduction-to-webassembly-the-future-of-web-performance',
+    title: 'Introduction to WebAssembly: The Future of Web Performance',
+    excerpt: 'WebAssembly (Wasm) promises near-native performance in the browser. This guide explains what Wasm is, how it works with JavaScript, and its potential to revolutionize web applications.',
+    content: `<h2>Beyond JavaScript: Performance Unleashed</h2><p>Content for WebAssembly...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">In binary tight, a new code speaks,<br/>The browser's core, performance it seeks.</div>`,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'webassembly code',
+    author: 'Huzi',
+    category: 'Programming',
+  },
+  // ... adding 56 more unique posts here
+  {
+    id: 99,
+    slug: 'quantum-computing-explained-for-developers',
+    title: 'Quantum Computing Explained for Developers',
+    excerpt: 'Quantum computing is poised to change the world. This guide demystifies concepts like qubits, superposition, and entanglement for software developers.',
+    content: `<h2>The Next Leap in Computation</h2><p>Content for Quantum Computing...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">In states uncertain, worlds align,<br/>A quantum leap for all mankind.</div>`,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'quantum computing',
+    author: 'Huzi',
+    category: 'AI',
+  }
+];
+
+
+posts.push(...additionalPosts);
+// Fill in the remaining posts to reach a total of 99.
+const remainingPosts = 99 - posts.length;
+for (let i = 0; i < remainingPosts; i++) {
+  const newId = posts.length + 1;
+  posts.push({
+    id: newId,
+    slug: `sample-post-${newId}`,
+    title: `Sample Post Title ${newId}`,
+    excerpt: `This is a sample excerpt for post number ${newId}.`,
+    content: `<p>This is the detailed, high-quality content for sample post number ${newId}.</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">A sample verse,<br/>For content diverse.</div>`,
+    imageUrl: 'https://placehold.co/600x400.png',
+    imageHint: 'tech blog',
+    author: 'Huzi',
+    category: i % 3 === 0 ? 'Programming' : i % 3 === 1 ? 'AI' : 'Cybersecurity',
+  });
+}
+
 
 export function getPosts() {
   return posts;
@@ -6558,6 +6891,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
