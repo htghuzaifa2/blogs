@@ -171,7 +171,7 @@ const posts: Post[] = [
         A developer's craft, forevermore.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/WbW2phyz/Web-Development-Essential-Strategies-for-Modern-Websites.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'web development',
     author: 'Huzi',
     category: 'Programming',
@@ -358,7 +358,7 @@ finally
         From games to cloud, it holds no fear.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/VLb7vhGt/c-guide-and-modren-programi-tecniques.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'c sharp programming',
     author: 'Huzi',
     category: 'Programming',
@@ -705,7 +705,7 @@ while (getline(file, line)) cout << line;</code></pre>
         Close to the metal, a system styled.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/vTPcdX9H/C-modrn-guide-and-techniques.jpg',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'c plus plus programming',
     author: 'Huzi',
     category: 'Programming',
@@ -925,7 +925,7 @@ print(arr.mean())</code></pre>
         From data's depth to web's wide space.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/D0YLc7xg/The-Ultimate-Python-programing-guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'python programming',
     author: 'Huzi',
     category: 'Programming',
@@ -1119,7 +1119,7 @@ nethunter kex &</code></pre>
         From Android shell to hacking's light.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/pTSLGytp/How-to-run-kali-linux-on-mobile.jpg',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'kali linux mobile',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -1475,7 +1475,7 @@ ufw enable</code></pre>
         An Arch machine, a power dream.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/6pHq2M1r/he-Most-detailed-Arch-Linux-hyprland-guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'arch linux',
     author: 'Huzi',
     category: 'Linux',
@@ -1585,7 +1585,7 @@ bindsym SUPER+D exec wofi</code></pre>
         Arch's spirit put to the test.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/J07Sk5FX/Installing-Arch-Linux-with-hyprland-on-Mobile-Full-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'arch linux mobile',
     author: 'Huzi',
     category: 'Linux',
@@ -1855,7 +1855,7 @@ boot</code></pre>
         The silent hunter, on the digital scene.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/j2QNGzqM/The-Ulitmate-Kali-Linux-Installation-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'kali linux',
     author: 'Huzi',
     category: 'Linux',
@@ -2058,7 +2058,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         A silent power, the knowledge you seek.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/KYpyDVnN/The-True-Power-of-Deepseek-Ai.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'deepseek ai',
     author: 'Huzi',
     category: 'AI',
@@ -2215,7 +2215,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         The hacker's mind, forevermore.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/htBr21gQ/Beyond-the-Hoodies-The-Deep-Dive-Truth-About-Hacking.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'hacking cybersecurity',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -2514,7 +2514,7 @@ print(calculate_factorial(5))  # Now outputs 120</code></pre>
         The silent skeleton, since the dawn.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/Y97PcB1k/The-Architects-Blueprint-A-Deep-Dive-into-the-Foundation-of-the-Web-HTML.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'html css',
     author: 'Huzi',
     category: 'Programming',
@@ -2940,7 +2940,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         On the DOM's tree, where structure's at.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/J7vbtc2H/The-Ulimate-HTML-Refrence-Guide-Every-Tag-Attributte-and-Technique.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'html css',
     author: 'Huzi',
     category: 'Programming',
@@ -2991,7 +2991,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         For code that's yet to come.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/cJF3WQ3H/The-Future-of-Web-Development-10-key-Trends-to-Wach-in-2025.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'web development future',
     author: 'Huzi',
     category: 'Programming',
@@ -3082,7 +3082,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         With AI's help, ideas now flow.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/mg8NwcwQ/AI-Tools-Every-Developer-should-Know-Supercharge-Your-Workflow-with-Smart-Solutions.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'ai developer tools',
     author: 'Huzi',
     category: 'AI',
@@ -3256,7 +3256,7 @@ This guide covers 100% of HTML5 tags with practical implementation details. Book
         For every workflow, for goodness sake.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/fyDJpCWk/Master-Your-Workflow-The-Ulimate-Guide-to-tools-huzi-pk-50-Free-Utilities.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'developer workflow tools',
     author: 'Huzi',
     category: 'AI',
@@ -3621,7 +3621,7 @@ DLROW</code></pre>
         To build your best, and ace the test.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/k4jWfV7d/The-Complete-Encyclopedia-of-Tools-huzi-pk-50-Tools-Demystified.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'developer tools encyclopedia',
     author: 'Huzi',
     category: 'AI',
@@ -3917,7 +3917,7 @@ export async function onRequest({ request, next }) {
         A simple build, a modern pledge.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/NjcB4FMf/The-Ultimate-Beginniers-Guide-to-Building-a-Website-with-Cloudflare-page.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'cloudflare deployment',
     author: 'Huzi',
     category: 'Programming',
@@ -4098,7 +4098,7 @@ function ErrorBoundary({ children }) {
         Turn hours of code to moments bright.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/L5G6RV2z/10-Javascript-Tricks-That-Will-save-You-Hours-of-Codingv-Headaches.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'javascript code',
     author: 'Huzi',
     category: 'Programming',
@@ -4290,7 +4290,7 @@ rclone sync /mnt/backup b2:wp-backups</code></pre>
         A hardened core is out of reach.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/HxGqpPyW/The-Ultimate-Wordpress-Security-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'wordpress security',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -4438,13 +4438,13 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \'tools.huzi.pk\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like \'tools.huzi.pk\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it\'s built on a foundation of pre-rendered perfection.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         The server sleeps, the files reside,<br/>
         On edges fast, where worlds collide.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/QCbTSw3f/tools-website.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'static web renaissance',
     author: 'Huzi',
     category: 'Programming',
@@ -4653,7 +4653,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         With flex and grid, on solid ground.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/C1xS1z7q/CSS-Deep-Dive-Flexbox-Grid-and-Modern-Layouts.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'css code',
     author: 'Huzi',
     category: 'Programming',
@@ -4801,7 +4801,7 @@ Promise.race([promise1, promise2]).then(value => {
         A promise made, a story told.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/qR0B9BJW/Demystifying-Async-Await-in-Java-Script-A-Practical-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'javascript async',
     author: 'Huzi',
     category: 'Programming',
@@ -5036,7 +5036,7 @@ exports.createItem = async (req, res) => {
         In Node's domain, all logic's right.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/tTW2LtfF/Building-a-REST-API-with-Node-js-and-Express-The-Definitive-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'nodejs express api',
     author: 'Huzi',
     category: 'Programming',
@@ -5148,7 +5148,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         With parameters, peace of mind.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/k588nS6F/SQL-Injection-Explained-How-to-Prevent-the-Webs-Most-Devastating-Cyber-Attack.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'sql injection prevention',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5238,7 +5238,7 @@ const user = await User.findOne({ where: { username: userInput } });</code></pre
         Can breach the walls of any place.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/PqYyHwgm/Social-Engineering-The-Art-of-Human-Hacking.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'social engineering hacking',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5355,7 +5355,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
         In digital vaults, where data's slept.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/JzfW30pL/Cryptography-101-A-Beginners-Guide-to-Digital-Security.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'cryptography security padlock',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -5432,7 +5432,7 @@ Ciphertext + Key -> [Decryption Algorithm] -> Plaintext</pre>
         A thinking echo from the machine.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/HkvwBf4B/How-Large-Language-Models-Work-A-Deep-Dive-for-Beginners.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'large language model AI',
     author: 'Huzi',
     category: 'AI',
@@ -5542,7 +5542,7 @@ npm start</code></pre>
         The other a penguin, with nothing to hide.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/44rGJJd5/Linux-vs-Windows-A-Developers-Perspective-on-Which-OS-is-Right-for-You.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'linux windows',
     author: 'Huzi',
     category: 'Linux',
@@ -5696,7 +5696,7 @@ volumes:
         The code runs true, both day and night.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/mkj4s2M9/Getting-Started-with-Docker-A-Beginners-Guide-to-Containers.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'docker container',
     author: 'Huzi',
     category: 'Linux',
@@ -5884,7 +5884,7 @@ Cache-Control: public, max-age=3600</code></pre>
         In RESTful style, a lesson taught.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/Kz1st31V/The-Developers-Guide-to-HTTP-and-RESTful-APIs.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'http rest api',
     author: 'Huzi',
     category: 'Programming',
@@ -6038,7 +6038,7 @@ h1 {
         With var(), a theme begins to grow.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/W1YWHvM0/CSS-Custom-Properties-Variables-A-Revolution-in-Styling.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'css variables',
     author: 'Huzi',
     category: 'Programming',
@@ -6147,7 +6147,7 @@ console.log('4: End');</code></pre>
         A non-blocking future, built to last.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/prT5GgV0/Understanding-the-Java-Script-Event-Loop-A-Visual-Guide.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'javascript event loop',
     author: 'Huzi',
     category: 'Programming',
@@ -6247,7 +6247,7 @@ document.getElementById('welcome-message').innerHTML = 'Welcome, ' + username;</
         Encode the output, keep your users calm.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/2SC1yC0B/Cross-Site-Scripting-XSS-A-Developers-Guide-to-Prevention.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'xss cybersecurity',
     author: 'Huzi',
     category: 'Cybersecurity',
@@ -6396,7 +6396,7 @@ jobs:
         A seamless flow, for goodness sake.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/q7SMN5w2/CI-CD-with-Git-Hub-Actions-A-Beginners-Guide-to-Automation.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'github actions ci/cd',
     author: 'Huzi',
     category: 'Linux',
@@ -6538,7 +6538,7 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
         In latent space, a creative storm.
       </div>
     `,
-    imageUrl: 'https://i.postimg.cc/Qx3gQqYj/AI-Image-Generation-A-Developers-Guide-to-Creating-Images-with-Code.webp',
+    imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'ai image generation',
     author: 'Huzi',
     category: 'AI',
@@ -6558,6 +6558,7 @@ export function getPostBySlug(slug: string) {
     
 
     
+
 
 
 
