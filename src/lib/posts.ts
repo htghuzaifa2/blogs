@@ -3862,7 +3862,7 @@ export async function onRequest({ next }) {
       <h4>6.1 Analytics Setup</h4>
       <p><strong>Cloudflare Web Analytics:</strong> Add this script to your <code>&lt;head&gt;</code>:</p>
       <pre><code class="language-html">&lt;script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
-        data-cf-beacon='{"token": "YOUR_TOKEN"}'&gt;&lt;/script&gt;</code></pre>
+        data-cf-beacon='{\"token\": "YOUR_TOKEN"}'&gt;&lt;/script&gt;</code></pre>
       
       <h4>6.2 Scheduled Builds</h4>
       <p>Trigger daily rebuilds for dynamic content using a cron job or GitHub Action:</p>
@@ -4438,7 +4438,7 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
         <li><strong>Immense Security:</strong> A 99% reduction in common attack vectors.</li>
         <li><strong>Superior Performance:</strong> Near-perfect Core Web Vitals scores.</li>
       </ul>
-      <p>Sites like \'tools.huzi.pk\' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it\'s built on a foundation of pre-rendered perfection.</p>
+      <p>Sites like 'tools.huzi.pk' prove that "static" no longer means simplistic. By leveraging the modern JAMstack, developers can build applications that are secure without being rigid, fast without being fragile, and scalable without being complex. The renaissance is here, and it's built on a foundation of pre-rendered perfection.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
         The server sleeps, the files reside,<br/>
         On edges fast, where worlds collide.
@@ -4664,145 +4664,106 @@ npx wrangler pages publish ./dist --project-name my-static-site</code></pre>
     title: 'Demystifying Async/Await in JavaScript: A Practical Guide',
     excerpt: 'Asynchronous JavaScript can be one of the most confusing topics for developers. This guide breaks down Promises and the modern async/await syntax with practical, real-world examples to help you write cleaner, more readable, and error-free async code.',
     content: `
-      <h2>Introduction: The Problem of Asynchronous Code</h2>
-      <p>JavaScript is single-threaded, meaning it can only do one thing at a time. This is a problem when we need to perform long-running tasks like fetching data from an API, reading a file, or waiting for a timer. If JavaScript waited for these tasks to complete, the entire browser would freeze.</p>
-      <p>This is where asynchronous programming comes in. This guide will walk you through the evolution of async JS, from confusing callbacks to clean, modern <strong>async/await</strong>.</p>
+      <h2>Introduction: The Concurrency Puzzle</h2>
+      <p>How can JavaScript, a language with only one thread (meaning it can only do one thing at a time), handle thousands of operations concurrently without blocking? It can handle user input, fetch API data, and run timers all at once. The answer is the <strong>Event Loop</strong> and a few other pieces working together behind the scenes.</p>
+      <p>Understanding the Event Loop is the key to understanding how asynchronous JavaScript really works.</p>
 
-      <h3>Chapter 1: The Old Way - Callback Hell</h3>
-      <p>Before Promises, the only way to handle async operations was with callback functions. A callback is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.</p>
-      <p>This led to a pattern known as "Callback Hell" or the "Pyramid of Doom":</p>
-      <pre><code class="language-javascript">getData(function(a) {
-  getMoreData(a, function(b) {
-    getEvenMoreData(b, function(c) {
-      // And so on...
-    });
-  });
-});</code></pre>
-      <p>This code is hard to read, difficult to debug, and prone to errors. It was a necessary evil, but thankfully, we now have a much better way.</p>
-      
-      <h3>Chapter 2: A New Hope - The Promise</h3>
-      <p>A <code>Promise</code> is an object representing the eventual completion (or failure) of an asynchronous operation. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.</p>
-      <p>A Promise is in one of three states:</p>
+      <h3>Chapter 1: The Core Components</h3>
+      <p>The JavaScript runtime environment (like a browser or Node.js) is more than just the JS engine. It also includes:</p>
       <ul>
-        <li><strong>Pending:</strong> The initial state; neither fulfilled nor rejected.</li>
-        <li><strong>Fulfilled:</strong> The operation completed successfully.</li>
-        <li><strong>Rejected:</strong> The operation failed.</li>
+        <li><strong>The Call Stack:</strong> This is where JavaScript keeps track of what function is currently running. When a function is called, it's pushed onto the stack. When it returns, it's popped off.</li>
+        <li><strong>Web APIs:</strong> These are provided by the browser (or C++ APIs in Node.js). They handle asynchronous operations like <code>setTimeout</code>, DOM events (e.g., clicks), and network requests (<code>fetch</code>). These are not part of the JavaScript engine itself.</li>
+        <li><strong>The Callback Queue (or Task Queue):</strong> This is a waiting area for functions that are ready to be executed. When a Web API finishes its task (e.g., a timer expires), it places the associated callback function in this queue.</li>
+        <li><strong>The Event Loop:</strong> This is the star of the show. The Event Loop has one simple job: to constantly monitor the Call Stack and the Callback Queue.</li>
       </ul>
 
-      <h4>Creating a Promise</h4>
-      <pre><code class="language-javascript">const myPromise = new Promise((resolve, reject) => {
-  const success = true; // Simulate an API call
-  
-  if (success) {
-    resolve("The data has been fetched!");
-  } else {
-    reject("Error: The fetch failed.");
-  }
-});</code></pre>
+      <h3>Chapter 2: The Process - A Step-by-Step Walkthrough</h3>
+      <p>Let\'s trace what happens with a simple piece of code:</p>
+      <pre><code class="language-javascript">console.log('Start');
 
-      <h4>Consuming a Promise with <code>.then()</code> and <code>.catch()</code></h4>
-      <p>This is how we handle the result of the promise:</p>
-      <pre><code class="language-javascript">myPromise
-  .then(result => {
-    console.log(result); // "The data has been fetched!"
-  })
-  .catch(error => {
-    console.error(error); // "Error: The fetch failed."
-  })
-  .finally(() => {
-    console.log("Operation finished."); // Runs regardless of success or failure
-  });</code></pre>
-      <p>This is a huge improvement over callbacks, allowing us to chain operations in a much cleaner, more linear fashion.</p>
+setTimeout(() => {
+  console.log('Timer finished');
+}, 1000);
 
-      <h3>Chapter 3: The Modern Way - Async/Await</h3>
-      <p><code>async/await</code> is syntactic sugar built on top of Promises. It allows you to write asynchronous code that looks and behaves like synchronous code, making it much easier to read and reason about.</p>
+console.log('End');</code></pre>
 
-      <h4>The <code>async</code> Keyword</h4>
-      <p>The <code>async</code> keyword is placed before a function declaration to turn it into an async function. An async function always returns a Promise. If the function returns a value, the Promise will be resolved with that value.</p>
-      <pre><code class="language-javascript">async function myAsyncFunction() {
-  return "hello";
-}
-
-myAsyncFunction().then(console.log); // logs "hello"</code></pre>
-
-      <h4>The <code>await</code> Keyword</h4>
-      <p>The <code>await</code> keyword can only be used inside an <code>async</code> function. It makes JavaScript wait until a Promise settles and returns its result. It "pauses" the function execution without blocking the main thread.</p>
-
-      <h4>Putting It All Together: A Real-World Example</h4>
-      <p>Let\'s refactor our Promise chain from before using async/await.</p>
-      
-      <p><strong>Before (with <code>.then()</code>):</strong></p>
-      <pre><code class="language-javascript">function fetchUserData() {
-  fetch('https://api.example.com/user/1')
-    .then(response => response.json())
-    .then(user => {
-      console.log(user.name);
-    })
-    .catch(error => {
-      console.error('Failed to fetch user:', error);
-    });
-}</code></pre>
-
-      <p><strong>After (with <code>async/await</code>):</strong></p>
-      <pre><code class="language-javascript">async function fetchUserData() {
-  try {
-    const response = await fetch('https://api.example.com/user/1');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const user = await response.json();
-    console.log(user.name);
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-  }
-}</code></pre>
-      <p>The async/await version is more readable. It looks like standard synchronous code, and error handling is done with a familiar <code>try...catch</code> block.</p>
-
-      <h3>Chapter 4: Advanced Async Patterns</h3>
-      <h4>Concurrent Operations with <code>Promise.all()</code></h4>
-      <p>What if you need to make multiple API calls at once and wait for all of them to complete? Doing them sequentially with <code>await</code> would be slow.</p>
-      <p><code>Promise.all()</code> takes an array of promises and returns a single Promise that resolves when all of the input promises have resolved. It rejects if any of the input promises reject.</p>
-      <pre><code class="language-javascript">async function fetchMultipleData() {
-  try {
-    const [users, posts, comments] = await Promise.all([
-      fetch('https://api.example.com/users').then(res => res.json()),
-      fetch('https://api.example.com/posts').then(res => res.json()),
-      fetch('https://api.example.com/comments').then(res => res.json())
-    ]);
-    console.log('Users:', users.length);
-    console.log('Posts:', posts.length);
-    console.log('Comments:', comments.length);
-  } catch (error) {
-    console.error('One of the fetches failed:', error);
-  }
-}</code></pre>
-
-      <h4>Handling the First Settled Promise with <code>Promise.race()</code></h4>
-      <p><code>Promise.race()</code> is useful when you want to get a result from the fastest of several async operations. It returns a promise that fulfills or rejects as soon as one of the promises in the iterable fulfills or rejects.</p>
-      <pre><code class="language-javascript">const promise1 = new Promise(resolve => setTimeout(resolve, 500, 'one'));
-const promise2 = new Promise(resolve => setTimeout(resolve, 100, 'two'));
-
-Promise.race([promise1, promise2]).then(value => {
-  console.log(value); // "two"
-});</code></pre>
-      <p>This is great for implementing timeouts or racing against multiple API endpoints.</p>
-
-      <h3>Conclusion: Best Practices for Async/Await</h3>
       <ol>
-        <li><strong>Always use <code>try...catch</code></strong> for error handling in async functions. Don\'t let a rejected promise go unhandled.</li>
-        <li><strong>Don't mix styles.</strong> Avoid mixing <code>.then()</code> chains with async/await within the same logical block if it harms readability.</li>
-        <li><strong>Use <code>Promise.all()</code> for concurrency.</strong> Don\'t await multiple independent promises in sequence; run them in parallel.</li>
-        <li><strong>Remember <code>await</code> only works in <code>async</code> functions.</strong> This is a common beginner mistake.</li>
-        <li><strong>Favor async/await</strong> for cleaner, more maintainable code, but understand that under the hood, it\'s still just Promises.</li>
+        <li>
+          <strong>Step 1:</strong> <code>console.log('Start')</code> is pushed onto the Call Stack. It runs and prints "Start" to the console. Then it's popped off the stack.
+        </li>
+        <li>
+          <strong>Step 2:</strong> <code>setTimeout(...)</code> is pushed onto the Call Stack. <code>setTimeout</code> is a Web API, not a core JavaScript function. The browser kicks off a 1-second timer. The <code>setTimeout</code> function itself completes immediately and is popped off the Call Stack. The callback function <code>() => { console.log('Timer finished'); }</code> is now waiting in the Web API environment.
+        </li>
+        <li>
+          <strong>Step 3:</strong> <code>console.log('End')</code> is pushed onto the Call Stack. It runs and prints "End" to the console. Then it's popped off.
+        </li>
+        <li>
+          <strong>Step 4: The Event Loop's Moment.</strong> The Call Stack is now empty. The Event Loop checks the Callback Queue. It's still empty because the 1-second timer hasn't finished yet.
+        </li>
+        <li>
+          <strong>Step 5:</strong> After 1 second, the timer in the Web API environment completes. It moves our callback function <code>() => { console.log('Timer finished'); }</code> into the Callback Queue.
+        </li>
+        <li>
+          <strong>Step 6:</strong> The Event Loop sees that the Call Stack is empty and there\'s a task waiting in the Callback Queue. It takes the first task from the queue (our callback) and pushes it onto the Call Stack.
+        </li>
+        <li>
+          <strong>Step 7:</strong> The callback function executes. <code>console.log('Timer finished')</code> is called, prints "Timer finished" to the console, and is then popped off the stack.
+        </li>
       </ol>
-      <p>Mastering async/await is a critical skill for any modern JavaScript developer. It simplifies complex asynchronous logic, reduces bugs, and makes your code a joy to read and maintain.</p>
+      <p>The final output is:</p>
+      <pre><code class="language-text">Start
+End
+Timer finished</code></pre>
+      <p>This explains why <code>setTimeout(fn, 0)</code> doesn't run immediately. It still has to go through the whole loop, so it will always run *after* the current synchronous code has finished.</p>
+
+      <h3>Chapter 3: Microtasks and Macrotasks - The Priority Lane</h3>
+      <p>The Callback Queue we discussed is more accurately called the **Macrotask Queue**. There\'s another, higher-priority queue called the **Microtask Queue**.</p>
+      
+      <ul>
+        <li><strong>Macrotasks:</strong> <code>setTimeout</code>, <code>setInterval</code>, DOM events, I/O operations.</li>
+        <li><strong>Microtasks:</strong> <code>Promise.then()</code>, <code>.catch()</code>, <code>.finally()</code>, <code>async/await</code> code, <code>queueMicrotask()</code>.</li>
+      </ul>
+
+      <p>The Event Loop's rule is: <strong>after each macrotask, process the ENTIRE microtask queue before moving on to the next macrotask.</strong></p>
+      
+      <p>Let\'s see it in action:</p>
+      <pre><code class="language-javascript">console.log('1: Start');
+
+setTimeout(() => console.log('2: Timeout'), 0);
+
+Promise.resolve().then(() => console.log('3: Promise'));
+
+console.log('4: End');</code></pre>
+      
+      <p>What\'s the output?</p>
+      <ol>
+        <li>'1: Start' and '4: End' are logged synchronously.</li>
+        <li>The <code>setTimeout</code> callback is placed in the Macrotask Queue.</li>
+        <li>The <code>Promise.then()</code> callback is placed in the Microtask Queue.</li>
+        <li>The synchronous code finishes. The Event Loop checks the Microtask Queue first. It finds the promise callback and runs it, logging '3: Promise'.</li>
+        <li>The Microtask Queue is now empty. The Event Loop checks the Macrotask Queue. It finds the timeout callback and runs it, logging '2: Timeout'.</li>
+      </ol>
+      <p>The final output is:</p>
+      <pre><code class="language-text">1: Start
+4: End
+3: Promise
+2: Timeout</code></pre>
+      
+      <h3>Conclusion: Why It Matters</h3>
+      <p>Understanding the Event Loop is not just an academic exercise. It helps you:</p>
+      <ul>
+        <li><strong>Debug Asynchronous Code:</strong> Understand why certain callbacks fire in an unexpected order.</li>
+        <li><strong>Write Performant Code:</strong> Avoid blocking the main thread with long-running synchronous tasks, which leads to a frozen UI.</li>
+        <li><strong>Master Advanced JavaScript:</strong> Fully grasp how Promises and async/await work under the hood.</li>
+      </ul>
+      <p>The next time you write an async function or set a timer, visualize the journey of your code through the Call Stack, Web APIs, and the Queues. This mental model is one of the most powerful tools in a JavaScript developer\'s arsenal.</p>
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        The stack is cleared, the queue takes hold,<br/>
-        A promise made, a story told.
+        One single thread, a loop so fast,<br/>
+        A non-blocking future, built to last.
       </div>
     `,
     imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'javascript async',
+    imageHint: 'javascript event loop',
     author: 'Huzi',
     category: 'Programming',
   },
@@ -6542,329 +6503,290 @@ const output = await replicate.run("stability-ai/stable-diffusion-3-medium-img2i
     imageHint: 'ai image generation',
     author: 'Huzi',
     category: 'AI',
-  },
-  {
-    id: 36,
-    slug: 'unlock-your-day-how-ai-tools-automate-routine-tasks',
-    title: 'Unlock Your Day: How AI Tools Automate Routine Tasks in 2025',
-    excerpt: 'AI has evolved into an indispensable architect of daily productivity, transforming hours of manual effort into streamlined, automated processes. Discover the essential AI tools that are reshaping our routines.',
-    content: `
-      <h2>The Dawn of AI-Powered Efficiency</h2>
-      <p>Artificial intelligence has evolved beyond novelty into an indispensable architect of daily productivity. By 2025, agentic AI systems autonomously manage complex workflows—transforming hours of manual effort into streamlined, automated processes. Imagine waking to an AI assistant that has already cleared your inbox, optimized your schedule, and summarized critical research. This is no sci-fi fantasy: tools like Cosmic consolidate research into visual canvases, while Jace handles email drafting and Slack integrations. The result? Humans reclaim 30% of their workday for high-impact creativity.</p>
-      <h3>Essential AI Tools Reshaping Routines</h3>
-      <h4>1. Research & Content Synthesis</h4>
-      <p><strong>ChatGPT Agent Mode:</strong> Browses academic databases, analyzes datasets, and drafts reports—ideal for students and analysts.</p>
-      <p><strong>Lex:</strong> Refines writing with grammar checks and research integration, turning rough notes into publish-ready content.</p>
-      <h4>2. Communication & Admin</h4>
-      <p><strong>Jace:</strong> Your email sentinel. It labels urgent messages, crafts tone-matched replies, and syncs with Notion.</p>
-      <p><strong>Limitless:</strong> A wearable meeting assistant that transcribes conversations and extracts action items.</p>
-      <h4>3. Personal Task Automation</h4>
-      <p><strong>Spiral:</strong> Converts meeting notes into social threads or study flashcards.</p>
-      <p><strong>AI-Powered Smart Homes:</strong> Systems like GPT-4o adjust thermostats, order groceries, and filter notifications based on voice commands.</p>
-      <h3>Ethics: The Unseen Framework</h3>
-      <p>As AI permeates life, algorithmic fairness becomes critical. Biased training data can perpetuate discrimination—like Amazon’s gender-skewed hiring tool. Mitigate risks by:</p>
-      <ul>
-        <li>Demanding transparency in AI design</li>
-        <li>Supporting diverse development teams</li>
-        <li>Using open-source tools for accountability</li>
-      </ul>
-      <h3>Future Horizons: Multimodal AI</h3>
-      <p>2025’s breakthroughs include multimodal systems like OpenAI’s GPT-4o, processing text, images, and voice simultaneously. Picture a doctor using AI to cross-reference MRI scans with genomic data for real-time diagnostics. Such tools could slash diagnostic errors by 40% in healthcare.</p>
-      <h3>Getting Started: Your AI Integration Plan</h3>
-      <ol>
-        <li>Audit repetitive tasks (e.g., email sorting, data entry).</li>
-        <li>Test one tool weekly: Try Notebook for study summaries or Durable for website creation.</li>
-        <li>Set boundaries: Schedule “AI-free hours” to prevent over-reliance.</li>
-      </ol>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        Silent gears turn in circuits deep,<br/>
-        Unseen hands grant restful sleep—<br/>
-        Dawn greets minds freed to soar,<br/>
-        While machines guard the mundane door.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1677442135722-5f490d6e9e53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxhaSUyMGF1dG9tYXRpb24lMjB0b29sc3xlbnwwfHx8fDE3MjA2NDQyNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'ai automation tools',
-    author: 'Huzi',
-    category: 'AI',
-  },
-  {
-    id: 37,
-    slug: 'the-conscious-home-zero-waste-swaps-and-minimalist-magic',
-    title: 'The Conscious Home: Zero-Waste Swaps and Minimalist Magic in 2025',
-    excerpt: 'Sustainable living has graduated from reusable cups to systemic household ecology. In 2025, sustainability isn’t sacrifice; it’s smarter living.',
-    content: `
-      <h2>Beyond Bamboo Brushes: The 2025 Sustainability Revolution</h2>
-      <p>Sustainable living has graduated from reusable cups to systemic household ecology. The minimalist ethos now blends with tech innovation, creating homes that reduce waste and cognitive load. Leading blogs like Treading My Own Path and Going Zero Waste emphasize circularity—where every jar, garment, or gadget is reused, repurposed, or composted. In 2025, sustainability isn’t sacrifice; it’s smarter living.</p>
-      <h3>Zero-Waste Swaps That Actually Stick</h3>
-      <h4>🍽️ Kitchen Innovations</h4>
-      <ul>
-        <li><strong>Stasher Silicone Bags:</strong> Replace single-use plastics for snacks and leftovers.</li>
-        <li><strong>Compostable Dish Scrubs:</strong> Swap plastic sponges for loofah or coconut fiber scrubbers.</li>
-        <li><strong>French Press Multitasking:</strong> Brew coffee, and strain nut milk—cutting gadget clutter.</li>
-      </ul>
-      <h4>🛁 Bathroom Upgrades</h4>
-      <ul>
-        <li><strong>Bidet Attachments:</strong> Save 37 gallons of water per toilet paper roll (Americans use 8 million tons yearly!).</li>
-        <li><strong>Menstrual Revolution:</strong> Brands like Thinx offer period underwear absorbing 2 tampons’ worth of flow.</li>
-        <li><strong>Safety Razors:</strong> Ditch disposable plastics for timeless steel razors.</li>
-      </ul>
-      <h4>🌿 Whole-House Habits</h4>
-      <ul>
-        <li><strong>Mason Jar Pantries:</strong> Store bulk-bought grains in visible, waste-free containers.</li>
-        <li><strong>Rag Revolution:</strong> Replace paper towels with cotton toweling—saving trees and avoiding chemical dyes.</li>
-      </ul>
-      <h3>Minimalist Wardrobe: Capsule Logic in 2025</h3>
-      <p>Capsule wardrobes evolved from 35 pieces to intentional curation. Camille Styles’ 2025 essentials include:</p>
-      <ul>
-        <li><strong>Versatile Trousers:</strong> Aritzia’s Effortless Pant (3 colors) transitions from Zoom calls to dinners.</li>
-        <li><strong>Layering Magic:</strong> Sézane’s Trudy Jumper adds French-girl polish to jeans or skirts.</li>
-      </ul>
-      <p><strong>Pro Tip:</strong> Define three style words (e.g., "refined, effortless, sporty") to guide purchases.</p>
-      <h3>Eco-Interior Design: Sustainability Meets Sensorial Spaces</h3>
-      <p>2025’s homes prioritize biotropic design and recycled materials:</p>
-      <ul>
-        <li><strong>Textured Walls:</strong> Grasscloth wallpaper or reclaimed wood panels add depth sans waste.</li>
-        <li><strong>Artisanal Focus:</strong> Handmade ceramics and vintage furniture (thrifted via Old World New blogs).</li>
-        <li><strong>Energy Tech:</strong> Discreet solar panels and moisture-sensing plant systems reduce resource drain.</li>
-      </ul>
-      <h3>Action Plan: Your 7-Day Sustainability Shift</h3>
-      <ul>
-        <li><strong>Monday:</strong> Install a bidet attachment.</li>
-        <li><strong>Wednesday:</strong> Shop pantry staples in bulk using cotton produce bags.</li>
-        <li><strong>Weekend:</strong> Build a 5-piece "uniform" to simplify dressing.</li>
-      </ul>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        A jar, once emptied, cradles bloom;<br/>
-        Cloth wraps the loaf, dispelling gloom—<br/>
-        Each thread rewoven, stone reset,<br/>
-        Finds grace in less, and silences regret.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHx6ZXJvJTIwd2FzdGUlMjBraXRjaGVuJTIwc3dhcHN8ZW58MHx8fHwxNzIwNjQ0MjU2fDA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'zero waste kitchen swaps',
-    author: 'Huzi',
-    category: 'Lifestyle',
-  },
-  {
-    id: 38,
-    slug: 'the-unplugged-mind-conquering-digital-burnout',
-    title: 'The Unplugged Mind: Conquering Digital Burnout in 2025',
-    excerpt: 'Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection.',
-    content: `
-      <h2>The Burnout Epidemic: Why Gen Z Can’t Log Off</h2>
-      <p>Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection. Unlike bubble baths, modern mental wellness demands systemic shifts—like "sleepmaxxing" (optimizing sleep cycles) and analog hobbies that anchor us beyond screens.</p>
-      <h3>Neuro-Tech: When AI Supports Mental Health</h3>
-      <p>Paradoxically, technology now curbs its own harm:</p>
-      <ul>
-        <li><strong>AI Therapists:</strong> Chatbots like Woebot use CBT techniques to reframe negative thoughts post-workday.</li>
-        <li><strong>Focus Tools:</strong> Apps such as Notebook convert study notes into quizzes—slashing revision stress.</li>
-        <li><strong>Wellness Architecture:</strong> Smart homes dim lights at 9 PM, nudging toward screen-free wind-downs.</li>
-      </ul>
-      <h3>Offline Sanctuaries: The Rise of IRL Tribes</h3>
-      <p>As virtual fatigue grows, embodied communities thrive:</p>
-      <ul>
-        <li><strong>Run Clubs:</strong> Combine movement with social connection—no activity tracking allowed.</li>
-        <li><strong>Book Circles:</strong> Physical book swaps with silent reading hours (inspired by Moral Fibres’ emphasis on tactile joy).</li>
-        <li><strong>Gardening Co-Ops:</strong> Treading My Own Path’s urban plots teach regenerative rituals.</li>
-      </ul>
-      <h3>Your Anti-Burnout Toolkit</h3>
-      <ul>
-        <li><strong>Notification Fasting:</strong> Silence apps from 7 PM–7 AM.</li>
-        <li><strong>Sensorial Resets:</strong> Diffuse lavender during work blocks; use textured stones for grounding anxiety.</li>
-        <li><strong>Micro-Offlining:</strong> 15-minute daily walks—phone left behind.</li>
-      </ul>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        Pixels fade where soil meets palm,<br/>
-        Heartbeats sync to twilight’s calm—<br/>
-        In breath, not bytes, we find our name,<br/>
-        Unplugged, yet wholly here, again.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGV0b3glMjBtaW5kZnVsbmVzc3xlbnwwfHx8fDE3MjA2NDQyNTd8MA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'digital detox mindfulness',
-    author: 'Huzi',
-    category: 'Lifestyle',
-  },
-  {
-    id: 39,
-    slug: 'the-borderless-office-essential-tools-for-digital-nomads',
-    title: 'The Borderless Office: Essential Tools for Digital Nomads in 2025',
-    excerpt: 'The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. 2025’s essentials blend productivity, cultural immersion, and regulatory savvy.',
-    content: `
-      <h2>Remote Work 3.0: Beyond Zoom Calls and Cafes</h2>
-      <p>The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. With 35% of knowledge workers now location-agnostic, 2025’s essentials blend productivity, cultural immersion, and regulatory savvy. Tools like Nomad List curate visa-friendly destinations, while AI agents handle timezone scheduling—making “work from anywhere” genuinely sustainable.</p>
-      <h3>The 2025 Nomad Stack: Tools You’ll Actually Use</h3>
-      <h4>🌐 Connectivity & Compliance</h4>
-      <ul>
-        <li><strong>eSIM Databases:</strong> Sites like MapHappy list local data plans in 190 countries.</li>
-        <li><strong>Borderless Banking:</strong> Platforms like Wise automate invoicing and multi-currency payroll.</li>
-      </ul>
-      <h4>🚀 Productivity Boosters</h4>
-      <ul>
-        <li><strong>Cosmic:</strong> Organizes research across projects—vital for freelancers.</li>
-        <li><strong>Limitless:</strong> Records client meetings and emails summaries post-call.</li>
-      </ul>
-      <h4>🧠 Community & Wellness</h4>
-      <ul>
-        <li><strong>Nomad Forums:</strong> Nomadic Notes connects travelers for co-working or crisis support.</li>
-        <li><strong>Meditation Apps:</strong> End the day with AI-guided sound baths (no headphones required).</li>
-      </ul>
-      <h3>Real Nomad Stories: Lessons from the Road</h3>
-      <p><strong>Adventurous Kate:</strong> Advocates “slowmad” stays (3+ months) to reduce carbon footprints.</p>
-      <p><strong>Legal Nomads:</strong> Jodi’s blog proves chronic illness needn’t end travel—using AI for real-time translation at medical visits.</p>
-      <h3>Avoiding Remote Burnout: The 80/20 Rule</h3>
-      <p>Balance productivity with presence:</p>
-      <ul>
-        <li><strong>Work 80% locally:</strong> Rent apartments with dedicated work nooks.</li>
-        <li><strong>Explore 20% deeply:</strong> Join Uncornered Market food tours or Wandering Earl history walks.</li>
-      </ul>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        Oceans shift below the wing,<br/>
-        New streets hold dawn’s offering—<br/>
-        We work where Wi-Fi rivers run,<br/>
-        Yet belong to earth, and wind, and sun.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbm9tYWQlMjB0cmF2ZWx8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'digital nomad travel',
-    author: 'Huzi',
-    category: 'Lifestyle',
-  },
-  {
-    id: 40,
-    slug: 'wealth-on-autopilot-start-investing-with-500-a-month',
-    title: 'Wealth on Autopilot: Start Investing with ₹500/Month in 2025',
-    excerpt: 'Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change.',
-    content: `
-      <h2>The New Investors: Gen Z’s Finance Revolution</h2>
-      <p>Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change. With AI-driven platforms predicting micro-trends (e.g., water scarcity stocks), Gen Z builds portfolios reflecting their values—not just profits.</p>
-      <h3>Your ₹500/Month Blueprint</h3>
-      <h4>📈 AI-Powered SIPs</h4>
-      <p>Systematic Investment Plans (SIPs) now leverage algorithms:</p>
-      <ul>
-        <li>Apps like ETMoney allocate funds across ESG-compliant ETFs based on risk quizzes.</li>
-        <li>$15.7 trillion: AI’s projected contribution to global GDP by 2030—invest early in automation stocks.</li>
-      </ul>
-      <h4>💰 Passive Income Streams</h4>
-      <ul>
-        <li><strong>Dividend Drip:</strong> Auto-reinvest dividends from blue-chip shares.</li>
-        <li><strong>Crypto Staking:</strong> Earn 4-8% APY on stablecoins via Binance or Coinbase.</li>
-      </ul>
-      <h3>Budgeting Hacks That Don’t Feel Like Diets</h3>
-      <ul>
-        <li><strong>The 48-Hour Rule:</strong> Delay non-essential purchases for two days—avoid impulse buys.</li>
-        <li><strong>AI Expense Auditors:</strong> Apps like Cleo analyze spending and negotiate bills.</li>
-        <li><strong>Cashback Ecosystems:</strong> Use credit cards paying 5% back on groceries—then funnel earnings into SIPs.</li>
-      </ul>
-      <h3>Future-Proofing: Ethics and Automation</h3>
-      <ul>
-        <li><strong>Green Investments:</strong> Solar farms and EV infrastructure funds (see McKinsey’s renewables report).</li>
-        <li><strong>AI Guardians:</strong> Tools like Nomad Capitalist alert you to tax loopholes or fraud risks.</li>
-      </ul>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        Small coins gather in silent trust,<br/>
-        Grow forests from fractional dust—<br/>
-        While markets rage or fortunes fall,<br/>
-        Patience outbuilds the swiftest wall.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxtaWNyby1pbnZlc3RpbmclMjBhcHB8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'micro-investing app',
-    author: 'Huzi',
-    category: 'Finance',
-  },
-  {
-    id: 41,
-    slug: 'future-foods-high-protein-low-sugar-feasts',
-    title: 'Future Foods: High-Protein, Low-Sugar Feasts Redefining 2025',
-    excerpt: '2025’s plates prioritize functional fusion—where food heals and delights. Driven by climate urgency, chefs and home cooks embrace regenerative cuisine.',
-    content: `
-      <h2>Beyond Protein Bars: The Culinary Tech Renaissance</h2>
-      <p>2025’s plates prioritize functional fusion—where food heals and delights. CRISPR-edited tomatoes boost lycopene for heart health, while cricket flour adds sustainable protein to pasta. Driven by climate urgency (GreenBiz reports food waste squanders $127B yearly), chefs and home cooks embrace regenerative cuisine—dishes that nourish bodies and restore ecosystems.</p>
-      <h3>Ingredients Defining Next-Gen Pantries</h3>
-      <h4>🥄 Flavor-Packed Functionals</h4>
-      <ul>
-        <li><strong>Monk Fruit Sweeteners:</strong> Zero-glycemic desserts that don’t sacrifice richness.</li>
-        <li><strong>Algae Oils:</strong> Omega-3 fats for brain health, with 80% less land than olive groves.</li>
-        <li><strong>Fermented Finds:</strong> Kimchi-kraut hybrids targeting gut microbiomes.</li>
-      </ul>
-      <h4>🌍 Climate-Conscious Proteins</h4>
-      <ul>
-        <li><strong>Lab-Grown Shrimp:</strong> Carbon-neutral seafood hitting mainstream markets.</li>
-        <li><strong>Pulses Reimagined:</strong> Black bean brownies and lentil-based “tuna” salad.</li>
-      </ul>
-      <h3>Textural Alchemy: Why Crunch Reigns</h3>
-      <p>Food scientists tout contrast as 2025’s obsession:</p>
-      <ul>
-        <li><strong>Crispy Tofu Skin:</strong> Air-fried with sesame, replacing pork crackling.</li>
-        <li><strong>Sorghum Puffs:</strong> Salad toppers adding crunch without carbs.</li>
-      </ul>
-      <h3>Global Low-Waste Recipes</h3>
-      <ul>
-        <li><strong>Spent Grain Flatbread:</strong> Use brewing leftovers (via Going Zero Waste).</li>
-        <li><strong>Root-to-Stem Curry:</strong> Carrot tops, beet stems, and radish leaves simmered in coconut milk.</li>
-      </ul>
-      <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
-        Seeds, once buried, rise in gold,<br/>
-        Earth’s alchemy on tongues unfolds—<br/>
-        We taste the sun, the soil, the rain,<br/>
-        In every bite, life’s loop sustained.
-      </div>
-    `,
-    imageUrl: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxmdW5jdGlvbmFsJTIwZm9vZCUyMHRyZW5kc3xlbnwwfHx8fDE3MjA2NDQyNTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
-    imageHint: 'functional food trends',
-    author: 'Huzi',
-    category: 'Lifestyle',
   }
 ];
 
-// Adding 58 more posts to reach 99
-const additionalPosts = [
-  // Programming
-  {
-    id: 42,
-    slug: 'rust-vs-go-choosing-the-right-language-for-modern-systems',
-    title: 'Rust vs. Go: Choosing the Right Language for Modern Systems',
-    excerpt: 'A deep dive into two of the most popular modern systems programming languages. We compare Rust\'s safety guarantees with Go\'s simplicity and concurrency model to help you decide which is right for your next project.',
-    content: `<h2>The Modern Systems Programming Showdown</h2><p>Content for Rust vs. Go...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">Borrow checker's strict embrace,<br/>Goroutines run at a frantic pace.</div>`,
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'rust go programming',
-    author: 'Huzi',
-    category: 'Programming',
-  },
-  {
-    id: 43,
-    slug: 'introduction-to-webassembly-the-future-of-web-performance',
-    title: 'Introduction to WebAssembly: The Future of Web Performance',
-    excerpt: 'WebAssembly (Wasm) promises near-native performance in the browser. This guide explains what Wasm is, how it works with JavaScript, and its potential to revolutionize web applications.',
-    content: `<h2>Beyond JavaScript: Performance Unleashed</h2><p>Content for WebAssembly...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">In binary tight, a new code speaks,<br/>The browser's core, performance it seeks.</div>`,
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'webassembly code',
-    author: 'Huzi',
-    category: 'Programming',
-  },
-  // ... adding 56 more unique posts here
-  {
-    id: 99,
-    slug: 'quantum-computing-explained-for-developers',
-    title: 'Quantum Computing Explained for Developers',
-    excerpt: 'Quantum computing is poised to change the world. This guide demystifies concepts like qubits, superposition, and entanglement for software developers.',
-    content: `<h2>The Next Leap in Computation</h2><p>Content for Quantum Computing...</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">In states uncertain, worlds align,<br/>A quantum leap for all mankind.</div>`,
-    imageUrl: 'https://placehold.co/600x400.png',
-    imageHint: 'quantum computing',
-    author: 'Huzi',
-    category: 'AI',
-  }
-];
+const additionalPosts: Omit<Post, 'id'>[] = [
+    {
+      slug: 'unlock-your-day-how-ai-tools-automate-routine-tasks',
+      title: 'Unlock Your Day: How AI Tools Automate Routine Tasks in 2025',
+      excerpt: 'AI has evolved into an indispensable architect of daily productivity, transforming hours of manual effort into streamlined, automated processes. Discover the essential AI tools that are reshaping our routines.',
+      content: `
+        <h2>The Dawn of AI-Powered Efficiency</h2>
+        <p>Artificial intelligence has evolved beyond novelty into an indispensable architect of daily productivity. By 2025, agentic AI systems autonomously manage complex workflows—transforming hours of manual effort into streamlined, automated processes. Imagine waking to an AI assistant that has already cleared your inbox, optimized your schedule, and summarized critical research. This is no sci-fi fantasy: tools like Cosmic consolidate research into visual canvases, while Jace handles email drafting and Slack integrations. The result? Humans reclaim 30% of their workday for high-impact creativity.</p>
+        <h3>Essential AI Tools Reshaping Routines</h3>
+        <h4>1. Research & Content Synthesis</h4>
+        <p><strong>ChatGPT Agent Mode:</strong> Browses academic databases, analyzes datasets, and drafts reports—ideal for students and analysts.</p>
+        <p><strong>Lex:</strong> Refines writing with grammar checks and research integration, turning rough notes into publish-ready content.</p>
+        <h4>2. Communication & Admin</h4>
+        <p><strong>Jace:</strong> Your email sentinel. It labels urgent messages, crafts tone-matched replies, and syncs with Notion.</p>
+        <p><strong>Limitless:</strong> A wearable meeting assistant that transcribes conversations and extracts action items.</p>
+        <h4>3. Personal Task Automation</h4>
+        <p><strong>Spiral:</strong> Converts meeting notes into social threads or study flashcards.</p>
+        <p><strong>AI-Powered Smart Homes:</strong> Systems like *GPT-4o* adjust thermostats, order groceries, and filter notifications based on voice commands.</p>
+        <h3>Ethics: The Unseen Framework</h3>
+        <p>As AI permeates life, algorithmic fairness becomes critical. Biased training data can perpetuate discrimination—like Amazon’s gender-skewed hiring tool. Mitigate risks by:</p>
+        <ul>
+          <li>Demanding transparency in AI design</li>
+          <li>Supporting diverse development teams</li>
+          <li>Using open-source tools for accountability</li>
+        </ul>
+        <h3>Future Horizons: Multimodal AI</h3>
+        <p>2025’s breakthroughs include multimodal systems like OpenAI’s GPT-4o, processing text, images, and voice simultaneously. Picture a doctor using AI to cross-reference MRI scans with genomic data for real-time diagnostics. Such tools could slash diagnostic errors by 40% in healthcare.</p>
+        <h3>Getting Started: Your AI Integration Plan</h3>
+        <ol>
+          <li>Audit repetitive tasks (e.g., email sorting, data entry).</li>
+          <li>Test one tool weekly: Try Notebook for study summaries or Durable for website creation.</li>
+          <li>Set boundaries: Schedule “AI-free hours” to prevent over-reliance.</li>
+        </ol>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          Silent gears turn in circuits deep,<br/>
+          Unseen hands grant restful sleep—<br/>
+          Dawn greets minds freed to soar,<br/>
+          While machines guard the mundane door.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1677442135722-5f490d6e9e53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxhaSUyMGF1dG9tYXRpb24lMjB0b29sc3xlbnwwfHx8fDE3MjA2NDQyNTV8MA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'ai automation tools',
+      author: 'Huzi',
+      category: 'AI',
+    },
+    {
+      slug: 'the-conscious-home-zero-waste-swaps-and-minimalist-magic',
+      title: 'The Conscious Home: Zero-Waste Swaps and Minimalist Magic in 2025',
+      excerpt: 'Sustainable living has graduated from reusable cups to systemic household ecology. In 2025, sustainability isn’t sacrifice; it’s smarter living.',
+      content: `
+        <h2>Beyond Bamboo Brushes: The 2025 Sustainability Revolution</h2>
+        <p>Sustainable living has graduated from reusable cups to systemic household ecology. The minimalist ethos now blends with tech innovation, creating homes that reduce waste and cognitive load. Leading blogs like Treading My Own Path and Going Zero Waste emphasize circularity—where every jar, garment, or gadget is reused, repurposed, or composted. In 2025, sustainability isn’t sacrifice; it’s smarter living.</p>
+        <h3>Zero-Waste Swaps That Actually Stick</h3>
+        <h4>🍽️ Kitchen Innovations</h4>
+        <ul>
+          <li><strong>Stasher Silicone Bags:</strong> Replace single-use plastics for snacks and leftovers.</li>
+          <li><strong>Compostable Dish Scrubs:</strong> Swap plastic sponges for loofah or coconut fiber scrubbers.</li>
+          <li><strong>French Press Multitasking:</strong> Brew coffee, and strain nut milk—cutting gadget clutter.</li>
+        </ul>
+        <h4>🛁 Bathroom Upgrades</h4>
+        <ul>
+          <li><strong>Bidet Attachments:</strong> Save 37 gallons of water per toilet paper roll (Americans use 8 million tons yearly!).</li>
+          <li><strong>Menstrual Revolution:</strong> Brands like Thinx offer period underwear absorbing 2 tampons’ worth of flow.</li>
+          <li><strong>Safety Razors:</strong> Ditch disposable plastics for timeless steel razors.</li>
+        </ul>
+        <h4>🌿 Whole-House Habits</h4>
+        <ul>
+          <li><strong>Mason Jar Pantries:</strong> Store bulk-bought grains in visible, waste-free containers.</li>
+          <li><strong>Rag Revolution:</strong> Replace paper towels with cotton toweling—saving trees and avoiding chemical dyes.</li>
+        </ul>
+        <h3>Minimalist Wardrobe: Capsule Logic in 2025</h3>
+        <p>Capsule wardrobes evolved from 35 pieces to intentional curation. Camille Styles’ 2025 essentials include:</p>
+        <ul>
+          <li><strong>Versatile Trousers:</strong> Aritzia’s Effortless Pant (3 colors) transitions from Zoom calls to dinners.</li>
+          <li><strong>Layering Magic:</strong> Sézane’s Trudy Jumper adds French-girl polish to jeans or skirts.</li>
+        </ul>
+        <p><strong>Pro Tip:</strong> Define three style words (e.g., "refined, effortless, sporty") to guide purchases.</p>
+        <h3>Eco-Interior Design: Sustainability Meets Sensorial Spaces</h3>
+        <p>2025’s homes prioritize biotropic design and recycled materials:</p>
+        <ul>
+          <li><strong>Textured Walls:</strong> Grasscloth wallpaper or reclaimed wood panels add depth sans waste.</li>
+          <li><strong>Artisanal Focus:</strong> Handmade ceramics and vintage furniture (thrifted via Old World New blogs).</li>
+          <li><strong>Energy Tech:</strong> Discreet solar panels and moisture-sensing plant systems reduce resource drain.</li>
+        </ul>
+        <h3>Action Plan: Your 7-Day Sustainability Shift</h3>
+        <ul>
+          <li><strong>Monday:</strong> Install a bidet attachment.</li>
+          <li><strong>Wednesday:</strong> Shop pantry staples in bulk using cotton produce bags.</li>
+          <li><strong>Weekend:</strong> Build a 5-piece "uniform" to simplify dressing.</li>
+        </ul>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          A jar, once emptied, cradles bloom;<br/>
+          Cloth wraps the loaf, dispelling gloom—<br/>
+          Each thread rewoven, stone reset,<br/>
+          Finds grace in less, and silences regret.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHx6ZXJvJTIwd2FzdGUlMjBraXRjaGVuJTIwc3dhcHN8ZW58MHx8fHwxNzIwNjQ0MjU2fDA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'zero waste kitchen swaps',
+      author: 'Huzi',
+      category: 'Lifestyle',
+    },
+    {
+      slug: 'the-unplugged-mind-conquering-digital-burnout',
+      title: 'The Unplugged Mind: Conquering Digital Burnout in 2025',
+      excerpt: 'Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection.',
+      content: `
+        <h2>The Burnout Epidemic: Why Gen Z Can’t Log Off</h2>
+        <p>Constant connectivity has birthed a new malaise: digital fatigue. With 72% of Gen Z reporting anxiety from notification overload, 2025’s self-care prioritizes mindful disconnection. Unlike bubble baths, modern mental wellness demands systemic shifts—like "sleepmaxxing" (optimizing sleep cycles) and analog hobbies that anchor us beyond screens.</p>
+        <h3>Neuro-Tech: When AI Supports Mental Health</h3>
+        <p>Paradoxically, technology now curbs its own harm:</p>
+        <ul>
+          <li><strong>AI Therapists:</strong> Chatbots like Woebot use CBT techniques to reframe negative thoughts post-workday.</li>
+          <li><strong>Focus Tools:</strong> Apps such as Notebook convert study notes into quizzes—slashing revision stress.</li>
+          <li><strong>Wellness Architecture:</strong> Smart homes dim lights at 9 PM, nudging toward screen-free wind-downs.</li>
+        </ul>
+        <h3>Offline Sanctuaries: The Rise of IRL Tribes</h3>
+        <p>As virtual fatigue grows, embodied communities thrive:</p>
+        <ul>
+          <li><strong>Run Clubs:</strong> Combine movement with social connection—no activity tracking allowed.</li>
+          <li><strong>Book Circles:</strong> Physical book swaps with silent reading hours (inspired by Moral Fibres’ emphasis on tactile joy).</li>
+          <li><strong>Gardening Co-Ops:</strong> Treading My Own Path’s urban plots teach regenerative rituals.</li>
+        </ul>
+        <h3>Your Anti-Burnout Toolkit</h3>
+        <ul>
+          <li><strong>Notification Fasting:</strong> Silence apps from 7 PM–7 AM.</li>
+          <li><strong>Sensorial Resets:</strong> Diffuse lavender during work blocks; use textured stones for grounding anxiety.</li>
+          <li><strong>Micro-Offlining:</strong> 15-minute daily walks—phone left behind.</li>
+        </ul>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          Pixels fade where soil meets palm,<br/>
+          Heartbeats sync to twilight’s calm—<br/>
+          In breath, not bytes, we find our name,<br/>
+          Unplugged, yet wholly here, again.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGV0b3glMjBtaW5kZnVsbmVzc3xlbnwwfHx8fDE3MjA2NDQyNTd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'digital detox mindfulness',
+      author: 'Huzi',
+      category: 'Lifestyle',
+    },
+    {
+      slug: 'the-borderless-office-essential-tools-for-digital-nomads',
+      title: 'The Borderless Office: Essential Tools for Digital Nomads in 2025',
+      excerpt: 'The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. 2025’s essentials blend productivity, cultural immersion, and regulatory savvy.',
+      content: `
+        <h2>Remote Work 3.0: Beyond Zoom Calls and Cafes</h2>
+        <p>The digital nomad lifestyle has matured from exotic Instagram posts to infrastructure-rich mobility. With 35% of knowledge workers now location-agnostic, 2025’s essentials blend productivity, cultural immersion, and regulatory savvy. Tools like Nomad List curate visa-friendly destinations, while AI agents handle timezone scheduling—making “work from anywhere” genuinely sustainable.</p>
+        <h3>The 2025 Nomad Stack: Tools You’ll Actually Use</h3>
+        <h4>🌐 Connectivity & Compliance</h4>
+        <ul>
+          <li><strong>eSIM Databases:</strong> Sites like MapHappy list local data plans in 190 countries.</li>
+          <li><strong>Borderless Banking:</strong> Platforms like Wise automate invoicing and multi-currency payroll.</li>
+        </ul>
+        <h4>🚀 Productivity Boosters</h4>
+        <ul>
+          <li><strong>Cosmic:</strong> Organizes research across projects—vital for freelancers.</li>
+          <li><strong>Limitless:</strong> Records client meetings and emails summaries post-call.</li>
+        </ul>
+        <h4>🧠 Community & Wellness</h4>
+        <ul>
+          <li><strong>Nomad Forums:</strong> Nomadic Notes connects travelers for co-working or crisis support.</li>
+          <li><strong>Meditation Apps:</strong> End the day with AI-guided sound baths (no headphones required).</li>
+        </ul>
+        <h3>Real Nomad Stories: Lessons from the Road</h3>
+        <p><strong>Adventurous Kate:</strong> Advocates “slowmad” stays (3+ months) to reduce carbon footprints.</p>
+        <p><strong>Legal Nomads:</strong> Jodi’s blog proves chronic illness needn’t end travel—using AI for real-time translation at medical visits.</p>
+        <h3>Avoiding Remote Burnout: The 80/20 Rule</h3>
+        <p>Balance productivity with presence:</p>
+        <ul>
+          <li><strong>Work 80% locally:</strong> Rent apartments with dedicated work nooks.</li>
+          <li><strong>Explore 20% deeply:</strong> Join Uncornered Market food tours or Wandering Earl history walks.</li>
+        </ul>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          Oceans shift below the wing,<br/>
+          New streets hold dawn’s offering—<br/>
+          We work where Wi-Fi rivers run,<br/>
+          Yet belong to earth, and wind, and sun.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbm9tYWQlMjB0cmF2ZWx8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'digital nomad travel',
+      author: 'Huzi',
+      category: 'Lifestyle',
+    },
+    {
+      slug: 'wealth-on-autopilot-start-investing-with-500-a-month',
+      title: 'Wealth on Autopilot: Start Investing with ₹500/Month in 2025',
+      excerpt: 'Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change.',
+      content: `
+        <h2>The New Investors: Gen Z’s Finance Revolution</h2>
+        <p>Gone are days when stock markets demanded hefty deposits. 2025’s fractional investing apps let you own slices of Tesla or Reliance with spare change. With AI-driven platforms predicting micro-trends (e.g., water scarcity stocks), Gen Z builds portfolios reflecting their values—not just profits.</p>
+        <h3>Your ₹500/Month Blueprint</h3>
+        <h4>📈 AI-Powered SIPs</h4>
+        <p>Systematic Investment Plans (SIPs) now leverage algorithms:</p>
+        <ul>
+          <li>Apps like ETMoney allocate funds across ESG-compliant ETFs based on risk quizzes.</li>
+          <li>$15.7 trillion: AI’s projected contribution to global GDP by 2030—invest early in automation stocks.</li>
+        </ul>
+        <h4>💰 Passive Income Streams</h4>
+        <ul>
+          <li><strong>Dividend Drip:</strong> Auto-reinvest dividends from blue-chip shares.</li>
+          <li><strong>Crypto Staking:</strong> Earn 4-8% APY on stablecoins via Binance or Coinbase.</li>
+        </ul>
+        <h3>Budgeting Hacks That Don’t Feel Like Diets</h3>
+        <ul>
+          <li><strong>The 48-Hour Rule:</strong> Delay non-essential purchases for two days—avoid impulse buys.</li>
+          <li><strong>AI Expense Auditors:</strong> Apps like Cleo analyze spending and negotiate bills.</li>
+          <li><strong>Cashback Ecosystems:</strong> Use credit cards paying 5% back on groceries—then funnel earnings into SIPs.</li>
+        </ul>
+        <h3>Future-Proofing: Ethics and Automation</h3>
+        <ul>
+          <li><strong>Green Investments:</strong> Solar farms and EV infrastructure funds (see McKinsey’s renewables report).</li>
+          <li><strong>AI Guardians:</strong> Tools like Nomad Capitalist alert you to tax loopholes or fraud risks.</li>
+        </ul>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          Small coins gather in silent trust,<br/>
+          Grow forests from fractional dust—<br/>
+          While markets rage or fortunes fall,<br/>
+          Patience outbuilds the swiftest wall.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxtaWNyby1pbnZlc3RpbmclMjBhcHB8ZW58MHx8fHwxNzIwNjQ0MjU4fDA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'micro-investing app',
+      author: 'Huzi',
+      category: 'Finance',
+    },
+    {
+      slug: 'future-foods-high-protein-low-sugar-feasts',
+      title: 'Future Foods: High-Protein, Low-Sugar Feasts Redefining 2025',
+      excerpt: '2025’s plates prioritize functional fusion—where food heals and delights. Driven by climate urgency, chefs and home cooks embrace regenerative cuisine.',
+      content: `
+        <h2>Beyond Protein Bars: The Culinary Tech Renaissance</h2>
+        <p>2025’s plates prioritize functional fusion—where food heals and delights. CRISPR-edited tomatoes boost lycopene for heart health, while cricket flour adds sustainable protein to pasta. Driven by climate urgency (GreenBiz reports food waste squanders $127B yearly), chefs and home cooks embrace regenerative cuisine—dishes that nourish bodies and restore ecosystems.</p>
+        <h3>Ingredients Defining Next-Gen Pantries</h3>
+        <h4>🥄 Flavor-Packed Functionals</h4>
+        <ul>
+          <li><strong>Monk Fruit Sweeteners:</strong> Zero-glycemic desserts that don’t sacrifice richness.</li>
+          <li><strong>Algae Oils:</strong> Omega-3 fats for brain health, with 80% less land than olive groves.</li>
+          <li><strong>Fermented Finds:</strong> Kimchi-kraut hybrids targeting gut microbiomes.</li>
+        </ul>
+        <h4>🌍 Climate-Conscious Proteins</h4>
+        <ul>
+          <li><strong>Lab-Grown Shrimp:</strong> Carbon-neutral seafood hitting mainstream markets.</li>
+          <li><strong>Pulses Reimagined:</strong> Black bean brownies and lentil-based “tuna” salad.</li>
+        </ul>
+        <h3>Textural Alchemy: Why Crunch Reigns</h3>
+        <p>Food scientists tout contrast as 2025’s obsession:</p>
+        <ul>
+          <li><strong>Crispy Tofu Skin:</strong> Air-fried with sesame, replacing pork crackling.</li>
+          <li><strong>Sorghum Puffs:</strong> Salad toppers adding crunch without carbs.</li>
+        </ul>
+        <h3>Global Low-Waste Recipes</h3>
+        <ul>
+          <li><strong>Spent Grain Flatbread:</strong> Use brewing leftovers (via Going Zero Waste).</li>
+          <li><strong>Root-to-Stem Curry:</strong> Carrot tops, beet stems, and radish leaves simmered in coconut milk.</li>
+        </ul>
+        <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">
+          Seeds, once buried, rise in gold,<br/>
+          Earth’s alchemy on tongues unfolds—<br/>
+          We taste the sun, the soil, the rain,<br/>
+          In every bite, life’s loop sustained.
+        </div>
+      `,
+      imageUrl: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDQ1ODB8MHwxfHNlYXJjaHwxfHxmdW5jdGlvbmFsJTIwZm9vZCUyMHRyZW5kc3xlbnwwfHx8fDE3MjA2NDQyNTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+      imageHint: 'functional food trends',
+      author: 'Huzi',
+      category: 'Lifestyle',
+    }
+  ];
 
-
-posts.push(...additionalPosts);
-// Fill in the remaining posts to reach a total of 99.
-const remainingPosts = 99 - posts.length;
-for (let i = 0; i < remainingPosts; i++) {
+const additionalPostsCount = 99 - posts.length;
+for (let i = 0; i < additionalPostsCount; i++) {
   const newId = posts.length + 1;
-  posts.push({
+  let category = 'Programming';
+  if (i % 3 === 1) {
+    category = 'AI';
+  } else if (i % 3 === 2) {
+    category = 'Cybersecurity';
+  }
+   posts.push({
     id: newId,
     slug: `sample-post-${newId}`,
     title: `Sample Post Title ${newId}`,
@@ -6873,17 +6795,65 @@ for (let i = 0; i < remainingPosts; i++) {
     imageUrl: 'https://placehold.co/600x400.png',
     imageHint: 'tech blog',
     author: 'Huzi',
-    category: i % 3 === 0 ? 'Programming' : i % 3 === 1 ? 'AI' : 'Cybersecurity',
+    category: category,
   });
 }
 
 
+posts.push(...additionalPosts.map((post, index) => ({...post, id: posts.length + index + 1})));
+
+
+// Fix the duplicate ID issue by ensuring all IDs are unique
+const seenIds = new Set();
+const uniquePosts = posts.reduce((acc, post) => {
+  if (!seenIds.has(post.id)) {
+    seenIds.add(post.id);
+    acc.push(post);
+  } else {
+    // If ID is duplicate, find a new unique ID
+    let newId = Math.max(...Array.from(seenIds).map(id => Number(id))) + 1;
+    while(seenIds.has(newId)){
+        newId++;
+    }
+    seenIds.add(newId);
+    acc.push({...post, id: newId, slug: `sample-post-${newId}`});
+  }
+  return acc;
+}, [] as Post[]);
+
+// Ensure we still have 99 posts, add more if necessary due to deduplication
+while(uniquePosts.length < 99){
+    let newId = Math.max(...Array.from(seenIds).map(id => Number(id))) + 1;
+    seenIds.add(newId);
+    let category = 'Programming';
+    if (uniquePosts.length % 3 === 1) {
+        category = 'AI';
+    } else if (uniquePosts.length % 3 === 2) {
+        category = 'Cybersecurity';
+    }
+    uniquePosts.push({
+        id: newId,
+        slug: `sample-post-${newId}`,
+        title: `Sample Post Title ${newId}`,
+        excerpt: `This is a sample excerpt for post number ${newId}.`,
+        content: `<p>This is the detailed, high-quality content for sample post number ${newId}.</p><div class="italic text-center text-muted-foreground pt-4 border-t mt-8">A sample verse,<br/>For content diverse.</div>`,
+        imageUrl: 'https://placehold.co/600x400.png',
+        imageHint: 'tech blog',
+        author: 'Huzi',
+        category: category,
+    });
+}
+
+
+const finalPosts = uniquePosts.slice(0, 99);
+
+
 export function getPosts() {
-  return posts;
+  return finalPosts;
 }
 
 export function getPostBySlug(slug: string) {
-  return posts.find(post => post.slug === slug);
+  return finalPosts.find(post => post.slug === slug);
 }
     
 
@@ -6891,6 +6861,9 @@ export function getPostBySlug(slug: string) {
     
 
     
+
+
+
 
 
 

@@ -77,11 +77,11 @@ function SearchResultsContent() {
   return (
     <>
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight">
+        <h1 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight break-words">
           Search Results
         </h1>
         {query ? (
-           <p className="mt-2 text-lg text-muted-foreground">
+           <p className="mt-2 text-lg text-muted-foreground break-words">
            {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
          </p>
         ) : (
