@@ -51,8 +51,7 @@ function SearchResultsContent() {
           const title = post.title.toLowerCase();
           const distance = levenshteinDistance(lowercasedQuery, title);
           
-          // More forgiving threshold: allow more errors for longer queries
-          const threshold = Math.floor(query.length / 1.5);
+          const threshold = Math.floor(query.length / 2); // Make threshold more forgiving
 
           if (title.includes(lowercasedQuery)) {
             return { post, relevance: 0 }; 
@@ -77,11 +76,11 @@ function SearchResultsContent() {
   return (
     <>
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight break-words">
+        <h1 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
           Search Results
         </h1>
         {query ? (
-           <p className="mt-2 text-lg text-muted-foreground break-words">
+           <p className="mt-2 text-lg text-muted-foreground break-words px-4">
            {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
          </p>
         ) : (
