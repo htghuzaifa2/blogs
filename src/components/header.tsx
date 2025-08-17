@@ -2,11 +2,10 @@
 "use client";
 
 import Link from 'next/link'
-import { ThemeSwitcher } from './theme-switcher'
-import { SearchBar } from './search-bar';
 import { Button } from './ui/button';
 import { Menu, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +18,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from '@/lib/utils';
+
+const ThemeSwitcher = dynamic(() => import('./theme-switcher').then(m => m.ThemeSwitcher), { ssr: false });
+const SearchBar = dynamic(() => import('./search-bar').then(m => m.SearchBar), { ssr: false });
+
 
 interface HeaderProps {
   categories: string[];
@@ -85,7 +88,7 @@ export function Header({ categories }: HeaderProps) {
           <div className="hidden md:flex justify-center">
               <DropdownMenu open={isCategoryOpen} onOpenChange={setCategoryOpen}>
                   <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center gap-1">
+                  <Button variant="ghost" className="flex items-center gap-1" onClick={() => setCategoryOpen(!isCategoryOpen)}>
                       Categories
                       <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
                   </Button>

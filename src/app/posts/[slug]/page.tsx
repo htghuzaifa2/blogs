@@ -1,11 +1,13 @@
 import { getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Comments } from '@/components/comments';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+
+const Comments = dynamic(() => import('@/components/comments').then(m => m.Comments), { ssr: false });
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
