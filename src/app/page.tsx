@@ -2,7 +2,7 @@ import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { getPosts } from '@/lib/posts';
 
 export default function Home() {
-  const posts = getPosts();
+  const posts = getPosts().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">

@@ -7,9 +7,11 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const allPosts = getPosts();
   const categorySlug = params.slug;
 
-  const posts = allPosts.filter(
-    (post) => post.category && post.category.toLowerCase().replace(/ /g, '-') === categorySlug
-  );
+  const posts = allPosts
+    .filter(
+      (post) => post.category && post.category.toLowerCase().replace(/ /g, '-') === categorySlug
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   if (posts.length === 0) {
     notFound();
