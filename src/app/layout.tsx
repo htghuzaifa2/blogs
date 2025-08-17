@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { PT_Sans, Playfair_Display } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -26,34 +27,32 @@ const siteUrl = 'https://blogs.huzi.pk';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Huzi Blogs - Tech, AI, and Programming Insights',
+    default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
     template: '%s - blogs.huzi.pk',
   },
-  description: 'Explore expert articles and tutorials on AI, programming, web development, and technology trends. Your go-to resource for actionable insights from Huzi Blogs.',
+  description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
   keywords: [
-    'Programming', 
-    'Web Development', 
-    'AI', 
-    'Cybersecurity', 
-    'Linux', 
-    'JavaScript', 
-    'Python', 
-    'C#', 
-    'HTML', 
-    'CSS', 
-    'React', 
-    'Next.js', 
-    'Kali Linux', 
-    'Arch Linux', 
-    'WordPress Security',
-    'Cloudflare'
+    'blogs.huzi.pk', 
+    'latest blogs', 
+    'trending topics', 
+    'lifestyle blogs', 
+    'education articles', 
+    'tech blogs', 
+    'programming tutorials', 
+    'AI insights', 
+    'health tips', 
+    'personal growth blogs', 
+    'online learning', 
+    'software development blogs', 
+    'daily tips', 
+    'news & trends'
   ],
   openGraph: {
     title: {
-      default: 'Huzi Blogs - Tech, AI, and Programming Insights',
+      default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
       template: '%s - blogs.huzi.pk',
     },
-    description: 'A collection of thoughts, stories, and ideas on programming, AI, and technology.',
+    description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
     url: siteUrl,
     siteName: 'blogs.huzi.pk',
     images: [
@@ -81,10 +80,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: 'Huzi Blogs - Tech, AI, and Programming Insights',
+      default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
       template: '%s - blogs.huzi.pk',
     },
-    description: 'A collection of thoughts, stories, and ideas on programming, AI, and technology.',
+    description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
     images: ['https://huzi.pk/img/26PWX8FW/logo.webp'],
   },
   alternates: {
