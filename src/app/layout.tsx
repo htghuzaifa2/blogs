@@ -106,7 +106,12 @@ export default function RootLayout({
         <link rel="icon" href="https://huzi.pk/img/26PWX8FW/logo.webp" type="image/webp" sizes="any" />
       </head>
       <body className={cn("font-body antialiased", ptSans.variable, playfairDisplay.variable)}>
-        <ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="flex flex-col min-h-screen">
             <Header categories={categories} />
             <main className="flex-grow">{children}</main>
