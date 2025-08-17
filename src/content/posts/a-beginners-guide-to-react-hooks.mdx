@@ -1,0 +1,68 @@
+---
+title: "A Beginner's Guide to React Hooks"
+excerpt: "Tired of class components? This guide breaks down the most essential React Hooks like useState and useEffect, helping you write cleaner and more functional components."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "React code editor"
+author: "HTG"
+category: "Programming"
+date: "2024-08-14"
+---
+
+React Hooks, introduced in React 16.8, revolutionized how developers write components. They allow you to use state and other React features in functional components, eliminating the need for cumbersome class components. If you're new to Hooks, this guide will introduce you to the most essential ones.
+
+### What Are React Hooks?
+Hooks are functions that let you "hook into" React state and lifecycle features from function components. They are simpler, more reusable, and lead to more readable code.
+
+### 1. `useState`
+The `useState` Hook is the most fundamental Hook. It allows you to add state to your functional components.
+
+```javascript
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+`useState(0)` initializes a state variable called `count` to `0`. `setCount` is the function used to update this state.
+
+### 2. `useEffect`
+The `useEffect` Hook lets you perform side effects in your components. Common side effects include fetching data, setting up a subscription, or manually changing the DOM. It runs after every render by default, but you can control when it runs.
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTime(prevTime => prevTime + 1);
+    }, 1000);
+
+    // Cleanup function
+    return () => clearInterval(timerId);
+  }, []); // The empty array [] means this effect runs only once on mount
+
+  return <p>Timer: {time} seconds</p>;
+}
+```
+
+The cleanup function returned by `useEffect` is crucial for preventing memory leaks, such as when a component unmounts.
+
+### 3. `useContext`
+The `useContext` Hook provides a way to pass data through the component tree without having to pass props down manually at every level. It's perfect for managing global state like themes or user authentication.
+
+### Rules of Hooks
+1.  **Only Call Hooks at the Top Level:** Don't call Hooks inside loops, conditions, or nested functions.
+2.  **Only Call Hooks from React Functions:** Call them from React functional components, not regular JavaScript functions.
+
+By mastering `useState` and `useEffect`, you'll be well on your way to writing modern, efficient, and elegant React applications.
