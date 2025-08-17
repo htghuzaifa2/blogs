@@ -1,0 +1,183 @@
+---
+title: "A Practical Guide to CSS Variables (Custom Properties)"
+excerpt: "Unlock the power of dynamic and maintainable stylesheets with CSS Custom Properties, commonly known as CSS Variables. This guide covers everything from basic syntax to advanced techniques like theming."
+imageUrl: "https://images.unsplash.com/photo-1544256718-3b62ff584963?q=80&w=1974&auto=format&fit=crop"
+imageHint: "css code on screen"
+author: "Huzi"
+category: "CSS"
+date: "2024-07-20"
+---
+
+For years, one of the biggest pain points in CSS was the inability to reuse values. If you had a brand color that was used in 50 different places, changing that color meant a tedious find-and-replace operation. Preprocessors like Sass and Less solved this with variables, but now, that power is built directly into CSS with **Custom Properties for Cascading Variables**, more commonly known as **CSS Variables**.
+
+CSS Variables are more powerful than their preprocessor counterparts because they are dynamic and live in the browser. This guide will walk you through the fundamentals and show you some practical applications.
+
+### What Are CSS Variables?
+
+CSS Variables are entities defined by CSS authors that contain specific values to be reused throughout a document. They are set using custom property notation (e.g., `--main-color: #007bff;`) and are accessed using the `var()` function (e.g., `color: var(--main-color);`).
+
+The key difference from Sass variables is that CSS variables are resolved by the browser during runtime, not compiled beforehand. This allows them to be updated with CSS or even JavaScript.
+
+### Basic Syntax
+
+**1. Declaring a Variable:**
+
+You declare a variable by prefixing its name with two dashes (`--`) and assigning it a value. The most common place to declare global variables is on the `:root` pseudo-class, which makes them available everywhere in your document.
+
+```css
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --base-font-size: 16px;
+  --default-padding: 1rem;
+}
+```
+
+**2. Using a Variable:**
+
+You use a variable with the `var()` function.
+
+```css
+body {
+  font-size: var(--base-font-size);
+  color: var(--primary-color);
+}
+
+.button {
+  background-color: var(--primary-color);
+  padding: var(--default-padding);
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+}
+```
+
+**3. Providing Fallback Values:**
+
+The `var()` function can take a second argument: a fallback value that will be used if the custom property is not defined. This is great for graceful degradation.
+
+```css
+.alert {
+  /* If --alert-color is not set, it will use 'orange' */
+  background-color: var(--alert-color, orange);
+}
+```
+
+### The Power of the Cascade and Inheritance
+
+CSS Variables inherit and cascade just like any other CSS property. This is what makes them so powerful. You can define a global variable on `:root` and then override it within a more specific selector.
+
+**Example: Local Scope**
+
+Let's say most of your buttons are blue, but buttons inside a warning panel should be red.
+
+```css
+:root {
+  --button-bg: #3498db; /* Blue */
+}
+
+.button {
+  background-color: var(--button-bg);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.panel-warning {
+  /* Override the variable just for this context */
+  --button-bg: #e74c3c; /* Red */
+}
+```
+**HTML:**
+```html
+<button class="button">Default Button</button>
+
+<div class="panel-warning">
+  <p>This is a warning.</p>
+  <button class="button">Warning Button</button> <!-- This button will be red -->
+</div>
+```
+Any `.button` inside `.panel-warning` will now automatically use the overridden `--button-bg` value without any extra CSS selectors for the button itself. This is incredibly clean and maintainable.
+
+### Practical Use Case: Theming
+
+The dynamic nature of CSS Variables makes them perfect for implementing light/dark mode or other themes.
+
+**1. Define Theme Colors in CSS:**
+
+First, define the color palettes for your themes using variables. We can use a data attribute on the `html` tag to switch between themes.
+
+```css
+/* Default (Light Theme) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --primary-accent: #3498db;
+}
+
+/* Dark Theme */
+html[data-theme='dark'] {
+  --bg-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --primary-accent: #5dade2;
+}
+
+/* Apply the variables */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  color: var(--primary-accent);
+}
+```
+
+**2. Switch Themes with JavaScript:**
+
+Now, you can use a small amount of JavaScript to toggle the `data-theme` attribute on the `<html>` element.
+
+```javascript
+const themeToggleButton = document.getElementById('theme-toggle');
+
+themeToggleButton.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+});
+```
+With this setup, clicking the button instantly changes the theme by swapping out all the variable values at once. The transition property on the `body` makes the change smooth.
+
+### Interacting with JavaScript
+
+You can also get and set CSS variables directly from JavaScript.
+
+**Getting a variable:**
+```javascript
+// Get the value of --primary-color from the root element
+const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+console.log(primaryColor.trim()); // '#3498db'
+```
+
+**Setting a variable:**
+```javascript
+// Change the primary color dynamically
+document.documentElement.style.setProperty('--primary-color', '#e74c3c');
+```
+This is incredibly useful for creating interactive UIs. For example, you could have a color picker that lets users change the site's theme colors in real time.
+
+### Conclusion
+
+CSS Variables are a modern CSS feature that you should be using in all your projects. They offer:
+-   **Maintainability:** Define values once and reuse them everywhere.
+-   **Readability:** `var(--primary-color)` is more descriptive than `#3498db`.
+-   **Dynamism:** They can be changed at runtime, enabling powerful features like theming with minimal code.
+-   **Scoping:** They respect the CSS cascade, allowing for both global and local overrides.
+
+By

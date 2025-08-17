@@ -17,6 +17,7 @@ export interface Post {
   imageHint: string;
   author: string;
   category: string;
+  date: string;
 }
 
 export function getPosts(): Post[] {
@@ -38,6 +39,7 @@ export function getPosts(): Post[] {
         imageHint: string;
         author: string;
         category: string;
+        date: string;
       }),
       content: matterResult.content,
       htmlContent: ''
@@ -45,12 +47,7 @@ export function getPosts(): Post[] {
   });
 
   return allPostsData.sort((a, b) => {
-    // A simple sort by title for now. You could sort by date here later.
-    if (a.title < b.title) {
-      return -1;
-    } else {
-      return 1;
-    }
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
   }).map(p => ({...p, id: p.slug}));
 }
 
@@ -77,10 +74,9 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
         imageHint: string;
         author: string;
         category: string;
+        date: string;
       }),
       content: matterResult.content,
     };
   } catch (err) {
-    return undefined;
-  }
-}
+    return
