@@ -3,29 +3,18 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 
-// Helper to shuffle an array
-function shuffleArray<T>(array: T[]): T[] {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-}
-
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const allPosts = getPosts();
   const categorySlug = params.slug;
 
-  const categoryPosts = allPosts.filter(
+  const posts = allPosts.filter(
     (post) => post.category && post.category.toLowerCase().replace(/ /g, '-') === categorySlug
   );
 
-  if (categoryPosts.length === 0) {
+  if (posts.length === 0) {
     notFound();
   }
 
-  const posts = shuffleArray(categoryPosts);
   const categoryName = posts[0].category;
 
   return (
