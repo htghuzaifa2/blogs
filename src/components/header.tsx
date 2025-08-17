@@ -37,7 +37,7 @@ export function Header({ categories }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-auto min-h-14 flex-wrap items-center justify-between py-2 gap-y-2">
         
-        {/* Mobile Menu & Title */}
+        {/* Mobile Menu */}
         <div className="flex items-center md:hidden">
            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
@@ -70,7 +70,9 @@ export function Header({ categories }: HeaderProps) {
             </SheetContent>
           </Sheet>
         </div>
-         <div className="flex-1 md:flex-none">
+        
+        {/* Title */}
+         <div className="flex-1 md:flex-initial">
            <Link href="/" className="flex items-center space-x-2 justify-center md:justify-start">
               <span className="font-bold font-headline">
                 blogs.huzi.pk
@@ -79,26 +81,32 @@ export function Header({ categories }: HeaderProps) {
          </div>
 
         {/* Desktop Categories */}
-        <div className="hidden md:flex w-full md:w-auto justify-center">
-            <DropdownMenu open={isCategoryOpen} onOpenChange={setCategoryOpen}>
-                <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1">
-                    Categories
-                    <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
-                </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start">
-                {navLinks.map((link) => (
-                    <DropdownMenuItem key={link.href} asChild>
-                        <Link href={link.href}>{link.label}</Link>
-                    </DropdownMenuItem>
-                ))}
-                </DropdownMenuContent>
-            </DropdownMenu>
+        <div className="order-last w-full md:order-none md:w-auto md:flex-1 md:justify-center">
+          <div className="hidden md:flex justify-center">
+              <DropdownMenu open={isCategoryOpen} onOpenChange={setCategoryOpen}>
+                  <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center gap-1">
+                      Categories
+                      <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
+                  </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent 
+                    align="center" 
+                    className="w-auto max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl p-2 flex flex-wrap gap-1"
+                  >
+                    {navLinks.map((link) => (
+                        <DropdownMenuItem key={link.href} asChild className="flex-auto justify-center">
+                            <Link href={link.href}>{link.label}</Link>
+                        </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+              </DropdownMenu>
+          </div>
         </div>
 
+
         {/* Search and Theme */}
-        <div className="flex items-center justify-end space-x-2">
+        <div className="flex items-center justify-end space-x-2 md:flex-initial">
           <SearchBar />
           <ThemeSwitcher />
         </div>
