@@ -1,3 +1,4 @@
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -23,42 +24,57 @@ export interface Post {
 export function getPosts(): Post[] {
   let fileNames: string[] = [];
   try {
-    fileNames = fs.readdirSync(postsDirectory);
+    // Ensure the directory exists before attempting to read it.
+    if (fs.existsSync(postsDirectory)) {
+      fileNames = fs.readdirSync(postsDirectory);
+    }
   } catch (err) {
-    // It's okay if the directory doesn't exist, e.g., in a clean git checkout
+    console.error('Could not read posts directory:', err);
     return [];
   }
   
-  const allPostsData = fileNames.map(fileName => {
-    if (!fileName.endsWith('.mdx')) {
-        return null;
-    }
-    const slug = fileName.replace(/\.mdx$/, '');
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const allPostsData = fileNames
+    .filter(fileName => fileName.endsWith('.mdx')) // Process only .mdx files
+    .map(fileName => {
+      try {
+        const slug = fileName.replace(/\.mdx$/, '');
+        const fullPath = path.join(postsDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-    const matterResult = matter(fileContents);
+        const { data, content } = matter(fileContents);
 
-    return {
-      id: slug,
-      slug,
-      ...(matterResult.data as { 
-        title: string; 
-        excerpt: string; 
-        imageUrl: string; 
-        imageHint: string;
-        author: string;
-        category: string;
-        date: string;
-      }),
-      content: matterResult.content,
-      htmlContent: ''
-    };
-  }).filter(p => p !== null) as Post[];
+        // Basic validation to ensure required fields are present
+        if (!data.title || !data.date || !data.excerpt) {
+            console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
+            return null;
+        }
 
+        return {
+          id: slug,
+          slug,
+          htmlContent: '',
+          content: content,
+          ...(data as { 
+            title: string; 
+            excerpt: string; 
+            imageUrl: string; 
+            imageHint: string;
+            author: string;
+            category: string;
+            date: string;
+          }),
+        };
+      } catch (e) {
+          console.error(`Error processing post "${fileName}":`, e);
+          return null;
+      }
+    })
+    .filter((p): p is Post => p !== null);
+
+  // Sort posts by date in descending order (newest first)
   return allPostsData.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
-  }).map(p => ({...p, id: p.slug}));
+  });
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
@@ -66,18 +82,19 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   
   try {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
+    const { data, content } = matter(fileContents);
 
     const processedContent = await remark()
       .use(html, { sanitize: false })
-      .process(matterResult.content);
+      .process(content);
     const htmlContent = processedContent.toString();
 
     return {
       id: slug,
       slug,
       htmlContent,
-      ...(matterResult.data as { 
+      content,
+      ...(data as { 
         title: string; 
         excerpt: string; 
         imageUrl: string; 
@@ -86,9 +103,9 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
         category: string;
         date: string;
       }),
-      content: matterResult.content,
     };
   } catch (err) {
+    // This can happen if the file doesn't exist, which is a valid case.
     return undefined;
   }
 }
