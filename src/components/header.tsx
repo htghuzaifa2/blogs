@@ -92,13 +92,15 @@ export function Header({ categories }: HeaderProps) {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent 
                     align="center" 
-                    className="w-auto max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl p-2 flex flex-wrap gap-1"
+                    className="w-auto max-w-[calc(100vw-2rem)] sm:max-w-md md:max-w-lg lg:max-w-xl p-2"
                   >
-                    {navLinks.map((link) => (
-                        <DropdownMenuItem key={link.href} asChild className="flex-auto justify-center">
-                            <Link href={link.href}>{link.label}</Link>
-                        </DropdownMenuItem>
-                    ))}
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {navLinks.map((link) => (
+                          <DropdownMenuItem key={link.href} asChild className="flex-auto justify-center basis-auto grow-0">
+                              <Link href={link.href} className="px-3 py-1.5">{link.label}</Link>
+                          </DropdownMenuItem>
+                      ))}
+                    </div>
                   </DropdownMenuContent>
               </DropdownMenu>
           </div>
