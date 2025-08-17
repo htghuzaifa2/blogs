@@ -30,28 +30,7 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 5;
-    const halfPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    let startPage = Math.max(1, currentPage - halfPagesToShow);
-    let endPage = Math.min(totalPages, currentPage + halfPagesToShow);
-
-    if (currentPage - halfPagesToShow < 1) {
-      endPage = Math.min(totalPages, maxPagesToShow);
-    }
-
-    if (currentPage + halfPagesToShow > totalPages) {
-      startPage = Math.max(1, totalPages - maxPagesToShow + 1);
-    }
-    
-    if (startPage > 1) {
-        pageNumbers.push(<Button key="1" variant="outline" size="icon" onClick={() => handlePageChange(1)}>1</Button>);
-        if (startPage > 2) {
-            pageNumbers.push(<span key="start-ellipsis" className="px-2 py-1">...</span>);
-        }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
+    for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <Button
           key={i}
@@ -64,15 +43,6 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
         </Button>
       );
     }
-
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-             pageNumbers.push(<span key="end-ellipsis" className="px-2 py-1">...</span>);
-        }
-        pageNumbers.push(<Button key={totalPages} variant="outline" size="icon" onClick={() => handlePageChange(totalPages)}>{totalPages}</Button>);
-    }
-
-
     return pageNumbers;
   };
 
