@@ -55,21 +55,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const categoryName = posts[0].category;
   const url = `/category/${categorySlug}`;
   const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk.`;
+  const title = `${categoryName} Category`;
 
   return {
-    title: `${categoryName} Category | blogs.huzi.pk`,
+    title: title,
     description: description,
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: `${categoryName} Category`,
+      title: title,
       description: description,
       url: url,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${categoryName} Category`,
+      title: title,
       description: description,
     },
   }

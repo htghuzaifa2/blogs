@@ -8,6 +8,8 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const Comments = dynamic(() => import('@/components/comments').then(m => m.Comments), { ssr: false });
+const CodeCopyButton = dynamic(() => import('@/components/code-copy-button').then(m => m.CodeCopyButton), { ssr: false });
+
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
@@ -66,7 +68,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
             </article>
-
+            
+            <CodeCopyButton />
             <hr className="my-12 border-border" />
             
             <Comments />

@@ -7,7 +7,6 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import { CommentForm } from "./comment-form";
 import type { z } from "zod";
 import { formSchema } from "./comment-form";
-import { CodeCopyButton } from "./code-copy-button";
 
 export interface Comment {
   name: string;
@@ -29,7 +28,6 @@ export function Comments() {
 
   return (
     <>
-      <CodeCopyButton />
       <section aria-labelledby="comments-heading">
         <Card>
           <CardHeader>
