@@ -21,8 +21,18 @@ export interface Post {
 }
 
 export function getPosts(): Post[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+  let fileNames: string[] = [];
+  try {
+    fileNames = fs.readdirSync(postsDirectory);
+  } catch (err) {
+    // It's okay if the directory doesn't exist, e.g., in a clean git checkout
+    return [];
+  }
+  
   const allPostsData = fileNames.map(fileName => {
+    if (!fileName.endsWith('.mdx')) {
+        return null;
+    }
     const slug = fileName.replace(/\.mdx$/, '');
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -44,7 +54,7 @@ export function getPosts(): Post[] {
       content: matterResult.content,
       htmlContent: ''
     };
-  });
+  }).filter(p => p !== null) as Post[];
 
   return allPostsData.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -79,4 +89,6 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       content: matterResult.content,
     };
   } catch (err) {
-    return
+    return undefined;
+  }
+}

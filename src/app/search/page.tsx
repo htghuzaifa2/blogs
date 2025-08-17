@@ -3,12 +3,15 @@
 
 import { useSearchParams } from 'next/navigation';
 import { getPosts, Post } from '@/lib/posts';
-import { BlogCard } from '@/components/blog-card';
+import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Suspense, useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Levenshtein distance function for fuzzy search
 const levenshteinDistance = (a: string, b: string): number => {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  
   const m = a.length;
   const n = b.length;
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
@@ -39,17 +42,16 @@ function SearchResultsContent() {
   const query = searchParams.get('q') || '';
   const [results, setResults] = useState<Post[]>([]);
   const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Since getPosts uses server-side 'fs', we cannot call it here.
-    // A proper implementation would use a client-side search index
-    // or fetch search results from an API endpoint.
-    // For now, we accept that search will not work until this is implemented.
-    // To avoid breaking the build, we'll fetch a static list.
-    // This is a temporary solution.
+    setLoading(true);
     fetch('/api/posts')
       .then(res => res.json())
-      .then(data => setAllPosts(data));
+      .then(data => {
+        setAllPosts(data);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -59,14 +61,20 @@ function SearchResultsContent() {
       const filteredPosts = allPosts
         .map(post => {
           const title = post.title.toLowerCase();
-          const distance = levenshteinDistance(lowercasedQuery, title);
+          const excerpt = post.excerpt.toLowerCase();
           
-          const threshold = Math.floor(query.length / 2); // Make threshold more forgiving
-
-          if (title.includes(lowercasedQuery)) {
+          const titleDistance = levenshteinDistance(lowercasedQuery, title);
+          const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
+          
+          const distance = Math.min(titleDistance, excerptDistance);
+          
+          // Direct match in title or excerpt gets highest priority
+          if (title.includes(lowercasedQuery) || excerpt.includes(lowercasedQuery)) {
             return { post, relevance: 0 }; 
           }
           
+          const threshold = Math.floor(query.length / 2);
+
           if (distance <= threshold) {
             return { post, relevance: distance };
           }
@@ -82,6 +90,10 @@ function SearchResultsContent() {
       setResults([]);
     }
   }, [query, allPosts]);
+  
+  if (loading) {
+    return <SearchSkeleton />;
+  }
 
   return (
     <>
@@ -101,11 +113,7 @@ function SearchResultsContent() {
       </div>
 
       {results.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
-          {results.map(post => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
+         <PaginatedBlogList posts={results} />
       ) : (
         query && (
           <div className="text-center py-16">

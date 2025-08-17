@@ -1,4 +1,4 @@
-import { BlogCard } from '@/components/blog-card';
+import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { getPosts } from '@/lib/posts';
 
 export default function Home() {
@@ -16,11 +16,7 @@ export default function Home() {
         </div>
 
         {posts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
-            {posts.map(post => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+           <PaginatedBlogList posts={posts} />
         ) : (
           <div className="text-center py-16">
             <h2 className="text-2xl font-headline">No posts yet</h2>

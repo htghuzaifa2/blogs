@@ -1,7 +1,7 @@
 import { getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
-import { BlogCard } from '@/components/blog-card';
 import type { Metadata } from 'next';
+import { PaginatedBlogList } from '@/components/paginated-blog-list';
 
 // Helper to shuffle an array
 function shuffleArray<T>(array: T[]): T[] {
@@ -40,11 +40,8 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
-          {posts.map(post => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
+        <PaginatedBlogList posts={posts} />
+        
       </main>
     </div>
   );
