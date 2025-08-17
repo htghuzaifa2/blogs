@@ -8,14 +8,11 @@ import { Button } from './ui/button';
 import { Menu, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
   Sheet,
   SheetContent,
@@ -29,6 +26,7 @@ interface HeaderProps {
 
 export function Header({ categories }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCategoryOpen, setCategoryOpen] = useState(false);
 
   const navLinks = categories.map(category => ({
     href: `/category/${category.toLowerCase().replace(/ /g, '-')}`,
@@ -37,31 +35,28 @@ export function Header({ categories }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 hidden md:flex">
-           <Link href="/" className="mr-6 flex items-center space-x-2">
+      <div className="container flex h-auto min-h-14 flex-wrap items-center py-2">
+        <div className="mr-4 hidden md:flex items-center flex-wrap">
+           <Link href="/" className="mr-6 flex items-center space-x-2 py-2">
             <span className="font-bold font-headline sm:inline-block">
               blogs.huzi.pk
             </span>
           </Link>
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
-                    {navLinks.map((link) => (
-                      <ListItem
-                        key={link.href}
-                        href={link.href}
-                        title={link.label}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <DropdownMenu open={isCategoryOpen} onOpenChange={setCategoryOpen}>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="flex items-center gap-1">
+                Categories
+                <ChevronDown className={cn("h-4 w-4 transition-transform", isCategoryOpen && "rotate-180")} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {navLinks.map((link) => (
+                 <DropdownMenuItem key={link.href} asChild>
+                    <Link href={link.href}>{link.label}</Link>
+                 </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         
         <div className="flex flex-1 items-center justify-between md:justify-end space-x-2">
@@ -97,33 +92,21 @@ export function Header({ categories }: HeaderProps) {
               </SheetContent>
             </Sheet>
            </div>
+           
+           <div className="md:hidden flex-1">
+             <Link href="/" className="flex items-center space-x-2 justify-center">
+                <span className="font-bold font-headline">
+                  blogs.huzi.pk
+                </span>
+              </Link>
+           </div>
 
-          <div className="flex-1 md:flex-none">
+          <div className="flex items-center justify-end space-x-2">
             <SearchBar />
+            <ThemeSwitcher />
           </div>
-          <ThemeSwitcher />
         </div>
       </div>
     </header>
   )
 }
-
-const ListItem = (({ className, title, href, ...props }) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          href={href!}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
