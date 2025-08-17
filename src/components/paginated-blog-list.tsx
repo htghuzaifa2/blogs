@@ -21,21 +21,62 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
   const endIndex = startIndex + CARDS_PER_PAGE;
   const currentPosts = posts.slice(startIndex, endIndex);
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const maxPagesToShow = 5;
+    const halfPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    let startPage = Math.max(1, currentPage - halfPagesToShow);
+    let endPage = Math.min(totalPages, currentPage + halfPagesToShow);
+
+    if (currentPage - halfPagesToShow < 1) {
+      endPage = Math.min(totalPages, maxPagesToShow);
     }
+
+    if (currentPage + halfPagesToShow > totalPages) {
+      startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+    }
+    
+    if (startPage > 1) {
+        pageNumbers.push(<Button key="1" variant="outline" size="icon" onClick={() => handlePageChange(1)}>1</Button>);
+        if (startPage > 2) {
+            pageNumbers.push(<span key="start-ellipsis" className="px-2 py-1">...</span>);
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <Button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          variant={currentPage === i ? 'default' : 'outline'}
+          size="icon"
+          className="h-9 w-9"
+        >
+          {i}
+        </Button>
+      );
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+             pageNumbers.push(<span key="end-ellipsis" className="px-2 py-1">...</span>);
+        }
+        pageNumbers.push(<Button key={totalPages} variant="outline" size="icon" onClick={() => handlePageChange(totalPages)}>{totalPages}</Button>);
+    }
+
+
+    return pageNumbers;
   };
-  
-  if(posts.length === 0) {
+
+  if (posts.length === 0) {
     return null;
   }
 
@@ -48,25 +89,25 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-4 mt-12">
-          <Button 
-            onClick={handlePrevPage} 
+        <div className="flex items-center justify-center gap-2 mt-12 flex-wrap">
+          <Button
+            onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             variant="outline"
+            size="icon"
+            aria-label="Go to previous page"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Load Previous
+            <ArrowLeft className="h-4 w-4" />
           </Button>
-          <span className="text-sm text-muted-foreground">
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button 
-            onClick={handleNextPage} 
+          {renderPageNumbers()}
+          <Button
+            onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
             variant="outline"
+            size="icon"
+            aria-label="Go to next page"
           >
-            Load More
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
       )}
