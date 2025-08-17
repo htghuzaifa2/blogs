@@ -32,7 +32,7 @@ export function CategoryCarousel({ categories }: CategoryCarouselProps) {
                <Link href={`/category/${category.toLowerCase().replace(/ /g, '-')}`}>
                 <Button 
                   variant="outline" 
-                  className="w-28 h-28 rounded-full flex items-center justify-center text-center p-2 transition-all duration-300 ease-in-out group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:-translate-y-1 font-medium break-words"
+                  className="w-28 h-28 rounded-full flex items-center justify-center text-center p-2 transition-all duration-300 ease-in-out group-hover:border-primary group-hover:shadow-lg group-hover:-translate-y-1 font-medium break-words"
                 >
                   {category}
                 </Button>
