@@ -5,37 +5,39 @@ import type { Post } from '@/lib/posts';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 interface BlogCardProps {
   post: Post;
 }
 
 export function BlogCard({ post }: BlogCardProps) {
-  const hasPlaceholderImage = post.imageUrl.includes('placehold.co');
+  const [imageError, setImageError] = useState(false);
+  const useFallback = imageError || post.imageUrl.includes('placehold.co');
 
   return (
     <Link href={`/posts/${post.slug}`} className="group block">
       <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1 border-border hover:border-primary">
         <CardHeader className="p-0">
-          {hasPlaceholderImage ? (
-             <div className="aspect-w-16 aspect-h-9 flex items-center justify-center p-6 text-center bg-gradient-to-br from-gray-900 to-blue-950">
-              <h2 className="font-headline text-2xl font-bold text-white text-shadow-md">
-                {post.title}
-              </h2>
-            </div>
-          ) : (
-            <div className="aspect-w-16 aspect-h-9 overflow-hidden">
+          <div className="aspect-w-16 aspect-h-9 relative">
+            {useFallback ? (
+              <div className="flex items-center justify-center p-6 text-center bg-background">
+                <h2 className="font-headline text-2xl font-bold text-foreground">
+                  {post.title}
+                </h2>
+              </div>
+            ) : (
               <Image
                 src={post.imageUrl}
                 alt={post.title}
-                width={600}
-                height={400}
+                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 data-ai-hint={post.imageHint}
+                onError={() => setImageError(true)}
               />
-            </div>
-          )}
+            )}
+          </div>
         </CardHeader>
         <CardContent className="p-4 flex-grow">
           {post.category && (
