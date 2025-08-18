@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/posts'
 
@@ -7,9 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const postUrls = posts.map((post) => ({
     url: `${siteUrl}/posts/${post.slug}`,
-    lastModified: new Date(), 
+    lastModified: new Date(post.date), 
     changeFrequency: 'weekly' as const,
-    priority: 0.8,
+    priority: 0.9,
   }));
 
   const categories = new Set(posts.map(post => post.category).filter(Boolean));
@@ -17,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/category/${category!.toLowerCase().replace(/ /g, '-')}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
-      priority: 0.7,
+      priority: 0.8,
   }));
 
   const staticUrls = [
@@ -31,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${siteUrl}/search`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
-        priority: 0.5,
+        priority: 0.4,
     }
   ];
 
