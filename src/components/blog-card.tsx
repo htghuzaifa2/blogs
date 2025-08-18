@@ -10,19 +10,7 @@ interface BlogCardProps {
   post: Post;
 }
 
-const colorClasses = [
-  'from-slate-900 to-slate-700',
-  'from-blue-900 to-blue-700',
-  'from-indigo-900 to-indigo-700',
-  'from-purple-900 to-purple-700',
-  'from-pink-900 to-pink-700',
-];
-
 export function BlogCard({ post }: BlogCardProps) {
-  // Use a simple hash to pick a color class based on the post slug
-  const colorIndex = post.slug.length % colorClasses.length;
-  const colorClass = colorClasses[colorIndex];
-
   const hasPlaceholderImage = post.imageUrl.includes('placehold.co');
 
   return (
@@ -30,7 +18,7 @@ export function BlogCard({ post }: BlogCardProps) {
       <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1 border-border hover:border-primary">
         <CardHeader className="p-0">
           {hasPlaceholderImage ? (
-             <div className={cn("aspect-w-16 aspect-h-9 flex items-center justify-center p-6 text-center bg-gradient-to-br", colorClass)}>
+             <div className="aspect-w-16 aspect-h-9 flex items-center justify-center p-6 text-center bg-gradient-to-br from-gray-900 to-blue-950">
               <h2 className="font-headline text-2xl font-bold text-white text-shadow-md">
                 {post.title}
               </h2>
