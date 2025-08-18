@@ -4,27 +4,50 @@ import Link from 'next/link';
 import type { Post } from '@/lib/posts';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 interface BlogCardProps {
   post: Post;
 }
 
+const colorClasses = [
+  'from-slate-900 to-slate-700',
+  'from-blue-900 to-blue-700',
+  'from-indigo-900 to-indigo-700',
+  'from-purple-900 to-purple-700',
+  'from-pink-900 to-pink-700',
+];
+
 export function BlogCard({ post }: BlogCardProps) {
+  // Use a simple hash to pick a color class based on the post slug
+  const colorIndex = post.slug.length % colorClasses.length;
+  const colorClass = colorClasses[colorIndex];
+
+  const hasPlaceholderImage = post.imageUrl.includes('placehold.co');
+
   return (
     <Link href={`/posts/${post.slug}`} className="group block">
       <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1 border-border hover:border-primary">
         <CardHeader className="p-0">
-          <div className="aspect-w-16 aspect-h-9 overflow-hidden">
-            <Image
-              src={post.imageUrl}
-              alt={post.title}
-              width={600}
-              height={400}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              data-ai-hint={post.imageHint}
-            />
-          </div>
+          {hasPlaceholderImage ? (
+             <div className={cn("aspect-w-16 aspect-h-9 flex items-center justify-center p-6 text-center bg-gradient-to-br", colorClass)}>
+              <h2 className="font-headline text-2xl font-bold text-white text-shadow-md">
+                {post.title}
+              </h2>
+            </div>
+          ) : (
+            <div className="aspect-w-16 aspect-h-9 overflow-hidden">
+              <Image
+                src={post.imageUrl}
+                alt={post.title}
+                width={600}
+                height={400}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                data-ai-hint={post.imageHint}
+              />
+            </div>
+          )}
         </CardHeader>
         <CardContent className="p-4 flex-grow">
           {post.category && (
