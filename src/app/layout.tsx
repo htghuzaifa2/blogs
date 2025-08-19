@@ -27,32 +27,30 @@ const siteUrl = 'https://blogs.huzi.pk';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
+    default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
     template: '%s - blogs.huzi.pk',
   },
-  description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
+  description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
   keywords: [
-    'blogs.huzi.pk', 
-    'latest blogs', 
-    'trending topics', 
-    'lifestyle blogs', 
-    'education articles', 
-    'tech blogs', 
+    'AI blogs', 
+    'technology blogs', 
     'programming tutorials', 
-    'AI insights', 
-    'health tips', 
-    'personal growth blogs', 
-    'online learning', 
-    'software development blogs', 
-    'daily tips', 
-    'news & trends'
+    'coding blogs', 
+    'web development blogs', 
+    'lifestyle blogs', 
+    'education blogs', 
+    'trending topics', 
+    'Pakistan blogs', 
+    'blogging hub', 
+    'online tutorials', 
+    'knowledge hub'
   ],
   openGraph: {
     title: {
-      default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
+      default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
       template: '%s - blogs.huzi.pk',
     },
-    description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
+    description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
     url: siteUrl,
     siteName: 'blogs.huzi.pk',
     images: [
@@ -80,10 +78,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: 'blogs.huzi.pk – Explore AI, Tech, Lifestyle, Education & More',
+      default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
       template: '%s - blogs.huzi.pk',
     },
-    description: 'Read diverse blogs on AI, technology, programming, lifestyle, education, tips, and trending topics. blogs.huzi.pk is your hub for knowledge, tutorials, and insights across every field.',
+    description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
     images: ['https://huzi.pk/img/26PWX8FW/logo.webp'],
   },
   alternates: {
