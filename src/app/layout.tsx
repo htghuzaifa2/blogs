@@ -23,7 +23,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 
-const siteUrl = 'https://blogs.huzi.pk';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blogs.huzi.pk';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

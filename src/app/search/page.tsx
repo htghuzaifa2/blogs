@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { Post } from '@/lib/posts';
-import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Suspense, useEffect, useState } from 'react';
+import type { Post } from '@/lib/posts';
+import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useSearchParams } from 'next/navigation';
 
 // Levenshtein distance function for fuzzy search
 const levenshteinDistance = (a: string, b: string): number => {
@@ -37,63 +37,73 @@ const levenshteinDistance = (a: string, b: string): number => {
   return dp[m][n];
 };
 
-function SearchResultsContent() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get('q') || '';
-  const [results, setResults] = useState<Post[]>([]);
+function SearchResultsContent({ query }: { query: string }) {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(data => {
-        setAllPosts(data);
-      })
-      .finally(() => setLoading(false));
+    async function fetchPosts() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/posts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
+        const posts = await response.json();
+        setAllPosts(posts);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
   }, []);
 
-  useEffect(() => {
-    if (query && allPosts.length > 0) {
-      const lowercasedQuery = query.toLowerCase();
-
-      const filteredPosts = allPosts
-        .map(post => {
-          const title = post.title.toLowerCase();
-          const excerpt = post.excerpt.toLowerCase();
-          
-          const titleDistance = levenshteinDistance(lowercasedQuery, title);
-          const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
-          
-          const distance = Math.min(titleDistance, excerptDistance);
-          
-          // Direct match in title or excerpt gets highest priority
-          if (title.includes(lowercasedQuery) || excerpt.includes(lowercasedQuery)) {
-            return { post, relevance: 0 }; 
-          }
-          
-          const threshold = Math.floor(query.length / 2);
-
-          if (distance <= threshold) {
-            return { post, relevance: distance };
-          }
-          
-          return null;
-        })
-        .filter((item): item is { post: Post; relevance: number } => item !== null)
-        .sort((a, b) => a.relevance - b.relevance)
-        .map(item => item.post);
-
-      setResults(filteredPosts);
-    } else {
-      setResults([]);
-    }
-  }, [query, allPosts]);
-  
   if (loading) {
     return <SearchSkeleton />;
   }
+
+  if (!query) {
+    return (
+      <div className="text-center py-16">
+         <h1 className="text-3xl sm:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
+          Search Results
+        </h1>
+        <p className="mt-2 text-lg text-muted-foreground">
+          Please enter a search term to see results.
+        </p>
+      </div>
+    );
+  }
+  
+  const lowercasedQuery = query.toLowerCase();
+
+  const results = allPosts
+    .map(post => {
+      const title = post.title.toLowerCase();
+      const excerpt = post.excerpt.toLowerCase();
+      
+      const titleDistance = levenshteinDistance(lowercasedQuery, title);
+      const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
+      
+      const distance = Math.min(titleDistance, excerptDistance);
+      
+      if (title.includes(lowercasedQuery) || excerpt.includes(lowercasedQuery)) {
+        return { post, relevance: 0 }; 
+      }
+      
+      const threshold = Math.floor(query.length / 2);
+
+      if (distance <= threshold) {
+        return { post, relevance: distance };
+      }
+      
+      return null;
+    })
+    .filter((item): item is { post: Post; relevance: number } => item !== null)
+    .sort((a, b) => a.relevance - b.relevance)
+    .map(item => item.post);
 
   return (
     <>
@@ -101,31 +111,23 @@ function SearchResultsContent() {
         <h1 className="text-3xl sm:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
           Search Results
         </h1>
-        {query ? (
-           <p className="mt-2 text-lg text-muted-foreground break-words px-4">
-           {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
-         </p>
-        ) : (
-          <p className="mt-2 text-lg text-muted-foreground">
-            Please enter a search term to see results.
-          </p>
-        )}
+        <p className="mt-2 text-lg text-muted-foreground break-words px-4">
+          {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
+        </p>
       </div>
 
       {results.length > 0 ? (
          <PaginatedBlogList posts={results} />
       ) : (
-        query && (
-          <div className="text-center py-16">
-            <h2 className="text-2xl font-headline">No results found</h2>
-            <p className="text-muted-foreground mt-2">
-              We couldn&apos;t find any posts matching your search. Try a different query.
-            </p>
-          </div>
-        )
+        <div className="text-center py-16">
+          <h2 className="text-2xl font-headline">No results found</h2>
+          <p className="text-muted-foreground mt-2">
+            We couldn&apos;t find any posts matching your search. Try a different query.
+          </p>
+        </div>
       )}
     </>
-  )
+  );
 }
 
 function SearchSkeleton() {
@@ -147,7 +149,14 @@ function SearchSkeleton() {
         ))}
       </div>
     </>
-  )
+  );
+}
+
+function SearchPageInternal() {
+    const searchParams = useSearchParams();
+    const query = searchParams.get('q') || '';
+    
+    return <SearchResultsContent query={query} />;
 }
 
 export default function SearchPage() {
@@ -155,7 +164,7 @@ export default function SearchPage() {
     <div className="bg-background">
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Suspense fallback={<SearchSkeleton />}>
-          <SearchResultsContent />
+          <SearchPageInternal />
         </Suspense>
       </main>
     </div>

@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = 'https://blogs.huzi.pk';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blogs.huzi.pk';
   const posts = getPosts();
 
   const postUrls = posts.map((post) => ({
