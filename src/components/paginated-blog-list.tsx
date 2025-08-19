@@ -7,7 +7,7 @@ import { BlogCard } from './blog-card';
 import { Button } from './ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const CARDS_PER_PAGE = 999;
+const CARDS_PER_PAGE = 25;
 
 interface PaginatedBlogListProps {
   posts: Post[];
@@ -28,24 +28,6 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
     }
   };
 
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(
-        <Button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          variant={currentPage === i ? 'default' : 'outline'}
-          size="icon"
-          className="h-9 w-9"
-        >
-          {i}
-        </Button>
-      );
-    }
-    return pageNumbers;
-  };
-
   if (posts.length === 0) {
     return null;
   }
@@ -59,25 +41,29 @@ export function PaginatedBlogList({ posts }: PaginatedBlogListProps) {
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-12 flex-wrap">
+        <div className="flex items-center justify-center gap-4 mt-12">
           <Button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             variant="outline"
-            size="icon"
+            size="lg"
             aria-label="Go to previous page"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Previous
           </Button>
-          {renderPageNumbers()}
+          <span className="text-sm text-muted-foreground">
+            Page {currentPage} of {totalPages}
+          </span>
           <Button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
             variant="outline"
-            size="icon"
+            size="lg"
             aria-label="Go to next page"
           >
-            <ArrowRight className="h-4 w-4" />
+            Next
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       )}
