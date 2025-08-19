@@ -14,7 +14,7 @@ interface BlogCardProps {
 export function BlogCard({ post }: BlogCardProps) {
   return (
     <Link href={`/posts/${post.slug}`} className="group block h-full">
-      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:border-primary/50 group-hover:-translate-y-2 border-border bg-card/50 backdrop-blur-sm">
+      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:border-primary/50 group-hover:-translate-y-1 border-border bg-card/50 backdrop-blur-sm">
         <CardHeader className="p-6">
           {post.category && (
             <Badge variant="secondary" className="mb-3 w-fit">
@@ -26,7 +26,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6 pt-0 flex-grow">
-          <CardDescription className="text-base text-muted-foreground line-clamp-4">
+          <CardDescription className="text-base text-muted-foreground line-clamp-3">
             {post.excerpt}
           </CardDescription>
         </CardContent>

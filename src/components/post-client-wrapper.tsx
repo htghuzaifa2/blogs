@@ -36,7 +36,7 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                     </Badge>
                   </Link>
                 )}
-                <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 break-words">
                   {post.title}
                 </h1>
                 <div className="text-sm text-muted-foreground">
@@ -65,6 +65,9 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                            prose-a:text-primary hover:prose-a:text-primary/80
                            prose-strong:font-semibold
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
+                           prose-table:w-full prose-table:text-sm prose-table:border-collapse
+                           prose-th:bg-muted/50 prose-th:p-2 prose-th:text-left prose-th:font-semibold prose-th:border prose-th:border-border
+                           prose-td:p-2 prose-td:border prose-td:border-border
                            prose-ul:list-disc prose-ol:list-decimal
                            prose-h1:text-3xl prose-h1:sm:text-4xl
                            prose-h2:text-2xl prose-h2:sm:text-3xl

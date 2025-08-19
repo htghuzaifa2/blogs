@@ -125,6 +125,18 @@
   }
   
   .prose {
+    & table {
+      @apply w-full my-6 text-sm border-collapse;
+    }
+    & table p {
+      @apply my-0;
+    }
+    & th {
+      @apply bg-muted/50 p-2 text-left font-semibold border border-border;
+    }
+    & td {
+      @apply p-2 border border-border align-top;
+    }
     & pre {
         @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;
     }
@@ -132,19 +144,10 @@
         @apply font-code;
     }
     & code:not(pre > code) {
-        @apply bg-muted/50 px-1.5 py-1 rounded-md;
+        @apply bg-muted/50 px-1.5 py-1 rounded-md break-words;
     }
     & img {
         @apply rounded-lg shadow-md max-w-full h-auto;
-    }
-    & table {
-        @apply w-full my-6 text-sm border-collapse;
-    }
-    & th {
-        @apply bg-muted/50 p-2 text-left font-semibold border border-border;
-    }
-    & td {
-      @apply p-2 border border-border;
     }
     & h1, & h2, & h3, & h4, & h5, & h6 {
       @apply font-headline tracking-tight;
