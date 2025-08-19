@@ -102,7 +102,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="https://huzi.pk/img/26PWX8FW/logo.webp" type="image/webp" sizes="any" />
       </head>
-      <body className={cn("font-body antialiased", ptSans.variable, playfairDisplay.variable)}>
+      <body className={cn("font-body antialiased overflow-x-hidden transition-colors duration-300", ptSans.variable, playfairDisplay.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
