@@ -11,31 +11,32 @@ import { useSearchParams } from 'next/navigation';
 const levenshteinDistance = (a: string, b: string): number => {
   if (a.length === 0) return b.length;
   if (b.length === 0) return a.length;
-  
-  const m = a.length;
-  const n = b.length;
-  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
 
-  for (let i = 0; i <= m; i++) {
-    dp[i][0] = i;
+  const matrix = Array.from({ length: b.length + 1 }, () =>
+    Array(a.length + 1).fill(0)
+  );
+
+  for (let i = 0; i <= a.length; i++) {
+    matrix[0][i] = i;
   }
-  for (let j = 0; j <= n; j++) {
-    dp[0][j] = j;
+  for (let j = 0; j <= b.length; j++) {
+    matrix[j][0] = j;
   }
 
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      const cost = a[i - 1].toLowerCase() === b[j - 1].toLowerCase() ? 0 : 1;
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1, // Deletion
-        dp[i][j - 1] + 1, // Insertion
-        dp[i - 1][j - 1] + cost // Substitution
+  for (let j = 1; j <= b.length; j++) {
+    for (let i = 1; i <= a.length; i++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1, // insertion
+        matrix[j - 1][i] + 1, // deletion
+        matrix[j - 1][i - 1] + cost // substitution
       );
     }
   }
 
-  return dp[m][n];
+  return matrix[b.length][a.length];
 };
+
 
 function SearchResultsContent({ query }: { query: string }) {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -84,25 +85,39 @@ function SearchResultsContent({ query }: { query: string }) {
       const title = post.title.toLowerCase();
       const excerpt = post.excerpt.toLowerCase();
       
+      let relevance = 0;
+
+      // Prioritize title matches
+      if (title.includes(lowercasedQuery)) {
+        relevance += 10;
+        // Higher score for matches at the beginning of the title
+        if (title.startsWith(lowercasedQuery)) {
+          relevance += 5;
+        }
+      }
+
+      // Add score for excerpt matches
+      if (excerpt.includes(lowercasedQuery)) {
+        relevance += 5;
+      }
+      
+      // Use Levenshtein distance for fuzzy matching, but with less weight
+      // The lower the distance, the more similar the strings are. We invert it for scoring.
       const titleDistance = levenshteinDistance(lowercasedQuery, title);
       const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
-      
-      const distance = Math.min(titleDistance, excerptDistance);
-      
-      if (title.includes(lowercasedQuery) || excerpt.includes(lowercasedQuery)) {
-        return { post, relevance: 0 }; 
-      }
-      
-      const threshold = Math.floor(query.length / 2);
+      const maxLen = Math.max(query.length, title.length, excerpt.length);
 
-      if (distance <= threshold) {
-        return { post, relevance: distance };
+      if (titleDistance < query.length / 2) { // Only consider close matches
+          relevance += (maxLen - titleDistance) / maxLen * 2;
       }
-      
-      return null;
+      if (excerptDistance < query.length) {
+          relevance += (maxLen - excerptDistance) / maxLen;
+      }
+
+      return relevance > 0 ? { post, relevance } : null;
     })
     .filter((item): item is { post: Post; relevance: number } => item !== null)
-    .sort((a, b) => a.relevance - b.relevance)
+    .sort((a, b) => b.relevance - a.relevance) // Sort by highest relevance score
     .map(item => item.post);
 
   return (
