@@ -60,18 +60,14 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
 
               <div 
                 className="prose prose-lg dark:prose-invert max-w-none 
-                           prose-headings:font-headline prose-headings:tracking-tight 
                            prose-p:leading-relaxed prose-p:font-body
                            prose-a:text-primary hover:prose-a:text-primary/80
                            prose-strong:font-semibold
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
-                           prose-table:w-full prose-table:text-sm prose-table:border-collapse
-                           prose-th:bg-muted/50 prose-th:p-2 prose-th:text-left prose-th:font-semibold prose-th:border prose-th:border-border
-                           prose-td:p-2 prose-td:border prose-td:border-border
-                           prose-ul:list-disc prose-ol:list-decimal
+                           prose-headings:font-headline prose-headings:tracking-tight 
                            prose-h1:text-3xl prose-h1:sm:text-4xl
                            prose-h2:text-2xl prose-h2:sm:text-3xl
-                           [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
+                           [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light [&>p:first-of-type]:text-foreground"
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
             </article>
