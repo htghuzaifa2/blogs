@@ -2,7 +2,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { getPosts, Post } from '@/lib/posts';
+import { Post } from '@/lib/posts';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Suspense, useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -98,7 +98,7 @@ function SearchResultsContent() {
   return (
     <>
       <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
+        <h1 className="text-3xl sm:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
           Search Results
         </h1>
         {query ? (
@@ -135,7 +135,7 @@ function SearchSkeleton() {
         <Skeleton className="h-10 w-2/3 mx-auto" />
         <Skeleton className="h-6 w-1/3 mx-auto mt-4" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="space-y-4">
             <Skeleton className="h-48 w-full" />

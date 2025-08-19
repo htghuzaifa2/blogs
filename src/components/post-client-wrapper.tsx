@@ -16,7 +16,7 @@ interface PostClientWrapperProps {
 }
 
 export function PostClientWrapper({ post }: PostClientWrapperProps) {
-  const hasValidImage = post.imageUrl && !post.imageUrl.includes('placehold.co');
+  const hasImage = post.imageUrl;
   
   return (
     <div className="bg-background">
@@ -36,7 +36,7 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                     </Badge>
                   </Link>
                 )}
-                <h1 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
                   {post.title}
                 </h1>
                 <div className="text-sm text-muted-foreground">
@@ -44,7 +44,7 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                 </div>
               </header>
 
-              {hasValidImage && (
+              {hasImage && (
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
                   <Image
                     src={post.imageUrl}
@@ -66,6 +66,8 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                            prose-strong:font-semibold
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
                            prose-ul:list-disc prose-ol:list-decimal
+                           prose-h1:text-3xl prose-h1:sm:text-4xl
+                           prose-h2:text-2xl prose-h2:sm:text-3xl
                            [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light"
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
