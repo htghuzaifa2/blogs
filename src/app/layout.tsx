@@ -107,6 +107,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem
+          disableTransitionOnChange={false}
         >
           <div className="flex flex-col min-h-screen">
             <Header categories={categories} />
