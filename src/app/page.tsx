@@ -20,13 +20,13 @@ export default function Home() {
             A collection of thoughts, stories, and ideas.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="w-full sm:w-48 transition-transform hover:scale-105">
+            <Button asChild size="lg" className="w-full sm:w-48 transition-transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-primary/40">
               <Link href="https://huzi.pk/" target="_blank" rel="noopener noreferrer">
                 <ShoppingBag className="mr-2 h-5 w-5" />
                 Shop
               </Link>
             </Button>
-            <Button asChild variant="secondary" size="lg" className="w-full sm:w-48 transition-transform hover:scale-105">
+            <Button asChild variant="secondary" size="lg" className="w-full sm:w-48 transition-transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-secondary/40">
               <Link href="https://htghuzaifa.huzi.pk/" target="_blank" rel="noopener noreferrer">
                 <UserCircle className="mr-2 h-5 w-5" />
                 Meet The Creator
