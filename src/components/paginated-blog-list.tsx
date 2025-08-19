@@ -7,7 +7,7 @@ import { BlogCard } from './blog-card';
 import { Button } from './ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const CARDS_PER_PAGE = 30;
+const CARDS_PER_PAGE = 999;
 
 interface PaginatedBlogListProps {
   posts: Post[];

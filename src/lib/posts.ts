@@ -27,6 +27,9 @@ export function getPosts(): Post[] {
     // Ensure the directory exists before attempting to read it.
     if (fs.existsSync(postsDirectory)) {
       fileNames = fs.readdirSync(postsDirectory);
+    } else {
+      console.warn(`Posts directory not found at: ${postsDirectory}`);
+      return [];
     }
   } catch (err) {
     console.error('Could not read posts directory:', err);
@@ -44,8 +47,8 @@ export function getPosts(): Post[] {
         const { data, content } = matter(fileContents);
 
         // Basic validation to ensure required fields are present
-        if (!data.title || !data.date || !data.excerpt) {
-            console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
+        if (!data.title || !data.date || !data.excerpt || !data.author || !data.category) {
+            console.warn(`Skipping post "${fileName}" due to missing frontmatter (title, date, excerpt, author, or category).`);
             return null;
         }
 
@@ -73,7 +76,12 @@ export function getPosts(): Post[] {
 
   // Sort posts by date in descending order (newest first)
   return allPostsData.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+    try {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    } catch (e) {
+      console.error('Invalid date format in one of the posts.');
+      return 0;
+    }
   });
 }
 
@@ -81,6 +89,10 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   
   try {
+    if (!fs.existsSync(fullPath)) {
+      console.warn(`Post with slug "${slug}" not found at path: ${fullPath}`);
+      return undefined;
+    }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
@@ -105,7 +117,7 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       }),
     };
   } catch (err) {
-    // This can happen if the file doesn't exist, which is a valid case.
+    console.error(`Error reading or processing post with slug "${slug}":`, err);
     return undefined;
   }
 }
