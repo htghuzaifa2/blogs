@@ -15,12 +15,13 @@ interface BlogCardProps {
 
 export function BlogCard({ post }: BlogCardProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const hasImage = post.imageUrl;
+  const hasImage = post.imageUrl && !imageError;
 
   return (
     <Link href={`/posts/${post.slug}`} className="group block h-full">
@@ -35,6 +36,7 @@ export function BlogCard({ post }: BlogCardProps) {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 data-ai-hint={post.imageHint}
+                onError={() => setImageError(true)}
               />
             </div>
           </CardHeader>
