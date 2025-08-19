@@ -1,6 +1,9 @@
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { CategoryCarousel } from '@/components/category-carousel';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { getPosts } from '@/lib/posts';
+import { ShoppingBag, UserCircle } from 'lucide-react';
 
 export default function Home() {
   const posts = getPosts();
@@ -16,6 +19,20 @@ export default function Home() {
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
             A collection of thoughts, stories, and ideas.
           </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild size="lg" className="w-full sm:w-48 transition-transform hover:scale-105">
+              <Link href="https://huzi.pk/" target="_blank" rel="noopener noreferrer">
+                <ShoppingBag className="mr-2 h-5 w-5" />
+                Shop
+              </Link>
+            </Button>
+            <Button asChild variant="secondary" size="lg" className="w-full sm:w-48 transition-transform hover:scale-105">
+              <Link href="https://htghuzaifa.huzi.pk/" target="_blank" rel="noopener noreferrer">
+                <UserCircle className="mr-2 h-5 w-5" />
+                Meet The Creator
+              </Link>
+            </Button>
+          </div>
         </div>
         
         {categories.length > 0 && <CategoryCarousel categories={categories} />}
