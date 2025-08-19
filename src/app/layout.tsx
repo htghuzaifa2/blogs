@@ -8,6 +8,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { getPosts } from '@/lib/posts';
 import { cn } from '@/lib/utils';
+import { ClickTracker } from '@/components/click-tracker';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -109,12 +110,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <div className="flex flex-col min-h-screen">
-            <Header categories={categories} />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
+          <ClickTracker>
+            <div className="flex flex-col min-h-screen">
+              <Header categories={categories} />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </ClickTracker>
         </ThemeProvider>
       </body>
     </html>
