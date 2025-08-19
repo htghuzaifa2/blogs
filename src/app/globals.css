@@ -142,17 +142,23 @@
   }
   
   .prose {
+    & .table-container {
+      @apply my-6 overflow-hidden rounded-lg border shadow-md;
+    }
     & table {
-      @apply w-full my-6 text-sm border-collapse;
+      @apply w-full text-sm my-0;
     }
     & table p {
       @apply my-0;
     }
     & th {
-      @apply bg-muted/50 p-2 text-left font-semibold border border-border;
+      @apply p-3 text-left font-semibold bg-muted;
     }
     & td {
-      @apply p-2 border border-border align-top;
+      @apply p-3 align-top border-t border-border;
+    }
+    & tbody tr:nth-child(even) {
+      @apply bg-muted/50;
     }
     & pre {
         @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;

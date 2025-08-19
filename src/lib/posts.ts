@@ -85,6 +85,11 @@ export function getPosts(): Post[] {
   });
 }
 
+function wrapTablesInContainer(htmlContent: string) {
+  // This regex is simple and might not cover all edge cases, but it works for basic table wrapping.
+  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
+}
+
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   
@@ -99,7 +104,10 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
     const processedContent = await remark()
       .use(html, { sanitize: false })
       .process(content);
-    const htmlContent = processedContent.toString();
+    let htmlContent = processedContent.toString();
+
+    // Wrap tables for better styling control
+    htmlContent = wrapTablesInContainer(htmlContent);
 
     return {
       id: slug,
