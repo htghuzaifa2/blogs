@@ -1,61 +1,41 @@
 
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Post } from '@/lib/posts';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
 
 interface BlogCardProps {
   post: Post;
 }
 
 export function BlogCard({ post }: BlogCardProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  const [imageError, setImageError] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const hasImage = post.imageUrl && !imageError;
-
   return (
     <Link href={`/posts/${post.slug}`} className="group block h-full">
-      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1 border-border hover:border-primary">
-        {isMounted && hasImage && (
-          <CardHeader className="p-0">
-            <div className="aspect-w-16 aspect-h-9 relative">
-              <Image
-                src={post.imageUrl}
-                alt={post.title}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                data-ai-hint={post.imageHint}
-                onError={() => setImageError(true)}
-              />
-            </div>
-          </CardHeader>
-        )}
-        <CardContent className={cn("p-4 flex-grow", !hasImage && "pt-6")}>
+      <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:border-primary/50 group-hover:-translate-y-2 border-border bg-card/50 backdrop-blur-sm">
+        <CardHeader className="p-6">
           {post.category && (
-            <Badge variant="secondary" className="mb-2">
+            <Badge variant="secondary" className="mb-3 w-fit">
               {post.category}
             </Badge>
           )}
-          <CardTitle className="font-headline text-lg leading-tight mb-2 group-hover:text-primary">
+          <CardTitle className="font-headline text-xl md:text-2xl leading-tight group-hover:text-primary transition-colors">
             {post.title}
           </CardTitle>
-          <p className="text-sm text-muted-foreground line-clamp-3">
+        </CardHeader>
+        <CardContent className="p-6 pt-0 flex-grow">
+          <CardDescription className="text-base text-muted-foreground line-clamp-4">
             {post.excerpt}
-          </p>
+          </CardDescription>
         </CardContent>
-        <CardFooter className="p-4 pt-0">
-           <p className="text-xs text-muted-foreground">By {post.author}</p>
+        <CardFooter className="p-6 pt-2 flex justify-between items-center text-sm">
+           <p className="text-muted-foreground">By {post.author}</p>
+           <div className="flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+             <span>Read More</span>
+             <ArrowRight className="ml-2 h-4 w-4" />
+           </div>
         </CardFooter>
       </Card>
     </Link>
