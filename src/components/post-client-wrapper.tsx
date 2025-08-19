@@ -16,6 +16,8 @@ interface PostClientWrapperProps {
 }
 
 export function PostClientWrapper({ post }: PostClientWrapperProps) {
+  const hasValidImage = post.imageUrl && !post.imageUrl.includes('placehold.co');
+  
   return (
     <div className="bg-background">
       <main className="py-8 md:py-12">
@@ -34,7 +36,7 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                     </Badge>
                   </Link>
                 )}
-                <h1 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                <h1 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
                   {post.title}
                 </h1>
                 <div className="text-sm text-muted-foreground">
@@ -42,17 +44,19 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
                 </div>
               </header>
 
-              <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
-                <Image
-                  src={post.imageUrl}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  data-ai-hint={post.imageHint}
-                  priority
-                />
-              </div>
+              {hasValidImage && (
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
+                  <Image
+                    src={post.imageUrl}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 896px"
+                    className="object-cover"
+                    data-ai-hint={post.imageHint}
+                    priority
+                  />
+                </div>
+              )}
 
               <div 
                 className="prose prose-lg dark:prose-invert max-w-none 
