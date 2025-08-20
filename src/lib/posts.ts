@@ -21,6 +21,11 @@ export interface Post {
   date: string;
 }
 
+// A helper function to check if a post has all required frontmatter fields
+function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; imageUrl: string; imageHint: string; } {
+    return data.title && data.date && data.excerpt && data.author && data.category;
+}
+
 export function getPosts(): Post[] {
   let fileNames: string[] = [];
   try {
@@ -46,8 +51,8 @@ export function getPosts(): Post[] {
 
         const { data, content } = matter(fileContents);
 
-        // Basic validation to ensure required fields are present
-        if (!data.title || !data.date || !data.excerpt || !data.author || !data.category) {
+        // Use the validation function to ensure all required fields are present
+        if (!isValidPostData(data)) {
             console.warn(`Skipping post "${fileName}" due to missing frontmatter (title, date, excerpt, author, or category).`);
             return null;
         }
@@ -100,6 +105,12 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
+
+    // Validate frontmatter for single post fetch as well
+    if (!isValidPostData(data)) {
+      console.warn(`Post with slug "${slug}" is invalid due to missing frontmatter.`);
+      return undefined;
+    }
 
     const processedContent = await remark()
       .use(html, { sanitize: false })
