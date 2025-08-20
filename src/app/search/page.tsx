@@ -1,14 +1,11 @@
 
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import type { Post } from '@/lib/posts';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchParams } from 'next/navigation';
-import useSWR from 'swr';
-
-const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 // Levenshtein distance function for fuzzy search
 const levenshteinDistance = (a: string, b: string): number => {
@@ -40,25 +37,7 @@ const levenshteinDistance = (a: string, b: string): number => {
   return matrix[b.length][a.length];
 };
 
-function SearchResultsContent({ query }: { query: string }) {
-  // The search page is a client component, so it must fetch data from an API route.
-  // We re-introduce a slimmed-down API route just for this purpose.
-  const { data: allPosts, error } = useSWR<Post[]>('/api/posts/search', fetcher);
-  const loading = !allPosts && !error;
-
-  if (loading) {
-    return <SearchSkeleton />;
-  }
-
-  if (error || !allPosts) {
-      return (
-        <div className="text-center py-16">
-            <h2 className="text-2xl font-headline">Error loading posts</h2>
-            <p className="text-muted-foreground mt-2">Could not fetch posts. Please try again later.</p>
-        </div>
-      )
-  }
-
+function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Post[] }) {
   if (!query) {
     return (
       <div className="text-center py-16">
@@ -81,26 +60,22 @@ function SearchResultsContent({ query }: { query: string }) {
       
       let relevance = 0;
 
-      // Prioritize title matches
       if (title.includes(lowercasedQuery)) {
         relevance += 10;
-        // Higher score for matches at the beginning of the title
         if (title.startsWith(lowercasedQuery)) {
           relevance += 5;
         }
       }
 
-      // Add score for excerpt matches
       if (excerpt.includes(lowercasedQuery)) {
         relevance += 5;
       }
       
-      // Use Levenshtein distance for fuzzy matching, but with less weight
       const titleDistance = levenshteinDistance(lowercasedQuery, title);
       const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
       const maxLen = Math.max(query.length, title.length, excerpt.length);
 
-      if (titleDistance < query.length / 2) { // Only consider close matches
+      if (titleDistance < query.length / 2) {
           relevance += (maxLen - titleDistance) / maxLen * 2;
       }
       if (excerptDistance < query.length) {
@@ -110,7 +85,7 @@ function SearchResultsContent({ query }: { query: string }) {
       return relevance > 0 ? { post, relevance } : null;
     })
     .filter((item): item is { post: Post; relevance: number } => item !== null)
-    .sort((a, b) => b.relevance - a.relevance) // Sort by highest relevance score
+    .sort((a, b) => b.relevance - a.relevance)
     .map(item => item.post);
 
   return (
@@ -164,7 +139,29 @@ function SearchPageInternal() {
     const searchParams = useSearchParams();
     const query = searchParams.get('q') || '';
     
-    return <SearchResultsContent query={query} />;
+    // We now fetch the post data on the client side once from a static JSON file
+    // that will be created at build time. This avoids any server-side logic on this route.
+    const [allPosts, setAllPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      fetch('/search-data.json')
+        .then(res => res.json())
+        .then(data => {
+          setAllPosts(data);
+          setLoading(false);
+        })
+        .catch(err => {
+            console.error("Failed to load search data:", err);
+            setLoading(false);
+        });
+    }, []);
+
+    if(loading) {
+      return <SearchSkeleton />;
+    }
+
+    return <SearchResultsContent query={query} allPosts={allPosts} />;
 }
 
 export default function SearchPage() {
