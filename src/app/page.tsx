@@ -3,24 +3,11 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { CategoryCarousel } from '@/components/category-carousel';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
-import type { Post } from '@/lib/posts';
+import { getPosts } from '@/lib/posts';
 import { ShoppingBag, User } from 'lucide-react';
 
-// This function now fetches data from the API endpoint
-async function fetchPosts(): Promise<Post[]> {
-  // Construct a base URL that works in both server and client environments
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || `http://localhost:${process.env.PORT || 3000}`;
-  const response = await fetch(`${baseUrl}/api/posts`, { cache: 'no-store' });
-  if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch posts');
-  }
-  return response.json();
-}
-
-
 export default async function Home() {
-  const posts = await fetchPosts();
+  const posts = getPosts();
   const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)));
   
   return (

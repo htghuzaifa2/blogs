@@ -1,11 +1,14 @@
 
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import type { Post } from '@/lib/posts';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchParams } from 'next/navigation';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 // Levenshtein distance function for fuzzy search
 const levenshteinDistance = (a: string, b: string): number => {
@@ -37,32 +40,23 @@ const levenshteinDistance = (a: string, b: string): number => {
   return matrix[b.length][a.length];
 };
 
-
 function SearchResultsContent({ query }: { query: string }) {
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/posts');
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts');
-        }
-        const posts = await response.json();
-        setAllPosts(posts);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchPosts();
-  }, []);
+  // The search page is a client component, so it must fetch data from an API route.
+  // We re-introduce a slimmed-down API route just for this purpose.
+  const { data: allPosts, error } = useSWR<Post[]>('/api/posts/search', fetcher);
+  const loading = !allPosts && !error;
 
   if (loading) {
     return <SearchSkeleton />;
+  }
+
+  if (error || !allPosts) {
+      return (
+        <div className="text-center py-16">
+            <h2 className="text-2xl font-headline">Error loading posts</h2>
+            <p className="text-muted-foreground mt-2">Could not fetch posts. Please try again later.</p>
+        </div>
+      )
   }
 
   if (!query) {
@@ -102,7 +96,6 @@ function SearchResultsContent({ query }: { query: string }) {
       }
       
       // Use Levenshtein distance for fuzzy matching, but with less weight
-      // The lower the distance, the more similar the strings are. We invert it for scoring.
       const titleDistance = levenshteinDistance(lowercasedQuery, title);
       const excerptDistance = levenshteinDistance(lowercasedQuery, excerpt);
       const maxLen = Math.max(query.length, title.length, excerpt.length);
