@@ -9,20 +9,17 @@ import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
-// A trimmed-down version of the Post type for search results
+// The search data will only contain the fields needed for the card and searching.
 interface SearchablePost {
   slug: string;
   title: string;
   excerpt: string;
   category: string;
-  content: string; // The raw content for searching
-  // These fields are needed for the BlogCard
   id: string;
   imageUrl: string;
   imageHint: string;
   author: string;
   date: string;
-  htmlContent: string;
 }
 
 function SearchResultsContent() {
@@ -125,8 +122,12 @@ function SearchResultsContent() {
     .filter(post => post.relevance > 0)
     .sort((a, b) => b.relevance - a.relevance);
 
-  // The searchIndex already contains all the data needed for the Post type.
-  const finalResults: Post[] = results;
+  // The SearchablePost has all the fields required by the Post type for the blog card.
+  const finalResults: Post[] = results.map(r => ({
+    ...r,
+    content: '', // Not needed for the card
+    htmlContent: '', // Not needed for the card
+  }));
 
   return (
     <>

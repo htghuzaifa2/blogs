@@ -1,83 +1,60 @@
+const fs = require('fs');
+const path = require('path');
+const { getPosts } = require('../src/lib/posts.js');
 
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+// This script needs to run in a context where it can import from `posts.ts`.
+// Next.js uses a mix of module systems. For a simple build script, CommonJS (`require`) is more robust.
+// We are renaming `posts.ts` to `posts.js` temporarily in the require call to avoid module issues.
 
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
-const outputDirectory = path.join(process.cwd(), 'public');
-const outputFile = path.join(outputDirectory, 'search-data.json');
-
-// A helper function to check if a post has all required frontmatter fields
-function isValidPostData(data) {
-    return data.title && data.date && data.excerpt && data.author && data.category && data.imageUrl && data.imageHint;
-}
-
-function getSearchablePosts() {
-  let fileNames = [];
+async function generateSearchData() {
+  console.log('Starting to generate search data...');
   try {
-    if (fs.existsSync(postsDirectory)) {
-      fileNames = fs.readdirSync(postsDirectory);
-    } else {
-      console.warn(`Posts directory not found at: ${postsDirectory}`);
-      return [];
+    const posts = getPosts(); // This function reads from the file system
+    
+    // We only need a subset of data for searching and displaying results.
+    const searchData = posts.map(post => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      category: post.category,
+      // Fields needed for the BlogCard component
+      id: post.id,
+      imageUrl: post.imageUrl,
+      imageHint: post.imageHint,
+      author: post.author,
+      date: post.date,
+    }));
+
+    const publicDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
     }
-  } catch (err) {
-    console.error('Could not read posts directory:', err);
-    return [];
-  }
-  
-  const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.mdx'))
-    .map(fileName => {
-      try {
-        const slug = fileName.replace(/\.mdx$/, '');
-        const fullPath = path.join(postsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-        const { data, content } = matter(fileContents);
-
-        if (!isValidPostData(data)) {
-            console.warn(`Skipping post "${fileName}" for search index due to missing frontmatter.`);
-            return null;
-        }
-
-        // Return a leaner object for the search index
-        return {
-          id: slug,
-          slug,
-          title: data.title,
-          excerpt: data.excerpt,
-          imageUrl: data.imageUrl,
-          imageHint: data.imageHint,
-          author: data.author,
-          category: data.category,
-          date: data.date,
-          content: content, // Keep raw content for searching
-          htmlContent: '', // Not needed for search data
-        };
-      } catch (e) {
-          console.error(`Error processing post "${fileName}" for search index:`, e);
-          return null;
-      }
-    })
-    .filter(p => p !== null);
-
-  return allPostsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-function generateSearchData() {
-  try {
-    const posts = getSearchablePosts();
-    if (!fs.existsSync(outputDirectory)) {
-      fs.mkdirSync(outputDirectory, { recursive: true });
-    }
-    fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-    console.log(`✅ Search data successfully generated at ${outputFile}`);
-    console.log(`Indexed ${posts.length} posts.`);
+    const filePath = path.join(publicDir, 'search-data.json');
+    fs.writeFileSync(filePath, JSON.stringify(searchData, null, 2));
+    
+    console.log(`Successfully generated search-data.json with ${searchData.length} posts.`);
   } catch (error) {
-    console.error('❌ Error generating search data:', error);
-    process.exit(1); // Exit with error code to fail the build if search indexing fails
+    console.error('Error generating search data:', error);
+    process.exit(1); // Exit with an error code
   }
 }
 
-generateSearchData();
+// Rename posts.ts to posts.js to allow `require` to work
+const postsLibPath = path.join(process.cwd(), 'src', 'lib', 'posts.ts');
+const postsLibPathJs = path.join(process.cwd(), 'src', 'lib', 'posts.js');
+
+try {
+  fs.renameSync(postsLibPath, postsLibPathJs);
+  generateSearchData().then(() => {
+    // Rename it back after the script is done.
+    fs.renameSync(postsLibPathJs, postsLibPath);
+  });
+} catch (err) {
+  console.error('Error renaming posts.ts for build script:', err);
+  // If it failed, try to rename it back if the js file exists
+  if (fs.existsSync(postsLibPathJs) && !fs.existsSync(postsLibPath)) {
+      fs.renameSync(postsLibPathJs, postsLibPath);
+  }
+  process.exit(1);
+}
