@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -23,7 +22,7 @@ export interface Post {
 
 // A helper function to check if a post has all required frontmatter fields
 function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; imageUrl: string; imageHint: string; } {
-    return data.title && data.date && data.excerpt && data.author && data.category;
+    return data.title && data.date && data.excerpt && data.author && data.category && data.imageUrl && data.imageHint;
 }
 
 export function getPosts(): Post[] {
@@ -53,7 +52,7 @@ export function getPosts(): Post[] {
 
         // Use the validation function to ensure all required fields are present
         if (!isValidPostData(data)) {
-            console.warn(`Skipping post "${fileName}" due to missing frontmatter (title, date, excerpt, author, or category).`);
+            console.warn(`Skipping post "${fileName}" due to missing frontmatter (title, date, excerpt, author, category, imageUrl, or imageHint).`);
             return null;
         }
 
