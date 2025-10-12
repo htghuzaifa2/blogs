@@ -92,8 +92,8 @@ export function getPosts(): Post[] {
 }
 
 function wrapTablesInContainer(htmlContent: string) {
-  // This regex is simple and might not cover all edge cases, but it works for basic table wrapping.
-  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
+  // This regex wraps each <table>...</table> in its own container div.
+  return htmlContent.replace(/(<table[\s\S]*?<\/table>)/g, '<div class="table-container">$1</div>');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
