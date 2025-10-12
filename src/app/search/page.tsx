@@ -6,6 +6,8 @@ import type { Post } from '@/lib/posts';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchParams } from 'next/navigation';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { AlertTriangle } from 'lucide-react';
 
 // A trimmed-down version of the Post type for search results
 interface SearchablePost {
@@ -27,28 +29,42 @@ function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [searchIndex, setSearchIndex] = useState<SearchablePost[]>([]);
-  const [loadingIndex, setLoadingIndex] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetch('/search-data.json')
       .then(res => {
         if (!res.ok) {
-          throw new Error(`Failed to fetch: ${res.statusText}`);
+           throw new Error(`Search service is unavailable (HTTP ${res.status}). Please try again later.`);
         }
         return res.json();
       })
       .then((data: SearchablePost[]) => {
         setSearchIndex(data);
-        setLoadingIndex(false);
+        setLoading(false);
       })
       .catch(err => {
           console.error("Failed to load search data:", err);
-          setLoadingIndex(false);
+          setError(err.message || "An unexpected error occurred while fetching search results.");
+          setLoading(false);
       });
   }, []);
 
-  if (loadingIndex) {
+  if (loading) {
       return <SearchSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
   }
 
   if (!query) {
@@ -81,16 +97,11 @@ function SearchResultsContent() {
 
       // 2. All query words in the title
       const queryWords = lowercasedQuery.split(' ').filter(w => w);
-      const titleWords = title.split(' ');
-      let matches = 0;
       queryWords.forEach(word => {
         if (title.includes(word)) {
-          matches++;
+          relevance += 20;
         }
       });
-      if (matches > 0) {
-        relevance += matches * 20;
-      }
       
       // 3. Full phrase match in excerpt
        if (excerpt.includes(lowercasedQuery)) {
