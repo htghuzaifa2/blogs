@@ -1,15 +1,11 @@
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-// This script runs at build time to generate a single JSON file
-// containing all the data needed for the client-side search page.
-
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
-const publicDirectory = path.join(process.cwd(), 'public');
+const outputFilePath = path.join(process.cwd(), 'public/search-data.json');
 
-function getPostsForSearch() {
+function getPosts() {
   let fileNames = [];
   try {
     if (fs.existsSync(postsDirectory)) {
@@ -22,7 +18,7 @@ function getPostsForSearch() {
     console.error('Could not read posts directory:', err);
     return [];
   }
-  
+
   const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
     .map(fileName => {
@@ -31,11 +27,11 @@ function getPostsForSearch() {
         const fullPath = path.join(postsDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-        const { data } = matter(fileContents);
+        const { data, content } = matter(fileContents);
 
-        // We only need a subset of data for the search page
-        if (!data.title || !data.excerpt || !data.category || !data.author) {
-            return null;
+        if (!data.title || !data.date || !data.excerpt || !data.author || !data.category || !data.imageUrl || !data.imageHint) {
+          console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
+          return null;
         }
 
         return {
@@ -43,32 +39,40 @@ function getPostsForSearch() {
           slug,
           title: data.title,
           excerpt: data.excerpt,
-          category: data.category,
+          content: content, // include content for better search
+          imageUrl: data.imageUrl,
+          imageHint: data.imageHint,
           author: data.author,
-          imageUrl: data.imageUrl || '',
-          imageHint: data.imageHint || '',
+          category: data.category,
+          date: data.date,
+          keywords: data.keywords || [],
         };
       } catch (e) {
-          console.error(`Error processing post "${fileName}" for search data:`, e);
-          return null;
+        console.error(`Error processing post "${fileName}":`, e);
+        return null;
       }
     })
     .filter(p => p !== null);
 
-  return allPostsData;
+  return allPostsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 function generateSearchData() {
-    console.log('Generating search data...');
-    const searchData = getPostsForSearch();
-    const filePath = path.join(publicDirectory, 'search-data.json');
+  const posts = getPosts();
+  const searchData = posts.map(post => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    content: post.content, // Adding content to the search index
+  }));
 
-    if (!fs.existsSync(publicDirectory)) {
-        fs.mkdirSync(publicDirectory);
-    }
-
-    fs.writeFileSync(filePath, JSON.stringify(searchData, null, 2));
-    console.log(`Search data successfully generated at ${filePath}`);
+  try {
+    fs.writeFileSync(outputFilePath, JSON.stringify(searchData, null, 2));
+    console.log(`Successfully generated search data for ${posts.length} posts at ${outputFilePath}`);
+  } catch (err) {
+    console.error('Failed to write search data file:', err);
+  }
 }
 
 generateSearchData();
