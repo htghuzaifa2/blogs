@@ -46,10 +46,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const url = `/posts/${post.slug}`;
+  const keywords = post.keywords || [];
 
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: keywords,
     alternates: {
       canonical: url,
     },
