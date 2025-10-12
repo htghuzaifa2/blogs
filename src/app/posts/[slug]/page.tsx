@@ -11,11 +11,25 @@ export default async function PostPage({ params }: { params: { slug: string } })
     notFound();
   }
 
-  // Find related posts from the same category
   const allPosts = getPosts();
-  const relatedPosts = allPosts
+
+  // 1. Get up to 6 posts from the same category
+  const sameCategoryPosts = allPosts
     .filter(p => p.category === post.category && p.slug !== post.slug)
-    .slice(0, 3);
+    .slice(0, 6);
+
+  // 2. Get 5 random posts, excluding the current post and already selected related posts
+  const selectedSlugs = new Set([post.slug, ...sameCategoryPosts.map(p => p.slug)]);
+  
+  const otherPosts = allPosts.filter(p => !selectedSlugs.has(p.slug));
+  
+  // Shuffle the remaining posts
+  const shuffledOthers = otherPosts.sort(() => 0.5 - Math.random());
+  
+  const randomPosts = shuffledOthers.slice(0, 5);
+
+  // 3. Combine them
+  const relatedPosts = [...sameCategoryPosts, ...randomPosts];
 
   return (
     <PostClientWrapper post={post} relatedPosts={relatedPosts} />
