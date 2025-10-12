@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Suspense, useState, useEffect } from 'react';
+import { Suspense, useState, useEffect, useMemo } from 'react';
 import type { Post } from '@/lib/posts';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -23,6 +23,7 @@ function SearchResultsContent() {
   const [searchIndex, setSearchIndex] = useState<SearchablePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [results, setResults] = useState<Post[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -44,6 +45,67 @@ function SearchResultsContent() {
           setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (loading || !query || searchIndex.length === 0) {
+      setResults([]);
+      return;
+    }
+
+    const lowercasedQuery = query.toLowerCase();
+    const queryWords = lowercasedQuery.split(' ').filter(w => w);
+
+    const calculatedResults = searchIndex
+      .map(post => {
+        const title = post.title.toLowerCase();
+        const excerpt = post.excerpt.toLowerCase();
+        
+        let relevance = 0;
+
+        // 1. Exact match at the start of the title (highest priority)
+        if (title.startsWith(lowercasedQuery)) {
+          relevance += 100;
+        }
+
+        // 2. All query words in the title
+        queryWords.forEach(word => {
+          if (title.includes(word)) {
+            relevance += 20;
+          }
+        });
+        
+        // 3. Full phrase match in excerpt
+        if (excerpt.includes(lowercasedQuery)) {
+          relevance += 15;
+        }
+
+        // 4. Any query word in excerpt
+        queryWords.forEach(word => {
+          if (excerpt.includes(word)) {
+            relevance += 5;
+          }
+        });
+        
+        return { ...post, relevance };
+      })
+      .filter(post => post.relevance > 0)
+      .sort((a, b) => b.relevance - a.relevance);
+
+    // Adapt the SearchablePost to the Post type for the blog card.
+    const finalResults: Post[] = calculatedResults.map(r => ({
+      ...r,
+      id: r.slug,
+      category: '',
+      date: new Date().toISOString(),
+      imageUrl: 'https://picsum.photos/seed/1/600/400',
+      imageHint: '',
+      content: '', 
+      htmlContent: '',
+    }));
+
+    setResults(finalResults);
+  }, [query, searchIndex, loading]);
+
 
   if (loading) {
       return <SearchSkeleton />;
@@ -72,58 +134,6 @@ function SearchResultsContent() {
     );
   }
 
-  const lowercasedQuery = query.toLowerCase();
-
-  const results = searchIndex
-    .map(post => {
-      const title = post.title.toLowerCase();
-      const excerpt = post.excerpt.toLowerCase();
-      
-      let relevance = 0;
-
-      // 1. Exact match at the start of the title (highest priority)
-      if (title.startsWith(lowercasedQuery)) {
-        relevance += 100;
-      }
-
-      // 2. All query words in the title
-      const queryWords = lowercasedQuery.split(' ').filter(w => w);
-      queryWords.forEach(word => {
-        if (title.includes(word)) {
-          relevance += 20;
-        }
-      });
-      
-      // 3. Full phrase match in excerpt
-       if (excerpt.includes(lowercasedQuery)) {
-        relevance += 15;
-      }
-
-      // 4. Any query word in excerpt
-      queryWords.forEach(word => {
-        if (excerpt.includes(word)) {
-          relevance += 5;
-        }
-      });
-      
-      return { ...post, relevance };
-    })
-    .filter(post => post.relevance > 0)
-    .sort((a, b) => b.relevance - a.relevance);
-
-  // Adapt the SearchablePost to the Post type for the blog card.
-  // We fill in missing fields with dummy data as they are not used for the card display.
-  const finalResults: Post[] = results.map(r => ({
-    ...r,
-    id: r.slug,
-    category: '', // Not in search data
-    date: new Date().toISOString(), // Not in search data
-    imageUrl: 'https://picsum.photos/seed/1/600/400', // Placeholder
-    imageHint: '', // Placeholder
-    content: '', 
-    htmlContent: '',
-  }));
-
   return (
     <>
       <div className="text-center mb-12">
@@ -131,12 +141,12 @@ function SearchResultsContent() {
           Search Results
         </h1>
         <p className="mt-2 text-lg text-muted-foreground break-words px-4">
-          {finalResults.length} result{finalResults.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
+          {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
         </p>
       </div>
 
-      {finalResults.length > 0 ? (
-         <PaginatedBlogList posts={finalResults} />
+      {results.length > 0 ? (
+         <PaginatedBlogList posts={results} />
       ) : (
         <div className="text-center py-16">
           <h2 className="text-2xl font-headline">No results found</h2>
@@ -182,5 +192,3 @@ export default function SearchPage() {
     </div>
   );
 }
-
-    
