@@ -7,15 +7,17 @@ import { ArrowLeft } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import dynamic from 'next/dynamic';
 import type { Post } from '@/lib/posts';
+import { RelatedPosts } from './related-posts';
 
 const Comments = dynamic(() => import('@/components/comments').then(m => m.Comments), { ssr: false });
 const CodeCopyButton = dynamic(() => import('@/components/code-copy-button').then(m => m.CodeCopyButton), { ssr: false });
 
 interface PostClientWrapperProps {
   post: Post;
+  relatedPosts: Post[];
 }
 
-export function PostClientWrapper({ post }: PostClientWrapperProps) {
+export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps) {
   const hasImage = post.imageUrl;
   
   return (
@@ -76,6 +78,13 @@ export function PostClientWrapper({ post }: PostClientWrapperProps) {
             <hr className="my-12 border-border" />
             
             <Comments />
+
+            {relatedPosts.length > 0 && (
+              <>
+                <hr className="my-12 border-border" />
+                <RelatedPosts posts={relatedPosts} />
+              </>
+            )}
           </div>
         </div>
       </main>

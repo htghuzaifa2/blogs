@@ -1,5 +1,5 @@
 
-import { getPostBySlug, getPosts } from '@/lib/posts';
+import { getPostBySlug, getPosts, Post } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PostClientWrapper } from '@/components/post-client-wrapper';
@@ -11,8 +11,14 @@ export default async function PostPage({ params }: { params: { slug: string } })
     notFound();
   }
 
+  // Find related posts from the same category
+  const allPosts = getPosts();
+  const relatedPosts = allPosts
+    .filter(p => p.category === post.category && p.slug !== post.slug)
+    .slice(0, 3);
+
   return (
-    <PostClientWrapper post={post} />
+    <PostClientWrapper post={post} relatedPosts={relatedPosts} />
   );
 }
 
