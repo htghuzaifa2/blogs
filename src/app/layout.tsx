@@ -10,6 +10,7 @@ import { getPosts } from '@/lib/posts';
 import { cn } from '@/lib/utils';
 import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
+import { ScrollToTop } from '@/components/scroll-to-top';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -118,6 +119,7 @@ export default function RootLayout({
               <Footer />
             </div>
             <Toaster />
+            <ScrollToTop />
           </ClickTracker>
         </ThemeProvider>
         <Prefetcher />
