@@ -109,6 +109,8 @@
     --tw-prose-pre-bg: hsl(var(--muted));
     --tw-prose-th-borders: hsl(var(--border));
     --tw-prose-td-borders: hsl(var(--border));
+    --tw-prose-th-bg: hsl(var(--muted));
+    --tw-prose-tbody-tr-bg: hsl(var(--muted) / 0.5);
   }
 }
 
@@ -154,13 +156,14 @@
       @apply my-0;
     }
     & th {
-      @apply p-3 font-semibold bg-muted;
+      background-color: var(--tw-prose-th-bg);
+      @apply p-3 font-semibold;
     }
     & td {
       @apply p-3 align-top border-t border-border;
     }
     & tbody tr:nth-child(even) {
-      @apply bg-muted/50;
+      background-color: var(--tw-prose-tbody-tr-bg);
     }
     & pre {
         @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;
@@ -201,3 +204,5 @@
     text-overflow: ellipsis;
   }
 }
+
+    
