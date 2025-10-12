@@ -65,6 +65,7 @@ function processQueue() {
 
   link.onload = link.onerror = () => {
     activeFetches--;
+    stats.prefetched++;
     link.remove();
     processQueue();
   };
