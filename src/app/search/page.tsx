@@ -14,11 +14,18 @@ interface SearchablePost {
   excerpt: string;
   category: string;
   content: string; // The raw content for searching
-  // We'll fetch the full post data for the card from the main post list
-  // to avoid duplicating all data in the search index.
+  // These fields are needed for the BlogCard
+  id: string;
+  imageUrl: string;
+  imageHint: string;
+  author: string;
+  date: string;
+  htmlContent: string;
 }
 
-function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Post[] }) {
+function SearchResultsContent() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q') || '';
   const [searchIndex, setSearchIndex] = useState<SearchablePost[]>([]);
   const [loadingIndex, setLoadingIndex] = useState(true);
 
@@ -40,6 +47,10 @@ function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Po
       });
   }, []);
 
+  if (loadingIndex) {
+      return <SearchSkeleton />;
+  }
+
   if (!query) {
     return (
       <div className="text-center py-16">
@@ -52,20 +63,14 @@ function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Po
       </div>
     );
   }
-  
-  if (loadingIndex) {
-      return <SearchSkeleton />;
-  }
 
   const lowercasedQuery = query.toLowerCase();
-  const queryWords = lowercasedQuery.split(' ').filter(w => w);
 
-  const resultsWithRelevance = searchIndex
-    .map(item => {
-      const title = item.title.toLowerCase();
-      const excerpt = item.excerpt.toLowerCase();
-      const category = item.category.toLowerCase();
-      const content = item.content.toLowerCase();
+  const results = searchIndex
+    .map(post => {
+      const title = post.title.toLowerCase();
+      const excerpt = post.excerpt.toLowerCase();
+      const category = post.category.toLowerCase();
       
       let relevance = 0;
 
@@ -74,55 +79,43 @@ function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Po
         relevance += 100;
       }
 
-      // 2. Full phrase match anywhere in title
-      if (title.includes(lowercasedQuery)) {
-        relevance += 50;
-      }
-
-      // 3. Any query word in the title
+      // 2. All query words in the title
+      const queryWords = lowercasedQuery.split(' ').filter(w => w);
+      const titleWords = title.split(' ');
+      let matches = 0;
       queryWords.forEach(word => {
         if (title.includes(word)) {
-          relevance += 20;
+          matches++;
         }
       });
+      if (matches > 0) {
+        relevance += matches * 20;
+      }
       
-      // 4. Full phrase match in excerpt
+      // 3. Full phrase match in excerpt
        if (excerpt.includes(lowercasedQuery)) {
         relevance += 15;
       }
 
-      // 5. Any query word in excerpt
+      // 4. Any query word in excerpt
       queryWords.forEach(word => {
         if (excerpt.includes(word)) {
           relevance += 5;
         }
       });
-
-      // 6. Match the category
+      
+      // 5. Match the category
       if (category.includes(lowercasedQuery)) {
         relevance += 10;
       }
-
-      // 7. Search in the full content (lower priority)
-      queryWords.forEach(word => {
-        if (content.includes(word)) {
-            relevance += 1;
-        }
-      });
-
-      return relevance > 0 ? { postSlug: item.slug, relevance } : null;
+      
+      return { ...post, relevance };
     })
-    .filter((item): item is { postSlug: string; relevance: number } => item !== null)
+    .filter(post => post.relevance > 0)
     .sort((a, b) => b.relevance - a.relevance);
-    
-    // Create a map of all posts by slug for quick lookup
-    const postsBySlug = new Map(allPosts.map(p => [p.slug, p]));
-    
-    // Map the sorted slugs back to the full post objects
-    const results = resultsWithRelevance
-      .map(item => postsBySlug.get(item.postSlug))
-      .filter((p): p is Post => p !== undefined);
 
+  // The searchIndex already contains all the data needed for the Post type.
+  const finalResults: Post[] = results;
 
   return (
     <>
@@ -131,12 +124,12 @@ function SearchResultsContent({ query, allPosts }: { query: string, allPosts: Po
           Search Results
         </h1>
         <p className="mt-2 text-lg text-muted-foreground break-words px-4">
-          {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
+          {finalResults.length} result{finalResults.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
         </p>
       </div>
 
-      {results.length > 0 ? (
-         <PaginatedBlogList posts={results} />
+      {finalResults.length > 0 ? (
+         <PaginatedBlogList posts={finalResults} />
       ) : (
         <div className="text-center py-16">
           <h2 className="text-2xl font-headline">No results found</h2>
@@ -171,58 +164,12 @@ function SearchSkeleton() {
   );
 }
 
-function SearchPageInternal() {
-    const searchParams = useSearchParams();
-    const query = searchParams.get('q') || '';
-    
-    // The main post list is now fetched once and passed down.
-    // The actual search index is fetched inside SearchResultsContent.
-    const [allPosts, setAllPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-      // This is a simplified approach. Ideally, you'd have a more robust
-      // way to get all post metadata without fetching the full search index here.
-      // But for now, we'll fetch the same data to pass down to the card renderer.
-      fetch('/search-data.json')
-        .then(res => res.json())
-        .then(data => {
-          // This is a temporary workaround to map search data to Post data
-          // In a real app, you might have a separate, lighter `posts.json`
-          const postData: Post[] = data.map((item: any) => ({
-            ...item,
-            id: item.slug,
-            htmlContent: '', // Not needed for the card
-            content: '', // Not needed for the card
-            author: 'Admin', // Placeholder
-            date: new Date().toISOString(), // Placeholder
-            imageUrl: 'https://picsum.photos/seed/1/600/400', // Placeholder
-            imageHint: '', // Placeholder
-          }));
-          
-          // Let's create a full post list from the same data to render the cards
-          setAllPosts(data.map((p: any) => ({...p, id: p.slug})));
-          setLoading(false);
-        })
-        .catch(err => {
-            console.error("Failed to load post data for cards:", err);
-            setLoading(false);
-        });
-    }, []);
-
-    if(loading) {
-      return <SearchSkeleton />;
-    }
-
-    return <SearchResultsContent query={query} allPosts={allPosts} />;
-}
-
 export default function SearchPage() {
   return (
     <div className="bg-background">
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Suspense fallback={<SearchSkeleton />}>
-          <SearchPageInternal />
+          <SearchResultsContent />
         </Suspense>
       </main>
     </div>
