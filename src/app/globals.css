@@ -143,16 +143,18 @@
   
   .prose {
     & .table-container {
-      @apply my-6 overflow-hidden rounded-lg border shadow-md;
+      @apply my-6 overflow-x-auto rounded-lg border shadow-md;
     }
     & table {
-      @apply w-full text-sm my-0;
+      @apply w-full my-0;
+      border-collapse: collapse;
+      text-align: left;
     }
     & table p {
       @apply my-0;
     }
     & th {
-      @apply p-3 text-left font-semibold bg-muted;
+      @apply p-3 font-semibold bg-muted;
     }
     & td {
       @apply p-3 align-top border-t border-border;
