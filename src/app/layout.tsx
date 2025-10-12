@@ -9,6 +9,7 @@ import { Footer } from '@/components/footer';
 import { getPosts } from '@/lib/posts';
 import { cn } from '@/lib/utils';
 import { ClickTracker } from '@/components/click-tracker';
+import { Prefetcher } from '@/components/prefetcher';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     'trending topics', 
     'Pakistan blogs', 
     'blogging hub', 
-    'online tutorials', 
+    'online tutorials',
     'knowledge hub'
   ],
   openGraph: {
@@ -101,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="https://huzi.pk/img/26PWX8FW/logo.webp" type="image/webp" sizes="any" />
+        <link rel="icon" href="https://huzi.pk/img/26PWX.PK/logo.webp" type="image/webp" sizes="any" />
       </head>
       <body className={cn("font-body antialiased overflow-x-hidden transition-colors duration-300", ptSans.variable, playfairDisplay.variable)}>
         <ThemeProvider
@@ -119,6 +120,7 @@ export default function RootLayout({
             <Toaster />
           </ClickTracker>
         </ThemeProvider>
+        <Prefetcher />
       </body>
     </html>
   );
