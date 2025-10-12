@@ -92,15 +92,12 @@ export function getPosts(): Post[] {
   });
 }
 
-function styleAndWrapTables(htmlContent: string) {
+function processTables(htmlContent: string) {
   if (!htmlContent.includes('<table')) {
     return htmlContent;
   }
-
-  // This regex finds all <table>...</table> and wraps them.
-  const wrappedTablesHtml = htmlContent.replace(/(<table[\s\S]*?<\/table>)/g, '<div class="table-container">$1</div>');
-  
-  return wrappedTablesHtml;
+  // Add class="phone-chart" to every table
+  return htmlContent.replace(/<table/g, '<table class="phone-chart"');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
@@ -125,8 +122,8 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       .process(content);
     let htmlContent = processedContent.toString();
 
-    // Style and wrap tables for better presentation
-    htmlContent = styleAndWrapTables(htmlContent);
+    // Process tables to add the necessary class
+    htmlContent = processTables(htmlContent);
 
     return {
       id: slug,

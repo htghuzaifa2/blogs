@@ -1,6 +1,7 @@
 
 'use client';
 
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -20,6 +21,18 @@ interface PostClientWrapperProps {
 export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps) {
   const hasImage = post.imageUrl;
   
+  useEffect(() => {
+    // JS for the phone-chart kit to add data-labels
+    document.querySelectorAll('.phone-chart tbody td').forEach((td,i)=>{
+      const table = td.closest('table');
+      if (table) {
+        const header = table.querySelector('thead th:nth-child('+(i % (table.querySelector('thead tr')?.children.length || 1) + 1)+')');
+        const label = header?.textContent || '';
+        td.setAttribute('data-label', label);
+      }
+    });
+  }, [post.htmlContent]);
+
   return (
     <div className="bg-background">
       <main className="py-8 md:py-12">
