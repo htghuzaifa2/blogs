@@ -109,8 +109,6 @@
     --tw-prose-pre-bg: hsl(var(--muted));
     --tw-prose-th-borders: hsl(var(--border));
     --tw-prose-td-borders: hsl(var(--border));
-    --tw-prose-th-bg: hsl(var(--muted));
-    --tw-prose-tbody-tr-bg: hsl(var(--muted) / 0.5);
   }
 }
 
