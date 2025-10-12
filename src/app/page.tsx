@@ -9,7 +9,6 @@ import { ShoppingBag, User } from 'lucide-react';
 export default async function Home() {
   const posts = getPosts();
   const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)));
-  const totalPosts = posts.length;
   
   return (
     <div className="bg-background">
@@ -21,7 +20,6 @@ export default async function Home() {
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
             A collection of thoughts, stories, and ideas.
           </p>
-          <p className="mt-4 text-2xl font-bold text-primary">Total Posts: {totalPosts}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="w-full sm:w-auto transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-primary/40">
               <Link href="https://huzi.pk/" target="_blank" rel="noopener noreferrer">
