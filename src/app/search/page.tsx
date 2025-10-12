@@ -23,7 +23,6 @@ function SearchResultsContent() {
   const [searchIndex, setSearchIndex] = useState<SearchablePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [results, setResults] = useState<Post[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -46,14 +45,13 @@ function SearchResultsContent() {
       });
   }, []);
 
-  useEffect(() => {
+  const results: Post[] = useMemo(() => {
     if (loading || !query || searchIndex.length === 0) {
-      setResults([]);
-      return;
+      return [];
     }
 
-    const lowercasedQuery = query.toLowerCase();
-    const queryWords = lowercasedQuery.split(' ').filter(w => w);
+    const lowercasedQuery = query.toLowerCase().trim();
+    if (!lowercasedQuery) return [];
 
     const calculatedResults = searchIndex
       .map(post => {
@@ -62,29 +60,33 @@ function SearchResultsContent() {
         
         let relevance = 0;
 
-        // 1. Exact match at the start of the title (highest priority)
-        if (title.startsWith(lowercasedQuery)) {
-          relevance += 100;
+        // Highest priority: query is a substring of the title
+        if (title.includes(lowercasedQuery)) {
+          relevance += 50;
         }
-
-        // 2. All query words in the title
-        queryWords.forEach(word => {
-          if (title.includes(word)) {
-            relevance += 20;
-          }
-        });
         
-        // 3. Full phrase match in excerpt
-        if (excerpt.includes(lowercasedQuery)) {
-          relevance += 15;
+        // High priority: Exact match at the start of the title
+        if (title.startsWith(lowercasedQuery)) {
+          relevance += 50;
         }
 
-        // 4. Any query word in excerpt
-        queryWords.forEach(word => {
-          if (excerpt.includes(word)) {
-            relevance += 5;
-          }
-        });
+        // Medium priority: query is a substring of the excerpt
+        if (excerpt.includes(lowercasedQuery)) {
+          relevance += 20;
+        }
+
+        // Lower priority: individual words from query match in title
+        const queryWords = lowercasedQuery.split(' ').filter(w => w.length > 2);
+        if (queryWords.length > 1) {
+            queryWords.forEach(word => {
+                if (title.includes(word)) {
+                    relevance += 10;
+                }
+                if (excerpt.includes(word)) {
+                    relevance += 2;
+                }
+            });
+        }
         
         return { ...post, relevance };
       })
@@ -95,15 +97,15 @@ function SearchResultsContent() {
     const finalResults: Post[] = calculatedResults.map(r => ({
       ...r,
       id: r.slug,
-      category: '',
-      date: new Date().toISOString(),
-      imageUrl: 'https://picsum.photos/seed/1/600/400',
-      imageHint: '',
+      category: '', // Not available in search data
+      date: new Date().toISOString(), // Not available, provide a fallback
+      imageUrl: 'https://picsum.photos/seed/1/600/400', // Provide a fallback
+      imageHint: '', // Not available
       content: '', 
       htmlContent: '',
     }));
 
-    setResults(finalResults);
+    return finalResults;
   }, [query, searchIndex, loading]);
 
 
