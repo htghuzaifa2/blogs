@@ -1,60 +1,48 @@
-const fs = require('fs');
-const path = require('path');
-const { getPosts } = require('../src/lib/posts.js');
 
-// This script needs to run in a context where it can import from `posts.ts`.
-// Next.js uses a mix of module systems. For a simple build script, CommonJS (`require`) is more robust.
-// We are renaming `posts.ts` to `posts.js` temporarily in the require call to avoid module issues.
+// Using dynamic import() for a .ts file from a .mjs script in a CommonJS-like environment
+// is the correct way to handle module differences in this project setup.
+import('ts-node/register/transpile-only');
+import('tsconfig-paths/register');
+import('dotenv/config');
 
 async function generateSearchData() {
-  console.log('Starting to generate search data...');
   try {
-    const posts = getPosts(); // This function reads from the file system
+    // Dynamically import the getPosts function
+    const { getPosts } = await import('../src/lib/posts.ts');
+    const posts = getPosts();
+    const fs = await import('fs');
+    const path = await import('path');
+
+    // Ensure the public directory exists
+    const publicDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir);
+    }
     
-    // We only need a subset of data for searching and displaying results.
-    const searchData = posts.map(post => ({
+    // Map posts to a lighter format for search
+    const searchablePosts = posts.map(post => ({
+      id: post.id,
       slug: post.slug,
       title: post.title,
       excerpt: post.excerpt,
       category: post.category,
-      // Fields needed for the BlogCard component
-      id: post.id,
       imageUrl: post.imageUrl,
       imageHint: post.imageHint,
       author: post.author,
       date: post.date,
     }));
 
-    const publicDir = path.join(process.cwd(), 'public');
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true });
-    }
+    // Write the data to search-data.json in the public folder
+    const outputPath = path.join(publicDir, 'search-data.json');
+    fs.writeFileSync(outputPath, JSON.stringify(searchablePosts, null, 2));
 
-    const filePath = path.join(publicDir, 'search-data.json');
-    fs.writeFileSync(filePath, JSON.stringify(searchData, null, 2));
-    
-    console.log(`Successfully generated search-data.json with ${searchData.length} posts.`);
+    console.log(`✅ Successfully generated search data at ${outputPath}`);
+
   } catch (error) {
-    console.error('Error generating search data:', error);
-    process.exit(1); // Exit with an error code
+    console.error('❌ Error generating search data:', error);
+    // Exit with a non-zero code to fail the build if search data can't be generated
+    process.exit(1); 
   }
 }
 
-// Rename posts.ts to posts.js to allow `require` to work
-const postsLibPath = path.join(process.cwd(), 'src', 'lib', 'posts.ts');
-const postsLibPathJs = path.join(process.cwd(), 'src', 'lib', 'posts.js');
-
-try {
-  fs.renameSync(postsLibPath, postsLibPathJs);
-  generateSearchData().then(() => {
-    // Rename it back after the script is done.
-    fs.renameSync(postsLibPathJs, postsLibPath);
-  });
-} catch (err) {
-  console.error('Error renaming posts.ts for build script:', err);
-  // If it failed, try to rename it back if the js file exists
-  if (fs.existsSync(postsLibPathJs) && !fs.existsSync(postsLibPath)) {
-      fs.renameSync(postsLibPathJs, postsLibPath);
-  }
-  process.exit(1);
-}
+generateSearchData();
