@@ -13,11 +13,13 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post }: BlogCardProps) {
+  const hasImage = post.imageUrl && post.imageUrl !== 'https://picsum.photos/seed/1/600/400';
+
   return (
     <Link href={`/posts/${post.slug}`} className="group block h-full">
       <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:border-primary/50 group-hover:-translate-y-1 border-border bg-card/50 backdrop-blur-sm">
         <CardHeader className="p-0">
-          {post.imageUrl && (
+          {hasImage && (
             <div className="relative w-full aspect-video overflow-hidden">
                <Image
                   src={post.imageUrl}
@@ -56,3 +58,5 @@ export function BlogCard({ post }: BlogCardProps) {
     </Link>
   );
 }
+
+    

@@ -14,12 +14,7 @@ interface SearchablePost {
   slug: string;
   title: string;
   excerpt: string;
-  category: string;
-  id: string;
-  imageUrl: string;
-  imageHint: string;
   author: string;
-  date: string;
 }
 
 function SearchResultsContent() {
@@ -83,7 +78,6 @@ function SearchResultsContent() {
     .map(post => {
       const title = post.title.toLowerCase();
       const excerpt = post.excerpt.toLowerCase();
-      const category = post.category.toLowerCase();
       
       let relevance = 0;
 
@@ -112,21 +106,22 @@ function SearchResultsContent() {
         }
       });
       
-      // 5. Match the category
-      if (category.includes(lowercasedQuery)) {
-        relevance += 10;
-      }
-      
       return { ...post, relevance };
     })
     .filter(post => post.relevance > 0)
     .sort((a, b) => b.relevance - a.relevance);
 
-  // The SearchablePost has all the fields required by the Post type for the blog card.
+  // Adapt the SearchablePost to the Post type for the blog card.
+  // We fill in missing fields with dummy data as they are not used for the card display.
   const finalResults: Post[] = results.map(r => ({
     ...r,
-    content: '', // Not needed for the card
-    htmlContent: '', // Not needed for the card
+    id: r.slug,
+    category: '', // Not in search data
+    date: new Date().toISOString(), // Not in search data
+    imageUrl: 'https://picsum.photos/seed/1/600/400', // Placeholder
+    imageHint: '', // Placeholder
+    content: '', 
+    htmlContent: '',
   }));
 
   return (
@@ -187,3 +182,5 @@ export default function SearchPage() {
     </div>
   );
 }
+
+    
