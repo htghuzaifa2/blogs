@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import { PT_Sans, Playfair_Display } from 'next/font/google';
+import { Inter, Lora } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
@@ -12,16 +12,14 @@ import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
 import { ScrollToTop } from '@/components/scroll-to-top';
 
-const ptSans = PT_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-pt-sans',
+  variable: '--font-inter',
 });
 
-const playfairDisplay = Playfair_Display({
+const lora = Lora({
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  variable: '--font-playfair-display',
+  variable: '--font-lora',
 });
 
 
@@ -105,7 +103,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="https://huzi.pk/img/26PWX.PK/logo.webp" type="image/webp" sizes="any" />
       </head>
-      <body className={cn("font-body antialiased overflow-x-hidden transition-colors duration-300", ptSans.variable, playfairDisplay.variable)}>
+      <body className={cn("font-body antialiased overflow-x-hidden transition-colors duration-300", inter.variable, lora.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
