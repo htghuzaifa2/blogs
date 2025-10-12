@@ -8,7 +8,7 @@ import { Button } from './ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const CARDS_PER_PAGE = 25;
+const CARDS_PER_PAGE = 50;
 
 interface PaginatedBlogListProps {
   posts: Post[];
