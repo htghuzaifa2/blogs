@@ -141,28 +141,29 @@
     @apply text-foreground;
   }
   
+  .prose .table-container {
+    @apply my-6 overflow-x-auto rounded-lg border shadow-md;
+  }
+  .prose .table-container table {
+    @apply w-full my-0;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .prose .table-container p {
+    @apply my-0;
+  }
+  .prose .table-container th {
+    background-color: hsl(var(--muted));
+    @apply p-3 font-semibold text-left;
+  }
+  .prose .table-container td {
+    @apply p-3 align-top border-t border-border;
+  }
+  .prose .table-container tbody tr:nth-child(even) {
+      background-color: hsl(var(--muted) / 0.5);
+  }
+
   .prose {
-    & .table-container {
-      @apply my-6 overflow-x-auto rounded-lg border shadow-md;
-    }
-    & .table-container table {
-      @apply w-full my-0;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    & .table-container p {
-      @apply my-0;
-    }
-    & .table-container th {
-      background-color: hsl(var(--muted));
-      @apply p-3 font-semibold text-left;
-    }
-    & .table-container td {
-      @apply p-3 align-top border-t border-border;
-    }
-    & .table-container tbody tr:nth-child(even) {
-       background-color: hsl(var(--muted) / 0.5);
-    }
     & pre {
         @apply bg-muted/50 p-4 rounded-lg overflow-x-auto relative shadow-md border;
     }
@@ -202,5 +203,3 @@
     text-overflow: ellipsis;
   }
 }
-
-    

@@ -1,3 +1,4 @@
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -96,47 +97,10 @@ function styleAndWrapTables(htmlContent: string) {
     return htmlContent;
   }
 
-  const tableStyles = `
-    <style>
-      .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        border: 1px solid hsl(var(--border));
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        margin: 2rem 0;
-      }
-      .table-container table {
-        width: 100%;
-        border-collapse: collapse;
-        text-align: left;
-        margin: 0;
-      }
-      .table-container th {
-        background-color: hsl(var(--muted));
-        padding: 0.75rem 1rem;
-        font-weight: 600;
-        font-family: var(--font-inter);
-      }
-      .table-container td {
-        padding: 0.75rem 1rem;
-        border-top: 1px solid hsl(var(--border));
-        vertical-align: top;
-      }
-      .table-container tbody tr:nth-child(even) {
-        background-color: hsl(var(--muted) / 0.5);
-      }
-      .table-container p {
-        margin: 0;
-      }
-    </style>
-  `;
-
   // This regex finds all <table>...</table> and wraps them.
   const wrappedTablesHtml = htmlContent.replace(/(<table[\s\S]*?<\/table>)/g, '<div class="table-container">$1</div>');
   
-  // Prepend the styles to the HTML content
-  return tableStyles + wrappedTablesHtml;
+  return wrappedTablesHtml;
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
