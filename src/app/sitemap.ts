@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getPosts();
 
   const postUrls = posts.map((post) => ({
-    url: `${siteUrl}/posts/${post.slug}`,
+    url: `${siteUrl}/posts/${encodeURIComponent(post.slug)}`,
     lastModified: new Date(post.date), 
     changeFrequency: 'weekly' as const,
     priority: 0.9,
@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categories = new Set(posts.map(post => post.category).filter(Boolean));
   const categoryUrls = Array.from(categories).map(category => ({
-      url: `${siteUrl}/category/${category!.toLowerCase().replace(/ /g, '-')}`,
+      url: `${siteUrl}/category/${encodeURIComponent(category!.toLowerCase().replace(/ /g, '-'))}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
