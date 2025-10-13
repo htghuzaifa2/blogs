@@ -15,27 +15,15 @@ export interface Post {
   excerpt: string;
   content: string;
   htmlContent: string;
-  imageUrl: string;
-  imageHint: string;
   author: string;
   category: string;
   date: string;
   keywords?: string[];
 }
 
-function getImageUrl(hint: string): string {
-  if (!hint) {
-    return 'https://picsum.photos/seed/1/1200/630';
-  }
-  // Use a more robust image CDN like Unsplash for better quality and relevance.
-  // The query parameter helps get a more relevant image.
-  return `https://source.unsplash.com/1200x630/?${encodeURIComponent(hint.replace(/ /g, ','))}`;
-}
-
-
 // A helper function to check if a post has all required frontmatter fields
-function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; imageHint: string; keywords?: string[] } {
-    return data.title && data.date && data.excerpt && data.author && data.category && data.imageHint;
+function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; keywords?: string[] } {
+    return data.title && data.date && data.excerpt && data.author && data.category;
 }
 
 export function getPosts(): Post[] {
@@ -69,18 +57,14 @@ export function getPosts(): Post[] {
             return null;
         }
         
-        const imageUrl = getImageUrl(data.imageHint);
-
         return {
           id: slug,
           slug,
           htmlContent: '',
           content: content,
-          imageUrl: imageUrl, // Use the dynamically generated URL
           ...(data as { 
             title: string; 
             excerpt: string; 
-            imageHint: string;
             author: string;
             category: string;
             date: string;
@@ -92,7 +76,12 @@ export function getPosts(): Post[] {
           return null;
       }
     })
-    .filter((p): p is Post => p !== null);
+    .filter((p): p is Omit<Post, 'htmlContent'> => p !== null)
+    .map(post => {
+        // Remove image markdown from content
+        const contentWithoutImages = post.content.replace(/!\[.*?\]\(.*?\)\s*/g, '');
+        return { ...post, content: contentWithoutImages };
+    });
 
   // Sort posts by date in descending order (newest first)
   return allPostsData.sort((a, b) => {
@@ -129,28 +118,27 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       console.warn(`Post with slug "${slug}" is invalid due to missing frontmatter.`);
       return undefined;
     }
+    
+    // Remove image markdown from content before processing
+    const contentWithoutImages = content.replace(/!\[.*?\]\(.*?\)\s*/g, '');
 
     const processedContent = await remark()
       .use(remarkGfm)
       .use(html, { sanitize: false })
-      .process(content);
+      .process(contentWithoutImages);
     let htmlContent = processedContent.toString();
 
     // Process tables to add the necessary container
     htmlContent = processTables(htmlContent);
-    
-    const imageUrl = getImageUrl(data.imageHint);
 
     return {
       id: slug,
       slug,
       htmlContent,
-      content,
-      imageUrl,
+      content: contentWithoutImages,
       ...(data as { 
         title: string; 
         excerpt: string; 
-        imageHint: string;
         author: string;
         category: string;
         date: string;

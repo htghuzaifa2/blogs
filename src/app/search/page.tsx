@@ -112,8 +112,6 @@ function SearchResultsContent() {
       id: r.slug,
       category: '', // Not available in search data
       date: new Date().toISOString(), // Not available, provide a fallback
-      imageUrl: `https://source.unsplash.com/600x400/?${encodeURIComponent(r.title.split(' ').slice(0,2).join(' '))}`, // Fallback image from title
-      imageHint: '', // Not available
       content: '', 
       htmlContent: '',
     }));

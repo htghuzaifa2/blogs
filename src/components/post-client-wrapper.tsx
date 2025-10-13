@@ -1,8 +1,6 @@
 
 'use client';
 
-import { useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -19,12 +17,7 @@ interface PostClientWrapperProps {
 }
 
 export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps) {
-  const hasImage = post.imageUrl;
   
-  useEffect(() => {
-    // This effect is no longer needed for table styling
-  }, [post.htmlContent]);
-
   return (
     <div className="bg-background">
       <main className="py-8 md:py-12">
@@ -50,20 +43,6 @@ export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps
                   <span>By {post.author}</span>
                 </div>
               </header>
-
-              {hasImage && (
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8 shadow-lg">
-                  <Image
-                    src={post.imageUrl}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 896px"
-                    className="object-cover"
-                    data-ai-hint={post.imageHint}
-                    priority
-                  />
-                </div>
-              )}
 
               <div 
                 className="prose prose-lg dark:prose-invert max-w-none 

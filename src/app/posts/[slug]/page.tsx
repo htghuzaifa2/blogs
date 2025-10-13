@@ -60,20 +60,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: post.excerpt,
       type: 'article',
       url: url,
-      images: [
-        {
-          url: post.imageUrl,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
     },
      twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       title: post.title,
       description: post.excerpt,
-      images: [post.imageUrl],
     },
   }
 }
