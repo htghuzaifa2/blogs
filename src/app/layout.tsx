@@ -11,6 +11,9 @@ import { cn } from '@/lib/utils';
 import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
 import { ScrollToTop } from '@/components/scroll-to-top';
+import dynamic from 'next/dynamic';
+
+const ProductPopup = dynamic(() => import('@/components/product-popup').then(m => m.ProductPopup), { ssr: false });
 
 const inter = Inter({
   subsets: ['latin'],
@@ -119,6 +122,7 @@ export default function RootLayout({
             </div>
             <Toaster />
             <ScrollToTop />
+            <ProductPopup />
           </ClickTracker>
         </ThemeProvider>
         <Prefetcher />

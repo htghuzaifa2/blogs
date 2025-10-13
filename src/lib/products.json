@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "sample-product-1",
+    "title": "Stylish Smartwatch",
+    "price": "199.99",
+    "imageUrl": "https://i.postimg.cc/8cMMS3mB/smartwatch.jpg"
+  },
+  {
+    "slug": "sample-product-2",
+    "title": "Wireless Headphones",
+    "price": "149.99",
+    "imageUrl": "https://i.postimg.cc/prc0dXZh/headphones.jpg"
+  },
+  {
+    "slug": "sample-product-3",
+    "title": "Portable Bluetooth Speaker",
+    "price": "79.99",
+    "imageUrl": "https://i.postimg.cc/q7G1bWpS/speaker.jpg"
+  },
+  {
+    "slug": "sample-product-4",
+    "title": "Ergonomic Mechanical Keyboard",
+    "price": "129.99",
+    "imageUrl": "https://i.postimg.cc/y8YvV5y5/keyboard.jpg"
+  },
+  {
+    "slug": "sample-product-5",
+    "title": "4K Action Camera",
+    "price": "249.99",
+    "imageUrl": "https://i.postimg.cc/HxF4Vp7J/camera.jpg"
+  }
+]
