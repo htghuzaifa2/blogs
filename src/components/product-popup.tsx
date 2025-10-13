@@ -105,7 +105,7 @@ export function ProductPopup() {
               <h4 className="font-headline text-sm font-semibold line-clamp-2">
                 {product.title}
               </h4>
-              <p className="text-lg font-bold text-primary">${product.price}</p>
+              <p className="text-lg font-bold text-primary">PKR {product.price}</p>
               <Button asChild size="sm" className="mt-2">
                 <Link href={`https://huzi.pk/product/${product.slug}`} target="_blank" rel="noopener noreferrer">
                   <ShoppingCart className="mr-2 h-4 w-4" />
