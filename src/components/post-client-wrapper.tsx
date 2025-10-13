@@ -22,15 +22,7 @@ export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps
   const hasImage = post.imageUrl;
   
   useEffect(() => {
-    // JS for the phone-chart kit to add data-labels
-    document.querySelectorAll('.phone-chart tbody td').forEach((td,i)=>{
-      const table = td.closest('table');
-      if (table) {
-        const header = table.querySelector('thead th:nth-child('+(i % (table.querySelector('thead tr')?.children.length || 1) + 1)+')');
-        const label = header?.textContent || '';
-        td.setAttribute('data-label', label);
-      }
-    });
+    // This effect is no longer needed for table styling
   }, [post.htmlContent]);
 
   return (

@@ -97,8 +97,8 @@ function processTables(htmlContent: string) {
   if (!htmlContent.includes('<table')) {
     return htmlContent;
   }
-  // Add class="phone-chart" to every table
-  return htmlContent.replace(/<table/g, '<table class="phone-chart"');
+  // Wrap every table in a container for responsive scrolling
+  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
@@ -124,7 +124,7 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       .process(content);
     let htmlContent = processedContent.toString();
 
-    // Process tables to add the necessary class
+    // Process tables to add the necessary container
     htmlContent = processTables(htmlContent);
 
     return {

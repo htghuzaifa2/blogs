@@ -109,6 +109,11 @@
     --tw-prose-pre-bg: hsl(var(--muted));
     --tw-prose-th-borders: hsl(var(--border));
     --tw-prose-td-borders: hsl(var(--border));
+
+    /* Custom table styles */
+    --tw-prose-tables: hsl(var(--foreground));
+    --tw-prose-thead: hsl(var(--foreground));
+    --tw-prose-tr-borders: hsl(var(--border));
   }
 }
 
@@ -169,6 +174,28 @@
     & h4 {
       @apply text-lg md:text-2xl;
     }
+    /* New Table Styles */
+    & .table-container {
+      @apply my-6 overflow-x-auto rounded-lg border shadow-md;
+    }
+    & table {
+      @apply w-full text-left;
+    }
+    & thead {
+      @apply bg-muted/50;
+    }
+    & th {
+      @apply p-4 font-semibold;
+    }
+    & td {
+      @apply p-4 align-top;
+    }
+    & tbody tr {
+      @apply border-t;
+    }
+    & tbody tr:nth-child(even) {
+      @apply bg-muted/20;
+    }
   }
 }
 
@@ -180,91 +207,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
-
-/* =========  PHONE-CHART KIT  ========= */
-.phone-chart {
-  --brand: hsl(var(--primary));
-  --bg: hsl(var(--muted));
-  --card: hsl(var(--card));
-  --text: hsl(var(--foreground));
-  --muted: hsl(var(--muted-foreground));
-  --radius: 12px;
-  --gap: 1rem;
-
-  display: grid;
-  gap: var(--gap);
-  margin: 2rem 0;
-  font-family: system-ui, sans-serif;
-  background: var(--bg);
-  padding: var(--gap);
-  border-radius: var(--radius);
-}
-
-/* hide the original table head */
-.phone-chart thead {
-  display: none;
-}
-
-/* each row becomes a card */
-.phone-chart tr {
-  display: grid;
-  grid-template:
-    "name  price" auto
-    "pros  cons " 1fr
-    / 1fr  140px;
-  gap: .6rem .8rem;
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1rem 1.2rem;
-  box-shadow: 0 2px 6px rgb(0 0 0 / .06);
-  transition: .25s;
-}
-.phone-chart tr:hover {
-  box-shadow: 0 4px 14px rgb(0 0 0 / .1);
-  transform: translateY(-2px);
-}
-
-/* cell labels for screen-reader-only */
-.phone-chart td::before {
-  content: attr(data-label) ": ";
-  font-weight: 600;
-  color: var(--muted);
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-
-/* map each <td> to its grid area */
-.phone-chart td:nth-child(1) { grid-area: name;  font-weight: 700; font-size: 1.1rem; color: var(--brand); }
-.phone-chart td:nth-child(2) { grid-area: price; font-weight: 600; color: var(--text);  text-align: right; }
-.phone-chart td:nth-child(3) { grid-area: pros;  color: var(--muted); line-height: 1.4; }
-.phone-chart td:nth-child(4) { grid-area: cons;  color: var(--muted); line-height: 1.4; }
-
-/* tidy up price tag */
-.phone-chart td:nth-child(2)::before { content: none; }
-.phone-chart td:nth-child(2) {
-  background: var(--bg);
-  padding: .25rem .5rem;
-  border-radius: 6px;
-  font-size: .9rem;
-}
-
-/* -------------  MOBILE  ------------- */
-@media (max-width: 640px) {
-  .phone-chart tr {
-    grid-template:
-      "name"  auto
-      "price" auto
-      "pros"  auto
-      "cons"  auto
-      / 1fr;
-  }
-  .phone-chart td:nth-child(2) { text-align: left; }
-}
-
-/* -------------  PRINT  ------------- */
-@media print {
-  .phone-chart { background: none; padding: 0; }
-  .phone-chart tr { box-shadow: none; border: 1px solid #ddd; }
 }
