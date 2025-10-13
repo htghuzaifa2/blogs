@@ -23,8 +23,8 @@ export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps
       <main className="py-8 md:py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-              <ArrowLeft size={16} />
+            <Link href="/" className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-4 transition-all duration-300 ease-in-out hover:-translate-x-1">
+              <ArrowLeft size={16} className="transition-transform duration-300 group-hover:translate-x-0" />
               Back to all posts
             </Link>
             <article>
