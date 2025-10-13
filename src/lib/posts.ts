@@ -23,9 +23,19 @@ export interface Post {
   keywords?: string[];
 }
 
+function getImageUrl(hint: string): string {
+  if (!hint) {
+    return 'https://picsum.photos/seed/1/1200/630';
+  }
+  // Use a more robust image CDN like Unsplash for better quality and relevance.
+  // The query parameter helps get a more relevant image.
+  return `https://source.unsplash.com/1200x630/?${encodeURIComponent(hint.replace(/ /g, ','))}`;
+}
+
+
 // A helper function to check if a post has all required frontmatter fields
-function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; imageUrl: string; imageHint: string; keywords?: string[] } {
-    return data.title && data.date && data.excerpt && data.author && data.category && data.imageUrl && data.imageHint;
+function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; imageHint: string; keywords?: string[] } {
+    return data.title && data.date && data.excerpt && data.author && data.category && data.imageHint;
 }
 
 export function getPosts(): Post[] {
@@ -58,16 +68,18 @@ export function getPosts(): Post[] {
             console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
             return null;
         }
+        
+        const imageUrl = getImageUrl(data.imageHint);
 
         return {
           id: slug,
           slug,
           htmlContent: '',
           content: content,
+          imageUrl: imageUrl, // Use the dynamically generated URL
           ...(data as { 
             title: string; 
             excerpt: string; 
-            imageUrl: string; 
             imageHint: string;
             author: string;
             category: string;
@@ -98,7 +110,7 @@ function processTables(htmlContent: string) {
     return htmlContent;
   }
   // Wrap every table in a container for responsive scrolling
-  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
+  return htmlContent.replace(/<table/g, '<div class="table-container"><table class="phone-chart"').replace(/<\/table>/g, '</table></div>');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
@@ -126,16 +138,18 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
 
     // Process tables to add the necessary container
     htmlContent = processTables(htmlContent);
+    
+    const imageUrl = getImageUrl(data.imageHint);
 
     return {
       id: slug,
       slug,
       htmlContent,
       content,
+      imageUrl,
       ...(data as { 
         title: string; 
         excerpt: string; 
-        imageUrl: string; 
         imageHint: string;
         author: string;
         category: string;
