@@ -1,0 +1,289 @@
+---
+title: "How to Install Arch Linux (2025 Updated Beginner Guide)"
+date: "2025-10-02"
+author: "Huzi"
+category: "Linux"
+excerpt: "A comprehensive 2025 guide for beginners to install Arch Linux from scratch on any PC, laptop, or VM. Covers partitioning, desktop environments, and troubleshooting."
+imageHint: "linux terminal code"
+keywords: ["Arch Linux", "Linux installation", "beginner guide", "Linux tutorial", "UEFI install", "GRUB", "Linux partitioning"]
+---
+
+Arch Linux is one of the most customizable, lightweight, and fast Linux distributions available today. However, it doesn’t have a graphical installer like Ubuntu — you install everything manually.
+
+This guide will help beginners install Arch Linux from scratch — on PCs, laptops, or even virtual machines — with detailed commands, partition setup, desktop environment installation, and boot troubleshooting.
+
+### 🧩 Prerequisites
+
+Before starting, make sure you have:
+
+*   A **USB drive** (at least 4 GB)
+*   A stable **internet connection**
+*   A computer (PC or laptop) that supports **UEFI** (most modern systems do)
+*   Optional: Another device or phone to follow this guide while installing
+
+### ⚙️ Step 1: Download Arch Linux ISO
+
+Visit the official Arch Linux download page:
+🔗 https://archlinux.org/download/
+
+Download the latest ISO file (e.g. `archlinux-2025.10.01-x86_64.iso`)
+
+Verify the download (optional but recommended):
+```bash
+sha256sum archlinux-2025.10.01-x86_64.iso
+```
+Compare it with the checksum on the website.
+
+### 💽 Step 2: Create a Bootable USB
+
+**🪟 On Windows:**
+Use **Rufus**:
+1.  [Download Rufus](https://rufus.ie/)
+2.  Select your Arch ISO file.
+3.  Choose your USB drive.
+4.  Under **Partition Scheme**, select:
+    *   **GPT** if your system uses UEFI
+    *   **MBR** if it uses Legacy BIOS
+5.  Click **Start** and wait.
+
+**🐧 On Linux:**
+Use the `dd` command:
+```bash
+sudo dd if=archlinux-2025.10.01-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+```
+(Replace `/dev/sdX` with your USB drive path — e.g. `/dev/sdb`)
+
+### 🖥️ Step 3: Boot Into the Arch Installer
+
+1.  Plug the USB into your system.
+2.  Reboot and open the **Boot Menu** (usually by pressing **F2, F12, or Esc** during startup).
+3.  Select your USB drive.
+4.  When the Arch menu appears, choose:
+    `“Arch Linux install medium (x86_64, UEFI)”`
+5.  You’ll land in a terminal (`root@archiso`).
+
+### 🌐 Step 4: Connect to the Internet
+
+**For wired (Ethernet):**
+You’re already connected.
+
+**For Wi-Fi:**
+Run:
+```bash
+iwctl
+```
+Then inside the prompt:
+```bash
+device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect "Your_WiFi_Name"
+exit
+```
+Test the connection:
+```bash
+ping archlinux.org
+```
+If you see replies — you’re online ✅
+
+### 🕓 Step 5: Update System Clock
+
+```bash
+timedatectl set-ntp true
+```
+
+### 💾 Step 6: Partition Your Disk
+
+List your drives:
+```bash
+fdisk -l
+```
+Identify your target drive (e.g. `/dev/sda` or `/dev/nvme0n1`).
+
+Using `cfdisk` (simpler):
+```bash
+cfdisk /dev/sda
+```
+Select **GPT**.
+Now create:
+*   **EFI Partition** → 512MB → Type: `EFI System`
+*   **Root Partition** → remaining space → Type: `Linux filesystem`
+
+If you want a swap partition, create it too (e.g., 2GB).
+Then:
+**Write** → **Yes** → **Quit**.
+
+### 🧱 Step 7: Format the Partitions
+
+```bash
+mkfs.fat -F32 /dev/sda1        # EFI partition
+mkfs.ext4 /dev/sda2            # Root partition
+mkswap /dev/sda3               # (if created)
+swapon /dev/sda3
+```
+
+### 📂 Step 8: Mount the Filesystems
+
+```bash
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+```
+
+### 🔧 Step 9: Install the Base System
+
+```bash
+pacstrap /mnt base linux linux-firmware vim networkmanager
+```
+💡 You can replace `vim` with `nano` if you prefer.
+
+### 📜 Step 10: Generate fstab
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+### 🔄 Step 11: Chroot into the New System
+
+```bash
+arch-chroot /mnt
+```
+
+### ⏰ Step 12: Set Timezone and Locale
+
+```bash
+ln -sf /usr/share/zoneinfo/Asia/Karachi /etc/localtime
+hwclock --systohc
+```
+Edit locales:
+```bash
+nano /etc/locale.gen
+```
+Uncomment: `en_US.UTF-8 UTF-8`
+Generate locales:
+```bash
+locale-gen
+```
+Create locale config:
+```bash
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
+
+### 👤 Step 13: Set Hostname and Root Password
+
+```bash
+echo "archpc" > /etc/hostname
+echo "127.0.0.1   localhost" >> /etc/hosts
+echo "::1         localhost" >> /etc/hosts
+echo "127.0.1.1   archpc.localdomain archpc" >> /etc/hosts
+passwd
+```
+
+### 🧠 Step 14: Enable Network Manager
+
+```bash
+systemctl enable NetworkManager
+```
+
+### 🥾 Step 15: Install and Configure Bootloader (GRUB)
+
+Install GRUB and EFI tools:
+```bash
+pacman -S grub efibootmgr
+```
+Install GRUB to disk:
+```bash
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### 🧑‍💻 Step 16: Create a User
+
+```bash
+useradd -m -G wheel -s /bin/bash htg
+passwd htg
+EDITOR=nano visudo
+```
+Uncomment: `%wheel ALL=(ALL) ALL`
+
+### 🧠 Step 17: Install Desktop Environment (Choose One)
+
+**KDE Plasma (Full)**
+```bash
+pacman -S xorg sddm plasma kde-applications
+systemctl enable sddm
+```
+**XFCE (Lightweight)**
+```bash
+pacman -S xorg lightdm lightdm-gtk-greeter xfce4 xfce4-goodies
+systemctl enable lightdm
+```
+**GNOME**
+```bash
+pacman -S gdm gnome
+systemctl enable gdm
+```
+
+### 💾 Step 18: Install Extra Packages (Optional but Useful)
+
+```bash
+pacman -S firefox git base-devel neofetch htop pipewire pipewire-alsa pipewire-pulse
+```
+
+### 🚀 Step 19: Exit, Unmount, and Reboot
+
+```bash
+exit
+umount -R /mnt
+reboot
+```
+Remove your USB when prompted.
+
+### 🧩 Step 20: First Boot
+
+You should now see:
+*   GRUB menu
+*   Your desktop environment login screen
+
+Log in with your user account and start customizing Arch 🎉
+
+### ⚠️ Troubleshooting Boot Issues
+
+**🔹 Black screen after GRUB**
+Boot into a live USB again and mount partitions:
+```bash
+mount /dev/sda2 /mnt
+arch-chroot /mnt
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
+reboot
+```
+**🔹 No Wi-Fi**
+Make sure `NetworkManager` is enabled:
+```bash
+systemctl enable NetworkManager
+systemctl start NetworkManager
+```
+
+### 💡 Bonus: Post-Installation Tweaks
+
+Install AUR helper (`yay`):
+```bash
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+Update your system regularly:
+```bash
+sudo pacman -Syu
+```
+Customize your DE (themes, icons, fonts, etc.)
+
+### 🧭 Final Thoughts
+
+Installing Arch Linux may seem intimidating, but once you’ve done it, you gain complete control over your system — speed, minimalism, and full transparency.
+
+By following this 2025 beginner guide, you now have:
+✅ Working Arch Linux
+✅ Internet and GUI setup
+✅ Bootloader and user accounts ready
