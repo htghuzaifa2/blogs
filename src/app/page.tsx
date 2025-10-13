@@ -5,6 +5,12 @@ import { CategoryCarousel } from '@/components/category-carousel';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { getPosts } from '@/lib/posts';
 import { ShoppingBag, User } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
+  description: 'Welcome to blogs.huzi.pk, your source for insightful articles on AI, technology, programming, and lifestyle. Discover tutorials, guides, and trending topics.',
+};
 
 export default async function Home() {
   const posts = getPosts();
@@ -18,7 +24,7 @@ export default async function Home() {
             Welcome to blogs.huzi.pk
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            A collection of thoughts, stories, and ideas.
+            A collection of thoughts, stories, and ideas on AI, tech, and life.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="w-full sm:w-auto transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-primary/40">
@@ -38,6 +44,7 @@ export default async function Home() {
         
         {categories.length > 0 && <CategoryCarousel categories={categories} />}
 
+        <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-12">Latest Posts</h2>
         {posts.length > 0 ? (
            <PaginatedBlogList posts={posts} />
         ) : (

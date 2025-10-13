@@ -28,7 +28,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             Category: {categoryName}
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            {posts.length} post{posts.length !== 1 ? 's' : ''} found in this category.
+            {posts.length} post{posts.length !== 1 ? 's' : ''} found in the "{categoryName}" category.
           </p>
         </div>
 
@@ -56,12 +56,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const categoryName = posts[0].category;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const url = `${siteUrl}/category/${categorySlug}`;
-  const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk.`;
-  const title = `${categoryName} Category`;
+  const title = `Posts in the ${categoryName} Category`;
+  const description = `Browse all posts in the ${categoryName} category on blogs.huzi.pk. Explore articles on technology, Linux, and more.`;
 
   return {
     title: title,
     description: description,
+    keywords: [categoryName, 'blog', 'posts', 'articles', 'technology', 'huzi.pk'],
     alternates: {
       canonical: url,
     },
@@ -69,6 +70,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: title,
       description: description,
       url: url,
+      type: 'website',
     },
     twitter: {
       card: 'summary_large_image',

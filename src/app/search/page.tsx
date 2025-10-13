@@ -8,6 +8,19 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
+import type { Metadata } from 'next';
+
+// Although metadata can't be set dynamically in a client component this way,
+// we can define a static one. A server component would be needed for dynamic.
+export const metadata: Metadata = {
+  title: 'Search Results',
+  description: 'Search for articles and blog posts on blogs.huzi.pk.',
+  robots: {
+    index: false, // No need to index the search page itself
+    follow: true,
+  },
+};
+
 
 // The search data will only contain the fields needed for the card and searching.
 interface SearchablePost {
@@ -99,7 +112,7 @@ function SearchResultsContent() {
       id: r.slug,
       category: '', // Not available in search data
       date: new Date().toISOString(), // Not available, provide a fallback
-      imageUrl: 'https://picsum.photos/seed/1/600/400', // Provide a fallback
+      imageUrl: `https://source.unsplash.com/600x400/?${encodeURIComponent(r.title.split(' ').slice(0,2).join(' '))}`, // Fallback image from title
       imageHint: '', // Not available
       content: '', 
       htmlContent: '',
@@ -123,33 +136,26 @@ function SearchResultsContent() {
     );
   }
 
-  if (!query) {
-    return (
-      <div className="text-center py-16">
-         <h1 className="text-3xl sm:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
-          Search Results
-        </h1>
-        <p className="mt-2 text-lg text-muted-foreground">
-          Please enter a search term to see results.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-headline font-extrabold tracking-tight break-words px-4">
           Search Results
         </h1>
-        <p className="mt-2 text-lg text-muted-foreground break-words px-4">
-          {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
-        </p>
+        {query ? (
+            <p className="mt-2 text-lg text-muted-foreground break-words px-4">
+            {results.length} result{results.length !== 1 ? 's' : ''} found for &quot;{query}&quot;
+            </p>
+        ) : (
+            <p className="mt-2 text-lg text-muted-foreground">
+            Please enter a search term to see results.
+            </p>
+        )}
       </div>
 
       {results.length > 0 ? (
          <PaginatedBlogList posts={results} />
-      ) : (
+      ) : query && (
         <div className="text-center py-16">
           <h2 className="text-2xl font-headline">No results found</h2>
           <p className="text-muted-foreground mt-2">

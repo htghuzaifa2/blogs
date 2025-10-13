@@ -38,7 +38,7 @@ export function BlogCard({ post }: BlogCardProps) {
               </Badge>
             )}
             <CardTitle className="font-headline text-xl leading-tight group-hover:text-primary transition-colors">
-              {post.title}
+              <span className="line-clamp-2">{post.title}</span>
             </CardTitle>
           </div>
         </CardHeader>
@@ -58,5 +58,3 @@ export function BlogCard({ post }: BlogCardProps) {
     </Link>
   );
 }
-
-    

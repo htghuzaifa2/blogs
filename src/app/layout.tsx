@@ -28,10 +28,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blogs.huzi.pk';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
-    template: '%s - blogs.huzi.pk',
+    default: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
+    template: '%s – blogs.huzi.pk',
   },
-  description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
+  description: 'Explore insightful blogs on AI, technology, programming, lifestyle, and education. Your hub for tutorials, guides, and trending topics from Pakistan.',
   keywords: [
     'AI blogs', 
     'technology blogs', 
@@ -44,14 +44,15 @@ export const metadata: Metadata = {
     'Pakistan blogs', 
     'blogging hub', 
     'online tutorials',
-    'knowledge hub'
+    'knowledge hub',
+    'Huzi'
   ],
   openGraph: {
     title: {
-      default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
-      template: '%s - blogs.huzi.pk',
+      default: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
+      template: '%s – blogs.huzi.pk',
     },
-    description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
+    description: 'Explore insightful blogs on AI, technology, programming, lifestyle, and education from Pakistan.',
     url: siteUrl,
     siteName: 'blogs.huzi.pk',
     images: [
@@ -79,10 +80,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: {
-      default: 'blogs.huzi.pk – AI, Tech, Education, Lifestyle & Trending Blogs',
-      template: '%s - blogs.huzi.pk',
+      default: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
+      template: '%s – blogs.huzi.pk',
     },
-    description: 'Read blogs on AI, technology, programming, lifestyle, education & trending topics. Explore tutorials, guides & insights at blogs.huzi.pk.',
+    description: 'Explore insightful blogs on AI, technology, programming, lifestyle, and education from Pakistan.',
     images: ['https://huzi.pk/img/26PWX8FW/logo.webp'],
   },
   alternates: {
