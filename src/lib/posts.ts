@@ -78,9 +78,8 @@ export function getPosts(): Post[] {
     })
     .filter((p): p is Omit<Post, 'htmlContent'> => p !== null)
     .map(post => {
-        // Remove image markdown from content
-        const contentWithoutImages = post.content.replace(/!\[.*?\]\(.*?\)\s*/g, '');
-        return { ...post, content: contentWithoutImages };
+        // Just use the excerpt from frontmatter, don't modify content here.
+        return { ...post };
     });
 
   // Sort posts by date in descending order (newest first)
@@ -99,7 +98,7 @@ function processTables(htmlContent: string) {
     return htmlContent;
   }
   // Wrap every table in a container for responsive scrolling
-  return htmlContent.replace(/<table/g, '<div class="table-container"><table class="phone-chart"').replace(/<\/table>/g, '</table></div>');
+  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
@@ -119,13 +118,10 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       return undefined;
     }
     
-    // Remove image markdown from content before processing
-    const contentWithoutImages = content.replace(/!\[.*?\]\(.*?\)\s*/g, '');
-
     const processedContent = await remark()
       .use(remarkGfm)
       .use(html, { sanitize: false })
-      .process(contentWithoutImages);
+      .process(content);
     let htmlContent = processedContent.toString();
 
     // Process tables to add the necessary container
@@ -135,7 +131,7 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       id: slug,
       slug,
       htmlContent,
-      content: contentWithoutImages,
+      content: content,
       ...(data as { 
         title: string; 
         excerpt: string; 

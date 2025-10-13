@@ -1,5 +1,8 @@
 
 import type {NextConfig} from 'next';
+import fs from 'fs';
+import path from 'path';
+import { getPosts } from './src/lib/posts';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -8,6 +11,19 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      const posts = getPosts();
+      const searchData = posts.map(post => ({
+        slug: post.slug,
+        title: post.title,
+        excerpt: post.excerpt,
+        author: post.author,
+      }));
+      fs.writeFileSync(path.join(process.cwd(), 'public/search-data.json'), JSON.stringify(searchData));
+    }
+    return config;
   },
 };
 
