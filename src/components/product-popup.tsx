@@ -16,41 +16,68 @@ interface Product {
   imageUrl: string
 }
 
+const DISMISS_COOLDOWN = 5 * 60 * 1000; // 5 minutes in milliseconds
+const INITIAL_APPEAR_DELAY = 10 * 1000; // 10 seconds
+const PRODUCT_ROTATION_INTERVAL = 60 * 1000; // 1 minute
+
 export function ProductPopup() {
-  const [product, setProduct] = useState<Product | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [isDismissed, setIsDismissed] = useState(false)
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+
+  const getRandomProduct = () => {
+    return products[Math.floor(Math.random() * products.length)];
+  };
 
   useEffect(() => {
-    if (sessionStorage.getItem('product-popup-dismissed')) {
-      setIsDismissed(true)
-      return
+    const dismissedUntil = localStorage.getItem('product-popup-dismissed-until');
+    if (dismissedUntil && Date.now() < parseInt(dismissedUntil, 10)) {
+      return; // Cooldown is active, do nothing.
     }
 
-    const timer = setTimeout(() => {
-      const randomProduct = products[Math.floor(Math.random() * products.length)]
-      setProduct(randomProduct)
-      setIsVisible(true)
-    }, 5000) // Show after 5 seconds
+    // Initial appearance after 10 seconds
+    const initialTimer = setTimeout(() => {
+      setProduct(getRandomProduct());
+      setIsVisible(true);
+    }, INITIAL_APPEAR_DELAY);
 
-    return () => clearTimeout(timer)
-  }, [])
+    // Product rotation every 1 minute
+    const rotationInterval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setProduct(prevProduct => {
+          let newProduct = getRandomProduct();
+          // Ensure we get a different product
+          while (newProduct.slug === prevProduct?.slug) {
+            newProduct = getRandomProduct();
+          }
+          return newProduct;
+        });
+        setIsFading(false);
+      }, 500); // Wait for fade-out transition
+    }, PRODUCT_ROTATION_INTERVAL);
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(rotationInterval);
+    };
+  }, []);
 
   const handleDismiss = () => {
-    setIsVisible(false)
-    setIsDismissed(true)
-    sessionStorage.setItem('product-popup-dismissed', 'true')
-  }
+    setIsVisible(false);
+    const dismissedUntil = Date.now() + DISMISS_COOLDOWN;
+    localStorage.setItem('product-popup-dismissed-until', dismissedUntil.toString());
+  };
 
-  if (!product || isDismissed) {
-    return null
+  if (!product || !isVisible) {
+    return null;
   }
 
   return (
     <div
       className={cn(
         'fixed bottom-4 right-4 z-50 w-80 transform transition-all duration-500 ease-in-out',
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        isVisible && !isFading ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       )}
     >
       <Card className="overflow-hidden shadow-2xl border-primary/20">
