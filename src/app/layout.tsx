@@ -13,7 +13,7 @@ import { Prefetcher } from '@/components/prefetcher';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import dynamic from 'next/dynamic';
 
-const ProductPopup = dynamic(() => import('@/components/product-popup').then(m => m.ProductPopup), { ssr: false });
+const ProductPopup = dynamic(() => import('@/components/product-popup').then(m => m.ProductPopup));
 
 const inter = Inter({
   subsets: ['latin'],
