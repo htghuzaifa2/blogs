@@ -1,0 +1,271 @@
+---
+title: "Top 10 Things to Do After Installing Arch Linux (Performance + UI Setup)"
+date: "2024-11-05"
+author: "Huzi"
+category: "Linux"
+excerpt: "You've installed Arch Linux, now what? This guide covers the top 10 essential things to do next, from performance tweaks and enabling multilib to UI customization and security essentials."
+imageHint: "Linux terminal customization"
+keywords: ["Arch Linux", "post-installation", "Linux performance", "Linux customization", "pacman", "AUR", "yay", "Linux setup", "desktop environment"]
+---
+
+You did it. You’ve installed Arch Linux — the distro that makes you feel like a real hacker when the terminal finally says “Installation complete.”
+But now what?
+
+Arch, in its pure form, is like an empty house — solid foundation, but you’ve got to build the comfort yourself.
+So today, let’s turn that fresh Arch install into a fast, beautiful, and reliable system you’ll love using every day.
+
+Here are the Top 10 essential things to do after installing Arch Linux — from performance tweaks to UI polish.
+
+### 🧰 1. Update Everything First
+
+Before doing anything else, make sure your system is fully up-to-date.
+
+```bash
+sudo pacman -Syu
+```
+
+This syncs your package database and upgrades everything.
+Think of it as giving your new system a health check before you start decorating.
+
+### 🧩 2. Enable Multilib (for 32-bit Apps & Gaming)
+
+Some apps — especially games and Steam — need 32-bit libraries.
+To enable them:
+
+```bash
+sudo nano /etc/pacman.conf
+```
+
+Find this section:
+
+```
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+```
+
+Uncomment both lines (remove the #), save, and then run:
+
+```bash
+sudo pacman -Syu
+```
+
+Boom — you can now install software that depends on 32-bit packages.
+
+### 🧠 3. Install Essential Base Packages
+
+Arch doesn’t include many basics, so let’s fix that.
+
+```bash
+sudo pacman -S base-devel git wget curl vim unzip zip htop neofetch
+```
+
+*   **base-devel:** required for compiling packages from AUR
+*   **neofetch:** just to flex your setup 😎
+*   **htop:** to monitor your CPU like a pro
+
+### 💡 4. Install a Display Manager (Login Screen)
+
+You need something that handles logins visually. For example:
+
+For KDE or GNOME:
+
+```bash
+sudo pacman -S sddm
+sudo systemctl enable sddm
+```
+
+For XFCE or LXQt:
+
+```bash
+sudo pacman -S lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm
+```
+
+Once enabled, you’ll have a friendly login screen waiting after reboot.
+
+### 🖼️ 5. Choose and Install a Desktop Environment
+
+This is where the fun begins. You can go minimal or fancy — totally your choice.
+
+**KDE Plasma (Beautiful & Polished)**
+
+```bash
+sudo pacman -S plasma kde-applications
+sudo systemctl enable sddm
+```
+
+**XFCE (Lightweight & Reliable)**
+
+```bash
+sudo pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm
+```
+
+**GNOME (Modern & Simple)**
+
+```bash
+sudo pacman -S gnome gdm
+sudo systemctl enable gdm
+```
+
+Reboot afterward, and your Linux desktop world will come alive.
+
+### 🧭 6. Enable Network and Bluetooth Services
+
+Let’s make sure Wi-Fi and Bluetooth work properly.
+
+```bash
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+```
+
+For Bluetooth:
+
+```bash
+sudo pacman -S bluez bluez-utils
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+```
+
+Now you’re connected and wireless freedom is yours.
+
+### 🚀 7. Install Yay (AUR Helper)
+
+The Arch User Repository (AUR) is where magic happens — community packages, drivers, apps like Google Chrome, VS Code, and Spotify.
+
+To install yay:
+
+```bash
+cd /opt
+sudo git clone https://aur.archlinux.org/yay.git
+sudo chown -R $USER:$USER yay
+cd yay
+makepkg -si
+```
+
+Now you can install apps easily:
+
+```bash
+yay -S google-chrome visual-studio-code-bin
+```
+
+### 🧠 8. Optimize CPU and System Performance
+
+Let’s make Arch fly.
+
+**Enable Parallel Downloads**
+
+Edit your Pacman config:
+
+```bash
+sudo nano /etc/pacman.conf
+```
+
+Uncomment:
+
+```
+ParallelDownloads = 5
+```
+
+**Enable CPU microcode updates:**
+
+```bash
+sudo pacman -S intel-ucode
+```
+
+or for AMD:
+
+```bash
+sudo pacman -S amd-ucode
+```
+
+Rebuild GRUB:
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+**Enable ZRAM (faster swapping)**
+
+```bash
+sudo pacman -S zram-generator
+sudo systemctl enable --now systemd-zram-setup@zram0.service
+```
+
+Now your system swaps in RAM instead of slow disk space.
+
+### 🎨 9. Customize Your UI (Make It Yours)
+
+This is where Arch shines — it’s your Linux, your style.
+
+**KDE users:**
+
+Install some themes:
+
+```bash
+yay -S sweet-theme tela-icon-theme
+```
+
+Go to `System Settings` → `Appearance` and mix your favorite themes.
+
+**XFCE users:**
+
+Install Plank for a Mac-style dock:
+
+```bash
+sudo pacman -S plank
+```
+
+Add fonts and icons:
+
+```bash
+sudo pacman -S ttf-dejavu ttf-ubuntu-font-family ttf-font-awesome
+```
+
+Pro tip: less clutter = faster feel.
+
+### 🔒 10. Security and Backup Essentials
+
+Keep your system safe:
+
+```bash
+sudo pacman -S firewalld
+sudo systemctl enable --now firewalld
+```
+
+And for easy rollback snapshots:
+
+```bash
+sudo pacman -S timeshift
+sudo timeshift-launcher
+```
+
+If anything breaks (and it will, someday 😅), you can restore your system in minutes.
+
+### 🌟 Bonus: Add Some Style to Your Terminal
+
+Make your terminal inspiring:
+
+```bash
+yay -S oh-my-zsh-git powerlevel10k
+```
+
+Then set Zsh as default shell:
+
+```bash
+chsh -s /bin/zsh
+```
+
+Now, every time you open your terminal, it’ll look like you actually know what you’re doing (even if you’re just typing `sudo pacman -Syu` again).
+
+### 💬 Final Words by Huzi
+
+Arch Linux isn’t just an OS — it’s a journey.
+Every command teaches you something new. Every tweak makes your setup feel personal.
+Once you start optimizing, you’ll realize Arch isn’t hard — it’s just honest. It gives you control, and in return, it asks for a little patience.
+
+So customize it, break it, fix it, and make it yours.
+
+✍️ Written by Huzi
+💻 Read more Linux tips, web dev tutorials, and digital life blogs at huzi.pk
+ — where passion meets open-source.
