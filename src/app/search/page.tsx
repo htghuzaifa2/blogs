@@ -8,19 +8,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
-import type { Metadata } from 'next';
-
-// Although metadata can't be set dynamically in a client component this way,
-// we can define a static one. A server component would be needed for dynamic.
-export const metadata: Metadata = {
-  title: 'Search Results',
-  description: 'Search for articles and blog posts on blogs.huzi.pk.',
-  robots: {
-    index: false, // No need to index the search page itself
-    follow: true,
-  },
-};
-
 
 // The search data will only contain the fields needed for the card and searching.
 interface SearchablePost {
