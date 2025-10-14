@@ -37,9 +37,9 @@ export function ProductCard({ product }: ProductCardProps) {
           </h3>
           <div className="flex justify-between items-center mt-auto pt-2">
             <p className="text-base font-bold text-primary">PKR {product.price}</p>
-            <Button size="icon" variant="ghost" className="h-8 w-8 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="h-8 w-8 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                <ShoppingCart className="h-4 w-4" />
-            </Button>
+            </div>
           </div>
         </CardContent>
       </Link>
