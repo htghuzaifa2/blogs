@@ -20,7 +20,8 @@ function getRandomProducts(allProducts: Product[], count: number): Product[] {
 
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+  const awaitedParams = await params;
+  const post = await getPostBySlug(awaitedParams.slug);
 
   if (!post) {
     notFound();
