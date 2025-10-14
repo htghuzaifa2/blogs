@@ -23,7 +23,7 @@ export interface Post {
 
 // A helper function to check if a post has all required frontmatter fields
 function isValidPostData(data: any): data is { title: string; date: string; excerpt: string; author: string; category: string; keywords?: string[] } {
-    return data.title && data.date && data.excerpt && data.author && data.category;
+    return data && data.title && data.date && data.excerpt && data.author && data.category;
 }
 
 export function getPosts(): Post[] {
