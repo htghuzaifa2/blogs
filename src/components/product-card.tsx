@@ -20,13 +20,14 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="group overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+    <Card className="group overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 bg-card/50 backdrop-blur-sm">
       <Link href={`https://huzi.pk/product/${product.slug}`} target="_blank" rel="noopener noreferrer" className="block">
         <div className="aspect-square relative overflow-hidden">
           <Image
             src={product.imageUrl}
             alt={product.title}
             fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
