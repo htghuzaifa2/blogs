@@ -7,16 +7,26 @@ import { Badge } from '@/components/ui/badge';
 import dynamic from 'next/dynamic';
 import type { Post } from '@/lib/posts';
 import { RelatedPosts } from './related-posts';
+import { RelatedProducts } from './related-products';
 
 const Comments = dynamic(() => import('@/components/comments').then(m => m.Comments), { ssr: false });
 const CodeCopyButton = dynamic(() => import('@/components/code-copy-button').then(m => m.CodeCopyButton), { ssr: false });
 
+interface Product {
+  id: number;
+  slug: string;
+  title: string;
+  price: string;
+  imageUrl: string;
+}
+
 interface PostClientWrapperProps {
   post: Post;
   relatedPosts: Post[];
+  relatedProducts: Product[];
 }
 
-export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps) {
+export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostClientWrapperProps) {
   
   return (
     <div className="bg-background">
@@ -59,6 +69,14 @@ export function PostClientWrapper({ post, relatedPosts }: PostClientWrapperProps
             </article>
             
             <CodeCopyButton />
+            
+            {relatedProducts.length > 0 && (
+              <>
+                <hr className="my-12 border-border" />
+                <RelatedProducts products={relatedProducts} />
+              </>
+            )}
+
             <hr className="my-12 border-border" />
             
             <Comments />

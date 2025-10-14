@@ -3,6 +3,21 @@ import { getPostBySlug, getPosts, Post } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PostClientWrapper } from '@/components/post-client-wrapper';
+import products from '@/lib/products.json';
+
+interface Product {
+  id: number;
+  slug: string;
+  title: string;
+  price: string;
+  imageUrl: string;
+}
+
+function getRandomProducts(allProducts: Product[], count: number): Product[] {
+  const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
@@ -31,8 +46,15 @@ export default async function PostPage({ params }: { params: { slug: string } })
   // 3. Combine them
   const relatedPosts = [...sameCategoryPosts, ...randomPosts];
 
+  // 4. Get random products
+  const randomProducts = getRandomProducts(products, 5);
+
   return (
-    <PostClientWrapper post={post} relatedPosts={relatedPosts} />
+    <PostClientWrapper 
+      post={post} 
+      relatedPosts={relatedPosts}
+      relatedProducts={randomProducts}
+    />
   );
 }
 
