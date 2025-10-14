@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -20,7 +21,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
-      <Link href={`https://huzi.pk/product/${product.slug}`} target="_blank" rel="noopener noreferrer">
+      <Link href={`https://huzi.pk/product/${product.slug}`} target="_blank" rel="noopener noreferrer" className="block">
         <div className="aspect-square relative overflow-hidden">
           <Image
             src={product.imageUrl}
@@ -30,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
         <CardContent className="p-3 space-y-2">
-          <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors h-10">
             {product.title}
           </h3>
           <div className="flex justify-between items-center">
