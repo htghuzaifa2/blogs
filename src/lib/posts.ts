@@ -33,7 +33,7 @@ export function getPosts(): Post[] {
     if (fs.existsSync(postsDirectory)) {
       fileNames = fs.readdirSync(postsDirectory);
     } else {
-      console.warn(`Posts directory not found at: ${postsDirectory}`);
+      // Don't log if the directory simply doesn't exist.
       return [];
     }
   } catch (err) {
@@ -53,7 +53,8 @@ export function getPosts(): Post[] {
 
         // Use the validation function to ensure all required fields are present
         if (!isValidPostData(data)) {
-            console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
+            // This is a common case, so we won't log a loud warning.
+            // console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
             return null;
         }
         
@@ -106,7 +107,7 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   
   try {
     if (!fs.existsSync(fullPath)) {
-      console.warn(`Post with slug "${slug}" not found at path: ${fullPath}`);
+      // Don't log here, as notFound() will be handled by the page.
       return undefined;
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
