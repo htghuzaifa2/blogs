@@ -23,7 +23,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
       <h2 className="text-2xl sm:text-3xl font-headline font-bold mb-8 text-center">
         You Might Also Like
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
