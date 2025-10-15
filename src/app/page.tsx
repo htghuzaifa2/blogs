@@ -12,10 +12,20 @@ export const metadata: Metadata = {
   description: 'Welcome to blogs.huzi.pk, your source for insightful articles on AI, technology, programming, and lifestyle. Discover tutorials, guides, and trending topics.',
 };
 
-export default async function Home() {
-  const posts = getPosts();
-  const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)));
+const POSTS_PER_PAGE = 50;
+
+export default async function Home({ searchParams }: { searchParams?: { page?: string } }) {
+  const allPosts = getPosts();
+  const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
   
+  const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  const paginatedPosts = allPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -45,8 +55,13 @@ export default async function Home() {
         {categories.length > 0 && <CategoryCarousel categories={categories} />}
 
         <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-12">Latest Posts</h2>
-        {posts.length > 0 ? (
-           <PaginatedBlogList posts={posts} />
+        {paginatedPosts.length > 0 ? (
+           <PaginatedBlogList 
+              posts={paginatedPosts} 
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl="/"
+           />
         ) : (
           <div className="text-center py-16">
             <h2 className="text-2xl font-headline">No posts yet</h2>

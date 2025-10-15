@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+const POSTS_PER_PAGE = 50;
+
+export default async function CategoryPage({ params, searchParams }: { params: { slug: string }, searchParams?: { page?: string } }) {
   const allPosts = getPosts();
   const categorySlug = params.slug;
 
@@ -19,6 +21,15 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   }
 
   const categoryName = posts[0].category;
+  
+  const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+  const paginatedPosts = posts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
 
   return (
     <div className="bg-background">
@@ -32,7 +43,12 @@ export default async function CategoryPage({ params }: { params: { slug: string 
           </p>
         </div>
 
-        <PaginatedBlogList posts={posts} />
+        <PaginatedBlogList 
+            posts={paginatedPosts} 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            baseUrl={`/category/${categorySlug}`}
+        />
         
       </main>
     </div>

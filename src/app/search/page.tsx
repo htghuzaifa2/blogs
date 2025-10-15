@@ -9,6 +9,8 @@ import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
+const POSTS_PER_PAGE = 50;
+
 // The search data will only contain the fields needed for the card and searching.
 interface SearchablePost {
   slug: string;
@@ -20,6 +22,8 @@ interface SearchablePost {
 function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
+  const page = searchParams.get('page') || '1';
+
   const [searchIndex, setSearchIndex] = useState<SearchablePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -106,6 +110,13 @@ function SearchResultsContent() {
     return finalResults;
   }, [query, searchIndex, loading]);
 
+  const currentPage = Number(page) || 1;
+  const totalPages = Math.ceil(results.length / POSTS_PER_PAGE);
+
+  const paginatedResults = results.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
 
   if (loading) {
       return <SearchSkeleton />;
@@ -138,8 +149,13 @@ function SearchResultsContent() {
         )}
       </div>
 
-      {results.length > 0 ? (
-         <PaginatedBlogList posts={results} />
+      {paginatedResults.length > 0 ? (
+         <PaginatedBlogList 
+            posts={paginatedResults}
+            totalPages={totalPages}
+            currentPage={currentPage}
+            baseUrl={`/search?q=${encodeURIComponent(query)}`}
+          />
       ) : query && (
         <div className="text-center py-16">
           <h2 className="text-2xl font-headline">No results found</h2>
