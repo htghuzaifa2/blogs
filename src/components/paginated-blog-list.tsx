@@ -30,7 +30,11 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
   
   // Scroll to top on page change
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // A small delay ensures the content has started rendering before scrolling.
+    const timer = setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+    return () => clearTimeout(timer);
   }, [currentPage]);
 
 
@@ -65,7 +69,7 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
           className={cn(currentPage === i && 'pointer-events-none')}
           asChild
         >
-          <Link href={createPageUrl(i)} scroll={true}>{i}</Link>
+          <Link href={createPageUrl(i)}>{i}</Link>
         </Button>
       );
     }
@@ -97,7 +101,7 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
             aria-label="Go to previous page"
             asChild
           >
-            <Link href={createPageUrl(currentPage - 1)} scroll={true}>
+            <Link href={createPageUrl(currentPage - 1)}>
                <ArrowLeft className="h-4 w-4" />
             </Link>
           </Button>
@@ -113,7 +117,7 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
             aria-label="Go to next page"
             asChild
           >
-             <Link href={createPageUrl(currentPage + 1)} scroll={true}>
+             <Link href={createPageUrl(currentPage + 1)}>
                <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
