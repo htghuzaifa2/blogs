@@ -8,13 +8,13 @@ type PrefetchStats = {
 };
 
 // --- Configuration ---
-const THROTTLE_MS = 500;
-const IO_ROOT_MARGIN = '50%';
+const THROTTLE_MS = 300; // Scan for new links more frequently.
+const IO_ROOT_MARGIN = '200%'; // Start prefetching links that are much further from the viewport.
 const CONCURRENCY_MAP = {
-  'slow-2g': 2,
-  '2g': 2,
-  '3g': 4,
-  '4g': 6,
+  'slow-2g': 4,
+  '2g': 4,
+  '3g': 8,
+  '4g': 12,
 };
 type EffectiveConnectionType = keyof typeof CONCURRENCY_MAP;
 
@@ -82,7 +82,8 @@ function queuePrefetch(url: string) {
   stats.queued = queue.length;
   stats.total++;
   
-  requestIdleCallback(processQueue, { timeout: 2000 });
+  // Start processing the queue immediately instead of waiting for idle time.
+  processQueue();
 }
 
 function handleIntersection(entries: IntersectionObserverEntry[]) {
@@ -154,7 +155,7 @@ function initialize() {
   };
   
   // Initial scan
-  requestIdleCallback(scanAndObserve, { timeout: 1000 });
+  scanAndObserve();
 }
 
 // Automatically initialize
@@ -163,3 +164,4 @@ initialize();
 // This file is a module, but we don't need to export anything.
 // Its side-effect of initializing the prefetcher is all that's needed.
 export {};
+
