@@ -45,10 +45,10 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                     </Badge>
                   </Link>
                 )}
-                <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 break-words">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-headline font-bold tracking-tight text-foreground break-words">
                   {post.title}
                 </h1>
-                <div className="text-sm text-muted-foreground">
+                <div className="mt-4 text-sm text-muted-foreground">
                   <span>By {post.author}</span>
                 </div>
               </header>
