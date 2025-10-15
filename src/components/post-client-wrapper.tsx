@@ -9,7 +9,6 @@ import type { Post } from '@/lib/posts';
 import { RelatedPosts } from './related-posts';
 import { RelatedProducts } from './related-products';
 
-const Comments = dynamic(() => import('@/components/comments').then(m => m.Comments), { ssr: false });
 const CodeCopyButton = dynamic(() => import('@/components/code-copy-button').then(m => m.CodeCopyButton), { ssr: false });
 
 interface Product {
@@ -76,10 +75,6 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                 <RelatedProducts products={relatedProducts} />
               </>
             )}
-
-            <hr className="my-12 border-border" />
-            
-            <Comments />
 
             {relatedPosts.length > 0 && (
               <>
