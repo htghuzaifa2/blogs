@@ -1,7 +1,7 @@
 
 'use client';
 
-import { getPosts, Post } from '@/lib/posts';
+import type { Post } from '@/lib/posts';
 import { notFound, useSearchParams } from 'next/navigation';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { useEffect, useMemo, useState } from 'react';
@@ -9,34 +9,58 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const POSTS_PER_PAGE = 50;
 
-// This component fetches all posts once and then filters on the client.
-// This is necessary because generateStaticParams can't be used with searchParams
-// in a way that allows for static generation of paginated pages.
+// This searchable post is a subset of the full Post type
+interface SearchablePost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  category?: string; // Make category optional to align with potential search data
+}
+
+
+// This component fetches post data from a static JSON file on the client.
 function CategoryClientPage({ params }: { params: { slug: string } }) {
   const searchParams = useSearchParams();
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [allPosts, setAllPosts] = useState<SearchablePost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // In a real app, you might fetch this from an API endpoint,
-    // but for now, we'll just use the lib function on the client.
-    // This is not ideal for performance but resolves the build error.
-    // A better long-term solution might involve a dedicated API route.
-    setAllPosts(getPosts());
-    setLoading(false);
+    // Fetch the statically generated post data
+    fetch('/search-data.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setAllPosts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load post data:", err);
+        setLoading(false);
+      });
   }, []);
 
   const categorySlug = params.slug;
 
-  const posts = useMemo(() => {
-    return allPosts
+  const posts: Post[] = useMemo(() => {
+    const filtered = allPosts
       .filter(
         (post) => post.category && post.category.toLowerCase().replace(/ /g, '-') === categorySlug
-      )
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      );
+    
+    // Adapt the SearchablePost to the Post type for the blog card.
+    // The missing fields are not used by the card but are required by the type.
+    return filtered.map(p => ({
+        ...p,
+        id: p.slug,
+        date: '', // Not available in search data, but not rendered on card
+        content: '', 
+        htmlContent: '',
+        category: p.category || ''
+    }));
   }, [allPosts, categorySlug]);
 
   useEffect(() => {
+    // If loading is finished and no posts were found, trigger a 404
     if (!loading && posts.length === 0) {
       notFound();
     }
@@ -47,8 +71,7 @@ function CategoryClientPage({ params }: { params: { slug: string } }) {
   }
 
   if (posts.length === 0) {
-    // This will be caught by the useEffect above, but as a fallback.
-    return null; 
+    return null; // Let the useEffect handle the notFound() call
   }
   
   const categoryName = posts[0].category;
@@ -107,9 +130,4 @@ function CategorySkeleton() {
   );
 }
 
-// The main export needs to be a default export.
 export default CategoryClientPage;
-
-// We remove generateMetadata and generateStaticParams as they cannot be reliably used
-// in a page that dynamically handles searchParams on the client.
-// Metadata should be handled at a higher level or be more generic for these pages.
