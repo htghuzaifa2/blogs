@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
   const allPosts = getPosts();
   const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
   
-  const currentPage = Number(searchParams?.page) || 1;
+  const currentPage = Number(searchParams?.page ?? 1);
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
   const paginatedPosts = allPosts.slice(
