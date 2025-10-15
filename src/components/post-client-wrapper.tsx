@@ -60,7 +60,6 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                            prose-strong:font-semibold
                            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
                            prose-headings:font-headline prose-headings:tracking-tight 
-                           prose-h1:text-3xl prose-h1:sm:text-4xl
                            prose-h2:text-2xl prose-h2:sm:text-3xl
                            [&>p:first-of-type]:text-xl [&>p:first-of-type]:font-light [&>p:first-of-type]:text-foreground"
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
