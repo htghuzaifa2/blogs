@@ -110,7 +110,7 @@ function HomeContent() {
             </Link>
           </Button>
           <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-secondary/40">
-            <Link href="https://htghuzaifa.huzi.pk/" target="_blank" rel="noopener noreferrer">
+            <Link href="https://htg.huzi.pk/" target="_blank" rel="noopener noreferrer">
               <User className="mr-2 h-5 w-5" />
               Meet The Creator
             </Link>
