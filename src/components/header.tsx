@@ -1,5 +1,5 @@
 
-"use client";
+'use client';
 
 import Link from 'next/link'
 import { Button } from './ui/button';
@@ -18,19 +18,25 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from '@/lib/utils';
+import useSWR from 'swr';
 
 const ThemeSwitcher = dynamic(() => import('./theme-switcher').then(m => m.ThemeSwitcher), { ssr: false });
 const SearchBar = dynamic(() => import('./search-bar').then(m => m.SearchBar), { ssr: false });
 
-interface HeaderProps {
-    categories: string[];
-}
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-export function Header({ categories }: HeaderProps) {
+export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoryOpen, setCategoryOpen] = useState(false);
+  
+  // Fetch categories on the client-side from the static JSON file
+  const { data: searchData } = useSWR('/search-data.json', fetcher);
 
-  const navLinks = categories.map(category => ({
+  const categories = searchData 
+    ? Array.from(new Set(searchData.map((post: { category: string }) => post.category).filter(Boolean))) 
+    : [];
+
+  const navLinks = categories.map((category: string) => ({
     href: `/category/${category.toLowerCase().replace(/ /g, '-')}`,
     label: category
   }));

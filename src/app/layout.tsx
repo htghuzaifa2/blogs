@@ -11,7 +11,6 @@ import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import dynamic from 'next/dynamic';
-import { getPosts } from '@/lib/posts';
 
 const ProductPopup = dynamic(() => import('@/components/product-popup').then(m => m.ProductPopup));
 
@@ -99,9 +98,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const allPosts = getPosts();
-  const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
-
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -118,7 +115,7 @@ export default function RootLayout({
         >
           <ClickTracker>
             <div className="flex flex-col min-h-screen">
-              <Header categories={categories} />
+              <Header />
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>
