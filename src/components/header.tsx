@@ -18,46 +18,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from '@/lib/utils';
-import { getPosts } from '@/lib/posts';
 
 const ThemeSwitcher = dynamic(() => import('./theme-switcher').then(m => m.ThemeSwitcher), { ssr: false });
 const SearchBar = dynamic(() => import('./search-bar').then(m => m.SearchBar), { ssr: false });
 
+interface HeaderProps {
+    categories: string[];
+}
 
-export function Header() {
+export function Header({ categories }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoryOpen, setCategoryOpen] = useState(false);
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    // Since getPosts() can't be used in a client component directly if it uses server-side modules,
-    // and we can't make Header a server component due to hooks, we need a different approach.
-    // A better pattern is to fetch categories from an API route or pass them as props from a server component.
-    // However, given the current structure, we'll try to keep the change minimal.
-    // Let's assume for now that the parent component will provide the categories.
-    // The previous error was because getPosts() was called in RootLayout which is a Server Component, but the import was being traced through client components.
-    // A pure server component can call getPosts(). Let's refactor this.
-    
-    // This component must remain a client component due to useState and other hooks.
-    // Let's create a server component wrapper or modify the layout to pass categories.
-    // For now, let's revert to a server component that passes props.
-    // The error indicates layout.tsx is the issue, so we'll adjust the call there.
-    
-    // The final fix is to make Header a server component that fetches data, and move the client logic to a sub-component.
-    // Let's simplify: Header will be a server component, passing categories to a client component for the interactive parts.
-    // No, Header itself is a client component due to its hooks.
-    // The error is in the layout. Let's make the layout NOT call getPosts, and let the Header call it if it can be a server component.
-    // But it can't be.
-    
-    // Let's re-read the error. `Import trace: ./src/app/layout.tsx`. The problem is the layout.
-    // The previous attempt was correct to remove it from layout. Now, where do we get the categories?
-    // We can have a Server Component that just renders the header and passes the categories.
-    // Or we can try to make Header a server component.
-    const allPosts = getPosts();
-    const uniqueCategories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
-    setCategories(uniqueCategories);
-
-  }, []);
 
   const navLinks = categories.map(category => ({
     href: `/category/${category.toLowerCase().replace(/ /g, '-')}`,

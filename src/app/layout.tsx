@@ -11,6 +11,7 @@ import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import dynamic from 'next/dynamic';
+import { getPosts } from '@/lib/posts';
 
 const ProductPopup = dynamic(() => import('@/components/product-popup').then(m => m.ProductPopup));
 
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: {
-      default: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
+      default: 'Blogs.huzi.pk – AI, Tech_ and Lifestyle Blogs by Huzi',
       template: '%s – blogs.huzi.pk',
     },
     description: 'Explore insightful blogs on AI, technology, programming, lifestyle, and education from Pakistan.',
@@ -98,6 +99,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const allPosts = getPosts();
+  const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -114,7 +118,7 @@ export default function RootLayout({
         >
           <ClickTracker>
             <div className="flex flex-col min-h-screen">
-              <Header />
+              <Header categories={categories} />
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>
