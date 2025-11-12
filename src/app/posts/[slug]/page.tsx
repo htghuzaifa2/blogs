@@ -10,6 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
+export const runtime = 'edge';
+
 interface Product {
   id: number;
   slug: string;
