@@ -20,6 +20,7 @@ interface SearchablePost {
   excerpt: string;
   author: string;
   category: string;
+  htmlContent: string;
 }
 
 function BlogArchiveContent() {
@@ -61,7 +62,6 @@ function BlogArchiveContent() {
       id: p.slug,
       date: new Date().toISOString(), // Not available, provide a fallback
       content: '', 
-      htmlContent: '',
     }));
   }, [searchIndex, loading]);
   

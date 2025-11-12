@@ -19,6 +19,7 @@ interface SearchablePost {
   excerpt: string;
   author: string;
   category: string;
+  htmlContent: string;
 }
 
 function CategoryContent({ categorySlug }: { categorySlug: string }) {
@@ -65,7 +66,6 @@ function CategoryContent({ categorySlug }: { categorySlug: string }) {
         id: p.slug,
         date: new Date().toISOString(), // Not available, provide a fallback
         content: '', 
-        htmlContent: '',
     }));
 
   }, [categorySlug, searchIndex, loading]);

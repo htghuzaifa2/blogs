@@ -9,6 +9,8 @@ import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
+export const runtime = 'edge';
+
 const POSTS_PER_PAGE = 50;
 
 // The search data will only contain the fields needed for the card and searching.
@@ -17,7 +19,8 @@ interface SearchablePost {
   title: string;
   excerpt: string;
   author: string;
-  category: string; // Ensure category is here
+  category: string;
+  htmlContent: string;
 }
 
 function SearchResultsContent() {
@@ -104,7 +107,6 @@ function SearchResultsContent() {
       id: r.slug,
       date: new Date().toISOString(), // Not available, provide a fallback
       content: '', 
-      htmlContent: '',
     }));
 
     return finalResults;

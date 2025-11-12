@@ -24,17 +24,26 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, defaultLoaders }) => {
     if (isServer) {
       const posts = getPosts();
-      // Ensure search data includes the category for filtering
-      const searchData = posts.map(post => ({
-        slug: post.slug,
-        title: post.title,
-        excerpt: post.excerpt,
-        author: post.author,
-        category: post.category, // Add category here
-      }));
+      
+      // Now we need the full HTML content for the client-side post pages.
+      const searchData = posts.map(post => {
+        // Since getPosts now only returns content, we'd need to process it.
+        // Let's adjust getPosts to handle this better. For now, we will
+        // create a separate function to get post with HTML content.
+        return {
+          slug: post.slug,
+          title: post.title,
+          excerpt: post.excerpt,
+          author: post.author,
+          category: post.category,
+          date: post.date,
+          keywords: post.keywords,
+          htmlContent: post.htmlContent // IMPORTANT: Include htmlContent
+        };
+      });
       fs.writeFileSync(path.join(process.cwd(), 'public/search-data.json'), JSON.stringify(searchData));
     }
     return config;

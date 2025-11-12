@@ -24,6 +24,7 @@ interface SearchablePost {
   excerpt: string;
   author: string;
   category: string;
+  htmlContent: string;
 }
 
 function HomeContent() {
@@ -65,7 +66,6 @@ function HomeContent() {
       id: p.slug,
       date: new Date().toISOString(), // Not available, provide a fallback
       content: '', 
-      htmlContent: '',
     }));
   }, [searchIndex, loading]);
   
@@ -167,7 +167,7 @@ function HomeSkeleton() {
       <Skeleton className="h-9 w-40 mx-auto mt-16 mb-8" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
         {[...Array(6)].map((_, i) => (
-          <div key={i} className="space-y-4">
+          <div key={i-2} className="space-y-4">
             <Skeleton className="h-48 w-full" />
             <Skeleton className="h-4 w-1/4" />
             <Skeleton className="h-6 w-3/4" />
