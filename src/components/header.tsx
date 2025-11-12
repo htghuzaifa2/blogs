@@ -4,7 +4,7 @@
 import Link from 'next/link'
 import { Button } from './ui/button';
 import { Menu, ChevronDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import {
   DropdownMenu,
@@ -29,7 +29,6 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   
-  // Fetch categories on the client-side from the static JSON file
   const { data: searchData } = useSWR('/search-data.json', fetcher);
 
   const categories = searchData 
@@ -61,6 +60,7 @@ export function Header() {
                     blogs.huzi.pk
                     </span>
                 </Link>
+                <Link href="/blog" className="text-lg font-medium text-foreground" onClick={() => setIsMenuOpen(false)}>Blog</Link>
                  <div className="text-lg font-medium text-foreground">Categories</div>
                 <nav className="flex flex-col gap-4 border-l pl-4">
                   {navLinks.map((link) => (
@@ -88,9 +88,12 @@ export function Header() {
             </Link>
          </div>
 
-        {/* Desktop Categories */}
+        {/* Desktop Navigation */}
         <div className="order-last w-full md:order-none md:w-auto md:flex-1 md:justify-center">
-          <div className="hidden md:flex justify-center">
+          <div className="hidden md:flex justify-center items-center gap-2">
+              <Button variant="ghost" asChild>
+                <Link href="/blog">Blog</Link>
+              </Button>
               <DropdownMenu open={isCategoryOpen} onOpenChange={setCategoryOpen}>
                   <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex items-center gap-1" onClick={() => setCategoryOpen(!isCategoryOpen)}>

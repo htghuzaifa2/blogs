@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { CategoryCarousel } from '@/components/category-carousel';
 import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { getPosts } from '@/lib/posts';
-import { ShoppingBag, User } from 'lucide-react';
+import { ShoppingBag, User, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,14 +12,13 @@ export const metadata: Metadata = {
   description: 'Welcome to blogs.huzi.pk, your source for insightful articles on AI, technology, programming, and lifestyle. Discover tutorials, guides, and trending topics.',
 };
 
-// This page is now static to comply with edge runtime constraints on the home page.
-const POSTS_TO_SHOW = 50;
+const POSTS_TO_SHOW_ON_HOME = 6;
 
 export default async function Home() {
   const allPosts = getPosts();
   const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
   
-  const initialPosts = allPosts.slice(0, POSTS_TO_SHOW);
+  const initialPosts = allPosts.slice(0, POSTS_TO_SHOW_ON_HOME);
 
   return (
     <div className="bg-background">
@@ -49,12 +48,12 @@ export default async function Home() {
         
         {categories.length > 0 && <CategoryCarousel categories={categories} />}
 
-        <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-12">Latest Posts</h2>
+        <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-8">Latest Posts</h2>
         {initialPosts.length > 0 ? (
            <PaginatedBlogList 
               posts={initialPosts} 
               currentPage={1}
-              totalPages={1}
+              totalPages={1} // No pagination on the homepage
               baseUrl="/"
            />
         ) : (
@@ -63,7 +62,18 @@ export default async function Home() {
             <p className="text-muted-foreground mt-2">Check back later for new content!</p>
           </div>
         )}
+
+        {allPosts.length > POSTS_TO_SHOW_ON_HOME && (
+          <div className="text-center mt-12">
+            <Button asChild size="lg" variant="outline">
+              <Link href="/blog">
+                View All Posts <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
