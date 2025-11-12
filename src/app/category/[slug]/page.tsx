@@ -7,6 +7,8 @@ import { PaginatedBlogList } from '@/components/paginated-blog-list';
 import { useEffect, useMemo, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
+export const runtime = 'edge';
+
 const POSTS_PER_PAGE = 50;
 
 // This searchable post is a subset of the full Post type

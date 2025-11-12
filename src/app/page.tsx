@@ -7,6 +7,8 @@ import { getPosts } from '@/lib/posts';
 import { ShoppingBag, User } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: 'Blogs.huzi.pk – AI, Tech, and Lifestyle Blogs by Huzi',
   description: 'Welcome to blogs.huzi.pk, your source for insightful articles on AI, technology, programming, and lifestyle. Discover tutorials, guides, and trending topics.',

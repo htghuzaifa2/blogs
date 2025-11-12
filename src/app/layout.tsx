@@ -6,7 +6,6 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { getPosts } from '@/lib/posts';
 import { cn } from '@/lib/utils';
 import { ClickTracker } from '@/components/click-tracker';
 import { Prefetcher } from '@/components/prefetcher';
@@ -99,9 +98,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const posts = getPosts();
-  const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)));
-  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -118,7 +114,7 @@ export default function RootLayout({
         >
           <ClickTracker>
             <div className="flex flex-col min-h-screen">
-              <Header categories={categories} />
+              <Header />
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>
