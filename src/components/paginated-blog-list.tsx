@@ -9,6 +9,7 @@ import { Button } from './ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { AdSenseInFeed } from './adsense-infeed';
 
 interface PaginatedBlogListProps {
   posts: Post[];
@@ -16,6 +17,8 @@ interface PaginatedBlogListProps {
   currentPage: number;
   baseUrl: string;
 }
+
+const AD_FREQUENCY = 6; // Show an ad after every 6 posts
 
 export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: PaginatedBlogListProps) {
   
@@ -36,6 +39,14 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
     }, 100);
     return () => clearTimeout(timer);
   }, [currentPage]);
+
+  const itemsWithAds: (Post | { type: 'ad' })[] = [];
+  posts.forEach((post, index) => {
+    itemsWithAds.push(post);
+    if ((index + 1) % AD_FREQUENCY === 0 && index < posts.length) {
+      itemsWithAds.push({ type: 'ad' });
+    }
+  });
 
 
   if (posts.length === 0) {
@@ -87,9 +98,13 @@ export function PaginatedBlogList({ posts, totalPages, currentPage, baseUrl }: P
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
-        {posts.map(post => (
-          <BlogCard key={post.id} post={post} />
-        ))}
+        {itemsWithAds.map((item, index) => {
+          if ('type' in item && item.type === 'ad') {
+            return <AdSenseInFeed key={`ad-${index}`} />;
+          }
+          const post = item as Post;
+          return <BlogCard key={post.id} post={post} />;
+        })}
       </div>
 
       {totalPages > 1 && (
