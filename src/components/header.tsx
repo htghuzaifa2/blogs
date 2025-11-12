@@ -15,6 +15,9 @@ import {
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from '@/lib/utils';
@@ -55,19 +58,23 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col p-0">
-                <div className="p-6 pb-0">
-                    <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
-                        <span className="font-bold font-headline sm:inline-block">
-                        blogs.huzi.pk
-                        </span>
-                    </Link>
-                </div>
-                <div className="flex flex-col gap-6 p-6">
+                <SheetHeader className="p-6 pb-4">
+                  <SheetTitle className="sr-only">Main Menu</SheetTitle>
+                  <SheetDescription className="sr-only">
+                    Navigate through the site's main sections and categories.
+                  </SheetDescription>
+                  <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
+                      <span className="font-bold font-headline sm:inline-block">
+                      blogs.huzi.pk
+                      </span>
+                  </Link>
+                </SheetHeader>
+                <div className="flex flex-col gap-6 px-6 pb-6 pt-2">
                     <Link href="/blog" className="text-lg font-medium text-foreground" onClick={() => setIsMenuOpen(false)}>Blog</Link>
                     <div className="text-lg font-medium text-foreground">Categories</div>
                 </div>
 
-                <ScrollArea className="flex-1 overflow-y-auto">
+                <ScrollArea className="flex-1 overflow-y-auto pr-6">
                     <nav className="flex flex-col gap-4 border-l ml-6 pl-4 pb-6">
                     {navLinks.map((link) => (
                         <Link 
