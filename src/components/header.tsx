@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/sheet"
 import { cn } from '@/lib/utils';
 import useSWR from 'swr';
+import { ScrollArea } from './ui/scroll-area';
 
 const ThemeSwitcher = dynamic(() => import('./theme-switcher').then(m => m.ThemeSwitcher), { ssr: false });
 const SearchBar = dynamic(() => import('./search-bar').then(m => m.SearchBar), { ssr: false });
@@ -53,28 +54,33 @@ export function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
-              <div className="flex flex-col gap-6 p-6">
-                <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
-                    <span className="font-bold font-headline sm:inline-block">
-                    blogs.huzi.pk
-                    </span>
-                </Link>
-                <Link href="/blog" className="text-lg font-medium text-foreground" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-                 <div className="text-lg font-medium text-foreground">Categories</div>
-                <nav className="flex flex-col gap-4 border-l pl-4">
-                  {navLinks.map((link) => (
-                    <Link 
-                      key={link.href}
-                      href={link.href} 
-                      className="text-base font-medium text-muted-foreground transition-colors hover:text-primary"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.label}
+            <SheetContent side="left" className="flex flex-col p-0">
+                <div className="p-6 pb-0">
+                    <Link href="/" className="mr-6 flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
+                        <span className="font-bold font-headline sm:inline-block">
+                        blogs.huzi.pk
+                        </span>
                     </Link>
-                  ))}
-                </nav>
-              </div>
+                </div>
+                <div className="flex flex-col gap-6 p-6">
+                    <Link href="/blog" className="text-lg font-medium text-foreground" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+                    <div className="text-lg font-medium text-foreground">Categories</div>
+                </div>
+
+                <ScrollArea className="flex-1 overflow-y-auto">
+                    <nav className="flex flex-col gap-4 border-l ml-6 pl-4 pb-6">
+                    {navLinks.map((link) => (
+                        <Link 
+                        key={link.href}
+                        href={link.href} 
+                        className="text-base font-medium text-muted-foreground transition-colors hover:text-primary"
+                        onClick={() => setIsMenuOpen(false)}
+                        >
+                        {link.label}
+                        </Link>
+                    ))}
+                    </nav>
+                </ScrollArea>
             </SheetContent>
           </Sheet>
         </div>
@@ -105,13 +111,15 @@ export function Header() {
                     align="center" 
                     className="w-auto max-w-[calc(100vw-2rem)] sm:max-w-md md:max-w-lg lg:max-w-xl p-2"
                   >
-                    <div className="flex flex-wrap gap-1 justify-center">
-                      {navLinks.map((link) => (
-                          <DropdownMenuItem key={link.href} asChild className="flex-auto justify-center basis-auto grow-0">
-                              <Link href={link.href} className="px-3 py-1.5">{link.label}</Link>
-                          </DropdownMenuItem>
-                      ))}
-                    </div>
+                    <ScrollArea className="h-auto max-h-[40vh]">
+                        <div className="flex flex-wrap gap-1 justify-center">
+                        {navLinks.map((link) => (
+                            <DropdownMenuItem key={link.href} asChild className="flex-auto justify-center basis-auto grow-0">
+                                <Link href={link.href} className="px-3 py-1.5">{link.label}</Link>
+                            </DropdownMenuItem>
+                        ))}
+                        </div>
+                    </ScrollArea>
                   </DropdownMenuContent>
               </DropdownMenu>
           </div>
