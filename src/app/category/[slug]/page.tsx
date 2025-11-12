@@ -9,6 +9,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
+export const runtime = 'edge';
+
 const POSTS_PER_PAGE = 50;
 
 interface SearchablePost {
@@ -87,12 +89,11 @@ function CategoryContent({ categorySlug }: { categorySlug: string }) {
   );
 
   useEffect(() => {
-    if (!loading && filteredPosts.length === 0) {
-      // Trigger a 404 if the category has no posts after loading.
-      // notFound() must be called from a component wrapped in Suspense.
+    if (!loading && filteredPosts.length === 0 && searchIndex.length > 0) {
+      // Trigger a 404 if the category has no posts after loading and search index is available
       notFound();
     }
-  }, [loading, filteredPosts]);
+  }, [loading, filteredPosts, searchIndex]);
 
 
   if (loading) {

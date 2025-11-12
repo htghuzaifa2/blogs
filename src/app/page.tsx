@@ -12,19 +12,14 @@ export const metadata: Metadata = {
   description: 'Welcome to blogs.huzi.pk, your source for insightful articles on AI, technology, programming, and lifestyle. Discover tutorials, guides, and trending topics.',
 };
 
-const POSTS_PER_PAGE = 50;
+// This page is now static to comply with edge runtime constraints on the home page.
+const POSTS_TO_SHOW = 50;
 
-export default async function Home({ searchParams }: { searchParams?: { page?: string } }) {
+export default async function Home() {
   const allPosts = getPosts();
   const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
   
-  const currentPage = Number(searchParams?.page ?? 1);
-  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
-
-  const paginatedPosts = allPosts.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE
-  );
+  const initialPosts = allPosts.slice(0, POSTS_TO_SHOW);
 
   return (
     <div className="bg-background">
@@ -55,11 +50,11 @@ export default async function Home({ searchParams }: { searchParams?: { page?: s
         {categories.length > 0 && <CategoryCarousel categories={categories} />}
 
         <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-12">Latest Posts</h2>
-        {paginatedPosts.length > 0 ? (
+        {initialPosts.length > 0 ? (
            <PaginatedBlogList 
-              posts={paginatedPosts} 
-              currentPage={currentPage}
-              totalPages={totalPages}
+              posts={initialPosts} 
+              currentPage={1}
+              totalPages={1}
               baseUrl="/"
            />
         ) : (
