@@ -9,8 +9,6 @@ import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
-export const runtime = 'edge';
-
 const POSTS_PER_PAGE = 50;
 
 // The search data will only contain the fields needed for the card and searching.
