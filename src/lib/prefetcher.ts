@@ -3,24 +3,27 @@
 
 /**
  * ---------------------------------------------------------------------------
- *                              Prefetch Extreme
+ *                          Smart Prefetcher
  * ---------------------------------------------------------------------------
- * A zero-latency preloader that aggressively fetches same-origin navigational
- * links to make page transitions feel instantaneous. It prioritizes speed
- * over resource conservation.
+ * A resource-aware preloader that prefetches same-origin navigational
+ * links to make page transitions feel faster, while respecting user's
+ * data and device resources.
  *
  * HOW IT WORKS:
- * 1.  Aggressive Discovery: A MutationObserver instantly detects any links
- *     added to the DOM and adds them to a queue.
- * 2.  Wide Viewport Scanning: An IntersectionObserver with a large root margin
- *     (200%) pre-emptively fetches links that are far outside the viewport.
- * 3.  Instant Fetching: The queue is processed immediately without waiting for
- *     browser idle time. It uses a high concurrency limit.
- * 4.  Cache Warming: After a page is prefetched, it's loaded into a hidden
- *     iframe for a short period. This forces the browser to parse the HTML and
- *     fetch critical subresources (CSS, JS), warming up the disk and memory cache.
- * 5.  Efficient URL Tracking: A Bloom filter is used to track prefetched URLs
- *     with minimal memory overhead and O(1) lookup time.
+ * 1.  Idle Time Utilization: Uses `requestIdleCallback` to ensure prefetching
+ *     only occurs when the browser's main thread is free.
+ * 2.  Respects User Settings: Checks for `navigator.connection.saveData`
+ *     and disables prefetching if Data Saver mode is enabled.
+ * 3.  Adaptive Concurrency: Limits parallel fetches based on the user's
+ *     effective connection type (2G, 3G, 4G).
+ * 4.  Efficient Discovery: Uses `IntersectionObserver` with a modest `rootMargin`
+ *     to prefetch links that are likely to be clicked soon.
+ * 5.  Dynamic Observation: A `MutationObserver` watches for new links added
+ *     to the DOM and adds them to the observation list.
+ * 6.  Duplicate Prevention: A `Set` tracks URLs that have been queued to
+ *     prevent redundant network requests.
+ * 7.  Debuggability: Exposes a global `window.__prefetchStats` object to
+ *     monitor prefetching activity.
  *
  * This module is self-initializing. Just import it once in your app.
  * import '@/lib/prefetcher';
@@ -28,78 +31,39 @@
 
 // --- State and Debugging ---
 const stats = {
+  total: 0,
   queued: 0,
-  fetched: 0,
-  cacheHits: 0,
+  completed: 0,
 };
 
 if (typeof window !== 'undefined') {
-  (window as any).__prefetchExtreme = stats;
+  (window as any).__prefetchStats = stats;
 }
 
 // --- Configuration ---
-const CONCURRENCY_LIMIT_DEFAULT = 20;
-const CONCURRENCY_LIMIT_SAVER = 6;
-const IFRAME_WARMUP_DURATION = 30000; // 30 seconds
-const IO_ROOT_MARGIN = '200%';
+const IO_ROOT_MARGIN = '50%';
+const CONCURRENCY_LIMITS = {
+  'slow-2g': 2,
+  '2g': 2,
+  '3g': 4,
+  '4g': 6,
+};
+type ConnectionType = keyof typeof CONCURRENCY_LIMITS;
 
-// --- FIFO Queue ---
+// --- FIFO Queue and State ---
 const queue: string[] = [];
+const prefetchedUrls = new Set<string>();
 let activeFetches = 0;
-
-// --- Bloom Filter for URL tracking ---
-const bloomFilter = new Uint8Array(1024); // 1KB
-const hashFunctions = [(s: string) => djb2(s) % 8192, (s: string) => sdbm(s) % 8192];
-
-function djb2(str: string): number {
-  let hash = 5381;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash * 33) ^ str.charCodeAt(i);
-  }
-  return hash >>> 0;
-}
-
-function sdbm(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + (hash << 6) + (hash << 16) - hash;
-  }
-  return hash >>> 0;
-}
-
-function bloomAdd(url: string) {
-  for (const hash of hashFunctions) {
-    const index = hash(url);
-    bloomFilter[Math.floor(index / 8)] |= 1 << (index % 8);
-  }
-}
-
-function bloomHas(url: string): boolean {
-  for (const hash of hashFunctions) {
-    const index = hash(url);
-    if ((bloomFilter[Math.floor(index / 8)] & (1 << (index % 8))) === 0) {
-      return false;
-    }
-  }
-  return true;
-}
 
 // --- Core Logic ---
 
 function getConcurrencyLimit(): number {
   const connection = (navigator as any).connection;
-  return connection?.saveData ? CONCURRENCY_LIMIT_SAVER : CONCURRENCY_LIMIT_DEFAULT;
-}
-
-function warmUpCache(url: string) {
-  const iframe = document.createElement('iframe');
-  iframe.src = url;
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
-
-  setTimeout(() => {
-    iframe.remove();
-  }, IFRAME_WARMUP_DURATION);
+  if (connection?.saveData) {
+    return 0; // Respect Data Saver mode
+  }
+  const effectiveType = (connection?.effectiveType as ConnectionType) || '4g';
+  return CONCURRENCY_LIMITS[effectiveType] ?? CONCURRENCY_LIMITS['4g'];
 }
 
 function processQueue() {
@@ -108,36 +72,31 @@ function processQueue() {
     const url = queue.shift();
     if (!url) continue;
 
-    stats.queued = queue.length;
     activeFetches++;
-    stats.fetched++;
+    stats.queued = queue.length;
+    stats.completed++;
 
     fetch(url, { priority: 'low' as RequestPriority })
-      .then(res => {
-        if (res.ok && res.headers.get('Content-Type')?.includes('text/html')) {
-          warmUpCache(url);
-          stats.cacheHits++;
-        }
-      })
-      .catch(() => {}) // Ignore fetch errors (e.g., network issues)
+      .catch(() => {}) // Ignore fetch errors
       .finally(() => {
         activeFetches--;
         // Check if we can process more from the queue
         if (queue.length > 0) {
-          processQueue();
+            requestIdleCallback(processQueue);
         }
       });
   }
 }
 
 function enqueue(url: string) {
-  if (bloomHas(url)) {
+  if (prefetchedUrls.has(url)) {
     return;
   }
-  bloomAdd(url);
+  prefetchedUrls.add(url);
   queue.push(url);
+  stats.total++;
   stats.queued = queue.length;
-  processQueue(); // Consume immediately
+  requestIdleCallback(processQueue);
 }
 
 function isRoutable(link: HTMLAnchorElement): boolean {
@@ -164,24 +123,11 @@ const intersectionObserver = new IntersectionObserver(
   { rootMargin: IO_ROOT_MARGIN }
 );
 
-function scanAndObserve() {
-    // Prefetch all visible links immediately
-    const visibleLinks = document.querySelectorAll<HTMLAnchorElement>('a[href]');
-    visibleLinks.forEach(link => {
-        if (isRoutable(link)) {
-            const rect = link.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                 enqueue(link.href);
-            } else {
-                 // If not visible, let the IO handle it
-                 if (!bloomHas(link.href)) {
-                     intersectionObserver.observe(link);
-                 }
-            }
-        }
-    });
+function observeLink(link: HTMLAnchorElement) {
+    if (isRoutable(link) && !prefetchedUrls.has(link.href)) {
+        intersectionObserver.observe(link);
+    }
 }
-
 
 const mutationObserver = new MutationObserver(mutations => {
   for (const mutation of mutations) {
@@ -189,43 +135,46 @@ const mutationObserver = new MutationObserver(mutations => {
         mutation.addedNodes.forEach(node => {
         if (node.nodeType === Node.ELEMENT_NODE) {
             const el = node as Element;
-            // If the added node is a link
             if (el.matches('a[href]')) {
-                if (isRoutable(el as HTMLAnchorElement)) {
-                    intersectionObserver.observe(el as HTMLAnchorElement);
-                }
+                observeLink(el as HTMLAnchorElement);
             }
-            // Or if it contains links
-            el.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(link => {
-                if (isRoutable(link)) {
-                    intersectionObserver.observe(link);
-                }
-            });
+            el.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(observeLink);
         }
       });
     }
   }
 });
 
-
 function initialize() {
-  if (typeof window === 'undefined' || (window as any).__prefetcherExtremeInitialized) {
+  if (typeof window === 'undefined' || (window as any).__smartPrefetcherInitialized) {
     return;
   }
-  (window as any).__prefetcherExtremeInitialized = true;
-  
-  // Start observing the DOM for changes.
+  (window as any).__smartPrefetcherInitialized = true;
+
+  // Initial scan for links already on the page
+  document.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(observeLink);
+
+  // Start observing the DOM for new links
   mutationObserver.observe(document.body, { childList: true, subtree: true });
 
-  // Initial scan of the document
-  if (document.readyState === 'complete') {
-    scanAndObserve();
-  } else {
-    window.addEventListener('load', scanAndObserve);
-  }
+  // Re-scan on SPA navigation
+  const originalPushState = history.pushState;
+  history.pushState = function(...args) {
+    originalPushState.apply(this, args);
+    requestIdleCallback(() => document.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(observeLink));
+  };
+    const originalReplaceState = history.replaceState;
+    history.replaceState = function(...args) {
+    originalReplaceState.apply(this, args);
+    requestIdleCallback(() => document.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(observeLink));
+  };
 }
 
-// Automatically initialize
-initialize();
+// Automatically initialize when the document is ready
+if (document.readyState === 'complete') {
+  initialize();
+} else {
+  window.addEventListener('DOMContentLoaded', initialize);
+}
 
 export {};
