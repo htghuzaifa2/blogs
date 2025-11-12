@@ -92,7 +92,7 @@
     --ring: 24.6 95% 53.1%; /* Orange */
   }
 
-  .light .prose, .dark .prose, .blue .prose, .orange .prose {
+  .prose {
     --tw-prose-body: hsl(var(--foreground));
     --tw-prose-headings: hsl(var(--foreground));
     --tw-prose-lead: hsl(var(--foreground));
@@ -219,3 +219,5 @@
     border-width: 0;
   }
 }
+
+    
