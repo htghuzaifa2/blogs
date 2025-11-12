@@ -26,6 +26,15 @@ function isValidPostData(data: any): data is { title: string; date: string; exce
     return data && data.title && data.date && data.excerpt && data.author && data.category;
 }
 
+function processTables(htmlContent: string) {
+  if (!htmlContent.includes('<table')) {
+    return htmlContent;
+  }
+  // Wrap every table in a container for responsive scrolling
+  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
+}
+
+
 export function getPosts(): Post[] {
   let fileNames: string[] = [];
   try {
@@ -57,11 +66,19 @@ export function getPosts(): Post[] {
             // console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
             return null;
         }
+
+        // Generate HTML content for search-data.json
+        const processedContent = remark()
+          .use(remarkGfm)
+          .use(html, { sanitize: false })
+          .processSync(content);
+        
+        let htmlContent = processTables(processedContent.toString());
         
         return {
           id: slug,
           slug,
-          htmlContent: '',
+          htmlContent: htmlContent,
           content: content,
           ...(data as { 
             title: string; 
@@ -77,11 +94,7 @@ export function getPosts(): Post[] {
           return null;
       }
     })
-    .filter((p): p is Omit<Post, 'htmlContent'> => p !== null)
-    .map(post => {
-        // Just use the excerpt from frontmatter, don't modify content here.
-        return { ...post };
-    });
+    .filter((p): p is Post => p !== null);
 
   // Sort posts by date in descending order (newest first)
   return allPostsData.sort((a, b) => {
@@ -94,13 +107,6 @@ export function getPosts(): Post[] {
   });
 }
 
-function processTables(htmlContent: string) {
-  if (!htmlContent.includes('<table')) {
-    return htmlContent;
-  }
-  // Wrap every table in a container for responsive scrolling
-  return htmlContent.replace(/<table/g, '<div class="table-container"><table').replace(/<\/table>/g, '</table></div>');
-}
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);

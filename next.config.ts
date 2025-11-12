@@ -28,11 +28,7 @@ const nextConfig: NextConfig = {
     if (isServer) {
       const posts = getPosts();
       
-      // Now we need the full HTML content for the client-side post pages.
       const searchData = posts.map(post => {
-        // Since getPosts now only returns content, we'd need to process it.
-        // Let's adjust getPosts to handle this better. For now, we will
-        // create a separate function to get post with HTML content.
         return {
           slug: post.slug,
           title: post.title,
