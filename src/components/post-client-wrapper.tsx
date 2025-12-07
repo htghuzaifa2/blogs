@@ -8,9 +8,6 @@ import dynamic from 'next/dynamic';
 import type { Post } from '@/lib/posts';
 import { RelatedPosts } from './related-posts';
 import { RelatedProducts } from './related-products';
-import { AdSenseDisplay } from './adsense-display';
-import { AdSenseMultiplex } from './adsense-multiplex';
-
 
 const CodeCopyButton = dynamic(() => import('@/components/code-copy-button').then(m => m.CodeCopyButton), { ssr: false });
 
@@ -56,8 +53,6 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                 </div>
               </header>
 
-              <AdSenseDisplay />
-
               <div 
                 className="prose prose-lg dark:prose-invert max-w-none 
                            prose-p:leading-relaxed prose-p:font-body
@@ -79,9 +74,6 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                 <RelatedProducts products={relatedProducts} />
               </>
             )}
-
-            <hr className="my-12 border-border" />
-            <AdSenseMultiplex />
 
             {relatedPosts.length > 0 && (
               <>

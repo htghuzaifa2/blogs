@@ -103,8 +103,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="https://huzi.pk/img/26PWX.PK/logo.webp" type="image/webp" sizes="any" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3951816267285710"
-     crossOrigin="anonymous"></script>
       </head>
       <body className={cn("font-body antialiased overflow-x-hidden transition-colors duration-300", inter.variable, lora.variable)}>
         <ThemeProvider
