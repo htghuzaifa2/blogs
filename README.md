@@ -1,7 +1,4 @@
-This is website is blogs.huzi.pk
-
-This is not an open soucre project dont use with without permission
-
-If you are intrested in this project you can buy this in just 22$ contact us if you wana buy it.
-
-contact@huzi.pk
+ITS an open source blogs website project you can use this source code to create your own blogs website.
+website link: blogs.huzi.pk
+Project of huzi.pk
+made by HTG Team.

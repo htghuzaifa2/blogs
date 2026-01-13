@@ -12,6 +12,8 @@ import { Button } from '@/components/ui/button';
 import { CategoryCarousel } from '@/components/category-carousel';
 import { ShoppingBag, User } from 'lucide-react';
 
+import { getSearchData } from '@/lib/cache';
+
 const POSTS_PER_PAGE = 50;
 
 // The search data will only contain the fields needed for the card and searching.
@@ -35,21 +37,15 @@ export function HomeContent() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch('/search-data.json')
-      .then(res => {
-        if (!res.ok) {
-           throw new Error(`Content service is unavailable (HTTP ${res.status}). Please try again later.`);
-        }
-        return res.json();
-      })
-      .then((data: SearchablePost[]) => {
+    getSearchData()
+      .then((data) => {
         setSearchIndex(data);
         setLoading(false);
       })
       .catch(err => {
-          console.error("Failed to load search data:", err);
-          setError(err.message || "An unexpected error occurred while fetching posts.");
-          setLoading(false);
+        console.error("Failed to load search data:", err);
+        setError(err.message || "An unexpected error occurred while fetching posts.");
+        setLoading(false);
       });
   }, []);
 
@@ -62,10 +58,10 @@ export function HomeContent() {
       ...p,
       id: p.slug,
       date: new Date().toISOString(), // Not available, provide a fallback
-      content: '', 
+      content: '',
     }));
   }, [searchIndex, loading]);
-  
+
   const categories = Array.from(new Set(allPosts.map(post => post.category).filter(Boolean)));
 
   const currentPage = Number(page) || 1;
@@ -77,7 +73,7 @@ export function HomeContent() {
   );
 
   if (loading) {
-      return <HomeSkeleton />;
+    return <HomeSkeleton />;
   }
 
   if (error) {
@@ -114,18 +110,18 @@ export function HomeContent() {
           </Button>
         </div>
       </div>
-      
+
       {categories.length > 0 && <CategoryCarousel categories={categories} />}
 
       <h2 className="text-3xl font-headline font-bold text-center mt-16 mb-8">All Posts</h2>
-      
+
       {paginatedPosts.length > 0 ? (
-         <PaginatedBlogList 
-            posts={paginatedPosts}
-            totalPages={totalPages}
-            currentPage={currentPage}
-            baseUrl={`/`}
-          />
+        <PaginatedBlogList
+          posts={paginatedPosts}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          baseUrl={`/`}
+        />
       ) : (
         <div className="text-center py-16">
           <h2 className="text-2xl font-headline">No posts found</h2>
@@ -145,31 +141,31 @@ export function HomeSkeleton() {
         <Skeleton className="h-12 w-2/3 mx-auto" />
         <Skeleton className="h-6 w-1/2 mx-auto mt-4" />
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Skeleton className="h-12 w-36" />
-            <Skeleton className="h-12 w-48" />
+          <Skeleton className="h-12 w-36" />
+          <Skeleton className="h-12 w-48" />
         </div>
       </div>
 
-       <div className="mb-12">
-            <Skeleton className="h-8 w-48 mx-auto mb-6" />
-            <div className="flex justify-center gap-4">
-                <Skeleton className="h-28 w-28 rounded-full" />
-                <Skeleton className="h-28 w-28 rounded-full" />
-                <Skeleton className="h-28 w-28 rounded-full" />
-                <Skeleton className="h-28 w-28 rounded-full hidden sm:block" />
-                <Skeleton className="h-28 w-28 rounded-full hidden md:block" />
-            </div>
-       </div>
+      <div className="mb-12">
+        <Skeleton className="h-8 w-48 mx-auto mb-6" />
+        <div className="flex justify-center gap-4">
+          <Skeleton className="h-28 w-28 rounded-full" />
+          <Skeleton className="h-28 w-28 rounded-full" />
+          <Skeleton className="h-28 w-28 rounded-full" />
+          <Skeleton className="h-28 w-28 rounded-full hidden sm:block" />
+          <Skeleton className="h-28 w-28 rounded-full hidden md:block" />
+        </div>
+      </div>
 
       <Skeleton className="h-9 w-40 mx-auto mt-16 mb-8" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
         {[...Array(6)].map((_, i) => (
-          <div key={i-2} className="space-y-4">
+          <div key={i - 2} className="space-y-4">
             <Skeleton className="h-48 w-full" />
             <Skeleton className="h-4 w-1/4" />
             <Skeleton className="h-6 w-3/4" />
             <Skeleton className="h-4 w-full" />
-             <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
           </div>
         ))}
       </div>

@@ -8,6 +8,8 @@ import { useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
+import { getSearchData } from '@/lib/cache';
+
 const POSTS_PER_PAGE = 50;
 
 // The search data will only contain the fields needed for the card and searching.
@@ -31,14 +33,8 @@ export function BlogArchiveContent() {
     useEffect(() => {
         setLoading(true);
         setError(null);
-        fetch('/search-data.json')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`Content service is unavailable (HTTP ${res.status}). Please try again later.`);
-                }
-                return res.json();
-            })
-            .then((data: SearchablePost[]) => {
+        getSearchData()
+            .then((data) => {
                 setSearchIndex(data);
                 setLoading(false);
             })
