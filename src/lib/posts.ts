@@ -8,6 +8,9 @@ import remarkGfm from 'remark-gfm';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
+// Cache the posts in memory after the first load to speed up the build process
+let postsCache: Post[] | null = null;
+
 export interface Post {
   id: string;
   slug: string;
@@ -38,13 +41,16 @@ function processTables(htmlContent: string) {
 
 
 export function getPosts(): Post[] {
+  // If we already have the posts in memory, return them immediately
+  if (postsCache) {
+    return postsCache;
+  }
+
   let fileNames: string[] = [];
   try {
-    // Ensure the directory exists before attempting to read it.
     if (fs.existsSync(postsDirectory)) {
       fileNames = fs.readdirSync(postsDirectory);
     } else {
-      // Don't log if the directory simply doesn't exist.
       return [];
     }
   } catch (err) {
@@ -53,7 +59,7 @@ export function getPosts(): Post[] {
   }
 
   const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.mdx')) // Process only .mdx files
+    .filter(fileName => fileName.endsWith('.mdx'))
     .map(fileName => {
       try {
         const slug = fileName.replace(/\.mdx$/, '');
@@ -62,14 +68,12 @@ export function getPosts(): Post[] {
 
         const { data, content } = matter(fileContents);
 
-        // Use the validation function to ensure all required fields are present
         if (!isValidPostData(data)) {
-          // This is a common case, so we won't log a loud warning.
-          // console.warn(`Skipping post "${fileName}" due to missing frontmatter.`);
           return null;
         }
 
-        // Generate HTML content for search-data.json
+        // We only generate the HTML content once and cache it.
+        // During the build, this is done for every post.
         const processedContent = remark()
           .use(remarkGfm)
           .use(html, { sanitize: false })
@@ -89,6 +93,8 @@ export function getPosts(): Post[] {
             category: string;
             date: string;
             keywords?: string[];
+            imageUrl?: string;
+            imageHint?: string;
           }),
         };
       } catch (e) {
@@ -99,7 +105,7 @@ export function getPosts(): Post[] {
     .filter((p): p is Post => p !== null);
 
   // Sort posts by date in descending order (newest first)
-  return allPostsData.sort((a, b) => {
+  const sortedPosts = allPostsData.sort((a, b) => {
     try {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     } catch (e) {
@@ -107,21 +113,28 @@ export function getPosts(): Post[] {
       return 0;
     }
   });
+
+  // Save to cache for subsequent calls in the same process
+  postsCache = sortedPosts;
+  return sortedPosts;
 }
 
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
+  // If cache exists, try to find the post there first to avoid file I/O and parsing
+  if (postsCache) {
+    return postsCache.find(p => p.slug === slug);
+  }
+
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
   try {
     if (!fs.existsSync(fullPath)) {
-      // Don't log here, as notFound() will be handled by the page.
       return undefined;
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
-    // Validate frontmatter for single post fetch as well
     if (!isValidPostData(data)) {
       console.warn(`Post with slug "${slug}" is invalid due to missing frontmatter.`);
       return undefined;
@@ -148,6 +161,8 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
         category: string;
         date: string;
         keywords?: string[];
+        imageUrl?: string;
+        imageHint?: string;
       }),
     };
   } catch (err) {
