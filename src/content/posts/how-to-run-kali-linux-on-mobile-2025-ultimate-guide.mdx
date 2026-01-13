@@ -1,0 +1,44 @@
+---
+title: "🛡️ How to Run Kali Linux on Mobile: The Ultimate 2025 Guide"
+excerpt: "Kali Linux isn’t just for desktops and laptops anymore — today, you can run it right from your Android phone. Whether you’re an ethical hacker, cybersecurity student, or tech enthusiast, running Kali on a smartphone means portable pentesting power in your pocket."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "kali linux mobile"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+Imagine walking into a coffee shop and auditing the security of the WiFi network using nothing but your phone. This isn't a scene from *Mr. Robot*; it's reality with **Kali Linux on Android**.
+
+Whether you have a rooted device or a standard phone, you can turn your pocket computer into a powerful hacking station.
+
+## Method 1: No Root Required (Termux + NetHunter Rootless)
+This is safer and works on almost any modern Android phone. You won't get hardware access (like WiFi injection), but you get the full software toolkit.
+
+**Steps:**
+1.  **Install Termux** from F-Droid (do not use the Play Store version, it's outdated).
+2.  **Update packages**: `pkg update && pkg upgrade`.
+3.  **Install NetHunter**:
+    ```bash
+    termux-setup-storage
+    pkg install wget
+    wget -O install-nethunter-termux https://offs.ec/2MceZWr
+    chmod +x install-nethunter-termux
+    ./install-nethunter-termux
+    ```
+4.  **Run**: Type `nethunter` to enter the Kali shell.
+5.  **GUI**: Type `kex` to start a VNC server and view the desktop using the "NetHunter Kex" app.
+
+## Method 2: Rooted Device (Full NetHunter)
+If you have a supported device (like a OnePlus, Nexus, or Sony Xperia) and are willing to root it, this is the "god mode."
+- **Custom Kernel**: Allows for WiFi injection and HID attacks.
+- **BadUSB**: Your phone can act as a malicious keyboard when plugged into a PC.
+- **SDR**: Software Defined Radio support.
+
+## What Can You Do?
+- **Nmap**: Scan networks for open ports.
+- **Metasploit**: Test vulnerabilities in systems.
+- **Wireshark**: Analyze network traffic (requires root/pcap).
+- **Social Engineering**: Run phishing tests (for educational purposes only!).
+
+## Disclaimer
+**Ethical Hacking Only**. Accessing networks or systems without permission is illegal. Use these tools only on networks you own or have explicit permission to test.

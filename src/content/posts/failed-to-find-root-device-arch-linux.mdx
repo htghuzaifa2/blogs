@@ -1,0 +1,72 @@
+---
+title: "How to Fix 'Failed to Find Root Device' in Arch Linux"
+date: "2024-10-27"
+author: "Huzi"
+category: "Linux"
+excerpt: "A step-by-step guide to fixing the 'Failed to Find Root Device' error in Arch Linux. Learn how to check your bootloader, fix mkinitcpio.conf hooks for LVM or encryption, and regenerate your initramfs to get your system booting again."
+keywords: ["Arch Linux", "boot error", "failed to find root device", "initramfs", "mkinitcpio", "GRUB", "systemd-boot", "Linux troubleshooting"]
+imageHint: "broken chain illustration"
+---
+
+# How to Fix "Failed to Find Root Device" in Arch Linux
+
+When Arch Linux cannot find the root device during boot, it's usually because the `initramfs` (the initial temporary file system) doesn't have the necessary components to locate or access your root partition. The table below outlines the most common causes and their solutions:
+
+| 🔍 Cause of Issue                | 🛠️ Primary Solution                                                      | 💡 Key Things to Check                               |
+| ------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------- |
+| Missing Hooks in mkinitcpio.conf | Add necessary hooks (e.g., `lvm2`, `encrypt`), then regenerate initramfs.  | Check for LVM, software RAID, or encrypted root setups. |
+| Incorrect `root=` Parameter     | Fix the `root=` parameter in your bootloader configuration with correct UUID. | Verify UUID with `blkid` and ensure it matches your bootloader entry. |
+| Hardware Detection Timing       | Add kernel parameter `rootdelay` for slow-initializing drives.           | More relevant for older hardware or external USB drives. |
+
+## Check and Fix Your Bootloader Configuration
+
+The kernel parameter that specifies the root device might be incorrect.
+
+### Verify the Root Partition's UUID
+From a live USB environment, use the `blkid` command to find the correct UUID of your root partition.
+
+### Check Bootloader Entry
+Inspect your bootloader configuration file:
+
+-   **For systemd-boot:** Check the entry in `/boot/loader/entries/arch.conf`.
+-   **For GRUB:** The configuration is in `/boot/grub/grub.cfg` (but usually generated from `/etc/default/grub`).
+
+Ensure the `root=UUID=...` parameter matches the UUID from `blkid` exactly. Even a single wrong character will cause the error.
+
+## Regenerate Your Initramfs with Correct Hooks
+
+The `initramfs` needs the right "hooks" to prepare your system's root device.
+
+### Identify Needed Hooks
+From a live USB, `chroot` into your installed system and check the `/etc/mkinitcpio.conf` file. The `HOOKS` array must include hooks for your specific setup:
+
+-   **LVM:** If your root is on a logical volume, you must have the `lvm2` hook.
+-   **Encryption:** For an encrypted root, you need the `encrypt` hook (or `sd-encrypt` for systemd-based initramfs).
+-   **RAID:** For software RAID arrays, the `mdadm_udev` hook is required.
+
+### Add Hooks and Rebuild
+Edit the `HOOKS` array in `/etc/mkinitcpio.conf`, placing necessary hooks (like `lvm2`) between `block` and `filesystems`. Save the file and regenerate the `initramfs`:
+
+```bash
+mkinitcpio -P
+```
+
+## Troubleshoot Hardware and Timing Issues
+
+If your storage hardware is slow to initialize, the kernel might not find the root device in time.
+
+### Use a `rootdelay`
+Add `rootdelay=10` (or a higher number of seconds) to your kernel parameters in the bootloader configuration. This tells the kernel to wait before looking for the root device.
+
+### Check for Basic Filesystem Hooks
+Ensure the `HOOKS` array in `mkinitcpio.conf` contains `filesystems` and, if you use a non-standard filesystem (e.g., btrfs, reiser4), that its module is added to the `MODULES` array.
+
+## Getting More Help and Advanced Diagnostics
+
+If you're still stuck, more advanced diagnostics can help pinpoint the problem.
+
+-   **Enable Debug Output:** Add `systemd.log_level=debug` to your kernel parameters. This produces a very detailed log of the boot process, which can reveal what's failing.
+-   **Use a Recovery Shell:** Kernel parameters like `rescue` or `emergency` can drop you into a shell during the `initramfs` stage, allowing you to manually check which devices and modules are available.
+-   **Check the Journal:** If you can get to a shell, use `journalctl` to view logs from the current boot attempt.
+
+The key is to methodically check each part of the chain. Let me know if you can identify your root partition type (e.g., LVM, encrypted) or if you see any specific error messages in the emergency shell, and I can offer more targeted advice.

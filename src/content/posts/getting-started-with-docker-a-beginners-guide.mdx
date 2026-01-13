@@ -1,0 +1,57 @@
+---
+title: "Getting Started with Docker: A Beginner's Guide to Containers"
+excerpt: "Docker has revolutionized the way we build, ship, and run applications. This guide breaks down the core concepts of Docker and containers, helping you understand why it's an essential tool for modern developers and how you can get started with it today."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "docker container"
+author: "Huzi"
+category: "Linux"
+---
+
+"It works on my machine!"
+
+Every developer has said this. You write code, it runs perfectly on your laptop, but crashes when you deploy it to the server. Why? Different OS versions, missing dependencies, or conflicting libraries.
+
+**Docker** solves this by packaging your application and everything it needs (code, runtime, libraries) into a single unit called a **Container**.
+
+## Docker vs. Virtual Machines (VMs)
+- **VMs**: Virtualize the hardware. They run a full Operating System (Guest OS) on top of your Host OS. They are heavy and slow to start.
+- **Containers**: Virtualize the OS. They share the Host OS kernel but run in isolated processes. They are lightweight (megabytes, not gigabytes) and start instantly.
+
+## Core Concepts
+1.  **Dockerfile**: The recipe. A text file that tells Docker how to build your image.
+2.  **Image**: The blueprint. A read-only template built from the Dockerfile.
+3.  **Container**: The house. A running instance of the Image.
+
+## Hands-On: Your First Dockerfile
+Create a file named `Dockerfile` for a simple Node.js app:
+
+```dockerfile
+# 1. Base image
+FROM node:18-alpine
+
+# 2. Set working directory
+WORKDIR /app
+
+# 3. Copy dependencies
+COPY package.json .
+
+# 4. Install dependencies
+RUN npm install
+
+# 5. Copy source code
+COPY . .
+
+# 6. Expose port
+EXPOSE 3000
+
+# 7. Start command
+CMD ["npm", "start"]
+```
+
+## Basic Commands
+- `docker build -t my-app .` -> Builds the image.
+- `docker run -p 3000:3000 my-app` -> Runs the container mapping port 3000.
+- `docker ps` -> Lists running containers.
+
+## Conclusion
+Docker standardizes software delivery. Whether you are working on a Mac, Windows, or Linux machine, a Docker container runs exactly the same way everywhere. It is an essential skill for modern backend and full-stack developers.

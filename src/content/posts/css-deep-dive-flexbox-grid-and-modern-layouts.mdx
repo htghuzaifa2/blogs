@@ -1,0 +1,50 @@
+---
+title: "CSS Deep Dive: Flexbox, Grid, and Modern Layouts"
+excerpt: "Master the two pillars of modern CSS layouts: Flexbox and Grid. This guide breaks down when to use each, how to combine them, and advanced techniques for creating complex, responsive designs with less code and fewer headaches."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "css code"
+author: "Huzi"
+category: "Programming"
+---
+
+Gone are the days of hacking layouts with `float`, `clearfix`, and `position: absolute`. Modern CSS gives us two distinct, powerful systems: **Flexbox** and **Grid**.
+
+But which one should you use? The answer is often "both."
+
+## Flexbox: One-Dimensional Layout
+Flexbox is designed for laying out items in a **single dimension**—either a row OR a column.
+- **Use Case**: Navigation bars, centering items, distributing space between buttons.
+- **Key Properties**: `justify-content` (main axis), `align-items` (cross axis).
+
+```css
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Spacing between logo and items */
+  align-items: center; /* Vertical centering */
+}
+```
+
+## CSS Grid: Two-Dimensional Layout
+Grid is designed for controlling **both** rows and columns simultaneously. It effectively divides a page into major regions.
+- **Use Case**: Entire page layouts (Header, Sidebar, Main Content, Footer), photo galleries.
+- **Key Properties**: `grid-template-columns`, `grid-template-rows`, `grid-area`.
+
+```css
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+```
+*Note: The snippet above creates a responsive grid that automatically wraps items without needing media queries!*
+
+## When to Use Which?
+- **Flexbox**: "Content-first." I have a bunch of items, and I want them to fit into the available space naturally.
+- **Grid**: "Layout-first." I have a specific design structure (e.g., 12-column grid), and I want to place items into distinct cells.
+
+## Combining Them
+This is the superpower. Use Grid for the overall page structure, and Flexbox for the components *inside* those grid cells.
+- A card component inside a Grid cell might use Flexbox to align its icon and text.
+
+## Conclusion
+Mastering Flexbox and Grid is non-negotiable for modern frontend developers. They allow you to build complex, responsive interfaces with clean, semantic code.

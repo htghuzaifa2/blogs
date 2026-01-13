@@ -1,0 +1,386 @@
+---
+title: "How to Install Arch Linux on a PC or Laptop (2025 Edition – From Windows to Arch)"
+date: "2025-10-01"
+author: "Huzi"
+category: "Linux"
+excerpt: "A clear, step-by-step guide for everyone moving from Windows to Arch Linux. Covers everything from booting the USB to logging into your new desktop on any PC or laptop."
+imageHint: "penguin code terminal"
+keywords: ["Arch Linux", "Linux install", "Windows to Linux", "UEFI", "Linux guide", "dual boot", "Linux for beginners"]
+---
+
+This guide is written for everyone moving from Windows — whether you’re on a laptop or desktop, using UEFI or Legacy BIOS. It’s clear, step-by-step, and accurate — everything you need from booting the USB to logging into your new Arch desktop.
+
+### ⚙️ What You’ll Need
+
+Before starting, prepare these:
+
+*   **A computer with Windows** (for now)
+*   **Minimum**: Dual-core CPU (Intel i3/i5/i7 3rd gen+), 4 GB RAM (8 GB recommended).
+*   **Storage**: 20 GB+ for Arch (more for desktop environment).
+*   **A USB drive** (at least 4 GB).
+*   **Stable internet connection** (Ethernet or Wi-Fi).
+*   **Another device or your phone** (to read this guide while installing).
+
+### 🧱 Step 1: Back Up Your Data
+
+You’re about to erase or modify partitions — so back up your important files:
+
+*   Documents, photos, and browser bookmarks.
+*   Windows product key (optional, for reinstalling later).
+*   Use OneDrive, Google Drive, or an external HDD/SSD.
+
+### 💿 Step 2: Download Arch Linux ISO
+
+Visit the official Arch website:
+👉 https://archlinux.org/download/
+
+Click on “HTTP Direct Downloads” → choose the nearest mirror (like archlinux.org/iso/latest/).
+
+You’ll get a file like:
+`archlinux-2025.10.01-x86_64.iso`
+
+### 🧰 Step 3: Create a Bootable USB
+
+**On Windows:**
+
+Use Rufus (https://rufus.ie):
+1.  Plug your USB drive.
+2.  Open Rufus → Select ISO file.
+3.  **Partition Scheme**:
+    *   UEFI systems: **GPT** + FAT32.
+    *   Legacy BIOS: **MBR**.
+4.  File system: **FAT32**.
+5.  Click **Start**.
+
+When done, your USB is ready to boot Arch.
+
+### 🔧 Step 4: Boot into Arch USB
+
+Reboot your PC.
+Press your **Boot Menu key**:
+
+*   **Dell**: F12
+*   **HP**: Esc or F9
+*   **Lenovo**: F12
+*   **Acer**: F12
+*   **Asus**: F8
+
+Select your USB drive.
+You’ll see:
+```
+Arch Linux install medium (x86_64, UEFI)
+```
+Press Enter.
+
+### 🌐 Step 5: Connect to the Internet
+
+**For Ethernet:**
+You’re already connected — no setup needed.
+
+**For Wi-Fi:**
+Run:
+```bash
+iwctl
+```
+Then inside the prompt:
+```bash
+device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect your_wifi_name
+```
+Enter your Wi-Fi password.
+Check connection:
+```bash
+ping -c 3 archlinux.org
+```
+If you get replies — you’re online.
+
+### 🕒 Step 6: Update the System Clock
+
+```bash
+timedatectl set-ntp true
+```
+Confirm:
+```bash
+timedatectl status
+```
+
+### 💽 Step 7: Partition the Disk
+
+List all disks:
+```bash
+lsblk
+```
+Usually:
+*   `/dev/sda` → HDD
+*   `/dev/nvme0n1` → SSD
+
+If you want a clean install (remove Windows completely):
+Use `cfdisk`:
+```bash
+cfdisk /dev/sda
+```
+Choose your partition table type:
+*   **UEFI**: GPT
+*   **Legacy BIOS**: DOS
+
+Example layout (UEFI):
+| Mount Point | Partition | Type               | Size           |
+|-------------|-----------|--------------------|----------------|
+| /boot/efi   | /dev/sda1 | EFI System         | 512M           |
+| swap        | /dev/sda2 | Linux swap         | 2–4G           |
+| /           | /dev/sda3 | Linux filesystem   | Rest of disk   |
+
+**Write** → **Confirm** → **Quit**.
+
+### 💾 Step 8: Format the Partitions
+
+**For UEFI:**
+```bash
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3
+```
+**For Legacy BIOS** (no EFI partition):
+```bash
+mkswap /dev/sda1
+swapon /dev/sda1
+mkfs.ext4 /dev/sda2
+```
+
+### 🧍 Step 9: Mount the Partitions
+
+**For UEFI:**
+```bash
+mount /dev/sda3 /mnt
+mkdir /mnt/boot
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+```
+**For Legacy BIOS:**
+```bash
+mount /dev/sda2 /mnt
+```
+
+### 📦 Step 10: Install Base System
+
+```bash
+pacstrap /mnt base linux linux-firmware nano networkmanager
+```
+This installs:
+*   Arch base system
+*   Linux kernel
+*   Firmware and Network tools
+
+### 📜 Step 11: Generate fstab
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+Check:
+```bash
+cat /mnt/etc/fstab
+```
+
+### 🔄 Step 12: Chroot into New System
+
+```bash
+arch-chroot /mnt
+```
+
+### 🕰️ Step 13: Set Time Zone
+
+```bash
+ln -sf /usr/share/zoneinfo/Asia/Karachi /etc/localtime
+hwclock --systohc
+```
+
+### 🔤 Step 14: Set Locale
+
+Uncomment your language in:
+```bash
+nano /etc/locale.gen
+```
+Example:
+`en_US.UTF-8 UTF-8`
+
+Then generate:
+```bash
+locale-gen
+```
+Set system language:
+```bash
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
+
+### 👤 Step 15: Set Hostname
+
+```bash
+echo "archpc" > /etc/hostname
+```
+Edit `hosts` file:
+```bash
+nano /etc/hosts
+```
+Add:
+```
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   archpc.localdomain archpc
+```
+
+### 🔑 Step 16: Set Root Password
+
+```bash
+passwd
+```
+
+### 💡 Step 17: Enable Network
+
+```bash
+systemctl enable NetworkManager
+```
+
+### 🧰 Step 18: Install Bootloader
+
+**For UEFI:**
+```bash
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+**For Legacy BIOS:**
+```bash
+pacman -S grub
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### 🏁 Step 19: Exit and Reboot
+
+```bash
+exit
+umount -R /mnt
+reboot
+```
+Remove your USB when the system restarts.
+If all went well — you’ll boot into Arch Linux! 🎉
+
+### 🎨 Step 20: Install a Desktop Environment
+
+Log in as `root` and install your desktop of choice:
+
+**KDE Plasma (recommended for ex-Windows users):**
+```bash
+pacman -S xorg sddm plasma kde-applications
+systemctl enable sddm
+reboot
+```
+**Lightweight XFCE:**
+```bash
+pacman -S xorg lightdm lightdm-gtk-greeter xfce4 xfce4-goodies
+systemctl enable lightdm
+reboot
+```
+**GNOME:**
+```bash
+pacman -S gnome gdm
+systemctl enable gdm
+reboot
+```
+
+### 💻 Step 21: Post-Install Essentials
+
+Once your desktop is up:
+```bash
+sudo pacman -S firefox vlc git base-devel neofetch htop
+```
+Enable Multilib for 32-bit apps:
+Edit:
+```bash
+sudo nano /etc/pacman.conf
+```
+Uncomment:
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+Then update:
+```bash
+sudo pacman -Syu
+```
+
+### 🔌 Step 22: Laptop Optimization
+
+For laptops, install power tools:
+```bash
+sudo pacman -S tlp tlp-rdw
+sudo systemctl enable tlp
+```
+Intel graphics:
+```bash
+sudo pacman -S mesa xf86-video-intel
+```
+Brightness control fix (optional):
+```bash
+sudo pacman -S brightnessctl
+```
+
+### 🧭 Step 23: AUR Support (Optional)
+
+Install `yay` (AUR helper):
+```bash
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+Now install AUR packages easily, e.g.:
+```bash
+yay -S google-chrome visual-studio-code-bin
+```
+
+### 🧹 Step 24: Remove Unused Packages
+
+```bash
+sudo pacman -Rns $(pacman -Qtdq)
+```
+
+### 🧠 Step 25: Learn Arch Basics
+
+Update system:
+```bash
+sudo pacman -Syu
+```
+Check system info:
+```bash
+neofetch
+```
+Search/install packages:
+```bash
+sudo pacman -Ss package_name
+sudo pacman -S package_name
+```
+Remove:
+```bash
+sudo pacman -R package_name
+```
+
+### 🪄 Step 26: Make It Yours
+
+You can now personalize your Arch system:
+*   Install themes (`plasma-lookandfeel-org.kde.*`).
+*   Set wallpapers, fonts.
+*   Sync your browser and files.
+*   Add your dotfiles for configs.
+
+### 🌟 Final Thoughts
+
+Switching from Windows to Arch Linux isn’t just installing a new OS — it’s a mindset shift.
+You’re taking full control — of your tools, your system, your workflow.
+
+Arch rewards curiosity. You’ll learn, break things, fix them, and smile — because it’s yours.
+
+> “Give a man Windows, and he’ll click for a day.
+> Teach him Arch, and he’ll build forever.” 🖤

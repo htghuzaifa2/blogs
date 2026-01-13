@@ -1,0 +1,57 @@
+---
+title: "What is Serverless Computing?"
+excerpt: "Serverless computing allows you to build and run applications without thinking about servers. Learn how serverless works, its benefits like auto-scaling and pay-per-use, and its key use cases."
+imageUrl: "https://images.unsplash.com/photo-1546939226-5b6ce9d17110?q=80&w=2070&auto=format&fit=crop"
+imageHint: "cloud servers"
+author: "Huzi"
+category: "DevOps"
+---
+
+### What Does "Serverless" Mean?
+
+The term "serverless" is a bit of a misnomer. Of course, there are still servers involved! The key difference is that **you, the developer, do not have to manage them.**
+
+Serverless computing is a cloud computing execution model where the cloud provider (like AWS, Google Cloud, or Azure) is responsible for dynamically managing the allocation and provisioning of servers. You simply write your application code and deploy it as functions. The cloud provider runs the function on your behalf, automatically handling all the underlying infrastructure.
+
+### The Evolution: From Bare Metal to Serverless
+
+To understand the value of serverless, it helps to see the evolution of application deployment:
+1.  **Bare Metal:** You buy, house, and manage your own physical servers. (High cost, low flexibility).
+2.  **Virtual Machines (VMs):** You rent virtual servers from a cloud provider. You are still responsible for managing the operating system, patching, and scaling. (e.g., Amazon EC2, Google Compute Engine).
+3.  **Containers:** You package your application into containers (like Docker), which are more lightweight than VMs. You still need to manage the orchestration of these containers (e.g., with Kubernetes).
+4.  **Serverless (Functions as a Service - FaaS):** You break your application down into small, stateless functions. The cloud provider handles everything else. This is the ultimate level of abstraction.
+
+### How Serverless Works: Functions as a Service (FaaS)
+
+The most common implementation of serverless is **Functions as a Service (FaaS)**.
+-   You write your code as individual functions, each designed to handle a specific event.
+-   These functions are **event-driven**. They only run when triggered by an event, such as an HTTP API request, a new file being uploaded to cloud storage, or a message being added to a queue.
+-   The functions are **stateless**. They don't store any data from one invocation to the next. Any persistent state must be stored in an external database or storage service.
+-   When a function is triggered, the cloud provider spins up a container to run it. After the function finishes executing, the container is spun down.
+
+Popular FaaS platforms include **AWS Lambda**, **Google Cloud Functions**, and **Azure Functions**.
+
+### Key Benefits of Serverless
+
+1.  **No Server Management:** This is the biggest advantage. You can focus entirely on writing your application's business logic, not on patching operating systems, managing server capacity, or configuring load balancers.
+2.  **Automatic Scaling:** The cloud provider automatically scales your application in response to demand. If your function gets a thousand requests per second, the provider will spin up a thousand instances to handle them. If it gets zero requests, no instances are running. You don't have to configure any auto-scaling rules.
+3.  **Pay-Per-Use Pricing:** You only pay for the compute time you actually consume. When your functions are not running, you pay nothing. This can be incredibly cost-effective for applications with variable or infrequent traffic patterns, compared to paying for a server that is idle most of the time.
+4.  **Faster Time to Market:** The reduced operational overhead allows development teams to iterate and deploy new features much more quickly.
+
+### Common Use Cases for Serverless
+
+Serverless is particularly well-suited for:
+-   **API Backends:** Building REST or GraphQL APIs for web and mobile applications.
+-   **Data Processing:** Running tasks in response to data changes, like resizing an image after it's uploaded or processing data from an IoT device.
+-   **Chatbots and IoT:** Handling real-time, event-driven workloads.
+-   **Scheduled Tasks:** Running cron jobs or other scheduled maintenance tasks.
+
+### Limitations of Serverless
+
+-   **Cold Starts:** If a function hasn't been used recently, it might take a moment for the cloud provider to spin up a new container to run it. This can introduce latency, known as a "cold start."
+-   **Vendor Lock-in:** Your functions are often tied to the specific APIs and services of your chosen cloud provider, which can make it difficult to migrate to another provider.
+-   **Execution Limits:** Functions usually have a maximum execution time (e.g., 15 minutes for AWS Lambda), making them unsuitable for long-running processes.
+
+### Conclusion
+
+Serverless computing represents a major shift in how we build and deploy applications. By abstracting away the underlying infrastructure, it allows developers to build scalable, resilient, and cost-effective applications faster than ever before. While it's not the right fit for every workload, it has become an essential tool in the modern cloud developer's toolkit.

@@ -1,0 +1,58 @@
+---
+title: "How to Fix 'Root Device Not Found' Error in Arch Linux"
+date: "2025-10-10"
+excerpt: "Stuck at boot with 'root device not found' on Arch Linux? This guide explains how to fix it by correcting your mkinitcpio hooks, bootloader config (root=UUID), and hardware timing issues."
+author: "Huzi"
+category: "Linux"
+imageHint: "magnifying glass on hard drive"
+keywords: ["Arch Linux", "root device not found", "mkinitcpio", "initramfs", "boot error", "Linux troubleshooting", "GRUB", "systemd-boot"]
+---
+
+When Arch Linux cannot find the root device during boot, it's usually because the `initramfs` (the initial temporary file system) doesn't have the necessary components to locate or access your root partition. The table below outlines the most common causes and their solutions.
+
+| Cause of Issue                     | Primary Solution                                                 | Key Things to Check                               |
+| :--------------------------------- | :--------------------------------------------------------------- | :------------------------------------------------ |
+| **Missing Hooks in mkinitcpio.conf** | Add hooks (`lvm2`, `encrypt`), then regenerate initramfs.        | Check for LVM, software RAID, or encrypted setups. |
+| **Incorrect `root=` Parameter**    | Fix the `root=` parameter in your bootloader config with the correct UUID. | Verify UUID with `blkid` and ensure it matches. |
+| **Hardware Detection Timing**      | Add kernel parameter `rootdelay` for slow-initializing drives.    | Relevant for older hardware or USB drives.        |
+
+## Check and Fix Your Bootloader Configuration
+
+The kernel parameter that specifies the root device might be incorrect.
+
+1.  **Verify the Root Partition's UUID:** From a live USB environment, use the `blkid` command to find the correct UUID of your root partition.
+2.  **Check Bootloader Entry:** Inspect your bootloader configuration file:
+    -   **For systemd-boot:** Check the entry in `/boot/loader/entries/arch.conf`.
+    -   **For GRUB:** Check `/boot/grub/grub.cfg` (usually generated from `/etc/default/grub`).
+
+Ensure the `root=UUID=...` parameter matches the UUID from `blkid` exactly. Even a single wrong character will cause the error.
+
+## Regenerate Your Initramfs with Correct Hooks
+
+The `initramfs` needs the right "hooks" to prepare your system's root device.
+
+1.  **Identify Needed Hooks:** From a live USB, `chroot` into your installed system and check `/etc/mkinitcpio.conf`. The `HOOKS` array must include hooks for your specific setup:
+    -   **LVM:** If your root is on a logical volume, you must have the `lvm2` hook.
+    -   **Encryption:** For an encrypted root, you need the `encrypt` hook (or `sd-encrypt`).
+    -   **RAID:** For software RAID, the `mdadm_udev` hook is required.
+
+2.  **Add Hooks and Rebuild:** Edit the `HOOKS` array in `/etc/mkinitcpio.conf`, placing necessary hooks (like `lvm2`) between `block` and `filesystems`. Save the file and regenerate the initramfs:
+    ```bash
+    mkinitcpio -P
+    ```
+
+## Troubleshoot Hardware and Timing Issues
+
+If your storage hardware is slow to initialize, the kernel might not find the root device in time.
+
+-   **Use a `rootdelay`:** Add `rootdelay=10` (or a higher number of seconds) to your kernel parameters in the bootloader configuration. This tells the kernel to wait before looking for the root device.
+-   **Check Filesystem Hooks:** Ensure the `HOOKS` array in `mkinitcpio.conf` contains `fsck` and `filesystems`.
+
+## Advanced Diagnostics
+
+If you're still stuck, more advanced diagnostics can help pinpoint the problem.
+
+-   **Enable Debug Output:** Add `systemd.log_level=debug` to your kernel parameters. This produces a very detailed log of the boot process.
+-   **Use a Recovery Shell:** Kernel parameters like `rescue` or `emergency` can drop you into a shell during the initramfs stage, allowing you to manually check which devices and modules are available.
+
+The key is to methodically check each part of the chain. By ensuring your `mkinitcpio.conf` hooks and bootloader `root=` parameter are correct, you can solve this common Arch Linux boot issue.

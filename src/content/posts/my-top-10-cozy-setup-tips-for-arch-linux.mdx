@@ -1,0 +1,76 @@
+---
+title: "My Top 10 Cozy Setup Tips for a Fresh Arch Linux Install"
+date: "2025-10-12"
+excerpt: "Just installed Arch Linux? Join Huzi for a personal, cozy guide to the top 10 essential setup steps. From the AUR and drivers to themes and performance, let's make your system feel like home."
+author: "Huzi"
+category: "Linux"
+imageHint: "cozy desk setup with computer"
+keywords: ["Arch Linux", "post-install", "setup guide", "yay", "AUR", "Linux customization", "Linux tips", "Huzi"]
+---
+
+Ah, there’s nothing quite like the quiet hum of a freshly installed Arch Linux system. But after the installation, that blinking cursor can feel a bit… empty. Where do we begin? Over the years, I’ve developed my own little ritual to turn that blank slate into a powerful and beautiful daily driver. It’s a peaceful process, like tending to a small garden.
+
+## 1. First Things First: Update Everything!
+Before we do anything exciting, let's get our system sparkling clean and up-to-date.
+```bash
+sudo pacman -Syu
+```
+
+## 2. Enable Multilib for More Software
+I remember trying to install Steam and failing because I hadn't enabled the `multilib` repository, which is needed for many 32-bit applications. It’s a simple fix: edit `/etc/pacman.conf`, uncomment the `[multilib]` section, save, and run `sudo pacman -Syu` again.
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+## 3. Unlock the Magic of the AUR
+The Arch User Repository (AUR) is a massive, community-maintained treasure chest of software. To use it easily, we need a helper.
+
+## 4. Install an AUR Helper (I love yay!)
+An AUR helper automates building packages from the AUR. My personal favourite is `yay`. First, install the necessary tools:
+```bash
+sudo pacman -S --needed base-devel git
+```
+Then clone and build `yay`:
+```bash
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+Now you can install almost anything with `yay -S <package-name>`.
+
+## 5. Get Your Graphics Drivers
+To get a smooth desktop experience, install the right drivers for your graphics card.
+-   **NVIDIA:** `sudo pacman -S nvidia`
+-   **AMD/ATI:** `sudo pacman -S xf86-video-amdgpu`
+-   **Intel:** `sudo pacman -S xf86-video-intel`
+
+## 6. Choose a Desktop Environment
+This is where we give our system its personality!
+-   **KDE Plasma:** `sudo pacman -S plasma-meta konsole`
+-   **GNOME:** `sudo pacman -S gnome`
+-   **XFCE:** `sudo pacman -S xfce4`
+
+After installing, enable a display manager like SDDM: `sudo systemctl enable sddm`.
+
+## 7. Optimize Your CPU for Better Performance
+One quick tweak is to set your CPU governor to performance mode. A great graphical tool for this is `cpupower-gui`, which you can install from the AUR:
+```bash
+yay -S cpupower-gui
+```
+
+## 8. Install Your Favorite Web Browser
+A system isn't much use without a browser.
+-   **Firefox:** `sudo pacman -S firefox`
+-   **Chromium:** `sudo pacman -S chromium`
+
+## 9. Install Some Essential Fonts
+Having nice-looking text makes a huge difference. I always install a few key font packages.
+```bash
+sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
+```
+
+## 10. Customize Your UI: Make It Yours
+Now for the final, most personal touch: theming! This is where you can truly make your desktop your own. Look in your desktop environment's system settings for "Appearance" or "Themes." You can find thousands of new themes and icons to download right from there.
+
+And that's it! Your Arch Linux system is no longer a blank slate. It’s a reflection of you. What are your favourite post-install steps? I'd love to hear them!

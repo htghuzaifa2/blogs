@@ -1,0 +1,85 @@
+---
+title: "The Most Detailed Arch Linux Hyprland Installation Guide (2025 Ultimate Edition)"
+excerpt: "This guide is the most exhaustive, meticulous, and up-to-date walkthrough for installing Arch Linux with the Hyprland Wayland compositor. Every single step is explained in extreme detail, ensuring you have a perfectly tuned system."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "arch linux"
+author: "Huzi"
+category: "Linux"
+---
+
+Installing Arch Linux is a rite of passage. Installing it with **Hyprland** (the modern, beautiful Wayland compositor) is the new gold standard for Linux customization.
+
+This guide assumes you have booted into the Arch ISO and have an internet connection.
+
+## Part 1: The Base System
+
+### 1. Partitioning (UEFI)
+Run `cfdisk`. Create two partitions:
+- **/dev/sda1**: 512M (Type: EFI System)
+- **/dev/sda2**: Remaining space (Type: Linux Filesystem)
+
+### 2. Formatting
+```bash
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+```
+
+### 3. Mounting
+```bash
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+```
+
+### 4. Pacstrap (Installing Core)
+```bash
+pacstrap /mnt base linux linux-firmware vim git networkmanager base-devel
+```
+
+### 5. Fstab & Chroot
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+```
+
+### 6. Bootloader (GRUB)
+```bash
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+## Part 2: Setting Up Hyprland
+
+### 1. User Setup
+Don't run Hyprland as root.
+```bash
+useradd -m -G wheel huzi
+passwd huzi
+EDITOR=vim visudo # Uncomment the %wheel ALL=(ALL:ALL) ALL line
+```
+
+### 2. Video Drivers
+- **NVIDIA**: `pacman -S nvidia-dkms nvidia-utils`
+- **AMD**: `pacman -S mesa vulkan-radeon`
+- **Intel**: `pacman -S mesa vulkan-intel`
+
+### 3. Installing Hyprland
+```bash
+pacman -S hyprland kitty waybar wofi
+```
+- **kitty**: Terminal
+- **waybar**: Status bar
+- **wofi**: App launcher
+
+### 4. Starting It
+Exit chroot, unmount, and reboot. Login as your user.
+Type `Hyprland`.
+
+## Part 3: Configuration
+Hyprland is configured via `~/.config/hypr/hyprland.conf`.
+- **Monitor**: `monitor=DP-1, 1920x1080@144, 0x0, 1`
+- **Keybinds**: `bind = SUPER, Q, exec, kitty`
+
+## Conclusion
+You now have a minimal, blazing fast, and incredibly beautiful desktop environment. Welcome to the elite club of Arch+Hyprland users.

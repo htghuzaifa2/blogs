@@ -1,0 +1,268 @@
+---
+title: "The 2024 Guide to Installing Arch Linux"
+excerpt: "A step-by-step guide to installing Arch Linux, from creating a bootable USB to configuring a complete desktop environment. Learn the principles of 'The Arch Way' and build a system tailored to your exact needs."
+imageUrl: "https://i.postimg.cc/8zjzB6B5/arch-linux-installation-2024.png"
+imageHint: "arch linux logo"
+author: "Huzi"
+category: "Linux"
+date: "2024-07-27"
+---
+
+Arch Linux is a lightweight, flexible, and independently developed Linux distribution designed for experienced users who want a highly customized system. It follows a rolling-release model and adheres to the principles of simplicity, modernity, pragmatism, user centrality, and versatility. The famous Arch Wiki is one of the most comprehensive documentation sources in the entire open-source ecosystem.
+
+Unlike user-friendly installers like those for Ubuntu or Fedora, installing Arch Linux is a manual, command-line-driven process. This guide will walk you through the essential steps to get a functional Arch Linux system running in 2024.
+
+**Disclaimer:** This guide is for educational purposes. The Arch installation process can be complex. Always back up your data before partitioning drives.
+
+### The Arch Way: Core Principles
+
+Before we begin, it's crucial to understand the philosophy behind Arch:
+
+1.  **Simplicity:** Arch defines simplicity as "without unnecessary additions or modifications." It provides a minimal base system, allowing you to build upon it.
+2.  **User-Centrality:** You, the user, are in control. The system will not make assumptions about your needs. You decide which desktop environment, software, and services to install.
+3.  **Rolling Release:** Arch is continuously updated. A single `pacman -Syu` command brings your entire system to the latest version. No more major version upgrades.
+
+### Step 0: Prerequisites
+
+- A computer with an x86-64 compatible architecture.
+- At least 512 MB of RAM (2 GB recommended for a graphical environment).
+- A USB drive with at least 2 GB of space.
+- An active internet connection.
+- Familiarity with the Linux command line.
+
+### Step 1: Create a Bootable USB
+
+1.  **Download the ISO:** Get the latest Arch Linux ISO from the [official download page](https://archlinux.org/download/).
+2.  **Create the Bootable Drive:** Use a tool like [Rufus](https://rufus.ie/) on Windows, or the `dd` command on Linux or macOS.
+
+    On Linux:
+    ```bash
+    # Replace /dev/sdX with your USB device identifier (e.g., /dev/sdb)
+    # Be extremely careful with this command!
+    sudo dd if=/path/to/archlinux.iso of=/dev/sdX bs=4M status=progress oflag=sync
+    ```
+
+### Step 2: Boot into the Live Environment
+
+Insert the USB drive into your target machine and boot from it. You may need to change the boot order in your BIOS/UEFI settings. You will be greeted with a Zsh shell prompt.
+
+### Step 3: Initial Setup
+
+1.  **Set Keyboard Layout (Optional):** The default is US. To list other layouts:
+    ```bash
+    ls /usr/share/kbd/keymaps/**/*.map.gz
+    ```
+    To set a layout (e.g., for German):
+    ```bash
+    loadkeys de-latin1
+    ```
+
+2.  **Verify Boot Mode:** Check if you've booted in UEFI or BIOS mode.
+    ```bash
+    ls /sys/firmware/efi/efivars
+    ```
+    If the command shows a directory, you are in UEFI mode. If it reports "No such file or directory," you are in BIOS mode. This is crucial for partitioning.
+
+3.  **Connect to the Internet:**
+    - **Ethernet:** Should work automatically.
+    - **Wi-Fi:** Use the interactive `iwctl` utility.
+      ```bash
+      iwctl
+      # Inside iwctl prompt
+      [iwd]# device list
+      [iwd]# station <device_name> scan
+      [iwd]# station <device_name> get-networks
+      [iwd]# station <device_name> connect <SSID>
+      # Enter password when prompted, then type 'exit'
+      ```
+    Test your connection:
+    ```bash
+    ping archlinux.org
+    ```
+
+4.  **Update the System Clock:**
+    ```bash
+    timedatectl set-ntp true
+    ```
+
+### Step 4: Partition the Disks
+
+This is the most critical step. We'll use `cfdisk`, a user-friendly partitioning tool.
+
+1.  **Identify your drive:**
+    ```bash
+    lsblk
+    ```
+    Your main drive will likely be `/dev/sda` or `/dev/nvme0n1`.
+
+2.  **Run `cfdisk`:**
+    ```bash
+    cfdisk /dev/sda
+    ```
+
+3.  **Partition Scheme (Example for UEFI):**
+    - **EFI System Partition (ESP):** At least 512 MB. Choose `EFI System` as the type.
+    - **Swap Partition (Optional but recommended):** Size depends on your RAM. A good rule of thumb is a size equal to your RAM. Choose `Linux swap` as the type.
+    - **Root Partition:** The rest of the space. Choose `Linux filesystem` as the type.
+
+    Select `Write` to save the changes, then `Quit`.
+
+### Step 5: Format the Partitions
+
+1.  **Format the ESP (UEFI only):**
+    ```bash
+    # Assuming /dev/sda1 is your ESP
+    mkfs.fat -F32 /dev/sda1
+    ```
+
+2.  **Format the Swap Partition:**
+    ```bash
+    # Assuming /dev/sda2 is your swap
+    mkswap /dev/sda2
+    ```
+
+3.  **Format the Root Partition:**
+    ```bash
+    # Assuming /dev/sda3 is your root
+    mkfs.ext4 /dev/sda3
+    ```
+
+### Step 6: Mount the File Systems
+
+1.  **Mount the Root Partition:**
+    ```bash
+    mount /dev/sda3 /mnt
+    ```
+
+2.  **Create and Mount other partitions (UEFI):**
+    ```bash
+    mkdir /mnt/efi
+    mount /dev/sda1 /mnt/efi
+    ```
+
+3.  **Enable Swap:**
+    ```bash
+    swapon /dev/sda2
+    ```
+
+### Step 7: Install the Base System
+
+Use the `pacstrap` script to install the base packages, a Linux kernel, and common firmware.
+
+```bash
+pacstrap /mnt base linux linux-firmware nano
+```
+- `base`: The minimal set of packages for a functional system.
+- `linux`: The latest Linux kernel.
+- `linux-firmware`: Firmware files required by many devices.
+- `nano`: A simple text editor for configuration.
+
+### Step 8: Configure the System
+
+1.  **Generate fstab:** Create the file system table.
+    ```bash
+    genfstab -U /mnt >> /mnt/etc/fstab
+    ```
+
+2.  **Chroot into the new system:**
+    ```bash
+    arch-chroot /mnt
+    ```
+    From now on, commands are run inside your newly installed system.
+
+3.  **Set Time Zone:**
+    ```bash
+    # Example for New York
+    ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+    hwclock --systohc
+    ```
+
+4.  **Localization:**
+    - Edit `/etc/locale.gen` and uncomment `en_US.UTF-8 UTF-8` (and others you need).
+      ```bash
+      nano /etc/locale.gen
+      ```
+    - Generate the locales:
+      ```bash
+      locale-gen
+      ```
+    - Create `/etc/locale.conf`:
+      ```bash
+      echo "LANG=en_US.UTF-8" > /etc/locale.conf
+      ```
+
+5.  **Network Configuration:**
+    - Set your hostname:
+      ```bash
+      echo "my-arch-box" > /etc/hostname
+      ```
+    - Add matching entries to `/etc/hosts`:
+      ```bash
+      nano /etc/hosts
+      # Add the following lines:
+      127.0.0.1   localhost
+      ::1         localhost
+      127.0.1.1   my-arch-box.localdomain   my-arch-box
+      ```
+
+6.  **Set Root Password:**
+    ```bash
+    passwd
+    ```
+    Enter a strong password for the root user.
+
+### Step 9: Install a Boot Loader (GRUB)
+
+1.  **Install GRUB and other essentials:**
+    ```bash
+    pacman -S grub efibootmgr networkmanager
+    ```
+    - `grub`: The boot loader.
+    - `efibootmgr`: Required for UEFI systems.
+    - `networkmanager`: For managing network connections after reboot.
+
+2.  **Install GRUB to the disk:**
+    ```bash
+    grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+    ```
+
+3.  **Generate the GRUB configuration file:**
+    ```bash
+    grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+
+### Step 10: Final Steps
+
+1.  **Enable NetworkManager:**
+    ```bash
+    systemctl enable NetworkManager
+    ```
+
+2.  **Exit and Reboot:**
+    ```bash
+    exit
+    umount -R /mnt
+    reboot
+    ```
+    Remove the installation USB drive.
+
+### Post-Installation: Welcome to Your System!
+
+You now have a minimal, command-line Arch Linux system. From here, you can:
+- **Create a user:** `useradd -m huzi`, `passwd huzi`
+- **Install `sudo`:** `pacman -S sudo`, and add your user to the `wheel` group.
+- **Install a Desktop Environment:**
+  ```bash
+  # Install Xorg (the display server)
+  sudo pacman -S xorg
+  # Install a desktop environment like GNOME or KDE
+  sudo pacman -S gnome
+  sudo systemctl enable gdm # For GNOME
+  # or
+  sudo pacman -S plasma
+  sudo systemctl enable sddm # For KDE
+  reboot
+  ```
+- **Install a display manager** like GDM (for GNOME) or SDDM (for KDE).
+
+Welcome to Arch Linux! You've built a system from the ground up, tailored

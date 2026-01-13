@@ -1,0 +1,62 @@
+---
+title: "Understanding OAuth 2.0: A Guide to Secure Authorization"
+excerpt: "OAuth 2.0 is the industry-standard protocol for authorization. It allows applications to obtain limited access to user accounts on an HTTP service, like 'Log in with Google'. This guide breaks down how it works."
+imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop"
+imageHint: "api security"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+### The Problem: Delegated Access
+
+Imagine you're using a new photo editing web app, and you want it to access your photos stored in your Google Photos account. How do you grant it permission without giving it your Google username and password? Giving away your credentials is a huge security risk, as the photo app would have full access to your entire Google account (Gmail, Drive, etc.) and could store your password insecurely.
+
+This is the problem that OAuth 2.0 was created to solve. It provides a way for you to **delegate** specific, limited access to a third-party application without sharing your credentials.
+
+### What is OAuth 2.0?
+
+OAuth 2.0 is an **authorization framework**. It's important to distinguish it from **authentication**.
+-   **Authentication** is about verifying who you are (e.g., logging in with a username and password).
+-   **Authorization** is about what you are allowed to do (e.g., granting an application permission to read your contacts).
+
+OAuth 2.0 provides a standardized flow for one application to get permission to access data from another application on behalf of a user.
+
+### The Roles in the OAuth 2.0 Flow
+
+There are four key roles in an OAuth 2.0 flow:
+
+1.  **Resource Owner:** You, the user who owns the data.
+2.  **Client:** The third-party application that wants to access your data (e.g., the photo editing app).
+3.  **Authorization Server:** The service that the user has an account with, which manages permissions (e.g., Google's authentication server). It's responsible for issuing access tokens.
+4.  **Resource Server:** The server that hosts the user's data (e.g., the Google Photos API server).
+
+### The Authorization Code Grant Flow
+
+The most common and secure OAuth 2.0 flow is the "Authorization Code" grant. Here's how it works step-by-step:
+
+1.  **The User Initiates:** You click "Connect to Google Photos" on the photo editing app (the **Client**).
+
+2.  **Redirection to Authorization Server:** The Client redirects your browser to the **Authorization Server** (Google). The redirection URL includes information like the Client's ID and the specific permissions (`scopes`) it's requesting (e.g., `read_photos`).
+
+3.  **The User Grants Consent:** On the Authorization Server's website, you log in to your Google account (if you aren't already). The server then displays a consent screen asking, "Do you want to allow [Photo Editing App] to access your photos?". You click "Allow".
+
+4.  **Authorization Code is Sent:** The Authorization Server redirects your browser back to the Client, but this time it includes a temporary, one-time-use **Authorization Code** in the URL.
+
+5.  **The Client Exchanges the Code for an Access Token:** The Client's backend server takes this Authorization Code and sends it directly to the Authorization Server, along with its own Client ID and Client Secret (which are kept private). This proves it's the legitimate application.
+
+6.  **Access Token is Issued:** The Authorization Server verifies the code and credentials. If everything is correct, it issues an **Access Token** and sends it back to the Client. This token is a string that represents the permission you granted.
+
+7.  **The Client Accesses the Protected Resource:** The Client can now use this Access Token to make requests to the **Resource Server** (the Google Photos API). It includes the token in the `Authorization` header of its API requests.
+
+8.  **The Resource Server Validates the Token:** The Resource Server receives the request, validates the Access Token with the Authorization Server, and confirms that it grants permission to access the requested resource. If valid, it returns the data (your photos) to the Client.
+
+### Why is this Secure?
+
+-   You never give your password to the third-party application.
+-   The Access Token is specific to that application and has limited permissions (it can only read photos, not access your email).
+-   You, the user, can revoke the application's access at any time from your Google account settings, and the Access Token will become invalid.
+-   The token is typically short-lived, reducing the window of opportunity for an attacker if it is compromised.
+
+### Conclusion
+
+OAuth 2.0 is the backbone of modern API security and delegated access. It allows for a secure and user-friendly way to connect different applications and services across the web. Understanding its flow is essential for any developer building applications that need to interact with third-party data on behalf of a user.

@@ -1,0 +1,116 @@
+---
+title: "Top 10 Things to Do After Installing Arch Linux (Performance & UI)"
+date: "2025-10-07"
+excerpt: "Just installed Arch Linux? Here are the top 10 essential things to do next, from enabling multilib and the AUR to installing drivers, optimizing performance, and customizing your UI."
+author: "Huzi"
+category: "Linux"
+imageHint: "Arch Linux logo terminal customization"
+keywords: ["Arch Linux", "post-installation", "AUR", "yay", "pacman", "performance tuning", "UI customization", "Linux setup"]
+---
+
+You did it. You’ve installed Arch Linux. But now what? Arch, in its pure form, is like an empty house. Let’s turn that fresh install into a fast, beautiful, and reliable system you’ll love using every day.
+
+Here are the Top 10 essential things to do after installing Arch Linux, from performance tweaks to UI polish.
+
+## 1. Update Everything First
+
+Before doing anything else, make sure your system is fully up-to-date.
+```bash
+sudo pacman -Syu
+```
+This syncs your package database and upgrades everything, giving your new system a health check.
+
+## 2. Enable Multilib (for 32-bit Apps & Gaming)
+
+Some apps—especially games and Steam—need 32-bit libraries.
+```bash
+sudo nano /etc/pacman.conf
+```
+Find this section, uncomment both lines (remove the `#`), save, and run `sudo pacman -Syu`.
+```
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+```
+
+## 3. Install Essential Base Packages
+
+Arch doesn’t include many basics, so let’s fix that.
+```bash
+sudo pacman -S base-devel git wget curl vim unzip zip htop neofetch
+```
+-   `base-devel`: Required for compiling packages from the AUR.
+-   `neofetch`: To flex your setup 😎.
+-   `htop`: To monitor your CPU like a pro.
+
+## 4. Install a Display Manager (Login Screen)
+
+You need something that handles logins visually.
+-   **For KDE or GNOME:** `sudo pacman -S sddm` then `sudo systemctl enable sddm`
+-   **For XFCE or LXQt:** `sudo pacman -S lightdm lightdm-gtk-greeter` then `sudo systemctl enable lightdm`
+
+## 5. Choose and Install a Desktop Environment
+
+This is where the fun begins.
+-   **KDE Plasma (Beautiful & Polished):** `sudo pacman -S plasma kde-applications`
+-   **XFCE (Lightweight & Reliable):** `sudo pacman -S xfce4 xfce4-goodies`
+-   **GNOME (Modern & Simple):** `sudo pacman -S gnome`
+
+Reboot afterward, and your Linux desktop will come alive.
+
+## 6. Enable Network and Bluetooth Services
+
+Let’s make sure Wi-Fi and Bluetooth work properly.
+```bash
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+```
+For Bluetooth:
+```bash
+sudo pacman -S bluez bluez-utils
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+```
+
+## 7. Install Yay (AUR Helper)
+
+The Arch User Repository (AUR) is where the magic happens—community packages for apps like Google Chrome, VS Code, and Spotify.
+```bash
+cd /opt
+sudo git clone https://aur.archlinux.org/yay.git
+sudo chown -R $USER:$USER yay
+cd yay
+makepkg -si
+```
+Now you can install apps easily: `yay -S google-chrome visual-studio-code-bin`.
+
+## 8. Optimize System Performance
+
+Let’s make Arch fly.
+-   **Enable Parallel Downloads:** In `/etc/pacman.conf`, uncomment `ParallelDownloads = 5`.
+-   **Enable CPU Microcode:** `sudo pacman -S intel-ucode` or `amd-ucode`, then rebuild GRUB with `sudo grub-mkconfig -o /boot/grub/grub.cfg`.
+-   **Enable ZRAM (faster swapping):** `sudo pacman -S zram-generator` then `sudo systemctl enable --now systemd-zram-setup@zram0.service`.
+
+## 9. Customize Your UI (Make It Yours)
+
+This is where Arch shines.
+-   **KDE Users:** Install themes like `sweet-theme` and `tela-icon-theme` via `yay`.
+-   **XFCE Users:** Install `plank` for a Mac-style dock.
+-   **Add Fonts:** `sudo pacman -S ttf-dejavu ttf-ubuntu-font-family`.
+
+## 10. Security and Backup Essentials
+
+Keep your system safe:
+```bash
+sudo pacman -S firewalld
+sudo systemctl enable --now firewalld
+```
+For easy rollback snapshots:
+```bash
+sudo pacman -S timeshift
+sudo timeshift-launcher
+```
+If anything breaks, you can restore your system in minutes.
+
+### Final Words
+
+Arch Linux isn’t just an OS—it’s a journey. Every command teaches you something new, and every tweak makes your setup feel personal. Customize it, break it, fix it, and make it yours.

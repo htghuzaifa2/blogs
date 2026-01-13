@@ -1,0 +1,64 @@
+---
+title: "CI/CD with GitHub Actions: A Beginner's Guide to Automation"
+excerpt: "Automate your development workflow from code commit to deployment with GitHub Actions. This guide breaks down the core concepts of CI/CD and provides a practical, step-by-step example to help you build your first automated pipeline."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "github actions ci/cd"
+author: "Huzi"
+category: "Linux"
+---
+
+Manual deployments are a recipe for disaster. "It works on my machine" is not a valid deployment strategy. Enter **CI/CD** (Continuous Integration / Continuous Deployment), the practice of automating the building, testing, and deployment of your code.
+
+**GitHub Actions** brings CI/CD directly into your repository. It's free for public repos and incredibly powerful.
+
+## The Core Concepts
+- **Workflow**: An automated process defined in a YAML file.
+- **Event**: What triggers the workflow? (e.g., a `push` to main, a Pull Request).
+- **Job**: A set of steps that execute on a runner.
+- **Step**: An individual task (e.g., "Run tests", "Build Docker image").
+
+## Creating Your First Workflow
+Create a file at `.github/workflows/main.yml`.
+
+### Example: Node.js CI Pipeline
+This workflow runs whenever code is pushed to the `main` branch. It installs dependencies and runs tests.
+
+```yaml
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test
+```
+
+## Continuous Deployment (CD)
+Once tests pass, you can add a job to deploy.
+- **Deploy to Vercel/Netlify**: Use their official actions.
+- **Deploy to Docker Hub**: Build and push your container.
+
+## Secrets Management
+Never hardcode API keys or passwords in your code. Go to **Settings > Secrets and variables > Actions** in your GitHub repo. Use them in your YAML file like `${{ secrets.API_KEY }}`.
+
+## Conclusion
+GitHub Actions removes the friction from development. By automating your testing and deployment, you catch bugs early and ship code faster. Start simple with a test runner, and gradually build up to full deployment pipelines.

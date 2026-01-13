@@ -1,0 +1,304 @@
+---
+title: "Automate the Boring Stuff with Python: 5 Easy Scripts"
+excerpt: "Discover five simple yet powerful Python scripts to automate everyday tasks. From organizing files and scraping websites to managing spreadsheets, learn how to save time and boost your productivity."
+imageUrl: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop"
+imageHint: "python code automation"
+author: "Huzi"
+category: "Python"
+date: "2024-07-26"
+---
+
+Python's simple syntax and powerful libraries make it the perfect language for automation. Whether you're a developer, a data analyst, or just someone who wants to be more efficient, Python can help you automate repetitive tasks and save countless hours. This article provides five practical scripts to get you started on your automation journey.
+
+### Prerequisites
+
+To run these scripts, you'll need Python installed on your system. You can download it from the [official Python website](https://www.python.org/).
+
+You'll also need to install a few libraries. You can do this using `pip`, Python's package manager:
+
+```bash
+pip install requests beautifulsoup4 openpyxl
+```
+
+---
+
+### 1. File Organizer
+
+Do you have a "Downloads" folder cluttered with a mix of images, documents, and installers? This script automatically organizes files into subdirectories based on their extension.
+
+**The Logic:**
+1.  Scan a target directory for all files.
+2.  For each file, get its extension (e.g., `.pdf`, `.jpg`).
+3.  Create a subdirectory named after the extension if it doesn't exist.
+4.  Move the file into the corresponding subdirectory.
+
+**The Script:**
+
+```python
+import os
+import shutil
+
+# The path to the directory you want to organize
+# TIP: Use a raw string (r"...") on Windows to avoid issues with backslashes
+path = r"/path/to/your/downloads"
+
+# Get a list of all files in the directory
+try:
+    files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+except FileNotFoundError:
+    print(f"Error: The directory '{path}' was not found.")
+    exit()
+
+for file in files:
+    # Get the file extension
+    filename, extension = os.path.splitext(file)
+    extension = extension[1:] # Remove the dot
+
+    if not extension: # Skip files with no extension
+        continue
+
+    # Create a directory for the extension if it doesn't exist
+    extension_dir_path = os.path.join(path, extension)
+    if not os.path.exists(extension_dir_path):
+        os.makedirs(extension_dir_path)
+        print(f"Created directory: {extension_dir_path}")
+
+    # Move the file
+    source_path = os.path.join(path, file)
+    destination_path = os.path.join(extension_dir_path, file)
+    shutil.move(source_path, destination_path)
+    print(f"Moved '{file}' to '{extension_dir_path}'")
+
+print("File organization complete!")
+```
+
+---
+
+### 2. Simple Web Scraper
+
+This script scrapes the headlines from a news website (like Hacker News) and prints them out. It's a great introduction to web scraping.
+
+**The Logic:**
+1.  Send an HTTP `GET` request to the target URL.
+2.  Parse the HTML content of the page using BeautifulSoup.
+3.  Find all HTML elements that match a specific CSS selector (in this case, the selector for headlines).
+4.  Extract and print the text from each element.
+
+**The Script:**
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+# URL of the site to scrape
+url = "https://news.ycombinator.com"
+
+try:
+    response = requests.get(url)
+    response.raise_for_status() # Raise an exception for bad status codes (4xx or 5xx)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # The headlines on Hacker News are in a 'span' with the class 'titleline'
+    headlines = soup.find_all('span', class_='titleline')
+
+    if not headlines:
+        print("No headlines found. The website structure might have changed.")
+    else:
+        print(f"--- Top Headlines from {url} ---")
+        for index, headline in enumerate(headlines):
+            # The headline text is inside an 'a' tag within the span
+            link_tag = headline.find('a')
+            if link_tag:
+                print(f"{index + 1}. {link_tag.get_text(strip=True)}")
+
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching the URL: {e}")
+
+```
+
+---
+
+### 3. Excel Spreadsheet Automation
+
+This script reads data from an existing Excel file, processes it (e.g., calculates a new column), and saves the result to a new file.
+
+**The Logic:**
+1.  Load an Excel workbook and select the active sheet.
+2.  Iterate through the rows of the sheet.
+3.  For each row, read values from specific columns.
+4.  Perform a calculation (e.g., calculate profit).
+5.  Write the result to a new column in that row.
+6.  Save the modified workbook to a new file.
+
+**The Script:**
+First, create a sample Excel file named `sales.xlsx` with this data:
+
+| Product | Price | Cost |
+| :-------- | :---- | :--- |
+| Laptop  | 1200  | 900  |
+| Mouse   | 25    | 10   |
+| Keyboard| 75    | 30   |
+
+
+```python
+from openpyxl import load_workbook
+
+input_filename = "sales.xlsx"
+output_filename = "sales_with_profit.xlsx"
+
+try:
+    # Load the workbook and select the active sheet
+    wb = load_workbook(filename=input_filename)
+    sheet = wb.active
+
+    # Add a new header for the 'Profit' column
+    sheet["D1"] = "Profit"
+
+    # Iterate through rows, starting from the second row (to skip the header)
+    # min_row=2, max_col=3 to process only rows with data in the first 3 columns
+    for row in sheet.iter_rows(min_row=2, max_col=3, values_only=False):
+        price_cell = row[1] # Column B
+        cost_cell = row[2]  # Column C
+        
+        if isinstance(price_cell.value, (int, float)) and isinstance(cost_cell.value, (int, float)):
+            price = price_cell.value
+            cost = cost_cell.value
+            profit = price - cost
+
+            # Get the cell for the new 'Profit' column and set its value
+            profit_cell = sheet.cell(row=price_cell.row, column=4)
+            profit_cell.value = profit
+
+    # Save the changes to a new file
+    wb.save(output_filename)
+    print(f"Successfully created '{output_filename}' with profit calculations.")
+
+except FileNotFoundError:
+    print(f"Error: The file '{input_filename}' was not found. Please create it first.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+```
+
+---
+
+### 4. Automated Email Sender (using smtplib)
+
+This script sends a plain-text email from a Gmail account. **Note:** You'll need to enable "Less secure app access" in your Google account settings or use an "App Password" for this to work.
+
+**The Logic:**
+1.  Connect to the SMTP server (e.g., `smtp.gmail.com`).
+2.  Start a secure TLS connection.
+3.  Log in with your email and password.
+4.  Construct the email message.
+5.  Send the email and close the connection.
+
+**The Script:**
+
+```python
+import smtplib
+import os
+from getpass import getpass # To securely ask for password
+
+# --- Configuration ---
+# For better security, use environment variables or a config file for your email
+SENDER_EMAIL = os.environ.get("EMAIL_USER") or "your_email@gmail.com"
+RECEIVER_EMAIL = "receiver_email@example.com"
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+
+# --- Get Credentials ---
+if SENDER_EMAIL == "your_email@gmail.com":
+    print("Please set the SENDER_EMAIL variable in the script or as an environment variable.")
+    exit()
+
+# getpass makes the password input invisible
+SENDER_PASSWORD = os.environ.get("EMAIL_PASS") or getpass(f"Enter password for {SENDER_EMAIL}: ")
+
+# --- Email Content ---
+subject = "An Automated Email from Python!"
+body = "This is a test email sent from a Python script. Automation is awesome!"
+message = f"Subject: {subject}\n\n{body}"
+
+# --- Sending Logic ---
+try:
+    # Connect to the SMTP server
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+        # Start TLS for security
+        server.starttls()
+        # Login to your account
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        # Send the email
+        server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, message)
+    
+    print("Email sent successfully!")
+
+except smtplib.SMTPAuthenticationError:
+    print("Authentication failed. Check your email/password or 'App Password' settings.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+```
+
+---
+
+### 5. Image Resizer
+
+This script finds all images in a directory and resizes them to a specified width, maintaining the aspect ratio.
+
+**The Logic:**
+1.  Iterate through all files in a source directory.
+2.  Check if a file is an image (based on its extension).
+3.  Open the image using the Pillow library.
+4.  Calculate the new height to maintain the aspect ratio.
+5.  Resize the image and save it to an output directory.
+
+**Prerequisites:** Install the Pillow library: `pip install Pillow`
+
+**The Script:**
+
+```python
+import os
+from PIL import Image
+
+# --- Configuration ---
+SOURCE_DIRECTORY = r"./source_images"
+OUTPUT_DIRECTORY = r"./resized_images"
+TARGET_WIDTH = 800 # The desired width of the output images
+
+# --- Ensure directories exist ---
+if not os.path.exists(SOURCE_DIRECTORY):
+    os.makedirs(SOURCE_DIRECTORY)
+    print(f"Created source directory: {SOURCE_DIRECTORY}. Please add images to it.")
+    exit()
+if not os.path.exists(OUTPUT_DIRECTORY):
+    os.makedirs(OUTPUT_DIRECTORY)
+
+# --- Image Processing ---
+for filename in os.listdir(SOURCE_DIRECTORY):
+    # Check for valid image extensions
+    if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+        try:
+            img_path = os.path.join(SOURCE_DIRECTORY, filename)
+            img = Image.open(img_path)
+
+            # Calculate the new height to maintain aspect ratio
+            width_percent = (TARGET_WIDTH / float(img.size[0]))
+            target_height = int((float(img.size[1]) * float(width_percent)))
+            
+            # Resize the image using high-quality downsampling
+            img = img.resize((TARGET_WIDTH, target_height), Image.Resampling.LANCZOS)
+            
+            # Save the resized image to the output directory
+            output_path = os.path.join(OUTPUT_DIRECTORY, filename)
+            img.save(output_path)
+            print(f"Resized and saved: {filename}")
+
+        except Exception as e:
+            print(f"Could not process {filename}. Error: {e}")
+
+print("Image resizing complete.")
+```
+
+These five scripts are just the beginning. The world of automation is vast, but by starting with these simple, practical examples, you can build the skills to tackle even more complex tasks. Happy automating!

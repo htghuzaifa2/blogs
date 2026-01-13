@@ -1,0 +1,72 @@
+---
+title: "CSS Custom Properties (Variables): A Revolution in Styling"
+excerpt: "Forget endless find-and-replace for color changes. CSS Custom Properties (Variables) are a native CSS feature that will make your stylesheets more dynamic, maintainable, and powerful. This guide explains everything you need to know."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "css variables"
+author: "Huzi"
+category: "Programming"
+---
+
+For years, developers relied on preprocessors like SASS or LESS to use variables in CSS. But now, **CSS Custom Properties** (often called CSS Variables) are natively supported in all modern browsers. They are more powerful than preprocessor variables because they are part of the DOM, meaning they can be changed dynamically by JavaScript.
+
+## 1. Syntax and Basics
+You define a variable using `--` and access it using `var()`.
+```css
+:root {
+  --primary-color: #3498db;
+  --spacing-unit: 16px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  padding: var(--spacing-unit);
+}
+```
+Defining them in `:root` makes them global (available everywhere).
+
+## 2. Why Use Them?
+- **Maintainability**: Change a color in one place, and it updates everywhere.
+- **Readability**: `color: var(--danger-red)` is much clearer than `color: #ff0000`.
+- **Scoping**: You can redefine variables inside specific classes.
+
+## 3. The Killer Feature: Dynamic Theming
+Since CSS variables are live in the browser, you can create a Dark Mode with just a few lines of code.
+
+```css
+:root {
+  --bg-color: white;
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --bg-color: black;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+```
+Now, switching themes is just a matter of toggling the `data-theme` attribute on the `<html>` tag via JavaScript. No need to load a separate stylesheet!
+
+## 4. Responsive Design
+You can change variables inside media queries.
+```css
+:root {
+  --font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --font-size: 18px;
+  }
+}
+
+p {
+  font-size: var(--font-size);
+}
+```
+
+## Conclusion
+CSS Custom Properties change the way we write CSS. They make stylesheets cleaner, more modular, and incredibly dynamic. If you aren't using them yet, it's time to start.

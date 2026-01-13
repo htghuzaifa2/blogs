@@ -1,0 +1,64 @@
+---
+title: "10 JavaScript Tricks That Will Save You Hours of Coding"
+excerpt: "JavaScript is full of hidden gems that can transform verbose code into elegant solutions. After years of working with JS, I've curated these battle-tested tricks that consistently save development time. Master these and you'll write cleaner, more efficient code immediately."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "javascript code"
+author: "Huzi"
+category: "Programming"
+---
+
+JavaScript has evolved rapidly. If you are still writing code like it's 2015, you are missing out on syntax that makes your code cleaner, shorter, and safer. Here are 5 modern tricks to level up your JS.
+
+## 1. Optional Chaining (`?.`)
+Stop checking if properties exist before accessing them.
+**Old Way:**
+```javascript
+if (user && user.address && user.address.street) {
+  console.log(user.address.street);
+}
+```
+**New Way:**
+```javascript
+console.log(user?.address?.street);
+```
+If any part of the chain is `null` or `undefined`, it simply returns `undefined` instead of throwing an error.
+
+## 2. Nullish Coalescing (`??`)
+Use this instead of `||` when you want to provide a default value.
+**The Problem with `||`**: It treats `0` and `""` (empty string) as falsey.
+```javascript
+let count = 0;
+let amount = count || 10; // amount is 10! (Wrong, if 0 was a valid count)
+```
+**The Solution**:
+```javascript
+let amount = count ?? 10; // amount is 0
+```
+`??` only falls back if the value is strictly `null` or `undefined`.
+
+## 3. Object Destructuring with Aliases
+You can rename variables while destructuring.
+```javascript
+const user = { name: "Huzi", age: 25 };
+const { name: userName } = user;
+
+console.log(userName); // "Huzi"
+```
+
+## 4. Remove Duplicates from an Array
+The fastest way to dedupe an array is using a `Set`.
+```javascript
+const numbers = [1, 1, 2, 3, 3, 4];
+const unique = [...new Set(numbers)]; 
+// [1, 2, 3, 4]
+```
+
+## 5. Short-Circuit Evaluation
+Use `&&` to run code only if a condition is true.
+```javascript
+isLoggedIn && showDashboard();
+```
+This is cleaner than writing an `if` statement for simple conditional execution.
+
+## Conclusion
+Writing less code means fewer bugs to maintain. Incorporate these syntactic sugars into your daily workflow, and your codebase will thank you.

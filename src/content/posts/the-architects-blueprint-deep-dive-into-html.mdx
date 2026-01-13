@@ -1,0 +1,44 @@
+---
+title: "The Architect's Blueprint: A Deep Dive into HTML"
+excerpt: "Every website, application, and interactive experience you encounter online rests upon a foundational language: HTML. Far from being a simple 'markup language,' HTML is the structural skeleton of the web. This guide dissects HTML to its atomic level."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "html css"
+author: "Huzi"
+category: "Programming"
+---
+
+HTML (HyperText Markup Language) is often dismissed as "easy." But writing *good* HTML—semantic, accessible, and SEO-friendly—is a skill that separates junior developers from seniors.
+
+HTML is not about "making things appear on screen." It is about **structure** and **meaning**.
+
+## 1. The DOM (Document Object Model)
+When a browser loads HTML, it builds a tree structure called the DOM. JavaScript doesn't touch the HTML file; it manipulates this DOM tree. Understanding this tree structure is key to efficient rendering and manipulation.
+
+## 2. Semantic HTML
+In the 90s, we used `<div>` for everything.
+`<div id="header">`, `<div id="nav">`, `<div class="article">`.
+
+HTML5 introduced "Semantic Elements" that describe *what* the content is, not just how it looks.
+- `<header>`, `<main>`, `<footer>`
+- `<nav>`: Navigation links.
+- `<article>`: Self-contained content (like a blog post).
+- `<section>`: A thematic grouping of content.
+- `<aside>`: Content related to the main content (sidebars).
+
+**Why it matters:**
+- **SEO**: Google understands that content inside an `<article>` is more important than content inside a `<div>`.
+- **Accessibility**: Screen readers for the blind use these tags to navigate the page ("Jump to main content").
+
+## 3. Accessibility (a11y)
+The web is for everyone.
+- **Alt Text**: Always describe images (`<img alt="A cat sitting on a fence">`).
+- **Heading Hierarchy**: Use `h1` through `h6` in order. Don't skip levels just for font size.
+- **Buttons vs Links**: Use `<a>` if it goes somewhere. Use `<button>` if it does something (JavaScript).
+
+## 4. Metadata
+The `<head>` of your document is invisible but vital.
+- Open Graph tags (`og:title`, `og:image`) determine how your link looks when shared on Twitter or Facebook.
+- Viewport meta tags control how your site renders on mobile.
+
+## Conclusion
+HTML is the foundation. If the foundation is weak, the fancy CSS and React logic on top of it will crumble. Respect the markup.

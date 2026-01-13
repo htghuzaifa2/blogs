@@ -1,0 +1,43 @@
+---
+title: "WordPress Security: Best Practices to Keep Your Site Safe"
+excerpt: "Protect your WordPress website from hackers and vulnerabilities with these essential security best practices."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "WordPress security lock"
+author: "HTG"
+category: "Web Development"
+date: "2024-08-16"
+---
+
+WordPress powers over 40% of the web, which unfortunately makes it a prime target for hackers. Securing your WordPress site isn't just a "nice-to-have"—it's a necessity. From brute-force attacks to SQL injections, the threats are real.
+
+This guide provides a comprehensive checklist of actionable security best practices to harden your site's defenses and keep your data safe.
+
+## 1. Strong Passwords & Two-Factor Authentication (2FA)
+It sounds basic, but "admin" used as a username and "password123" as a password are still common causes of hacks.
+- **Action**: Use a password manager to generate complex passwords.
+- **Action**: Install a 2FA plugin (like Google Authenticator) so that even if a hacker gets your password, they can't log in without your phone.
+
+## 2. Keep Everything Updated
+Outdated software is the #1 vulnerability in WordPress.
+- **Core**: Always update WordPress to the latest version.
+- **Plugins/Themes**: Delete unused plugins and keep active ones updated. A single abandoned plugin can be a backdoor into your site.
+
+## 3. Limit Login Attempts
+By default, WordPress allows users to try logging in an infinite number of times. This invites "brute force" attacks where bots guess millions of passwords.
+- **Action**: Use a plugin like "Limit Login Attempts Reloaded" to lock out IPs after 3-5 failed tries.
+
+## 4. Use a Security Plugin
+Think of this as your site's antivirus. Plugins like **Wordfence**, **Sucuri**, or **iThemes Security** offer robust protection.
+- **Firewall (WAF)**: Blocks malicious traffic before it reaches your server.
+- **Malware Scanning**: Regularly checks your files for suspicious code.
+
+## 5. Change the Default Database Prefix
+By default, the WordPress database table prefix is `wp_`. Hackers know this and use it in SQL injection attacks.
+- **Action**: Change it to something random like `wp_73h9_` during installation or use a security plugin to simple rename it.
+
+## 6. Disable XML-RPC
+XML-RPC is an older feature used for remote publishing (e.g., from the WordPress mobile app). It is often exploited for DDoS attacks.
+- **Action**: If you don't use the mobile app or Jetpack, disable XML-RPC via a plugin or your `.htaccess` file.
+
+## Conclusion
+Security is not a one-time setup; it is an ongoing process. By implementing these layers of defense—strong authentication, regular updates, and active monitoring—you make your site a fortress that is too difficult for most attackers to bother with.

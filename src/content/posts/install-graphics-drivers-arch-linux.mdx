@@ -1,0 +1,124 @@
+---
+title: "Install NVIDIA & Intel Graphics Drivers in Arch Linux (2025 Guide)"
+date: "2025-10-04"
+excerpt: "Learn to install, configure, and troubleshoot NVIDIA and Intel graphics drivers on Arch Linux. This 2025 guide covers hardware acceleration, hybrid graphics, and common issues."
+author: "Huzi"
+category: "Linux"
+imageHint: "glowing circuit board"
+keywords: ["Arch Linux", "NVIDIA drivers", "Intel graphics", "Mesa", "hardware acceleration", "Linux gaming", "vulkan", "prime"]
+---
+
+Installing graphics drivers properly is one of the most important steps after setting up Arch Linux. Whether you’re using Intel integrated graphics (like HD 4000) or a dedicated NVIDIA GPU, the right driver ensures smooth performance, proper hardware acceleration, and lag-free video playback.
+
+This guide covers both NVIDIA and Intel graphics setup—from driver installation to troubleshooting common issues.
+
+## Why Do Drivers Matter?
+
+Without the correct drivers, your system can suffer from:
+-   Video playback that lags or tears.
+-   Games and rendering apps that crash.
+-   GPU features like hardware acceleration not working.
+-   The system falling back to software rendering, increasing CPU load.
+
+Installing the right driver fixes all of this.
+
+## Step 1: Update Your System
+
+Always start by syncing your package database and upgrading your system:
+```bash
+sudo pacman -Syu
+```
+This ensures you’re working with the latest kernel and package versions—critical for compatibility.
+
+## Step 2: Identify Your Graphics Card
+
+Run the following command to detect your GPU:
+```bash
+lspci | grep -E "VGA|3D"
+```
+Example output:
+```
+00:02.0 VGA compatible controller: Intel Corporation HD Graphics 4000
+01:00.0 3D controller: NVIDIA Corporation GK107M [GeForce GT 650M]
+```
+This shows both Intel and NVIDIA GPUs, which is common on laptops with hybrid graphics.
+
+## Step 3: Install Graphics Drivers
+
+### For Intel Graphics (HD, UHD, or Iris)
+
+Arch Linux already supports Intel GPUs via open-source Mesa drivers. Run:
+```bash
+sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+```
+For video acceleration (hardware-accelerated decoding):
+```bash
+sudo pacman -S libva-intel-driver intel-media-driver
+```
+**Tip:** `intel-media-driver` is for 8th Gen or newer CPUs, while `libva-intel-driver` works better for older ones (like HD 4000).
+
+### For NVIDIA Graphics
+
+First, detect your GPU series with `lspci | grep -E "NVIDIA"`, then install the correct driver.
+
+| GPU Type                         | Package                                 |
+| -------------------------------- | --------------------------------------- |
+| Modern (GTX 900 series & newer)  | `nvidia nvidia-utils lib32-nvidia-utils` |
+| Older (GTX 600 / 700 series)     | `nvidia-470xx-dkms nvidia-470xx-utils`  |
+| Legacy cards                     | `nvidia-390xx-dkms`                     |
+
+Example for modern cards:
+```bash
+sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils
+```
+
+If you use a custom kernel, install DKMS to rebuild drivers on updates:
+```bash
+sudo pacman -S dkms
+```
+
+## Step 4: Enable Hardware Acceleration
+
+### For Intel
+Create or edit `/etc/environment` and add:
+```
+LIBVA_DRIVER_NAME=iHD
+VDPAU_DRIVER=va_gl
+```
+Reboot and test with `mpv --hwdec=auto video.mp4`.
+
+### For NVIDIA
+Install Vulkan and VDPAU packages:
+```bash
+sudo pacman -S nvidia-settings nvidia-utils libvdpau libva-vdpau-driver lib32-libvdpau
+```
+Load the kernel module with `sudo modprobe nvidia` and verify with `nvidia-smi`.
+
+## Step 5: Enable Hybrid Graphics (Laptops Only)
+
+If your laptop has both Intel + NVIDIA GPUs, install PRIME utilities:
+```bash
+sudo pacman -S nvidia-prime
+```
+To run apps using the NVIDIA GPU:
+```bash
+prime-run firefox
+```
+Add `prime-run` to your game launcher commands for Steam or Lutris.
+
+## Step 6: Troubleshooting Common Problems
+
+-   **Screen Tearing:** Install `picom` and run `picom --vsync`.
+-   **Black Screen After Boot:** Add `nouveau.modeset=0` to `GRUB_CMDLINE_LINUX_DEFAULT` in `/etc/default/grub` and update GRUB.
+-   **NVIDIA Settings Not Saving:** Run `sudo nvidia-settings` and save the configuration to `/etc/X11/xorg.conf.d/20-nvidia.conf`.
+
+## Step 7: Verify Everything Works
+
+-   **OpenGL:** `glxinfo | grep "OpenGL renderer"`
+-   **Vulkan:** `vulkaninfo | grep "GPU id"`
+
+If both show your GPU names, congratulations, your setup is perfect!
+
+### Final Thoughts
+
+Getting graphics drivers right in Arch Linux might look technical, but once done, your system becomes buttery smooth. For Intel HD 4000, Mesa drivers are incredibly efficient in 2025. For NVIDIA, official drivers now integrate better with Wayland and modern desktops.

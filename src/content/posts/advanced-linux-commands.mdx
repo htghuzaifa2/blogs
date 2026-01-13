@@ -1,0 +1,166 @@
+---
+title: "10 Advanced Linux Commands You Should Know"
+excerpt: "Level up your command-line skills with these powerful and versatile Linux commands. From process monitoring with `htop` to network analysis with `ss`, these tools will make you a more efficient developer."
+imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+imageHint: "linux command line"
+author: "Huzi"
+category: "Linux"
+date: "2024-07-29"
+---
+
+If you've moved beyond `ls`, `cd`, and `grep`, you're ready to add some more powerful tools to your Linux command-line arsenal. These advanced commands offer deeper insights into your system's operations, streamline complex tasks, and provide sophisticated ways to manage processes, networks, and files. Here are 10 advanced Linux commands that every developer and system administrator should master.
+
+### 1. `htop` - The Interactive Process Viewer
+
+While `top` is useful, `htop` is its more intuitive and interactive successor. It provides a real-time, color-coded view of your system's processes, CPU usage, memory, and swap.
+
+**Why it's better:**
+- **Visual Interface:** Easy-to-read layout with bar graphs for CPU and memory.
+- **Interactive Commands:** You can scroll through processes, kill them with a keypress (F9), change their priority (F7/F8), and filter by user.
+- **No sudo needed** for basic viewing.
+
+**How to install and run:**
+```bash
+sudo apt-get install htop  # Debian/Ubuntu
+sudo dnf install htop     # Fedora/CentOS
+htop
+```
+
+### 2. `ss` - The Modern Netstat
+
+`ss` (socket statistics) is the modern replacement for the classic `netstat` command. It's faster and provides more detailed information about network connections.
+
+**Why it's better:**
+- **Performance:** `ss` gets its information directly from the kernel space, making it much faster than `netstat`, which parses `/proc/net/tcp`.
+- **Detailed Output:** It can show you which process is using a particular socket.
+
+**Common Usage:**
+```bash
+# List all listening TCP ports and the processes using them
+sudo ss -ltp
+
+# List all established connections to port 443 (HTTPS)
+ss -o state established '( dport = :443 or sport = :443 )'
+```
+
+### 3. `find` - The Ultimate File Searcher
+
+The `find` command is incredibly powerful for locating files and directories based on a wide range of criteria.
+
+**Key Features:**
+- **Search by name, type, size, modification time, permissions, and owner.**
+- **Execute commands on found files.**
+
+**Practical Examples:**
+```bash
+# Find all .log files in /var/log modified in the last 7 days
+find /var/log -name "*.log" -mtime -7
+
+# Find all files larger than 100MB in your home directory
+find ~ -size +100M
+
+# Find all directories with permission 777 (a security risk) and print them
+find / -type d -perm 777 -print
+
+# Find all files ending in .tmp and delete them
+find . -name "*.tmp" -delete
+```
+
+### 4. `awk` - The Data-Wrangling Powerhouse
+
+`awk` is a versatile programming language for pattern scanning and processing. It's perfect for manipulating text files and producing formatted reports.
+
+**Core Concept:** `awk` processes a file line by line, splitting each line into fields. You provide it with a pattern to match and an action to perform.
+
+**Example:** Find the total size of files listed by `ls -l`.
+The 5th column of `ls -l` is the file size. `awk` can sum this column.
+```bash
+ls -l | awk '{sum += $5} END {print sum}'
+```
+This command tells `awk` to add the value of the 5th field (`$5`) to the `sum` variable for every line. After processing all lines (`END`), it prints the final `sum`.
+
+### 5. `tmux` - The Terminal Multiplexer
+
+`tmux` (Terminal Multiplexer) lets you manage multiple terminal sessions within a single window. It's a lifesaver for remote work.
+
+**Killer Features:**
+- **Persistent Sessions:** Detach from a session and your processes (like a long-running script or server) keep running. Reattach later from any machine.
+- **Panes and Windows:** Split your terminal into multiple vertical or horizontal panes. Organize related tasks into different windows.
+
+**Basic Commands (run inside a `tmux` session):**
+- `tmux new -s my_session` - Start a new named session.
+- `Ctrl+b, d` - Detach from the current session.
+- `tmux attach -t my_session` - Reattach to a session.
+- `Ctrl+b, %` - Split pane horizontally.
+- `Ctrl+b, "` - Split pane vertically.
+- `Ctrl+b, c` - Create a new window.
+
+### 6. `rsync` - The Smarter `cp`
+
+`rsync` is a fast and versatile tool for copying and synchronizing files and directories, either locally or remotely.
+
+**Why it's better than `scp` or `cp`:**
+- **Delta-Transfer Algorithm:** It only copies the *differences* between the source and destination files, making subsequent syncs incredibly fast.
+- **Resumes Transfers:** If a transfer is interrupted, it can resume from where it left off.
+- **Preserves Permissions:** It can preserve permissions, timestamps, and ownership.
+
+**Common Usage:**
+```bash
+# Sync a local directory to a remote server
+rsync -avz /local/path/ user@remote_host:/remote/path/
+
+# The -a flag is for "archive" mode (preserves permissions, etc.)
+# The -v flag is for "verbose"
+# The -z flag is for "compress"
+```
+
+### 7. `nc` - The Network Swiss Army Knife
+
+`nc` (netcat) is a powerful utility for reading from and writing to network connections using TCP or UDP.
+
+**Use Cases:**
+- **Port Scanning:** Check if a port is open on a remote host.
+  ```bash
+  nc -zv google.com 80 443
+  ```
+- **Simple Chat:** On machine 1, `nc -l 1234`. On machine 2, `nc <machine1_ip> 1234`.
+- **File Transfer:** On the receiving end, `nc -l 1234 > received_file`. On the sending end, `nc <receiver_ip> 1234 < file_to_send`.
+
+### 8. `xargs` - Building Commands from Input
+
+`xargs` is used to build and execute command lines from standard input. It breaks up long lists of arguments into smaller chunks that can be processed by other commands.
+
+**Example:** You have a file with a list of filenames you want to delete. `rm` might fail if the list is too long. `xargs` handles this gracefully.
+```bash
+cat file_list.txt | xargs rm
+```
+
+### 9. `strace` - The System Call Tracer
+
+`strace` is an invaluable debugging tool that intercepts and records the system calls made by a process and the signals it receives.
+
+**When to use it:** If a program is failing and giving cryptic error messages, `strace` can show you exactly what it was trying to do when it failed (e.g., trying to open a file that doesn't exist).
+```bash
+strace ls /non-existent-directory
+```
+The output will show the `openat` system call failing with `ENOENT` (No such file or directory).
+
+### 10. `jq` - The `sed` for JSON
+
+`jq` is a lightweight and flexible command-line JSON processor. It's like `sed` or `awk` but specifically for structured JSON data.
+
+**Example:** You have a JSON file `users.json` and you want to extract the email of every user.
+```json
+// users.json
+[
+  {"name": "Alice", "email": "alice@example.com"},
+  {"name": "Bob", "email": "bob@example.com"}
+]
+```
+```bash
+cat users.json | jq '.[].email'
+"alice@example.com"
+"bob@example.com"
+```
+
+Mastering these commands will not

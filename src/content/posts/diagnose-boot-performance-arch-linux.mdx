@@ -1,0 +1,70 @@
+---
+title: "How to Diagnose & Speed Up Arch Linux Boot Time (2025 Guide)"
+date: "2025-10-08"
+excerpt: "Is your Arch Linux boot time slow? This guide shows how to use systemd-analyze to diagnose bottlenecks, fix common issues like service conflicts, and apply optimizations for a faster boot."
+author: "Huzi"
+category: "Linux"
+imageHint: "stopwatch speed dashboard"
+keywords: ["Arch Linux", "boot time", "systemd-analyze", "Linux performance", "optimize boot", "slow boot", "Linux tuning"]
+---
+
+A slow boot can be frustrating on a powerful distro like Arch Linux. Fortunately, `systemd` provides powerful tools to diagnose and fix the bottlenecks. This guide will walk you through analyzing your boot process and applying common optimizations.
+
+## How to Diagnose Boot Performance with `systemd-analyze`
+
+Start by understanding where time is being spent during your boot process using these essential commands.
+
+| Command                      | Purpose                  | What It Reveals                                                 |
+| ---------------------------- | ------------------------ | --------------------------------------------------------------- |
+| `systemd-analyze time`         | Overall time breakdown   | Firmware, loader, kernel, and userspace boot times.             |
+| `systemd-analyze blame`        | Service initialization   | All running units ordered by startup time.                      |
+| `systemd-analyze critical-chain`| Critical path analysis   | Dependency chain showing what delays the graphical target. |
+| `systemd-analyze plot > boot.svg` | Visual boot timeline     | A graphical SVG image of the entire boot process.               |
+
+### Interpreting the Output
+An example output might look like this:
+```bash
+Startup finished in 8.075s (firmware) + 3.495s (loader) + 1.414s (kernel) + 1min 30.309s (userspace) = 1min 43.295s
+```
+This clearly shows the **userspace** phase is the main bottleneck at 1 minute 30 seconds.
+
+## Common Slow Boot Issues and Solutions
+
+### 1. Service Conflicts and Timeouts
+Multiple network managers (like `systemd-networkd`, `iwd`, and `NetworkManager`) enabled simultaneously can cause delays. Choose one and disable the others.
+```bash
+sudo systemctl disable --now iwd.service
+sudo systemctl disable --now systemd-networkd.service
+sudo systemctl enable --now NetworkManager.service
+```
+
+### 2. Socket Activation for Heavy Services
+For services like Docker that significantly impact boot time, replace direct service startup with socket activation. This starts the service only when it's first needed.
+```bash
+sudo systemctl disable docker.service
+sudo systemctl enable docker.socket
+```
+One user reported boot time reduction from 68 to 28 seconds using this method alone.
+
+### 3. Hardware-Specific Issues
+-   **Slow Kernel Time:** If the kernel phase takes >10 seconds, this may indicate storage or hardware issues. Check `journalctl` for AMD GPU timeout messages or storage controller problems.
+-   **Wait for Network:** The `systemd-networkd-wait-online.service` can delay boot. Consider if your system truly needs full network connectivity before boot completion and disable it if not.
+
+## Optimization Checklist
+
+Apply these additional optimizations for better boot performance:
+
+-   **Review Enabled Services:** Disable unnecessary services with `sudo systemctl disable <service-name>`.
+-   **Kernel Parameters:** Add `libahci.ignore_sss=1` to your bootloader config to disable staggered spin-up on some hardware.
+-   **Filesystem Mounts:** Use `noauto,x-systemd.automount` in `/etc/fstab` for non-critical filesystems to mount them on first access.
+-   **Initramfs Optimization:** Consider slimmer alternatives like Booster or use the `systemd` hook in `mkinitcpio.conf` instead of `base` and `udev`.
+
+## Real-World Example
+
+Here's how one user solved their 1 minute 43 second boot time:
+1.  **Identified the Culprit:** `systemd-analyze critical-chain` showed `network.target` waiting over a minute.
+2.  **Discovered Root Cause:** Multiple conflicting network services were enabled.
+3.  **Applied Fix:** Consolidated to a single network manager.
+4.  **Verified Improvement:** Boot time was reduced significantly.
+
+After applying optimizations, run `systemd-analyze` again to compare results. Most systems can achieve 15-30 second boot times with proper tuning.

@@ -1,0 +1,39 @@
+---
+title: "What is an API? The Connective Tissue of the Internet"
+excerpt: "Learn what an API is and how it enables different software applications to communicate with each other."
+date: "2024-04-10"
+author: "Huzi"
+category: "Programming"
+keywords: ["api", "programming", "web development", "integration"]
+---
+
+**API** stands for **A**pplication **P**rogramming **I**nterface.
+It is a set of rules that allows two different pieces of software to talk to each other.
+
+## The Restaurant Analogy
+Imagine you are a customer at a restaurant.
+- **You (The Client)**: You want food (Data).
+- **The Kitchen (The Server)**: They have the food and prepare it.
+- **But...** You can't just walk into the kitchen and start grabbing ingredients. You need a messenger.
+- **The Waiter (The API)**: You give your order to the waiter. The waiter takes it to the kitchen. The kitchen prepares it. The waiter brings the food back to you.
+
+## How Developers Use APIs
+You don't need to build a map system from scratch. You just use Google Maps API.
+Here is how simple it is to "order" data using JavaScript:
+
+```javascript
+// The Order (Request)
+fetch('https://api.weather.com/london')
+  .then(response => response.json()) // The Waiter brings the food
+  .then(data => {
+    // Eating the food
+    console.log(`It is currently ${data.temp} degrees in London.`);
+  });
+```
+
+## Types of Web APIs
+1.  **REST (Representational State Transfer)**: The standard architecture. Uses HTTP methods like `GET` (read), `POST` (create), `DELETE` (remove).
+2.  **GraphQL**: A modern alternative that asks for specific data fields to avoid over-fetching.
+
+## Conclusion
+APIs are the building blocks of modern software. They allow developers to stand on the shoulders of giants—integrating Maps, Payments (Stripe), or AI (OpenAI) into their apps with just a few lines of code.

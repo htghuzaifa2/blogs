@@ -1,0 +1,53 @@
+---
+title: "SQL Injection Explained: How to Prevent the Web's Most Devastating Cyber Attack"
+excerpt: "SQL Injection (SQLi) has been a top web security vulnerability for over two decades, yet it continues to be the cause of catastrophic data breaches. This guide provides a deep, practical dive into what SQLi is, how it works, and most importantly, how to build ironclad defenses against it."
+imageUrl: "https://placehold.co/600x400.png"
+imageHint: "sql injection prevention"
+author: "Huzi"
+category: "Cybersecurity"
+---
+
+Imagine a burglar who doesn't pick the lock but simply asks the house to "open all doors" and the house obeys. That is **SQL Injection (SQLi)**.
+
+It occurs when an application takes user input and blindly inserts it into a database query.
+
+## How It Works (The "Door Open" Trick)
+Suppose you have a login query:
+```sql
+SELECT * FROM users WHERE username = '$user_input' AND password = '$password_input';
+```
+
+If the user enters `admin` as the username, it works fine. But what if they enter:
+`admin' --`
+
+The query becomes:
+```sql
+SELECT * FROM users WHERE username = 'admin' --' AND password = '...';
+```
+In SQL, `--` means "comment". The database ignores everything after it (the password check!). The attacker logs in as admin without a password.
+
+## The Consequences
+- **Data Theft**: Dumping the entire customer database.
+- **Data Deletion**: `DROP TABLE users`.
+- **Authentication Bypass**: Logging in as anyone.
+
+## The Solution: Parameterized Queries
+**Never** concatenate strings to build SQL queries. Use "Prepared Statements."
+
+**Vulnerable Code (Node.js):**
+```javascript
+db.query("SELECT * FROM users WHERE id = " + userId);
+```
+
+**Secure Code:**
+```javascript
+db.query("SELECT * FROM users WHERE id = ?", [userId]);
+```
+In the secure version, the database treats the input strictly as data, not as executable code. Even if the input contains SQL commands, they are harmless text.
+
+## Other Defenses
+1.  **Use an ORM**: Tools like Sequelize, TypeORM, or Prisma use parameterized queries by default.
+2.  **Least Privilege**: The database user for your web app should not have permission to delete tables (`DROP`) unless absolutely necessary.
+
+## Conclusion
+SQLi is 100% preventable. If your site is vulnerable to it in 2025, it is a sign of negligence. Sanitize inputs, use an ORM, and sleep safe.
