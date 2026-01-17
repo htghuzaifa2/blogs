@@ -1,42 +1,43 @@
 ---
-title: 'How To Dual Boot Windows 10 And Arch Linux Safely 2025 Updated Guide'
-date: '2025-01-17'
+title: 'How to Dual Boot Windows 10 and Arch Linux Safely (2025 Updated Guide)'
+date: '2025'
+excerpt: 'A safe, step-by-step guide to dual-booting Windows 10 and Arch Linux in 2025. Learn to partition your drive, install GRUB correctly, and troubleshoot boot issues without losing your data.'
 author: 'Huzi'
-category: 'Technology'
-excerpt: 'How To Dual Boot Windows 10 And Arch Linux Safely 2025 Updated Guide. Explore more on Huzi Blogs.'
-slug: 'how-to-dual-boot-windows-10-and-arch-linux-safely-2025-updated-guide'
+category: 'Linux'
+keywords: 'dual boot,Arch Linux,Windows 10,Linux install,GRUB,partitioning,UEFI'
 ---
+
 If you love Windows 10 but also want the power and flexibility of Arch Linux, dual-booting is the best of both worlds. You can switch between Windows for work or gaming and Arch Linux for coding, customization, and learning Linux deeply.
 
-In this blog, I™ll walk you through ” step-by-step ” how to safely install Arch Linux alongside Windows 10, covering BIOS/UEFI setup, partitioning, GRUB bootloader installation, and recovery tips.
-Let™s make sure you don™t lose your data in the process!
+In this blog, I”™ll walk you through ”” step-by-step ”” how to safely install Arch Linux alongside Windows 10, covering BIOS/UEFI setup, partitioning, GRUB bootloader installation, and recovery tips.
+Let”™s make sure you don”™t lose your data in the process!
 
-âš™ï¸ What You™ll Need
+âš™ï¸ What You”™ll Need
 
-Before we start, here™s what you™ll need ready:
+Before we start, here”™s what you”™ll need ready:
 
 *   ðŸ’½ A USB drive (at least 4GB)
 *   ðŸªŸ Windows 10 already installed
 *   ðŸŒ Internet connection
 *   ðŸ§  Basic command-line knowledge
-*   ðŸ“€ Arch Linux ISO ” Download from [official site](https://archlinux.org/download/)
+*   ðŸ“€ Arch Linux ISO ”” Download from [official site](https://archlinux.org/download/)
 *   ðŸ§° A tool like Rufus or Balena Etcher (to make a bootable USB)
 
 ðŸªŸ Step 1: Prepare Windows for Dual Boot
 
-1.  **Backup your data** ” Always first.
+1.  **Backup your data** ”” Always first.
 2.  **Disable Fast Startup & Hibernation**:
     ```powershell
     powercfg /h off
     ```
     Go to:
-    `Control Panel` â†’ `Power Options` â†’ `Choose what power buttons do` â†’ Uncheck "Turn on fast startup"
+    `Control Panel` â†’ `Power Options` â†’ `Choose what power buttons do` â†’ Uncheck “Turn on fast startup”
 3.  **Shrink Windows Partition** to make space for Arch:
     *   Press `Win + X` â†’ **Disk Management**
     *   Right-click your main drive (C:)
     *   Select **Shrink Volume**
     *   Leave at least **40GB free** for Arch Linux
-    You™ll now have **unallocated space** ” don™t format it!
+    You”™ll now have **unallocated space** ”” don”™t format it!
     Arch installer will handle it.
 
 ðŸ§­ Step 2: Create a Bootable Arch Linux USB
@@ -55,7 +56,7 @@ Use Rufus (on Windows):
 2.  Enter BIOS/UEFI (press `F2`, `Del`, or `Esc` depending on your system)
 3.  **Disable Secure Boot**
 4.  Set your USB as the first boot device
-5.  Boot ” you™ll see the Arch Linux live menu. Choose:
+5.  Boot ”” you”™ll see the Arch Linux live menu. Choose:
     `Boot Arch Linux (x86_64)`
 
 ðŸ’½ Step 4: Check Internet Connection
@@ -64,7 +65,7 @@ Use Rufus (on Windows):
 ```bash
 ping archlinux.org
 ```
-If you see replies, you™re good.
+If you see replies, you”™re good.
 
 **For Wi-Fi:**
 ```bash
@@ -84,7 +85,7 @@ Run:
 lsblk
 ```
 Find your drive (e.g., `/dev/sda` or `/dev/nvme0n1`).
-We™ll use `cfdisk` ” it™s easy and safe.
+We”™ll use `cfdisk` ”” it”™s easy and safe.
 ```bash
 cfdisk /dev/sda
 ```
@@ -100,7 +101,7 @@ Now create:
     *   Use the unallocated space you created earlier
     *   Type: `Linux filesystem`
 3.  **(Optional) Swap**:
-    *   Size: `2“4GB`
+    *   Size: `2”“4GB`
     *   Type: `Linux swap`
 
 **Write** changes â†’ confirm â†’ **quit**.
@@ -181,7 +182,7 @@ grub-install /dev/sda
 os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-âœ… You™ll see that GRUB detects your Windows Boot Manager automatically!
+âœ… You”™ll see that GRUB detects your Windows Boot Manager automatically!
 
 ðŸŒ Step 11: Enable Network and Exit
 
@@ -195,7 +196,7 @@ Remove the USB when prompted.
 
 ðŸªŸ Step 12: Boot Menu (Choose OS)
 
-On reboot, you™ll see the GRUB menu:
+On reboot, you”™ll see the GRUB menu:
 *   Arch Linux
 *   Windows Boot Manager
 
@@ -203,14 +204,14 @@ You can switch easily between both OSes whenever you boot.
 
 ðŸ©º Troubleshooting Tips
 
-*   **If GRUB doesn™t show Windows:**
+*   **If GRUB doesn”™t show Windows:**
     ```bash
     sudo os-prober
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     ```
 *   **If booting directly into Windows:**
     Go into BIOS and ensure Arch/GRUB is first in the boot order.
-*   **If Arch doesn™t boot:**
+*   **If Arch doesn”™t boot:**
     Boot into live USB again
     Mount root partition:
     ```bash
@@ -223,14 +224,14 @@ You can switch easily between both OSes whenever you boot.
 
 ðŸ§  Bonus Tip: Keep Both OSes Clean
 
-*   Don™t touch Windows partitions from Linux unless you know what you™re doing.
+*   Don”™t touch Windows partitions from Linux unless you know what you”™re doing.
 *   Keep Windows updates enabled.
-*   Use `Timeshift` in Linux for snapshots ” it can save you during a failed update.
+*   Use `Timeshift` in Linux for snapshots ”” it can save you during a failed update.
 
 ðŸ§¾ Final Thoughts
 
-Dual-booting Windows 10 and Arch Linux gives you the power to enjoy both ecosystems ” productivity in Windows, and full control in Linux.
-If you follow this guide carefully, you™ll have a smooth dual-boot setup with zero data loss.
+Dual-booting Windows 10 and Arch Linux gives you the power to enjoy both ecosystems ”” productivity in Windows, and full control in Linux.
+If you follow this guide carefully, you”™ll have a smooth dual-boot setup with zero data loss.
 
-Written by Huzi ðŸ§‘"ðŸ’»
-ðŸ’» Explore more Linux and web development tutorials on huzi.pk ” your home for open-source guides, performance tips, and real tech fixes!
+Written by Huzi ðŸ§‘”ðŸ’»
+ðŸ’» Explore more Linux and web development tutorials on huzi.pk ”” your home for open-source guides, performance tips, and real tech fixes!

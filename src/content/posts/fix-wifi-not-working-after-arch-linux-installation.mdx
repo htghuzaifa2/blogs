@@ -1,12 +1,13 @@
 ---
-title: 'Fix Wifi Not Working After Arch Linux Installation'
-date: '2025-01-17'
+title: 'Fix: Wi-Fi Not Working After Arch Linux Installation (2025 Guide)'
+date: '2025'
 author: 'Huzi'
-category: 'Technology'
-excerpt: 'Fix Wifi Not Working After Arch Linux Installation. Explore more on Huzi Blogs.'
-slug: 'fix-wifi-not-working-after-arch-linux-installation'
+category: 'Linux'
+excerpt: 'A complete 2025 guide to fix common Wi-Fi issues on Arch Linux after installation. Learn how to enable NetworkManager, install drivers, and troubleshoot your wireless adapter.'
+keywords: 'Arch Linux,Wi-Fi fix,NetworkManager,Linux drivers,post-installation,no internet,wlan0,nmcli,iwd,Broadcom,Realtek'
 ---
-One of the most common issues after installing Arch Linux ” especially on laptops ” is that Wi-Fi doesn™t work after your first boot. Don™t worry ” this is easy to fix once you understand what™s missing.
+
+One of the most common issues after installing Arch Linux ”” especially on laptops ”” is that Wi-Fi doesn”™t work after your first boot. Don”™t worry ”” this is easy to fix once you understand what”™s missing.
 
 This guide covers everything you need to get your Wi-Fi working again, including:
 
@@ -15,11 +16,11 @@ This guide covers everything you need to get your Wi-Fi working again, including
 - Diagnosing adapter issues
 - Setting up Wi-Fi manually
 
-Let™s get started. ðŸ§ 
+Let”™s get started. ðŸ§ 
 
 ### ðŸ§© Step 1: Check if NetworkManager Is Installed
 
-Arch doesn™t install everything automatically ” you must ensure NetworkManager is present.
+Arch doesn”™t install everything automatically ”” you must ensure NetworkManager is present.
 
 Run:
 
@@ -27,7 +28,7 @@ Run:
 sudo pacman -Syu networkmanager
 ```
 
-If it says "up to date," good. Otherwise, it will install it.
+If it says “up to date,” good. Otherwise, it will install it.
 
 Now enable it to start at boot:
 
@@ -42,11 +43,11 @@ Check its status:
 systemctl status NetworkManager
 ```
 
-âœ… If you see `active (running)` ” your service is fine.
+âœ… If you see `active (running)` ”” your service is fine.
 
 ### ðŸ“¡ Step 2: Detect Your Wireless Adapter
 
-Let™s confirm your system can detect your Wi-Fi card.
+Let”™s confirm your system can detect your Wi-Fi card.
 
 Run:
 
@@ -60,13 +61,13 @@ or, for USB adapters:
 lsusb
 ```
 
-You™ll see something like:
+You”™ll see something like:
 
 ```
 Network controller: Intel Corporation Wireless 8265 / 8275
 ```
 
-If you see no output, your system isn™t detecting your adapter â†’ skip to Step 5 (drivers).
+If you see no output, your system isn”™t detecting your adapter â†’ skip to Step 5 (drivers).
 
 ### ðŸ›°ï¸ Step 3: Check Wi-Fi Interface Availability
 
@@ -78,7 +79,7 @@ ip link
 
 You should see something like `wlan0` or `wlp2s0`.
 
-If you see it but Wi-Fi still doesn™t show up in the menu:
+If you see it but Wi-Fi still doesn”™t show up in the menu:
 
 Your driver is loaded, but NetworkManager may need a restart:
 
@@ -86,7 +87,7 @@ Your driver is loaded, but NetworkManager may need a restart:
 sudo systemctl restart NetworkManager
 ```
 
-If the interface doesn™t appear, go to Step 5.
+If the interface doesn”™t appear, go to Step 5.
 
 ### ðŸ§° Step 4: Connect to Wi-Fi via Terminal (Temporary Fix)
 
@@ -104,7 +105,7 @@ Connect:
 nmcli dev wifi connect "Your_WiFi_Name" password "YourPassword"
 ```
 
-If successful, you™ll see:
+If successful, you”™ll see:
 
 ```
 Device 'wlan0' successfully activated with UUID ...
@@ -116,7 +117,7 @@ To test connectivity:
 ping -c 4 archlinux.org
 ```
 
-If you get responses ” you™re online âœ…
+If you get responses ”” you”™re online âœ…
 
 ### ðŸ§© Step 5: Install Missing Wi-Fi Drivers
 
@@ -196,7 +197,7 @@ nmcli connection modify "Your_WiFi_Name" connection.autoconnect yes
 
 ### ðŸ’¡ Step 8: Install a GUI Network Tool (Optional)
 
-If you™re using a desktop environment like KDE, GNOME, or XFCE, make sure you have the network applet installed:
+If you”™re using a desktop environment like KDE, GNOME, or XFCE, make sure you have the network applet installed:
 
 **KDE Plasma:**
 
@@ -213,16 +214,16 @@ sudo pacman -S network-manager-applet
 **GNOME:**
 Already included with `gnome-control-center`.
 
-Reboot and check your Wi-Fi icon ” it should show available networks.
+Reboot and check your Wi-Fi icon ”” it should show available networks.
 
 ### âš ï¸ Step 9: Common Issues & Fixes
 
 | Problem                         | Solution                                       |
 | ------------------------------- | ---------------------------------------------- |
 | Wi-Fi disappears after suspend  | `sudo systemctl restart NetworkManager`        |
-| "No Wi-Fi Adapter Found"        | Reinstall firmware or kernel modules           |
+| “No Wi-Fi Adapter Found”        | Reinstall firmware or kernel modules           |
 | No wireless extensions found    | Run `rfkill unblock wifi`                      |
-| Can™t detect 5GHz networks      | Ensure regdom is set: `sudo iw reg set PK`     |
+| Can”™t detect 5GHz networks      | Ensure regdom is set: `sudo iw reg set PK`     |
 
 ### ðŸ§° Step 10: Advanced Debugging
 
@@ -251,7 +252,7 @@ or download it from https://git.kernel.org/pub/scm/linux/kernel/git/firmware/lin
 - âœ… Ensure **NetworkManager** is installed and enabled
 - âœ… Install **linux-firmware** and the right Wi-Fi driver
 - âœ… Use **nmcli** or GUI to connect
-- âœ… Reboot ” your Wi-Fi should now work permanently
+- âœ… Reboot ”” your Wi-Fi should now work permanently
 
 ### ðŸ’¬ Bonus Tip
 
@@ -265,6 +266,6 @@ sudo pacman -Syu
 
 Fixing Wi-Fi on Arch Linux may seem intimidating, but once you understand the system services, it becomes simple.
 
-Arch gives you full control ” meaning you manage everything, including drivers. Once set up, your Wi-Fi will work smoothly across reboots.
+Arch gives you full control ”” meaning you manage everything, including drivers. Once set up, your Wi-Fi will work smoothly across reboots.
 
-ðŸ’» If you™re running Arch Linux for web development, check out `tool.huzi.pk` ” a growing platform for free web tools and tutorials to make your Linux workflow faster and smarter.
+ðŸ’» If you”™re running Arch Linux for web development, check out `tool.huzi.pk` ”” a growing platform for free web tools and tutorials to make your Linux workflow faster and smarter.

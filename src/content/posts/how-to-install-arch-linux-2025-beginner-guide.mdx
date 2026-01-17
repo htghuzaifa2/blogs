@@ -1,14 +1,15 @@
 ---
-title: 'How To Install Arch Linux 2025 Beginner Guide'
-date: '2025-01-17'
+title: 'How to Install Arch Linux (2025 Updated Beginner Guide)'
+date: '2025'
 author: 'Huzi'
-category: 'Technology'
-excerpt: 'How To Install Arch Linux 2025 Beginner Guide. Explore more on Huzi Blogs.'
-slug: 'how-to-install-arch-linux-2025-beginner-guide'
+category: 'Linux'
+excerpt: 'A comprehensive 2025 guide for beginners to install Arch Linux from scratch on any PC, laptop, or VM. Covers partitioning, desktop environments, and troubleshooting.'
+keywords: 'Arch Linux,Linux installation,beginner guide,Linux tutorial,UEFI install,GRUB,Linux partitioning'
 ---
-Arch Linux is one of the most customizable, lightweight, and fast Linux distributions available today. However, it doesn™t have a graphical installer like Ubuntu ” you install everything manually.
 
-This guide will help beginners install Arch Linux from scratch ” on PCs, laptops, or even virtual machines ” with detailed commands, partition setup, desktop environment installation, and boot troubleshooting.
+Arch Linux is one of the most customizable, lightweight, and fast Linux distributions available today. However, it doesn”™t have a graphical installer like Ubuntu ”” you install everything manually.
+
+This guide will help beginners install Arch Linux from scratch ”” on PCs, laptops, or even virtual machines ”” with detailed commands, partition setup, desktop environment installation, and boot troubleshooting.
 
 ### ðŸ§© Prerequisites
 
@@ -49,7 +50,7 @@ Use the `dd` command:
 ```bash
 sudo dd if=archlinux-2025.10.01-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
 ```
-(Replace `/dev/sdX` with your USB drive path ” e.g. `/dev/sdb`)
+(Replace `/dev/sdX` with your USB drive path ”” e.g. `/dev/sdb`)
 
 ### ðŸ–¥ï¸ Step 3: Boot Into the Arch Installer
 
@@ -57,13 +58,13 @@ sudo dd if=archlinux-2025.10.01-x86_64.iso of=/dev/sdX bs=4M status=progress ofl
 2.  Reboot and open the **Boot Menu** (usually by pressing **F2, F12, or Esc** during startup).
 3.  Select your USB drive.
 4.  When the Arch menu appears, choose:
-    `"Arch Linux install medium (x86_64, UEFI)"`
-5.  You™ll land in a terminal (`root@archiso`).
+    `“Arch Linux install medium (x86_64, UEFI)”`
+5.  You”™ll land in a terminal (`root@archiso`).
 
 ### ðŸŒ Step 4: Connect to the Internet
 
 **For wired (Ethernet):**
-You™re already connected.
+You”™re already connected.
 
 **For Wi-Fi:**
 Run:
@@ -82,7 +83,7 @@ Test the connection:
 ```bash
 ping archlinux.org
 ```
-If you see replies ” you™re online âœ…
+If you see replies ”” you”™re online âœ…
 
 ### ðŸ•“ Step 5: Update System Clock
 
@@ -195,7 +196,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### ðŸ§‘"ðŸ’» Step 16: Create a User
+### ðŸ§‘”ðŸ’» Step 16: Create a User
 
 ```bash
 useradd -m -G wheel -s /bin/bash htg
@@ -279,7 +280,7 @@ Customize your DE (themes, icons, fonts, etc.)
 
 ### ðŸ§­ Final Thoughts
 
-Installing Arch Linux may seem intimidating, but once you™ve done it, you gain complete control over your system ” speed, minimalism, and full transparency.
+Installing Arch Linux may seem intimidating, but once you”™ve done it, you gain complete control over your system ”” speed, minimalism, and full transparency.
 
 By following this 2025 beginner guide, you now have:
 âœ… Working Arch Linux
