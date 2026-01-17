@@ -1,71 +1,70 @@
----
+﻿---
 title: How to Dual Boot Windows 10 and Arch Linux Safely (2025 Updated Guide)
-date: '2025-10-07'
+date: "2025"
 excerpt: "A safe, step-by-step guide to dual-booting Windows 10 and Arch Linux in 2025. Learn to partition your drive, install GRUB correctly, and troubleshoot boot issues without losing your data."
-author: Huzi
+author: "Huzi"
 category: 'Linux'
-imageHint: 'Windows Arch Linux logo split'
 keywords: ['dual boot', 'Arch Linux', 'Windows 10', 'Linux install', 'GRUB', 'partitioning', 'UEFI']
 ---
 If you love Windows 10 but also want the power and flexibility of Arch Linux, dual-booting is the best of both worlds. You can switch between Windows for work or gaming and Arch Linux for coding, customization, and learning Linux deeply.
 
-In this blog, I’ll walk you through — step-by-step — how to safely install Arch Linux alongside Windows 10, covering BIOS/UEFI setup, partitioning, GRUB bootloader installation, and recovery tips.
-Let’s make sure you don’t lose your data in the process!
+In this blog, Iâ€™ll walk you through â€” step-by-step â€” how to safely install Arch Linux alongside Windows 10, covering BIOS/UEFI setup, partitioning, GRUB bootloader installation, and recovery tips.
+Letâ€™s make sure you donâ€™t lose your data in the process!
 
-⚙️ What You’ll Need
+âš™ï¸ What Youâ€™ll Need
 
-Before we start, here’s what you’ll need ready:
+Before we start, hereâ€™s what youâ€™ll need ready:
 
-*   💽 A USB drive (at least 4GB)
-*   🪟 Windows 10 already installed
-*   🌐 Internet connection
-*   🧠 Basic command-line knowledge
-*   📀 Arch Linux ISO — Download from [official site](https://archlinux.org/download/)
-*   🧰 A tool like Rufus or Balena Etcher (to make a bootable USB)
+*   ðŸ’½ A USB drive (at least 4GB)
+*   ðŸªŸ Windows 10 already installed
+*   ðŸŒ Internet connection
+*   ðŸ§  Basic command-line knowledge
+*   ðŸ“€ Arch Linux ISO â€” Download from [official site](https://archlinux.org/download/)
+*   ðŸ§° A tool like Rufus or Balena Etcher (to make a bootable USB)
 
-🪟 Step 1: Prepare Windows for Dual Boot
+ðŸªŸ Step 1: Prepare Windows for Dual Boot
 
-1.  **Backup your data** — Always first.
+1.  **Backup your data** â€” Always first.
 2.  **Disable Fast Startup & Hibernation**:
     ```powershell
     powercfg /h off
     ```
     Go to:
-    `Control Panel` → `Power Options` → `Choose what power buttons do` → Uncheck “Turn on fast startup”
+    `Control Panel` â†’ `Power Options` â†’ `Choose what power buttons do` â†’ Uncheck â€œTurn on fast startupâ€
 3.  **Shrink Windows Partition** to make space for Arch:
-    *   Press `Win + X` → **Disk Management**
+    *   Press `Win + X` â†’ **Disk Management**
     *   Right-click your main drive (C:)
     *   Select **Shrink Volume**
     *   Leave at least **40GB free** for Arch Linux
-    You’ll now have **unallocated space** — don’t format it!
+    Youâ€™ll now have **unallocated space** â€” donâ€™t format it!
     Arch installer will handle it.
 
-🧭 Step 2: Create a Bootable Arch Linux USB
+ðŸ§­ Step 2: Create a Bootable Arch Linux USB
 
 Use Rufus (on Windows):
 1.  Select your USB drive
 2.  Choose the Arch ISO file
 3.  Set:
-    *   **Partition scheme** → `GPT` (for UEFI) or `MBR` (for BIOS)
-    *   **File System** → `FAT32`
+    *   **Partition scheme** â†’ `GPT` (for UEFI) or `MBR` (for BIOS)
+    *   **File System** â†’ `FAT32`
 4.  Click **Start**
 
-🧰 Step 3: Boot Into Arch Linux Installer
+ðŸ§° Step 3: Boot Into Arch Linux Installer
 
 1.  Restart your PC
 2.  Enter BIOS/UEFI (press `F2`, `Del`, or `Esc` depending on your system)
 3.  **Disable Secure Boot**
 4.  Set your USB as the first boot device
-5.  Boot — you’ll see the Arch Linux live menu. Choose:
+5.  Boot â€” youâ€™ll see the Arch Linux live menu. Choose:
     `Boot Arch Linux (x86_64)`
 
-💽 Step 4: Check Internet Connection
+ðŸ’½ Step 4: Check Internet Connection
 
 **For Ethernet (wired):**
 ```bash
 ping archlinux.org
 ```
-If you see replies, you’re good.
+If you see replies, youâ€™re good.
 
 **For Wi-Fi:**
 ```bash
@@ -78,14 +77,14 @@ exit
 ping archlinux.org
 ```
 
-🧱 Step 5: Partition the Disk
+ðŸ§± Step 5: Partition the Disk
 
 Run:
 ```bash
 lsblk
 ```
 Find your drive (e.g., `/dev/sda` or `/dev/nvme0n1`).
-We’ll use `cfdisk` — it’s easy and safe.
+Weâ€™ll use `cfdisk` â€” itâ€™s easy and safe.
 ```bash
 cfdisk /dev/sda
 ```
@@ -101,12 +100,12 @@ Now create:
     *   Use the unallocated space you created earlier
     *   Type: `Linux filesystem`
 3.  **(Optional) Swap**:
-    *   Size: `2–4GB`
+    *   Size: `2â€“4GB`
     *   Type: `Linux swap`
 
-**Write** changes → confirm → **quit**.
+**Write** changes â†’ confirm â†’ **quit**.
 
-💾 Step 6: Format Partitions
+ðŸ’¾ Step 6: Format Partitions
 
 For UEFI systems:
 ```bash
@@ -122,7 +121,7 @@ mkswap /dev/sda3
 swapon /dev/sda3
 ```
 
-📦 Step 7: Mount the Partitions
+ðŸ“¦ Step 7: Mount the Partitions
 
 ```bash
 mount /dev/sda2 /mnt
@@ -130,7 +129,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 ```
 
-⚙️ Step 8: Install Base System
+âš™ï¸ Step 8: Install Base System
 
 ```bash
 pacstrap /mnt base linux linux-firmware vim networkmanager
@@ -140,7 +139,7 @@ Then generate fstab:
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-🧭 Step 9: Chroot Into the System
+ðŸ§­ Step 9: Chroot Into the System
 
 ```bash
 arch-chroot /mnt
@@ -165,7 +164,7 @@ Set root password:
 passwd
 ```
 
-🚀 Step 10: Install GRUB Bootloader
+ðŸš€ Step 10: Install GRUB Bootloader
 
 **For UEFI systems:**
 ```bash
@@ -182,9 +181,9 @@ grub-install /dev/sda
 os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-✅ You’ll see that GRUB detects your Windows Boot Manager automatically!
+âœ… Youâ€™ll see that GRUB detects your Windows Boot Manager automatically!
 
-🌐 Step 11: Enable Network and Exit
+ðŸŒ Step 11: Enable Network and Exit
 
 ```bash
 systemctl enable NetworkManager
@@ -194,24 +193,24 @@ reboot
 ```
 Remove the USB when prompted.
 
-🪟 Step 12: Boot Menu (Choose OS)
+ðŸªŸ Step 12: Boot Menu (Choose OS)
 
-On reboot, you’ll see the GRUB menu:
+On reboot, youâ€™ll see the GRUB menu:
 *   Arch Linux
 *   Windows Boot Manager
 
 You can switch easily between both OSes whenever you boot.
 
-🩺 Troubleshooting Tips
+ðŸ©º Troubleshooting Tips
 
-*   **If GRUB doesn’t show Windows:**
+*   **If GRUB doesnâ€™t show Windows:**
     ```bash
     sudo os-prober
     sudo grub-mkconfig -o /boot/grub/grub.cfg
     ```
 *   **If booting directly into Windows:**
     Go into BIOS and ensure Arch/GRUB is first in the boot order.
-*   **If Arch doesn’t boot:**
+*   **If Arch doesnâ€™t boot:**
     Boot into live USB again
     Mount root partition:
     ```bash
@@ -222,16 +221,17 @@ You can switch easily between both OSes whenever you boot.
     reboot
     ```
 
-🧠 Bonus Tip: Keep Both OSes Clean
+ðŸ§  Bonus Tip: Keep Both OSes Clean
 
-*   Don’t touch Windows partitions from Linux unless you know what you’re doing.
+*   Donâ€™t touch Windows partitions from Linux unless you know what youâ€™re doing.
 *   Keep Windows updates enabled.
-*   Use `Timeshift` in Linux for snapshots — it can save you during a failed update.
+*   Use `Timeshift` in Linux for snapshots â€” it can save you during a failed update.
 
-🧾 Final Thoughts
+ðŸ§¾ Final Thoughts
 
-Dual-booting Windows 10 and Arch Linux gives you the power to enjoy both ecosystems — productivity in Windows, and full control in Linux.
-If you follow this guide carefully, you’ll have a smooth dual-boot setup with zero data loss.
+Dual-booting Windows 10 and Arch Linux gives you the power to enjoy both ecosystems â€” productivity in Windows, and full control in Linux.
+If you follow this guide carefully, youâ€™ll have a smooth dual-boot setup with zero data loss.
 
-Written by Huzi 🧑‍💻
-💻 Explore more Linux and web development tutorials on huzi.pk — your home for open-source guides, performance tips, and real tech fixes!
+Written by Huzi ðŸ§‘â€ðŸ’»
+ðŸ’» Explore more Linux and web development tutorials on huzi.pk â€” your home for open-source guides, performance tips, and real tech fixes!
+

@@ -26,7 +26,7 @@ interface PostClientWrapperProps {
 }
 
 export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostClientWrapperProps) {
-  
+
   return (
     <div className="bg-background">
       <main className="py-8 md:py-12">
@@ -40,7 +40,7 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
               <header className="mb-8">
                 {post.category && (
                   <Link href={`/category/${post.category.toLowerCase().replace(/ /g, '-')}`}>
-                     <Badge variant="secondary" className="mb-2 hover:bg-primary/20 transition-colors">
+                    <Badge variant="secondary" className="mb-2 hover:bg-primary/20 transition-colors">
                       {post.category}
                     </Badge>
                   </Link>
@@ -49,11 +49,13 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                   {post.title}
                 </h1>
                 <div className="mt-4 text-sm text-muted-foreground">
-                  <span>By {post.author}</span>
+                  <span>
+                    By <a href="https://huzi.huzi.pk" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors cursor-pointer">{post.author}</a>
+                  </span>
                 </div>
               </header>
 
-              <div 
+              <div
                 className="prose prose-lg dark:prose-invert max-w-none 
                            prose-p:leading-relaxed prose-p:font-body
                            prose-a:text-primary hover:prose-a:text-primary/80
@@ -65,9 +67,9 @@ export function PostClientWrapper({ post, relatedPosts, relatedProducts }: PostC
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
             </article>
-            
+
             <CodeCopyButton />
-            
+
             {relatedProducts.length > 0 && (
               <>
                 <hr className="my-12 border-border" />

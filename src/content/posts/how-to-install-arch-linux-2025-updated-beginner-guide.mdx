@@ -1,17 +1,16 @@
----
+﻿---
 title: How to Install Arch Linux (2025 Updated Beginner Guide)
-date: '2025-10-02'
+date: "2025"
 excerpt: "A detailed 2025 beginner's guide to installing Arch Linux from scratch. Learn how to create a bootable USB, partition disks, install a desktop environment, and troubleshoot common boot issues on any PC or laptop."
-author: Huzi
+author: "Huzi"
 category: 'Linux'
-imageHint: 'Arch Linux logo terminal'
 keywords: ['Arch Linux install', 'beginner guide', 'Linux tutorial', 'Arch Linux 2025', 'UEFI', 'GRUB', 'partitioning', 'desktop environment']
 ---
-Arch Linux is one of the most customizable, lightweight, and fast Linux distributions available today. However, it doesn’t have a graphical installer like Ubuntu — you install everything manually.
+Arch Linux is one of the most customizable, lightweight, and fast Linux distributions available today. However, it doesnâ€™t have a graphical installer like Ubuntu â€” you install everything manually.
 
-This guide will help beginners install Arch Linux from scratch — on PCs, laptops, or even virtual machines — with detailed commands, partition setup, desktop environment installation, and boot troubleshooting.
+This guide will help beginners install Arch Linux from scratch â€” on PCs, laptops, or even virtual machines â€” with detailed commands, partition setup, desktop environment installation, and boot troubleshooting.
 
-🧩 Prerequisites
+ðŸ§© Prerequisites
 
 Before starting, make sure you have:
 
@@ -20,10 +19,10 @@ Before starting, make sure you have:
 *   A computer (PC or laptop) that supports UEFI (most modern systems do)
 *   Optional: Another device or phone to follow this guide while installing
 
-⚙️ Step 1: Download Arch Linux ISO
+âš™ï¸ Step 1: Download Arch Linux ISO
 
 Visit the official Arch Linux download page:
-🔗 https://archlinux.org/download/
+ðŸ”— https://archlinux.org/download/
 
 Download the latest ISO file (e.g. `archlinux-2025.10.01-x86_64.iso`)
 
@@ -33,9 +32,9 @@ sha256sum archlinux-2025.10.01-x86_64.iso
 ```
 Compare it with the checksum on the website.
 
-💽 Step 2: Create a Bootable USB
+ðŸ’½ Step 2: Create a Bootable USB
 
-**🪟 On Windows:**
+**ðŸªŸ On Windows:**
 Use Rufus:
 1.  Download Rufus
 2.  Select your Arch ISO file.
@@ -45,27 +44,27 @@ Use Rufus:
     *   `MBR` if it uses Legacy BIOS
 5.  Click **Start** and wait.
 
-**🐧 On Linux:**
+**ðŸ§ On Linux:**
 Use the `dd` command:
 ```bash
 sudo dd if=archlinux-2025.10.01-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
 ```
-(Replace `/dev/sdX` with your USB drive path — e.g. `/dev/sdb`)
+(Replace `/dev/sdX` with your USB drive path â€” e.g. `/dev/sdb`)
 
-🖥️ Step 3: Boot Into the Arch Installer
+ðŸ–¥ï¸ Step 3: Boot Into the Arch Installer
 
 1.  Plug the USB into your system.
 2.  Reboot and open the **Boot Menu** (usually by pressing F2, F12, or Esc during startup).
 3.  Select your USB drive.
 4.  When the Arch menu appears, choose:
-    `“Arch Linux install medium (x86_64, UEFI)”`
+    `â€œArch Linux install medium (x86_64, UEFI)â€`
 
-You’ll land in a terminal (`root@archiso`).
+Youâ€™ll land in a terminal (`root@archiso`).
 
-🌐 Step 4: Connect to the Internet
+ðŸŒ Step 4: Connect to the Internet
 
 **For wired (Ethernet):**
-You’re already connected.
+Youâ€™re already connected.
 
 **For Wi-Fi:**
 Run:
@@ -84,15 +83,15 @@ Test the connection:
 ```bash
 ping archlinux.org
 ```
-If you see replies — you’re online ✅
+If you see replies â€” youâ€™re online âœ…
 
-🕓 Step 5: Update System Clock
+ðŸ•“ Step 5: Update System Clock
 
 ```bash
 timedatectl set-ntp true
 ```
 
-💾 Step 6: Partition Your Disk
+ðŸ’¾ Step 6: Partition Your Disk
 
 List your drives:
 ```bash
@@ -107,14 +106,14 @@ cfdisk /dev/sda
 Select `GPT`.
 
 Now create:
-1.  **EFI Partition** → 512MB → Type: `EFI System`
-2.  **Root Partition** → remaining space → Type: `Linux filesystem`
+1.  **EFI Partition** â†’ 512MB â†’ Type: `EFI System`
+2.  **Root Partition** â†’ remaining space â†’ Type: `Linux filesystem`
 3.  If you want a swap partition, create it too (e.g., 2GB).
 
 Then:
-**Write** → **Yes** → **Quit**.
+**Write** â†’ **Yes** â†’ **Quit**.
 
-🧱 Step 7: Format the Partitions
+ðŸ§± Step 7: Format the Partitions
 
 ```bash
 mkfs.fat -F32 /dev/sda1        # EFI partition
@@ -123,7 +122,7 @@ mkswap /dev/sda3               # (if created)
 swapon /dev/sda3
 ```
 
-📂 Step 8: Mount the Filesystems
+ðŸ“‚ Step 8: Mount the Filesystems
 
 ```bash
 mount /dev/sda2 /mnt
@@ -131,26 +130,26 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 ```
 
-🔧 Step 9: Install the Base System
+ðŸ”§ Step 9: Install the Base System
 
 ```bash
 pacstrap /mnt base linux linux-firmware vim networkmanager
 ```
-💡 You can replace `vim` with `nano` if you prefer.
+ðŸ’¡ You can replace `vim` with `nano` if you prefer.
 
-📜 Step 10: Generate fstab
+ðŸ“œ Step 10: Generate fstab
 
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-🔄 Step 11: Chroot into the New System
+ðŸ”„ Step 11: Chroot into the New System
 
 ```bash
 arch-chroot /mnt
 ```
 
-⏰ Step 12: Set Timezone and Locale
+â° Step 12: Set Timezone and Locale
 
 ```bash
 ln -sf /usr/share/zoneinfo/Asia/Karachi /etc/localtime
@@ -172,7 +171,7 @@ Create locale config:
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
-👤 Step 13: Set Hostname and Root Password
+ðŸ‘¤ Step 13: Set Hostname and Root Password
 
 ```bash
 echo "archpc" > /etc/hostname
@@ -182,13 +181,13 @@ echo "127.0.1.1   archpc.localdomain archpc" >> /etc/hosts
 passwd
 ```
 
-🧠 Step 14: Enable Network Manager
+ðŸ§  Step 14: Enable Network Manager
 
 ```bash
 systemctl enable NetworkManager
 ```
 
-🥾 Step 15: Install and Configure Bootloader (GRUB)
+ðŸ¥¾ Step 15: Install and Configure Bootloader (GRUB)
 
 Install GRUB and EFI tools:
 ```bash
@@ -200,7 +199,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-🧑‍💻 Step 16: Create a User
+ðŸ§‘â€ðŸ’» Step 16: Create a User
 
 ```bash
 useradd -m -G wheel -s /bin/bash htg
@@ -210,7 +209,7 @@ EDITOR=nano visudo
 Uncomment:
 `%wheel ALL=(ALL) ALL`
 
-🧠 Step 17: Install Desktop Environment (Choose One)
+ðŸ§  Step 17: Install Desktop Environment (Choose One)
 
 **KDE Plasma (Full)**
 ```bash
@@ -230,13 +229,13 @@ pacman -S gdm gnome
 systemctl enable gdm
 ```
 
-💾 Step 18: Install Extra Packages (Optional but Useful)
+ðŸ’¾ Step 18: Install Extra Packages (Optional but Useful)
 
 ```bash
 pacman -S firefox git base-devel neofetch htop pipewire pipewire-alsa pipewire-pulse
 ```
 
-🚀 Step 19: Exit, Unmount, and Reboot
+ðŸš€ Step 19: Exit, Unmount, and Reboot
 
 ```bash
 exit
@@ -245,17 +244,17 @@ reboot
 ```
 Remove your USB when prompted.
 
-🧩 Step 20: First Boot
+ðŸ§© Step 20: First Boot
 
 You should now see:
 *   GRUB menu
 *   Your desktop environment login screen
 
-Log in with your user account and start customizing Arch 🎉
+Log in with your user account and start customizing Arch ðŸŽ‰
 
-⚠️ Troubleshooting Boot Issues
+âš ï¸ Troubleshooting Boot Issues
 
-**🔹 Black screen after GRUB**
+**ðŸ”¹ Black screen after GRUB**
 Boot into a live USB again and mount partitions:
 ```bash
 mount /dev/sda2 /mnt
@@ -265,14 +264,14 @@ exit
 reboot
 ```
 
-**🔹 No Wi-Fi**
+**ðŸ”¹ No Wi-Fi**
 Make sure NetworkManager is enabled:
 ```bash
 systemctl enable NetworkManager
 systemctl start NetworkManager
 ```
 
-💡 Bonus: Post-Installation Tweaks
+ðŸ’¡ Bonus: Post-Installation Tweaks
 
 Install AUR helper (yay):
 ```bash
@@ -286,11 +285,12 @@ sudo pacman -Syu
 ```
 Customize your DE (themes, icons, fonts, etc.)
 
-🧭 Final Thoughts
+ðŸ§­ Final Thoughts
 
-Installing Arch Linux may seem intimidating, but once you’ve done it, you gain complete control over your system — speed, minimalism, and full transparency.
+Installing Arch Linux may seem intimidating, but once youâ€™ve done it, you gain complete control over your system â€” speed, minimalism, and full transparency.
 
 By following this 2025 beginner guide, you now have:
-✅ Working Arch Linux
-✅ Internet and GUI setup
-✅ Bootloader and user accounts ready
+âœ… Working Arch Linux
+âœ… Internet and GUI setup
+âœ… Bootloader and user accounts ready
+

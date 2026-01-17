@@ -1,11 +1,9 @@
----
+﻿---
 title: "Demystifying REST APIs: A Beginner's Guide"
 excerpt: "What exactly is a REST API? This guide breaks down the core concepts of Representational State Transfer, including resources, HTTP verbs, and status codes, in a simple and easy-to-understand way."
-imageUrl: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=2076&auto=format&fit=crop"
-imageHint: "api code on screen"
 author: "Huzi"
 category: "Programming"
-date: "2024-07-18"
+date: "2025"
 ---
 
 You've probably heard the term "API" thrown around a lot, especially in web development. API stands for **Application Programming Interface**, which is a general term for a way that two computer programs can talk to each other. One of the most common and influential architectural styles for designing these APIs is **REST**.
@@ -14,7 +12,7 @@ But what exactly is a REST API? Let's break it down in simple terms.
 
 ### What is REST?
 
-REST stands for **RE**presentational **S**tate **T**ransfer. It's not a protocol or a standard; it's an **architectural style**—a set of constraints and principles for designing networked applications. When an API follows the principles of REST, we call it a "RESTful" API.
+REST stands for **RE**presentational **S**tate **T**ransfer. It's not a protocol or a standard; it's an **architectural style**â€”a set of constraints and principles for designing networked applications. When an API follows the principles of REST, we call it a "RESTful" API.
 
 The core idea of REST is to treat a web service as a collection of **resources**. A resource can be anything: a user, a blog post, a product, a photo. Each resource is identified by a unique URL (Uniform Resource Locator).
 
@@ -42,20 +40,20 @@ A RESTful API uses HTTP methods to define what action the client wants to perfor
 The most common verbs are:
 
 -   **`GET` (Read):** Retrieves a representation of a resource. This is a safe operation, meaning it doesn't change the resource.
-    -   `GET /users` → Retrieves a list of all users.
-    -   `GET /users/123` → Retrieves the specific user with ID 123.
+    -   `GET /users` â†’ Retrieves a list of all users.
+    -   `GET /users/123` â†’ Retrieves the specific user with ID 123.
 
 -   **`POST` (Create):** Creates a new resource. The data for the new resource is sent in the body of the request.
-    -   `POST /users` → Creates a new user with the data provided in the request body.
+    -   `POST /users` â†’ Creates a new user with the data provided in the request body.
 
 -   **`PUT` (Update/Replace):** Updates an existing resource completely. The entire resource representation is sent in the request body. If the resource doesn't exist, `PUT` can be configured to create it.
-    -   `PUT /users/123` → Replaces the user with ID 123 with the new data from the request body.
+    -   `PUT /users/123` â†’ Replaces the user with ID 123 with the new data from the request body.
 
 -   **`PATCH` (Partial Update):** Modifies parts of an existing resource. You only need to send the data you want to change.
-    -   `PATCH /users/123` → Updates only the specified fields for the user with ID 123 (e.g., just changing the email address).
+    -   `PATCH /users/123` â†’ Updates only the specified fields for the user with ID 123 (e.g., just changing the email address).
 
 -   **`DELETE` (Delete):** Removes a resource.
-    -   `DELETE /users/123` → Deletes the user with ID 123.
+    -   `DELETE /users/123` â†’ Deletes the user with ID 123.
 
 ### An Example in Action
 

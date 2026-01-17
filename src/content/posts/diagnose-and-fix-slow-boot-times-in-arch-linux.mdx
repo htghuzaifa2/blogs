@@ -1,13 +1,12 @@
----
+﻿---
 title: "Diagnose and Fix Slow Boot Times in Arch Linux (2025)"
-date: '2025-10-09'
+date: "2025"
 excerpt: "A guide to diagnosing and fixing slow boot times in Arch Linux using systemd-analyze. Learn to identify bottlenecks, resolve service conflicts, and apply optimizations for a faster startup."
-author: Huzi
+author: "Huzi"
 category: 'Linux'
-imageHint: 'Arch Linux speed rocket'
 keywords: ['Arch Linux', 'slow boot', 'boot time', 'systemd-analyze', 'Linux performance', 'optimization', 'troubleshooting']
 ---
-### 🛠️ Diagnose Boot Performance with `systemd-analyze`
+### ðŸ› ï¸ Diagnose Boot Performance with `systemd-analyze`
 
 Start by understanding where time is being spent during your boot process using these essential commands:
 
@@ -24,7 +23,7 @@ Startup finished in 8.075s (firmware) + 3.495s (loader) + 1.414s (kernel) + 1min
 ```
 This shows the **userspace** phase is the main bottleneck at 1 minute 30 seconds.
 
-### 🚀 Common Slow Boot Issues and Solutions
+### ðŸš€ Common Slow Boot Issues and Solutions
 
 #### Service Conflicts and Timeouts
 
@@ -45,7 +44,7 @@ This starts Docker only when first needed, removing it from the critical boot pa
 *   **Slow Kernel Time**: If the kernel phase takes >10 seconds (like 33s in one case), this may indicate storage or hardware issues. Check for AMD GPU timeout messages or storage controller problems in `journalctl` logs.
 *   **Wait for Network**: Services like `systemd-networkd-wait-online.service` can delay boot. Consider if your system truly needs full network connectivity before boot completion.
 
-### 📋 Optimization Checklist
+### ðŸ“‹ Optimization Checklist
 
 Apply these additional optimizations for better boot performance:
 
@@ -55,7 +54,7 @@ Apply these additional optimizations for better boot performance:
 4.  **Initramfs Optimization**: Consider slimmer alternatives like Booster or `mkinitcpio` with `systemd` hook instead of `base` and `udev`.
 5.  **UEFI Firmware**: Update your motherboard BIOS/UEFI, as slow firmware initialization contributes to boot time.
 
-### 💻 Putting It All Together: A Real-World Example
+### ðŸ’» Putting It All Together: A Real-World Example
 
 Here's how one user solved their 1 minute 43 second boot time:
 
@@ -67,3 +66,4 @@ Here's how one user solved their 1 minute 43 second boot time:
 After applying the relevant optimizations for your system, run `systemd-analyze` again to compare results. Most systems can achieve 15-30 second boot times with proper tuning.
 
 If you're still experiencing specific issues after trying these steps, please share your `systemd-analyze` output, and I can provide more targeted advice.
+

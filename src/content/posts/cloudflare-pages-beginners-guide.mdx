@@ -1,22 +1,20 @@
----
-title: "The Ultimate Beginner’s Guide to Building a Website with Cloudflare Pages"
+﻿---
+title: "The Ultimate Beginnerâ€™s Guide to Building a Website with Cloudflare Pages"
 excerpt: "This guide provides a comprehensive walkthrough for deploying a modern website on Cloudflare Pages, covering everything from Git setup and local development to serverless functions, security, and monitoring."
 author: "Huzi"
 category: "Programming"
-imageUrl: "https://placehold.co/600x400.png"
-imageHint: "cloudflare deployment"
 ---
-      ## The Ultimate Beginner’s Guide to Building a Website with Cloudflare Pages: From Zero to Live in 30 Minutes
+      ## The Ultimate Beginnerâ€™s Guide to Building a Website with Cloudflare Pages: From Zero to Live in 30 Minutes
       ### Why Cloudflare Pages is Revolutionizing Web Development
-      Cloudflare Pages isn't just another hosting service – it's a **JAMstack powerhouse** that combines Git-based workflows, serverless functions, and enterprise-grade infrastructure. With automatic SSL, global CDN distribution across 300+ cities, and unlimited free collaborators, it eliminates traditional deployment headaches.
+      Cloudflare Pages isn't just another hosting service â€“ it's a **JAMstack powerhouse** that combines Git-based workflows, serverless functions, and enterprise-grade infrastructure. With automatic SSL, global CDN distribution across 300+ cities, and unlimited free collaborators, it eliminates traditional deployment headaches.
       **Real impact:**
-      - 🚀 *Tamborazo El Ranchito* reduced page load times by 68% after migrating from Wix.
-      - 💸 Startups like *Dig Inn* handle traffic spikes without scaling costs.
-      - 🌐 Enterprise features (DDoS protection, bot management) are available for free.
+      - ðŸš€ *Tamborazo El Ranchito* reduced page load times by 68% after migrating from Wix.
+      - ðŸ’¸ Startups like *Dig Inn* handle traffic spikes without scaling costs.
+      - ðŸŒ Enterprise features (DDoS protection, bot management) are available for free.
       
       ### Step 1: Pre-Launch Essentials (5-Minute Setup)
       #### 1.1 Git Repository Setup
-      Create a GitHub/GitLab account if you don’t have one. Then, initialize a repository:
+      Create a GitHub/GitLab account if you donâ€™t have one. Then, initialize a repository:
       ```bash
       git init
       git add .
@@ -33,7 +31,7 @@ imageHint: "cloudflare deployment"
       | VS Code   | Code editor                  | Download                            |
       | Git       | Version control              | `brew install git` (Mac/Linux)      |
 
-      💡 **Pro Tip:** Use the Pages CLI for local testing: `npx pages dev`
+      ðŸ’¡ **Pro Tip:** Use the Pages CLI for local testing: `npx pages dev`
       
       ### Step 2: Project Scaffolding Deep Dive
       #### 2.1 Framework-Specific Setup
@@ -61,12 +59,12 @@ imageHint: "cloudflare deployment"
       #### 2.2 Directory Structure Cheat Sheet
       ```markdown
       my-website/
-      ├── public/          # Static assets (images, fonts)
-      ├── src/             # Application code
-      ├── functions/       # Serverless APIs (Pages Functions)
-      ├── .gitignore
-      ├── package.json
-      └── cloudflare.toml  # Advanced config
+      â”œâ”€â”€ public/          # Static assets (images, fonts)
+      â”œâ”€â”€ src/             # Application code
+      â”œâ”€â”€ functions/       # Serverless APIs (Pages Functions)
+      â”œâ”€â”€ .gitignore
+      â”œâ”€â”€ package.json
+      â””â”€â”€ cloudflare.toml  # Advanced config
       ```
       
       #### 2.3 Essential cloudflare.toml Configuration
@@ -87,7 +85,7 @@ imageHint: "cloudflare deployment"
       ### Step 3: Deployment Masterclass
       #### 3.1 Connecting to Cloudflare
       1. Sign up at the [Cloudflare Dashboard](https://dash.cloudflare.com/).
-      2. Navigate: Workers & Pages → Create Application → Pages.
+      2. Navigate: Workers & Pages â†’ Create Application â†’ Pages.
       3. Connect your Git provider and select the repository.
       
       #### 3.2 Build Configuration Secrets
@@ -107,24 +105,24 @@ imageHint: "cloudflare deployment"
       3. Deploy the output to its edge network.
       
       This generates a production URL (e.g., `https://your-project.pages.dev`) and a preview URL for each branch.
-      🔍 **Debugging:** Access real-time logs in the dashboard under Builds → View Logs.
+      ðŸ” **Debugging:** Access real-time logs in the dashboard under Builds â†’ View Logs.
 
       ### Step 4: Custom Domain + DNS Configuration
       #### 4.1 Connecting Domain Providers
        | Provider      | Configuration Steps                     |
       |---------------|-----------------------------------------|
       | Cloudflare    | Automatic DNS setup (recommended)       |
-      | Namecheap     | Add CNAME: @ → your-project.pages.dev   |
+      | Namecheap     | Add CNAME: @ â†’ your-project.pages.dev   |
       | GoDaddy       | Create forwarding with masking          |
       
       #### 4.2 Advanced DNS Scenarios
       **Apex Domain Setup:**
       | Type  | Name | Value                    | Proxy Status |
       |-------|------|--------------------------|--------------|
-      | CNAME | @    | your-project.pages.dev   | Proxied ✅   |
-      | CNAME | www  | your-project.pages.dev   | Proxied ✅   |
+      | CNAME | @    | your-project.pages.dev   | Proxied âœ…   |
+      | CNAME | www  | your-project.pages.dev   | Proxied âœ…   |
       
-      **HTTPS Enforcement:** Auto-enabled with Cloudflare's Universal SSL. Force the redirect in SSL/TLS → Edge Certificates → Always Use HTTPS.
+      **HTTPS Enforcement:** Auto-enabled with Cloudflare's Universal SSL. Force the redirect in SSL/TLS â†’ Edge Certificates â†’ Always Use HTTPS.
       
       ### Step 5: Professional-Grade Enhancements
       #### 5.1 Pages Functions (Serverless Edge Runtime)
@@ -236,13 +234,13 @@ imageHint: "cloudflare deployment"
       }
       ```
       **Monetization:** Integrate Stripe payments or implement subscription paywalls with Pages Functions.
-      > "Cloudflare Pages isn't just simplifying deployments – it's democratizing access to enterprise-grade infrastructure. What used to require a DevOps team now takes minutes." - Matt Bullock, Cloudflare Product Lead
+      > "Cloudflare Pages isn't just simplifying deployments â€“ it's democratizing access to enterprise-grade infrastructure. What used to require a DevOps team now takes minutes." - Matt Bullock, Cloudflare Product Lead
       
       ### Launch Checklist:
-      - ✅ Test responsive design on Chrome DevTools.
-      - ✅ Validate HTML at validator.w3.org.
-      - ✅ Run Lighthouse audit for a performance score >90.
-      - ✅ Configure a backup branch (e.g., staging).
+      - âœ… Test responsive design on Chrome DevTools.
+      - âœ… Validate HTML at validator.w3.org.
+      - âœ… Run Lighthouse audit for a performance score >90.
+      - âœ… Configure a backup branch (e.g., staging).
       
       Ready to deploy? Start your project at [pages.cloudflare.com](https://pages.cloudflare.com/) or explore templates for Next.js, Astro, and Hugo!
       <div class="italic text-center text-muted-foreground pt-4 border-t mt-8">

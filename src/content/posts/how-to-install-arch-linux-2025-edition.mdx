@@ -1,16 +1,15 @@
----
+﻿---
 title: "How to Install Arch Linux on a PC or Laptop (2025 Edition)"
-date: '2025-10-26'
+date: "2025"
 excerpt: "A clear, step-by-step guide for moving from Windows to Arch Linux, covering everything from booting the USB to logging into your new Arch desktop."
 author: "Huzi"
 category: "Linux"
-imageHint: "Arch Linux logo command line"
 keywords: ["Arch Linux", "Linux", "Install Guide", "Linux Tutorial", "Windows to Linux", "UEFI", "CLI", "Linux 2025"]
 ---
 
-This guide is written for everyone moving from Windows — whether you’re on a laptop or desktop, using UEFI or Legacy BIOS. It’s clear, step-by-step, and accurate — everything you need from booting the USB to logging into your new Arch desktop.
+This guide is written for everyone moving from Windows â€” whether youâ€™re on a laptop or desktop, using UEFI or Legacy BIOS. Itâ€™s clear, step-by-step, and accurate â€” everything you need from booting the USB to logging into your new Arch desktop.
 
-### ⚙️ What You’ll Need
+### âš™ï¸ What Youâ€™ll Need
 
 Before starting, prepare these:
 
@@ -21,32 +20,32 @@ Before starting, prepare these:
 - Stable internet connection (Ethernet or Wi-Fi).
 - Another device or your phone (to read this guide while installing).
 
-### 🧱 Step 1: Back Up Your Data
+### ðŸ§± Step 1: Back Up Your Data
 
-You’re about to erase or modify partitions — so back up your important files:
+Youâ€™re about to erase or modify partitions â€” so back up your important files:
 
 - Documents, photos, and browser bookmarks.
 - Windows product key (optional, for reinstalling later).
 
 Use OneDrive, Google Drive, or an external HDD/SSD.
 
-### 💿 Step 2: Download Arch Linux ISO
+### ðŸ’¿ Step 2: Download Arch Linux ISO
 
 Visit the official Arch website:
-👉 https://archlinux.org/download/
+ðŸ‘‰ https://archlinux.org/download/
 
-Click on “HTTP Direct Downloads” → choose the nearest mirror (like archlinux.org/iso/latest/).
+Click on â€œHTTP Direct Downloadsâ€ â†’ choose the nearest mirror (like archlinux.org/iso/latest/).
 
-You’ll get a file like:
+Youâ€™ll get a file like:
 `archlinux-2025.10.01-x86_64.iso`
 
-### 🧰 Step 3: Create a Bootable USB
+### ðŸ§° Step 3: Create a Bootable USB
 On Windows:
 
 Use Rufus (https://rufus.ie):
 
 1. Plug your USB drive.
-2. Open Rufus → Select ISO file.
+2. Open Rufus â†’ Select ISO file.
 3. **Partition Scheme**:
    - UEFI systems: **GPT** + FAT32.
    - Legacy BIOS: **MBR**.
@@ -55,7 +54,7 @@ Use Rufus (https://rufus.ie):
 
 When done, your USB is ready to boot Arch.
 
-### 🔧 Step 4: Boot into Arch USB
+### ðŸ”§ Step 4: Boot into Arch USB
 
 Reboot your PC.
 
@@ -68,16 +67,16 @@ Press your Boot Menu key:
 
 Select your USB drive.
 
-You’ll see:
+Youâ€™ll see:
 ```
 Arch Linux install medium (x86_64, UEFI)
 ```
 Press Enter.
 
-### 🌐 Step 5: Connect to the Internet
+### ðŸŒ Step 5: Connect to the Internet
 
 **For Ethernet:**
-You’re already connected — no setup needed.
+Youâ€™re already connected â€” no setup needed.
 
 **For Wi-Fi:**
 Run:
@@ -98,9 +97,9 @@ Check connection:
 ```bash
 ping -c 3 archlinux.org
 ```
-If you get replies — you’re online.
+If you get replies â€” youâ€™re online.
 
-### 🕒 Step 6: Update the System Clock
+### ðŸ•’ Step 6: Update the System Clock
 
 ```bash
 timedatectl set-ntp true
@@ -110,15 +109,15 @@ Confirm:
 timedatectl status
 ```
 
-### 💽 Step 7: Partition the Disk
+### ðŸ’½ Step 7: Partition the Disk
 
 List all disks:
 ```bash
 lsblk
 ```
 Usually:
-- `/dev/sda` → HDD
-- `/dev/nvme0n1` → SSD
+- `/dev/sda` â†’ HDD
+- `/dev/nvme0n1` â†’ SSD
 
 If you want a clean install (remove Windows completely):
 
@@ -136,12 +135,12 @@ Example layout (UEFI):
 | Mount Point | Partition | Type               | Size         |
 |-------------|-----------|--------------------|--------------|
 | /boot/efi   | /dev/sda1 | EFI System         | 512M         |
-| swap        | /dev/sda2 | Linux swap         | 2–4G         |
+| swap        | /dev/sda2 | Linux swap         | 2â€“4G         |
 | /           | /dev/sda3 | Linux filesystem   | Rest of disk |
 
-Write → Confirm → Quit.
+Write â†’ Confirm â†’ Quit.
 
-### 💾 Step 8: Format the Partitions
+### ðŸ’¾ Step 8: Format the Partitions
 
 **For UEFI:**
 ```bash
@@ -158,7 +157,7 @@ swapon /dev/sda1
 mkfs.ext4 /dev/sda2
 ```
 
-### 🧍 Step 9: Mount the Partitions
+### ðŸ§ Step 9: Mount the Partitions
 
 **For UEFI:**
 ```bash
@@ -173,7 +172,7 @@ mount /dev/sda1 /mnt/boot/efi
 mount /dev/sda2 /mnt
 ```
 
-### 📦 Step 10: Install Base System
+### ðŸ“¦ Step 10: Install Base System
 
 ```bash
 pacstrap /mnt base linux linux-firmware nano networkmanager
@@ -183,7 +182,7 @@ This installs:
 - Linux kernel
 - Firmware and Network tools
 
-### 📜 Step 11: Generate fstab
+### ðŸ“œ Step 11: Generate fstab
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
@@ -192,18 +191,18 @@ Check:
 cat /mnt/etc/fstab
 ```
 
-### 🔄 Step 12: Chroot into New System
+### ðŸ”„ Step 12: Chroot into New System
 ```bash
 arch-chroot /mnt
 ```
 
-### 🕰️ Step 13: Set Time Zone
+### ðŸ•°ï¸ Step 13: Set Time Zone
 ```bash
 ln -sf /usr/share/zoneinfo/Asia/Karachi /etc/localtime
 hwclock --systohc
 ```
 
-### 🔤 Step 14: Set Locale
+### ðŸ”¤ Step 14: Set Locale
 
 Uncomment your language in:
 ```bash
@@ -221,7 +220,7 @@ Set system language:
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
-### 👤 Step 15: Set Hostname
+### ðŸ‘¤ Step 15: Set Hostname
 ```bash
 echo "archpc" > /etc/hostname
 ```
@@ -236,17 +235,17 @@ Add:
 127.0.1.1   archpc.localdomain archpc
 ```
 
-### 🔑 Step 16: Set Root Password
+### ðŸ”‘ Step 16: Set Root Password
 ```bash
 passwd
 ```
 
-### 💡 Step 17: Enable Network
+### ðŸ’¡ Step 17: Enable Network
 ```bash
 systemctl enable NetworkManager
 ```
 
-### 🧰 Step 18: Install Bootloader
+### ðŸ§° Step 18: Install Bootloader
 
 **For UEFI:**
 ```bash
@@ -262,7 +261,7 @@ grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### 🏁 Step 19: Exit and Reboot
+### ðŸ Step 19: Exit and Reboot
 ```bash
 exit
 umount -R /mnt
@@ -270,9 +269,9 @@ reboot
 ```
 Remove your USB when the system restarts.
 
-If all went well — you’ll boot into Arch Linux! 🎉
+If all went well â€” youâ€™ll boot into Arch Linux! ðŸŽ‰
 
-### 🎨 Step 20: Install a Desktop Environment
+### ðŸŽ¨ Step 20: Install a Desktop Environment
 
 Log in as root and install your desktop of choice:
 
@@ -297,7 +296,7 @@ systemctl enable gdm
 reboot
 ```
 
-### 💻 Step 21: Post-Install Essentials
+### ðŸ’» Step 21: Post-Install Essentials
 
 Once your desktop is up:
 ```bash
@@ -319,7 +318,7 @@ Then update:
 sudo pacman -Syu
 ```
 
-### 🔌 Step 22: Laptop Optimization
+### ðŸ”Œ Step 22: Laptop Optimization
 
 For laptops, install power tools:
 ```bash
@@ -337,7 +336,7 @@ Brightness control fix (optional):
 sudo pacman -S brightnessctl
 ```
 
-### 🧭 Step 23: AUR Support (Optional)
+### ðŸ§­ Step 23: AUR Support (Optional)
 
 Install `yay` (AUR helper):
 ```bash
@@ -350,12 +349,12 @@ Now install AUR packages easily, e.g.:
 yay -S google-chrome visual-studio-code-bin
 ```
 
-### 🧹 Step 24: Remove Unused Packages
+### ðŸ§¹ Step 24: Remove Unused Packages
 ```bash
 sudo pacman -Rns $(pacman -Qtdq)
 ```
 
-### 🧠 Step 25: Learn Arch Basics
+### ðŸ§  Step 25: Learn Arch Basics
 
 Update system:
 ```bash
@@ -375,7 +374,7 @@ Remove:
 sudo pacman -R package_name
 ```
 
-### 🪄 Step 26: Make It Yours
+### ðŸª„ Step 26: Make It Yours
 
 You can now personalize your Arch system:
 - Install themes (`plasma-lookandfeel-org.kde.*`).
@@ -383,12 +382,13 @@ You can now personalize your Arch system:
 - Sync your browser and files.
 - Add your dotfiles for configs.
 
-### 🌟 Final Thoughts
+### ðŸŒŸ Final Thoughts
 
-Switching from Windows to Arch Linux isn’t just installing a new OS — it’s a mindset shift.
-You’re taking full control — of your tools, your system, your workflow.
+Switching from Windows to Arch Linux isnâ€™t just installing a new OS â€” itâ€™s a mindset shift.
+Youâ€™re taking full control â€” of your tools, your system, your workflow.
 
-Arch rewards curiosity. You’ll learn, break things, fix them, and smile — because it’s yours.
+Arch rewards curiosity. Youâ€™ll learn, break things, fix them, and smile â€” because itâ€™s yours.
 
-> “Give a man Windows, and he’ll click for a day.
-> Teach him Arch, and he’ll build forever.” 🖤
+> â€œGive a man Windows, and heâ€™ll click for a day.
+> Teach him Arch, and heâ€™ll build forever.â€ ðŸ–¤
+

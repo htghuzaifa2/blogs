@@ -34,7 +34,9 @@ export const BlogCard = React.memo(({ post }: BlogCardProps) => {
           </CardDescription>
         </CardContent>
         <CardFooter className="p-6 pt-2 flex justify-between items-center text-sm">
-          <p className="text-muted-foreground">By {post.author}</p>
+          <p className="text-muted-foreground">
+            By <a href="https://huzi.huzi.pk" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors cursor-pointer">{post.author}</a>
+          </p>
           <div className="flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span>Read More</span>
             <ArrowRight className="ml-2 h-4 w-4" />

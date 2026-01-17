@@ -5,8 +5,8 @@ import { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-  title: 'All Posts - Huzi Blogs',
-  description: 'Browse our complete collection of articles. From deep dives into Artificial Intelligence and Web Development to practical Lifestyle advice and Tech reviews.',
+  title: 'Blog Archive | Comprehensive Tech and Digital Insights - Huzi Blogs',
+  description: 'Explore our complete archive of in-depth articles on AI, high-performance programming, and modern digital lifestyle. curated by Huzi for forward-thinking developers and tech enthusiasts.',
 };
 
 export default function BlogArchivePage() {

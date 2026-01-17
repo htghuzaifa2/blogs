@@ -5,8 +5,8 @@ import { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-  title: 'Search – Blogs.huzi.pk',
-  description: 'Search our blog archive for articles on AI, technology, and lifestyle.',
+  title: 'Search Tech Articles & Guides | Huzi Blogs',
+  description: 'Easily find tutorials and insights on AI, modern coding techniques, and digital growth within the Huzi Blogs archive.',
 };
 
 export default function SearchPage() {
