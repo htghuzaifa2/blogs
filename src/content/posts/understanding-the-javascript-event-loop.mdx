@@ -8,7 +8,7 @@ date: "2025"
 
 JavaScript describes itself as "Single-Threaded." For many developers, this sounds like a limitation. If JS can only do one thing at a time, why doesn't the entire website freeze every time we fetch data or wait for a timer?
 
-The answer lies in the **Event Loop.** It is the invisible engine that manages concurrency, allowing JavaScript to be asynchronously powerful while remaining fundamentally simple. In 2025, as we build increasingly complex real-time applications, understanding the Event Loop isn't just "Trivia"; itâ€™s the key to engineering high-performance software.
+The answer lies in the **Event Loop.** It is the invisible engine that manages concurrency, allowing JavaScript to be asynchronously powerful while remaining fundamentally simple. In 2025, as we build increasingly complex real-time applications, understanding the Event Loop isn't just "Trivia"; it"™s the key to engineering high-performance software.
 
 ---
 
@@ -16,12 +16,12 @@ The answer lies in the **Event Loop.** It is the invisible engine that manages c
 
 To understand the Loop, you must understand where your code lives:
 -   **The Call Stack (The Barista):** This is where your synchronous code runs. It is LIFO (Last In, First Out). If a function is in the Stack, the Barista is busy and cannot do anything else.
--   **The Web APIs (The Kitchen):** When you call `setTimeout`, `fetch`, or a DOM event, JavaScript hands that task to the browserâ€™s Web APIs. They handle the "Waiting" in the background so the Stack can stay clear.
+-   **The Web APIs (The Kitchen):** When you call `setTimeout`, `fetch`, or a DOM event, JavaScript hands that task to the browser"™s Web APIs. They handle the "Waiting" in the background so the Stack can stay clear.
 -   **The Callback Queue (The Pick-up Counter):** When a background task is finished, the result (the callback function) is placed here, waiting to be executed.
 
 ---
 
-## 2. The Loopâ€™s Only Job
+## 2. The Loop"™s Only Job
 
 The Event Loop is a simple, infinite loop that asks two questions:
 1.  **"Is the Call Stack empty?"** If someone is still speaking (a function is running), the Loop waits.
@@ -41,7 +41,7 @@ Not all tasks are equal. In 2025, mastering the priority of the "Microtask Queue
 ## 4. The Danger: Blocking the Loop
 
 If you write a "Long-Running" synchronous operation (like a massive loop or a heavy math calculation) directly in the Stack, you **Block the Event Loop.** 
--   **The Result:** The browser canâ€™t paint the UI, it canâ€™t handle clicks, and the user sees a "Page Unresponsive" error.
+-   **The Result:** The browser can"™t paint the UI, it can"™t handle clicks, and the user sees a "Page Unresponsive" error.
 -   **The Fix:** Use Web Workers for heavy computation, or break large tasks into smaller pieces using `requestIdleCallback` or async patterns.
 
 ---

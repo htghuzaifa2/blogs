@@ -87,7 +87,7 @@ export function BlogArchiveContent() {
                     Blog Archive
                 </h1>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                    Explore all {allPosts.length} posts from our archive.
+                    Explore all Blog posts from our archive.
                 </p>
             </div>
 

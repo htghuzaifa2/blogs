@@ -8,7 +8,7 @@ date: "2025"
 
 When React 16.8 was released, it brought a fundamental shift to the frontend world: **Hooks.** Before hooks, if you wanted to manage "State" in a React component, you had to use complex "Class Components" with their confusing `this` binding and scattered lifecycle methods. 
 
-In 2025, React Hooks are the industry standard. They allow you to use state and other React features without writing a single class. They make your code cleaner, more readable, and significantly easier to test. If you are starting your React journey today, mastering hooks is your first and most important milestone. Letâ€™s dive into the "Hooks Universe."
+In 2025, React Hooks are the industry standard. They allow you to use state and other React features without writing a single class. They make your code cleaner, more readable, and significantly easier to test. If you are starting your React journey today, mastering hooks is your first and most important milestone. Let"™s dive into the "Hooks Universe."
 
 ---
 
@@ -25,7 +25,7 @@ If you know these two, you can build 80% of what an average app needs.
 -   **The Win:** Every time you call `setCount`, React automatically re-renders the component to show the new value. It handles the DOM updates so you don't have to.
 
 ### B. `useEffect`: The Life of the Component
-`useEffect` allows you to perform "Side Effects"â€”things that happen outside the component's main render logic, such as fetching data from an API or setting up a subscription.
+`useEffect` allows you to perform "Side Effects""”things that happen outside the component's main render logic, such as fetching data from an API or setting up a subscription.
 -   **The Dependency Array:** This is the most critical part of `useEffect`. It tells React *When* to run the effect.
     -   `[]`: Run only once when the component mounts.
     -   `[data]`: Run every time `data` changes.
@@ -37,7 +37,7 @@ If you know these two, you can build 80% of what an average app needs.
 In 2025, building a "Working" app isn't enough; it has to be a **High-Performance** app.
 
 ### A. `useMemo`
-Used to "Memoize" (cache) expensive calculations. If you have a function that sorts 10,000 items, you donâ€™t want to run it on every single render. `useMemo` ensures it only runs when the input data changes.
+Used to "Memoize" (cache) expensive calculations. If you have a function that sorts 10,000 items, you don"™t want to run it on every single render. `useMemo` ensures it only runs when the input data changes.
 
 ### B. `useCallback`
 Similar to `useMemo`, but for functions. It prevents a function from being "Re-created" on every render, which is essential when passing functions down to child components that use `React.memo`.
@@ -46,7 +46,7 @@ Similar to `useMemo`, but for functions. It prevents a function from being "Re-c
 
 ## 3. `useRef`: The Direct Link to the DOM
 
-Sometimes, you need to "Touch" the actual HTML elementâ€”for example, to focus a text input or to measure the height of a div.
+Sometimes, you need to "Touch" the actual HTML element"”for example, to focus a text input or to measure the height of a div.
 -   **The Secret Power:** Unlike `useState`, changing a `ref` value does **Not** trigger a re-render. This makes it perfect for storing values that need to persist across renders but don't need to be seen on the screen (like a timer ID).
 
 ---

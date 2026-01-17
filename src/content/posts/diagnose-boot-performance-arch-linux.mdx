@@ -8,7 +8,7 @@ date: "2025"
 
 One of the main reasons we choose Arch Linux is its speed and "Minimalist" nature. So, when your system starts taking longer than 10 seconds to reach the login screen, it feels like a personal failure. In 2025, with fast NVMe drives and modern CPUs, an Arch system should feel instantaneous.
 
-If your boot process feels "Sluggish," itâ€™s usually because of a misconfigured service, a slow-loading kernel module, or a network-wait struggle thatâ€™s happening behind the scenes. Today, weâ€™re going to use the powerful tools built into `systemd` to diagnose your boot performance and trim the fat for a 5-second boot.
+If your boot process feels "Sluggish," it"™s usually because of a misconfigured service, a slow-loading kernel module, or a network-wait struggle that"™s happening behind the scenes. Today, we"™re going to use the powerful tools built into `systemd` to diagnose your boot performance and trim the fat for a 5-second boot.
 
 ---
 
@@ -41,7 +41,7 @@ By default, the kernel prints a lot of information to the screen during boot. Wh
 
 ## 4. Trimming the Services
 
-Do you really need everything thatâ€™s starting?
+Do you really need everything that"™s starting?
 -   **Check the Units:** Run `systemctl list-unit-files --state=enabled`. 
 -   **The Audit:** If you see things like `cups` (printing) or `avahi-daemon` (MDNS) and you don't use them every day, **Disable** them. You can always start them manually when you need them.
 
@@ -63,7 +63,7 @@ Open this file in your browser. It shows a timeline of every process. You can li
 
 ## Conclusion
 
-Optimizing Arch Linux is an iterative game. You disable a service, reboot, and check the `analyze` output again. In 2025, a well-tuned system is more than just a flex; itâ€™s a reflection of your understanding of the machine. Trim the bloat, optimize the kernel, and enjoy the speed.
+Optimizing Arch Linux is an iterative game. You disable a service, reboot, and check the `analyze` output again. In 2025, a well-tuned system is more than just a flex; it"™s a reflection of your understanding of the machine. Trim the bloat, optimize the kernel, and enjoy the speed.
 
 Stay fast. Stay sharp. Stay Huzi.
 
