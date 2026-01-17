@@ -1,25 +1,24 @@
-﻿---
-title: "Fix: Wi-Fi Not Working After Arch Linux Installation (2025 Guide)"
-date: "2025"
-excerpt: "A step-by-step guide to fix Wi-Fi issues on a fresh Arch Linux install. Learn to enable NetworkManager, install drivers for Intel & Broadcom, and diagnose your wireless adapter."
-author: "Huzi"
-category: "Linux"
-keywords: ["Arch Linux", "Wi-Fi fix", "NetworkManager", "Linux drivers", "iwctl", "nmcli", "troubleshooting", "no internet"]
 ---
-
-One of the most common issues after installing Arch Linux "” especially on laptops "” is that Wi-Fi doesn"™t work after your first boot. Don"™t worry "” this is easy to fix once you understand what"™s missing.
+title: 'Fix Wifi Not Working Arch Linux'
+date: '2025-01-17'
+author: 'Huzi'
+category: 'Technology'
+excerpt: 'Fix Wifi Not Working Arch Linux. Explore more on Huzi Blogs.'
+slug: 'fix-wifi-not-working-arch-linux'
+---
+One of the most common issues after installing Arch Linux ” especially on laptops ” is that Wi-Fi doesn™t work after your first boot. Don™t worry ” this is easy to fix once you understand what™s missing.
 
 This guide covers everything you need to get your Wi-Fi working again, including enabling NetworkManager, installing wireless drivers and firmware, and diagnosing adapter issues.
 
 ## Step 1: Check if NetworkManager Is Installed
 
-Arch doesn"™t install everything automatically. First, ensure NetworkManager is present.
+Arch doesn™t install everything automatically. First, ensure NetworkManager is present.
 
 Run:
 ```bash
 sudo pacman -Syu networkmanager
 ```
-If it says "up to date," good. Otherwise, it will install it.
+If it says "up to date," good. Otherwise, it will install it.
 
 Now enable it to start at boot:
 ```bash
@@ -30,11 +29,11 @@ Check its status:
 ```bash
 systemctl status NetworkManager
 ```
-If you see **active (running)** "” your service is fine.
+If you see **active (running)** ” your service is fine.
 
 ## Step 2: Detect Your Wireless Adapter
 
-Let"™s confirm your system can detect your Wi-Fi card.
+Let™s confirm your system can detect your Wi-Fi card.
 
 Run:
 ```bash
@@ -44,7 +43,7 @@ Or, for USB adapters:
 ```bash
 lsusb
 ```
-You"™ll see something like: `Network controller: Intel Corporation Wireless 8265 / 8275`. If you see no output, your system isn"™t detecting your adapter â†’ skip to Step 5.
+You™ll see something like: `Network controller: Intel Corporation Wireless 8265 / 8275`. If you see no output, your system isn™t detecting your adapter â†’ skip to Step 5.
 
 ## Step 3: Check Wi-Fi Interface Availability
 
@@ -52,11 +51,11 @@ Now, verify your wireless interface:
 ```bash
 ip link
 ```
-You should see something like `wlan0` or `wlp2s0`. If you see it but Wi-Fi still doesn"™t show up, your driver is loaded, but NetworkManager may need a restart:
+You should see something like `wlan0` or `wlp2s0`. If you see it but Wi-Fi still doesn™t show up, your driver is loaded, but NetworkManager may need a restart:
 ```bash
 sudo systemctl restart NetworkManager
 ```
-If the interface doesn"™t appear, go to Step 5.
+If the interface doesn™t appear, go to Step 5.
 
 ## Step 4: Connect to Wi-Fi via Terminal (Temporary Fix)
 
@@ -74,7 +73,7 @@ To test connectivity:
 ```bash
 ping -c 4 archlinux.org
 ```
-If you get responses "” you"™re online âœ…
+If you get responses ” you™re online âœ…
 
 ## Step 5: Install Missing Wi-Fi Drivers
 
@@ -137,22 +136,22 @@ nmcli connection modify "Your_WiFi_Name" connection.autoconnect yes
 
 ## Step 8: Install a GUI Network Tool (Optional)
 
-If you"™re using a desktop environment, make sure you have the network applet installed:
+If you™re using a desktop environment, make sure you have the network applet installed:
 
 -   **KDE Plasma:** `sudo pacman -S plasma-nm`
 -   **XFCE:** `sudo pacman -S network-manager-applet`
 -   **GNOME:** Already included with `gnome-control-center`.
 
-Reboot and check your Wi-Fi icon "” it should show available networks.
+Reboot and check your Wi-Fi icon ” it should show available networks.
 
 ## Step 9: Common Issues & Fixes
 
 | Problem                  | Solution                                            |
 | ------------------------ | --------------------------------------------------- |
 | Wi-Fi disappears after suspend | `sudo systemctl restart NetworkManager`             |
-| "No Wi-Fi Adapter Found"   | Reinstall firmware or kernel modules.               |
+| "No Wi-Fi Adapter Found"   | Reinstall firmware or kernel modules.               |
 | No wireless extensions found | Run `rfkill unblock wifi`                           |
-| Can"™t detect 5GHz networks   | Ensure regdom is set: `sudo iw reg set PK`          |
+| Can™t detect 5GHz networks   | Ensure regdom is set: `sudo iw reg set PK`          |
 
 ## Step 10: Advanced Debugging
 
@@ -163,9 +162,8 @@ If still broken, run `dmesg | grep wifi` and check for errors like: `firmware: f
 -   Ensure NetworkManager is installed and enabled.
 -   Install `linux-firmware` and the right Wi-Fi driver for your hardware.
 -   Use `nmcli` or a GUI to connect.
--   Reboot "” your Wi-Fi should now work permanently.
+-   Reboot ” your Wi-Fi should now work permanently.
 
 ### Conclusion
 
 Fixing Wi-Fi on Arch Linux may seem intimidating, but it becomes simple once you understand the system services. Arch gives you full control, and that includes managing drivers. Once set up, your Wi-Fi will work smoothly across reboots.
-
