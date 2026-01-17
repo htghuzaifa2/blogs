@@ -8,7 +8,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { cn } from '@/lib/utils';
 import { ClickTracker } from '@/components/click-tracker';
-import { Prefetcher } from '@/components/prefetcher';
+import ExternalPrefetch from '@/components/external-prefetch';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import dynamic from 'next/dynamic';
 
@@ -113,7 +113,7 @@ export default function RootLayout({
             <ProductPopup />
           </ClickTracker>
         </ThemeProvider>
-        <Prefetcher />
+        <ExternalPrefetch />
       </body>
     </html>
   );
